@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Globe } from 'lucide-react';
@@ -8,9 +7,12 @@ const Header = () => {
   const [language, setLanguage] = useState('EN');
 
   const toggleLanguage = () => {
-    setLanguage(language === 'EN' ? 'ES' : 'EN');
+    const newLanguage = language === 'EN' ? 'ES' : 'EN';
+    setLanguage(newLanguage);
+    // Store globally for other components
+    (window as any).currentLanguage = newLanguage;
     // Dispatch custom event to notify other components
-    window.dispatchEvent(new CustomEvent('languageChange', { detail: language === 'EN' ? 'ES' : 'EN' }));
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: newLanguage }));
   };
 
   const navItems = {

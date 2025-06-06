@@ -1,20 +1,32 @@
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 
 const Blog = () => {
-  const [language, setLanguage] = useState('EN');
+  // Get initial language from window object or default to EN
+  const [language, setLanguage] = useState(() => {
+    // Check if there's a stored language preference or get from a global state
+    return (window as any).currentLanguage || 'EN';
+  });
 
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {
       setLanguage(event.detail);
+      // Also store it globally so other components can access it
+      (window as any).currentLanguage = event.detail;
     };
 
     window.addEventListener('languageChange', handleLanguageChange as EventListener);
+    
+    // Check for initial language state
+    const currentLang = (window as any).currentLanguage;
+    if (currentLang && currentLang !== language) {
+      setLanguage(currentLang);
+    }
+
     return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
-  }, []);
+  }, [language]);
 
   const content = {
     EN: {
