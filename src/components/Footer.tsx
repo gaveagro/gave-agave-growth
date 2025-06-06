@@ -1,20 +1,13 @@
-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
 const Footer = () => {
-  return (
-    <footer className="bg-primary text-primary-foreground">
+  return <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <img 
-                src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=40&h=40&fit=crop&crop=center" 
-                alt="Gavé Agro"
-                className="w-10 h-10 rounded-full object-cover"
-              />
+              <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=40&h=40&fit=crop&crop=center" alt="Gavé Agro" className="w-10 h-10 rounded-full object-cover" />
               <span className="ml-2 text-xl font-bold">Gavé Agro</span>
             </div>
             <p className="text-primary-foreground/80 text-sm">
@@ -22,7 +15,7 @@ const Footer = () => {
             </p>
             <div className="space-y-2 text-sm">
               <p>San Luis Potosí, México</p>
-              <p>contact@gaveagro.com</p>
+              <p>hola@gaveagro.com</p>
             </div>
           </div>
 
@@ -55,11 +48,7 @@ const Footer = () => {
               Get the latest investment opportunities and impact reports.
             </p>
             <div className="space-y-3">
-              <Input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
-              />
+              <Input type="email" placeholder="Enter your email" className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60" />
               <Button variant="secondary" size="sm" className="w-full">
                 Subscribe
               </Button>
@@ -80,8 +69,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
