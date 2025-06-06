@@ -9,6 +9,8 @@ const Header = () => {
 
   const toggleLanguage = () => {
     setLanguage(language === 'EN' ? 'ES' : 'EN');
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: language === 'EN' ? 'ES' : 'EN' }));
   };
 
   const navItems = {
@@ -42,10 +44,10 @@ const Header = () => {
           <div className="flex items-center">
             <img 
               src="/lovable-uploads/4c7e4344-7b1e-4dac-8922-7356da9646e3.png" 
-              alt="Gavé Agro"
+              alt="Gavé"
               className="w-10 h-10 object-contain"
             />
-            <span className="ml-2 text-xl font-bold text-primary">Gavé Agro</span>
+            <span className="ml-2 text-xl font-bold text-primary">Gavé</span>
           </div>
 
           {/* Desktop Navigation */}

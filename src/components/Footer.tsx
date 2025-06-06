@@ -1,17 +1,24 @@
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+
 const Footer = () => {
-  return <footer className="bg-primary text-primary-foreground">
+  return (
+    <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=40&h=40&fit=crop&crop=center" alt="Gavé Agro" className="w-10 h-10 rounded-full object-cover" />
-              <span className="ml-2 text-xl font-bold">Gavé Agro</span>
+              <img 
+                src="/lovable-uploads/4c7e4344-7b1e-4dac-8922-7356da9646e3.png" 
+                alt="Gavé" 
+                className="w-10 h-10 object-contain"
+              />
+              <span className="ml-2 text-xl font-bold">Gavé</span>
             </div>
             <p className="text-primary-foreground/80 text-sm">
-              Technology-driven sustainable agave investment delivering superior returns while regenerating land and supporting communities.
+              Technology-driven sustainable agave investment delivering profitable returns while regenerating land and supporting communities.
             </p>
             <div className="space-y-2 text-sm">
               <p>San Luis Potosí, México</p>
@@ -48,7 +55,11 @@ const Footer = () => {
               Get the latest investment opportunities and impact reports.
             </p>
             <div className="space-y-3">
-              <Input type="email" placeholder="Enter your email" className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60" />
+              <Input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60" 
+              />
               <Button variant="secondary" size="sm" className="w-full">
                 Subscribe
               </Button>
@@ -59,7 +70,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-primary-foreground/80 text-sm">
-              © 2024 Gavé Agro. All rights reserved.
+              © 2024 Gavé. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/privacy" className="text-primary-foreground/80 hover:text-primary-foreground text-sm">Privacy Policy</a>
@@ -69,6 +80,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

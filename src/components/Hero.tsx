@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -8,7 +8,16 @@ import { ArrowDown } from 'lucide-react';
 const Hero = () => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [language, setLanguage] = useState('EN'); // This should be managed globally in a real app
+  const [language, setLanguage] = useState('EN');
+
+  useEffect(() => {
+    const handleLanguageChange = (event: CustomEvent) => {
+      setLanguage(event.detail);
+    };
+
+    window.addEventListener('languageChange', handleLanguageChange as EventListener);
+    return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
