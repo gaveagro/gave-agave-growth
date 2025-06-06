@@ -1,9 +1,42 @@
 
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 
 const Blog = () => {
+  const [language, setLanguage] = useState('EN');
+
+  useEffect(() => {
+    const handleLanguageChange = (event: CustomEvent) => {
+      setLanguage(event.detail);
+    };
+
+    window.addEventListener('languageChange', handleLanguageChange as EventListener);
+    return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
+  }, []);
+
+  const content = {
+    EN: {
+      title: 'Latest Insights & News',
+      subtitle: 'Stay updated with our latest research, impact reports, and insights from the world of sustainable agave investment.',
+      viewAll: 'View All Articles',
+      readMore: 'Read More',
+      research: 'Research',
+      impactReport: 'Impact Report',
+      community: 'Community'
+    },
+    ES: {
+      title: 'Últimas Noticias y Análisis',
+      subtitle: 'Mantente actualizado con nuestras últimas investigaciones, reportes de impacto y análisis del mundo de la inversión sustentable en agave.',
+      viewAll: 'Ver Todos los Artículos',
+      readMore: 'Leer Más',
+      research: 'Investigación',
+      impactReport: 'Reporte de Impacto',
+      community: 'Comunidad'
+    }
+  };
+
   const blogPosts = [
     {
       id: 1,
@@ -46,15 +79,17 @@ const Blog = () => {
     }
   ];
 
+  const currentContent = content[language as keyof typeof content];
+
   return (
     <section id="blog" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Latest Insights & News
+            {currentContent.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Stay updated with our latest research, impact reports, and insights from the world of sustainable agave investment.
+            {currentContent.subtitle}
           </p>
         </div>
 
@@ -64,14 +99,14 @@ const Blog = () => {
               <div className="aspect-video overflow-hidden">
                 <img 
                   src={post.image} 
-                  alt={post.title}
+                  alt={language === 'EN' ? post.title : post.titleES}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <CardHeader>
                 <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
                   <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs">
-                    {post.category}
+                    {language === 'EN' ? post.category : post.categoryES}
                   </span>
                   <div className="flex items-center space-x-1">
                     <Calendar className="w-3 h-3" />
@@ -79,20 +114,20 @@ const Blog = () => {
                   </div>
                 </div>
                 <CardTitle className="text-lg leading-tight hover:text-primary transition-colors">
-                  {post.title}
+                  {language === 'EN' ? post.title : post.titleES}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                  {post.excerpt}
+                  {language === 'EN' ? post.excerpt : post.excerptES}
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2 text-xs text-muted-foreground">
                     <User className="w-3 h-3" />
-                    <span>{post.author}</span>
+                    <span>{language === 'EN' ? post.author : post.authorES}</span>
                   </div>
                   <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                    Read More
+                    {currentContent.readMore}
                     <ArrowRight className="w-3 h-3 ml-1" />
                   </Button>
                 </div>
@@ -103,7 +138,7 @@ const Blog = () => {
 
         <div className="text-center">
           <Button variant="outline" size="lg" className="px-8">
-            View All Articles
+            {currentContent.viewAll}
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
         </div>

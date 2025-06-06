@@ -23,29 +23,34 @@ const ImpactSection = () => {
       returnsNote: 'Returns are shared 65% to investors, 35% to Gavé for crop management and harvest sales.',
       impactAreas: [
         {
-          title: 'Biodiversity Conservation',
-          description: 'Our tech-focused approach to wild agave cultivation preserves natural ecosystems and protects endangered agave species through monitoring and sustainable harvesting methods.',
-          metric: '15+ Species Protected',
-          icon: '🌿'
-        },
-        {
-          title: 'Land Regeneration',
-          description: 'Our operations focus on land regeneration through agrosilvopastoral models that restore degraded soil and increase biodiversity.',
-          metric: '2,450 Hectares Restored',
+          title: 'Hectares Restored',
+          description: 'We focus on land regeneration through agrosilvopastoral models that restore degraded soil and increase biodiversity.',
+          metric: '64',
           icon: '🌱'
         },
         {
-          title: 'Carbon Sequestration',
+          title: 'Hectares Conserved',
+          description: 'Our tech-focused approach to wild agave cultivation preserves natural ecosystems and protects endangered agave species.',
+          metric: '385',
+          icon: '🌿'
+        },
+        {
+          title: 'CO₂ Sequestration',
           description: 'Agave plants and our regenerative practices sequester significant amounts of carbon, contributing to climate change mitigation.',
-          metric: '15,670 Tons CO₂ Captured',
+          metric: '21,984 Tons',
           icon: '🌍'
         },
         {
           title: 'Community Impact',
           description: 'We provide sustainable employment and training to local communities in San Luis Potosí, México, creating lasting social impact.',
-          metric: '1,200 Families Supported',
+          metric: '25,663 Workdays',
           icon: '🤝'
         }
+      ],
+      additionalMetrics: [
+        { title: 'Indigenous Land Ownership', value: '100%' },
+        { title: 'Agave Species Germination', value: '10' },
+        { title: 'Communities Supported', value: '13' }
       ],
       techPoints: [
         {
@@ -70,29 +75,34 @@ const ImpactSection = () => {
       returnsNote: 'Los retornos se comparten 65% para inversionistas, 35% para Gavé por manejo de cultivos y venta de cosecha.',
       impactAreas: [
         {
-          title: 'Conservación de Biodiversidad',
-          description: 'Nuestro enfoque tecnológico en el cultivo de agave silvestre preserva ecosistemas naturales y protege especies de agave en peligro mediante monitoreo y métodos de cosecha sustentables.',
-          metric: '15+ Especies Protegidas',
-          icon: '🌿'
-        },
-        {
-          title: 'Regeneración de Tierras',
-          description: 'Nuestras operaciones se enfocan en la regeneración de tierras a través de modelos agrosilvopastorales que restauran suelos degradados y aumentan la biodiversidad.',
-          metric: '2,450 Hectáreas Restauradas',
+          title: 'Hectáreas Restauradas',
+          description: 'Nos enfocamos en la regeneración de tierras a través de modelos agrosilvopastorales que restauran suelos degradados y aumentan la biodiversidad.',
+          metric: '64',
           icon: '🌱'
         },
         {
-          title: 'Captura de Carbono',
+          title: 'Hectáreas Conservadas',
+          description: 'Nuestro enfoque tecnológico en el cultivo de agave silvestre preserva ecosistemas naturales y protege especies de agave en peligro.',
+          metric: '385',
+          icon: '🌿'
+        },
+        {
+          title: 'Captura de CO₂',
           description: 'Las plantas de agave y nuestras prácticas regenerativas capturan cantidades significativas de carbono, contribuyendo a la mitigación del cambio climático.',
-          metric: '15,670 Toneladas CO₂ Capturadas',
+          metric: '21,984 Toneladas',
           icon: '🌍'
         },
         {
           title: 'Impacto Comunitario',
           description: 'Proporcionamos empleo sustentable y capacitación a comunidades locales en San Luis Potosí, México, creando un impacto social duradero.',
-          metric: '1,200 Familias Apoyadas',
+          metric: '25,663 Jornadas',
           icon: '🤝'
         }
+      ],
+      additionalMetrics: [
+        { title: 'Propiedad de Tierra Indígena', value: '100%' },
+        { title: 'Germinación de Especies de Agave', value: '10' },
+        { title: 'Comunidades Apoyadas', value: '13' }
       ],
       techPoints: [
         {
@@ -125,7 +135,7 @@ const ImpactSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {currentContent.impactAreas.map((area, index) => (
             <Card key={index} className="text-center hover:shadow-lg transition-shadow">
               <CardHeader className="pb-3">
@@ -137,6 +147,18 @@ const ImpactSection = () => {
                 <CardDescription className="text-sm">
                   {area.description}
                 </CardDescription>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Additional Metrics */}
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          {currentContent.additionalMetrics.map((metric, index) => (
+            <Card key={index} className="text-center">
+              <CardContent className="pt-6">
+                <div className="text-3xl font-bold text-primary mb-2">{metric.value}</div>
+                <p className="text-sm text-muted-foreground">{metric.title}</p>
               </CardContent>
             </Card>
           ))}
