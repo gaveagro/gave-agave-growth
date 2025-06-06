@@ -11,6 +11,29 @@ const Header = () => {
     setLanguage(language === 'EN' ? 'ES' : 'EN');
   };
 
+  const navItems = {
+    EN: {
+      home: 'Home',
+      impact: 'Impact',
+      howItWorks: 'How it Works',
+      blog: 'Blog',
+      faq: 'FAQ',
+      dashboard: 'Dashboard',
+      startInvesting: 'Start Investing'
+    },
+    ES: {
+      home: 'Inicio',
+      impact: 'Impacto',
+      howItWorks: 'Cómo Funciona',
+      blog: 'Blog',
+      faq: 'FAQ',
+      dashboard: 'Dashboard',
+      startInvesting: 'Comenzar a Invertir'
+    }
+  };
+
+  const currentNav = navItems[language as keyof typeof navItems];
+
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,9 +41,9 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <img 
-              src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=40&h=40&fit=crop&crop=center" 
+              src="/lovable-uploads/4c7e4344-7b1e-4dac-8922-7356da9646e3.png" 
               alt="Gavé Agro"
-              className="w-10 h-10 rounded-full object-cover"
+              className="w-10 h-10 object-contain"
             />
             <span className="ml-2 text-xl font-bold text-primary">Gavé Agro</span>
           </div>
@@ -28,19 +51,22 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#home" className="text-foreground hover:text-primary transition-colors">
-              {language === 'EN' ? 'Home' : 'Inicio'}
+              {currentNav.home}
             </a>
             <a href="#impact" className="text-foreground hover:text-primary transition-colors">
-              {language === 'EN' ? 'Impact' : 'Impacto'}
+              {currentNav.impact}
             </a>
             <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors">
-              {language === 'EN' ? 'How it Works' : 'Cómo Funciona'}
+              {currentNav.howItWorks}
+            </a>
+            <a href="#blog" className="text-foreground hover:text-primary transition-colors">
+              {currentNav.blog}
             </a>
             <a href="#faq" className="text-foreground hover:text-primary transition-colors">
-              FAQ
+              {currentNav.faq}
             </a>
             <a href="https://dashboard.gaveagro.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
-              Dashboard
+              {currentNav.dashboard}
             </a>
           </nav>
 
@@ -56,7 +82,7 @@ const Header = () => {
               <span>{language}</span>
             </Button>
             <Button className="bg-primary hover:bg-primary/90">
-              {language === 'EN' ? 'Start Investing' : 'Comenzar a Invertir'}
+              {currentNav.startInvesting}
             </Button>
           </div>
 
@@ -77,19 +103,22 @@ const Header = () => {
           <div className="md:hidden border-t border-border">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <a href="#home" className="block px-3 py-2 text-foreground hover:text-primary">
-                {language === 'EN' ? 'Home' : 'Inicio'}
+                {currentNav.home}
               </a>
               <a href="#impact" className="block px-3 py-2 text-foreground hover:text-primary">
-                {language === 'EN' ? 'Impact' : 'Impacto'}
+                {currentNav.impact}
               </a>
               <a href="#how-it-works" className="block px-3 py-2 text-foreground hover:text-primary">
-                {language === 'EN' ? 'How it Works' : 'Cómo Funciona'}
+                {currentNav.howItWorks}
+              </a>
+              <a href="#blog" className="block px-3 py-2 text-foreground hover:text-primary">
+                {currentNav.blog}
               </a>
               <a href="#faq" className="block px-3 py-2 text-foreground hover:text-primary">
-                FAQ
+                {currentNav.faq}
               </a>
               <a href="https://dashboard.gaveagro.com" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 text-foreground hover:text-primary">
-                Dashboard
+                {currentNav.dashboard}
               </a>
               <div className="flex items-center justify-between px-3 py-2">
                 <Button 
@@ -102,7 +131,7 @@ const Header = () => {
                   <span>{language}</span>
                 </Button>
                 <Button size="sm" className="bg-primary hover:bg-primary/90">
-                  {language === 'EN' ? 'Start Investing' : 'Comenzar a Invertir'}
+                  {currentNav.startInvesting}
                 </Button>
               </div>
             </div>
