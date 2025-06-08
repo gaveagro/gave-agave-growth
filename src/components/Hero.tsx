@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Play } from 'lucide-react';
 
 const Hero = () => {
   const [email, setEmail] = useState('');
@@ -74,9 +74,9 @@ const Hero = () => {
       {/* Background with gradient */}
       <div className="absolute inset-0 gradient-hero opacity-90"></div>
       
-      {/* Background image overlay */}
+      {/* Background image - Agave field with native trees */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
         style={{
           backgroundImage: 'url("https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1920&h=1080&fit=crop&crop=center")'
         }}
@@ -151,8 +151,34 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Column - Impact Stats */}
+          {/* Right Column - Video/Image Showcase */}
           <div className="space-y-6 animate-fade-in">
+            {/* Main Video/Image Card */}
+            <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20">
+              <div className="relative aspect-video">
+                <img 
+                  src="https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=800&h=600&fit=crop&crop=center"
+                  alt="Agave field with native vegetation"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <Button 
+                    variant="ghost" 
+                    size="lg"
+                    className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white"
+                  >
+                    <Play className="w-8 h-8" />
+                  </Button>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white text-sm font-medium">
+                    {language === 'EN' ? 'Agave Cultivation with Native Species' : 'Cultivo de Agave con Especies Nativas'}
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Impact Stats Grid */}
             <div className="grid grid-cols-2 gap-4">
               <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
                 <div className="text-3xl font-bold text-yellow-300 animate-counter-up">2,450</div>

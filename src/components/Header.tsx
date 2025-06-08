@@ -1,6 +1,8 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Globe } from 'lucide-react';
+import InvestmentModal from './InvestmentModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -85,9 +87,11 @@ const Header = () => {
               <Globe className="w-4 h-4" />
               <span>{language}</span>
             </Button>
-            <Button className="bg-primary hover:bg-primary/90">
-              {currentNav.startInvesting}
-            </Button>
+            <InvestmentModal>
+              <Button className="bg-primary hover:bg-primary/90">
+                {currentNav.startInvesting}
+              </Button>
+            </InvestmentModal>
           </div>
 
           {/* Mobile menu button */}
@@ -134,9 +138,11 @@ const Header = () => {
                   <Globe className="w-4 h-4" />
                   <span>{language}</span>
                 </Button>
-                <Button size="sm" className="bg-primary hover:bg-primary/90">
-                  {currentNav.startInvesting}
-                </Button>
+                <InvestmentModal>
+                  <Button size="sm" className="bg-primary hover:bg-primary/90">
+                    {currentNav.startInvesting}
+                  </Button>
+                </InvestmentModal>
               </div>
             </div>
           </div>

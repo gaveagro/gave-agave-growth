@@ -27,25 +27,29 @@ const HowItWorks = () => {
           step: '01',
           title: 'Choose Your Investment',
           description: 'Select agave plants from our established fields in San Luis Potosí. Choose between Espadín or Salmiana species based on your investment timeline and impact goals.',
-          details: ['Agave Angustifolia Haw (Espadín)', 'Agave Salmiana', 'Price includes all costs and guarantees']
+          details: ['Agave Angustifolia Haw (Espadín)', 'Agave Salmiana', 'Price includes all costs and guarantees'],
+          image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=300&fit=crop&crop=center'
         },
         {
           step: '02',
           title: 'We Manage Everything',
           description: 'Gavé handles all aspects of cultivation including labor, land lease, insurance, fertilization, pest control, and plant replacement guarantees.',
-          details: ['Professional crop management', 'Insurance coverage', 'Plant replacement guarantee', 'Regular monitoring reports']
+          details: ['Professional crop management', 'Insurance coverage', 'Plant replacement guarantee', 'Regular monitoring reports'],
+          image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400&h=300&fit=crop&crop=center'
         },
         {
           step: '03',
           title: 'Monitor Your Investment',
           description: 'Track your plants\' growth and health through our technology platform with real-time data and regular updates.',
-          details: ['Satellite imagery monitoring', 'Drone technology', 'Growth progress reports', 'Environmental impact metrics']
+          details: ['Satellite imagery monitoring', 'Drone technology', 'Growth progress reports', 'Environmental impact metrics'],
+          image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=300&fit=crop&crop=center'
         },
         {
           step: '04',
           title: 'Harvest & Returns',
           description: 'After maturation, we harvest and sell to the highest bidder. You receive 65% of the profit margin above production costs.',
-          details: ['Optimal harvest timing', 'Best market price', '65% profit share', 'Transparent reporting']
+          details: ['Optimal harvest timing', 'Best market price', '65% profit share', 'Transparent reporting'],
+          image: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&h=300&fit=crop&crop=center'
         }
       ],
       models: [
@@ -86,25 +90,29 @@ const HowItWorks = () => {
           step: '01',
           title: 'Elige tu Inversión',
           description: 'Selecciona plantas de agave de nuestros campos establecidos en San Luis Potosí. Elige entre especies Espadín o Salmiana según tu cronograma de inversión y objetivos de impacto.',
-          details: ['Agave Angustifolia Haw (Espadín)', 'Agave Salmiana', 'El precio incluye todos los costos y garantías']
+          details: ['Agave Angustifolia Haw (Espadín)', 'Agave Salmiana', 'El precio incluye todos los costos y garantías'],
+          image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=300&fit=crop&crop=center'
         },
         {
           step: '02',
           title: 'Nosotros Manejamos Todo',
           description: 'Gavé maneja todos los aspectos del cultivo incluyendo mano de obra, arrendamiento de tierra, seguro, fertilización, control de plagas y garantías de reemplazo de plantas.',
-          details: ['Manejo profesional de cultivos', 'Cobertura de seguro', 'Garantía de reemplazo de plantas', 'Reportes de monitoreo regulares']
+          details: ['Manejo profesional de cultivos', 'Cobertura de seguro', 'Garantía de reemplazo de plantas', 'Reportes de monitoreo regulares'],
+          image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400&h=300&fit=crop&crop=center'
         },
         {
           step: '03',
           title: 'Monitorea tu Inversión',
           description: 'Rastrea el crecimiento y salud de tus plantas a través de nuestra plataforma tecnológica con datos en tiempo real y actualizaciones regulares.',
-          details: ['Monitoreo con imágenes satelitales', 'Tecnología de drones', 'Reportes de progreso de crecimiento', 'Métricas de impacto ambiental']
+          details: ['Monitoreo con imágenes satelitales', 'Tecnología de drones', 'Reportes de progreso de crecimiento', 'Métricas de impacto ambiental'],
+          image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=300&fit=crop&crop=center'
         },
         {
           step: '04',
           title: 'Cosecha y Retornos',
           description: 'Después de la maduración, cosechamos y vendemos al mejor postor. Recibes el 65% del margen de ganancia sobre los costos de producción.',
-          details: ['Momento óptimo de cosecha', 'Mejor precio de mercado', '65% de participación en ganancias', 'Reportes transparentes']
+          details: ['Momento óptimo de cosecha', 'Mejor precio de mercado', '65% de participación en ganancias', 'Reportes transparentes'],
+          image: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&h=300&fit=crop&crop=center'
         }
       ],
       models: [
@@ -150,22 +158,31 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        {/* Visual Process Flow */}
-        <div className="relative max-w-6xl mx-auto mb-20">
+        {/* Visual Process Flow with Images */}
+        <div className="relative max-w-7xl mx-auto mb-20">
           {/* Connection Lines */}
-          <div className="hidden lg:block absolute top-8 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary via-primary to-primary opacity-30"></div>
+          <div className="hidden lg:block absolute top-32 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary via-primary to-primary opacity-30"></div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {currentContent.steps.map((step, index) => (
               <div key={index} className="relative">
                 {/* Step Number Circle */}
                 <div className="flex justify-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold shadow-lg z-10 relative">
                     {step.step}
                   </div>
                 </div>
                 
-                <Card className="text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <Card className="text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+                  {/* Image */}
+                  <div className="aspect-video overflow-hidden">
+                    <img 
+                      src={step.image} 
+                      alt={step.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg mb-2">{step.title}</CardTitle>
                     <CardDescription className="text-sm leading-relaxed">
