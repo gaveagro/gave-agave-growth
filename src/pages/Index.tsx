@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ImpactSection from '@/components/ImpactSection';
 import HowItWorks from '@/components/HowItWorks';
+import OurFarms from '@/components/OurFarms';
 import MonitoringPlatform from '@/components/MonitoringPlatform';
 import Blog from '@/components/Blog';
 import Testimonials from '@/components/Testimonials';
@@ -16,9 +17,10 @@ const Index = () => {
       <Hero />
       <ImpactSection />
       <HowItWorks />
+      <OurFarms />
       <MonitoringPlatform />
-      <Blog />
       <Testimonials />
+      <Blog />
       <FAQ />
       <Footer />
     </div>

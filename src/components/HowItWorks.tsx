@@ -1,7 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import InvestmentModal from './InvestmentModal';
 
 const HowItWorks = () => {
   const [language, setLanguage] = useState('EN');
@@ -63,7 +63,9 @@ const HowItWorks = () => {
             'Higher plant density',
             'Predictable yields',
             'More inventory available'
-          ]
+          ],
+          agaveImage: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=300&h=200&fit=crop&crop=center',
+          farmImage: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=300&h=200&fit=crop&crop=center'
         },
         {
           name: 'Salmiana',
@@ -75,7 +77,9 @@ const HowItWorks = () => {
             'Enhanced carbon sequestration',
             'Soil regeneration',
             'Superior environmental benefits'
-          ]
+          ],
+          agaveImage: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&h=200&fit=crop&crop=center',
+          farmImage: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=300&h=200&fit=crop&crop=center'
         }
       ]
     },
@@ -126,7 +130,9 @@ const HowItWorks = () => {
             'Mayor densidad de plantas',
             'Rendimientos predecibles',
             'Más inventario disponible'
-          ]
+          ],
+          agaveImage: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=300&h=200&fit=crop&crop=center',
+          farmImage: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=300&h=200&fit=crop&crop=center'
         },
         {
           name: 'Salmiana',
@@ -138,7 +144,9 @@ const HowItWorks = () => {
             'Mayor captura de carbono',
             'Regeneración del suelo',
             'Beneficios ambientales superiores'
-          ]
+          ],
+          agaveImage: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&h=200&fit=crop&crop=center',
+          farmImage: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=300&h=200&fit=crop&crop=center'
         }
       ]
     }
@@ -150,7 +158,7 @@ const HowItWorks = () => {
     <section id="how-it-works" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gave-blue">
             {currentContent.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -161,19 +169,19 @@ const HowItWorks = () => {
         {/* Visual Process Flow with Images */}
         <div className="relative max-w-7xl mx-auto mb-20">
           {/* Connection Lines */}
-          <div className="hidden lg:block absolute top-32 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary via-primary to-primary opacity-30"></div>
+          <div className="hidden lg:block absolute top-32 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-gave-blue via-gave-blue to-gave-blue opacity-30"></div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {currentContent.steps.map((step, index) => (
               <div key={index} className="relative">
                 {/* Step Number Circle */}
                 <div className="flex justify-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold shadow-lg z-10 relative">
+                  <div className="w-16 h-16 bg-gradient-to-br from-gave-blue to-gave-blue/80 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg z-10 relative">
                     {step.step}
                   </div>
                 </div>
                 
-                <Card className="text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+                <Card className="text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border-gave-blue/20">
                   {/* Image */}
                   <div className="aspect-video overflow-hidden">
                     <img 
@@ -184,7 +192,7 @@ const HowItWorks = () => {
                   </div>
                   
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg mb-2">{step.title}</CardTitle>
+                    <CardTitle className="text-lg mb-2 text-gave-blue">{step.title}</CardTitle>
                     <CardDescription className="text-sm leading-relaxed">
                       {step.description}
                     </CardDescription>
@@ -193,7 +201,7 @@ const HowItWorks = () => {
                     <ul className="space-y-2 text-xs">
                       {step.details.map((detail, detailIndex) => (
                         <li key={detailIndex} className="flex items-center justify-center space-x-2">
-                          <div className="w-1 h-1 bg-primary rounded-full"></div>
+                          <div className="w-1 h-1 bg-gave-yellow rounded-full"></div>
                           <span className="text-muted-foreground">{detail}</span>
                         </li>
                       ))}
@@ -205,24 +213,30 @@ const HowItWorks = () => {
           </div>
         </div>
 
-        {/* Investment Models Comparison */}
+        {/* Investment Models Comparison with Images */}
         <div className="mt-20">
-          <h3 className="text-2xl font-bold text-center mb-4">{currentContent.modelsTitle}</h3>
+          <h3 className="text-2xl font-bold text-center mb-4 text-gave-blue">{currentContent.modelsTitle}</h3>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             {currentContent.simulationNote}
           </p>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {currentContent.models.map((model, index) => (
-              <Card key={index} className="border-2 hover:border-primary transition-all duration-300 hover:shadow-xl">
+              <Card key={index} className="border-2 hover:border-gave-blue transition-all duration-300 hover:shadow-xl">
                 <CardHeader className="text-center pb-4">
-                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center">
-                    <span className="text-2xl">🌿</span>
+                  {/* Agave Species Image */}
+                  <div className="mb-4">
+                    <img 
+                      src={model.agaveImage} 
+                      alt={`Agave ${model.name}`}
+                      className="w-full h-48 object-cover rounded-lg"
+                    />
                   </div>
-                  <CardTitle className="text-2xl mb-1">{model.name}</CardTitle>
-                  <CardDescription className="font-medium text-primary">{model.subtitle}</CardDescription>
+                  
+                  <CardTitle className="text-2xl mb-1 text-gave-blue">{model.name}</CardTitle>
+                  <CardDescription className="font-medium text-gave-blue/80">{model.subtitle}</CardDescription>
                   <div className="mt-3">
-                    <div className="text-3xl font-bold text-primary">{model.maturation}</div>
+                    <div className="text-3xl font-bold text-gave-blue">{model.maturation}</div>
                     <div className="text-sm text-muted-foreground">{language === 'EN' ? 'Maturation Period' : 'Período de Maduración'}</div>
                   </div>
                 </CardHeader>
@@ -230,10 +244,23 @@ const HowItWorks = () => {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {model.description}
                   </p>
+                  
+                  {/* Farm Example Image */}
+                  <div className="mb-4">
+                    <img 
+                      src={model.farmImage} 
+                      alt={`${model.name} Farm Example`}
+                      className="w-full h-32 object-cover rounded-lg"
+                    />
+                    <p className="text-xs text-muted-foreground mt-2 text-center">
+                      {language === 'EN' ? 'Farm Example' : 'Ejemplo de Granja'}
+                    </p>
+                  </div>
+                  
                   <ul className="space-y-2">
                     {model.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center space-x-2 text-sm">
-                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-gave-yellow rounded-full"></div>
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -245,9 +272,11 @@ const HowItWorks = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 px-8 py-3">
-            {currentContent.ctaButton}
-          </Button>
+          <InvestmentModal>
+            <Button size="lg" className="bg-gave-blue hover:bg-gave-blue/90 px-8 py-3">
+              {currentContent.ctaButton}
+            </Button>
+          </InvestmentModal>
         </div>
       </div>
     </section>

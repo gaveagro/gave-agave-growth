@@ -3,76 +3,78 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Gavé Agro Design System - Sustainable Investment Theme */
+/* Gavé Agro Design System - Official Brand Colors */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 160 20% 15%;
+    --foreground: 210 15% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 160 20% 15%;
+    --card-foreground: 210 15% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 160 20% 15%;
+    --popover-foreground: 210 15% 20%;
 
-    --primary: 140 45% 25%;
+    --primary: 210 100% 45%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 45 25% 95%;
-    --secondary-foreground: 160 20% 15%;
+    --secondary-foreground: 210 15% 20%;
 
-    --muted: 45 25% 96%;
-    --muted-foreground: 160 10% 45%;
+    --muted: 210 10% 96%;
+    --muted-foreground: 210 10% 45%;
 
-    --accent: 140 30% 35%;
+    --accent: 210 80% 50%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 140 20% 90%;
-    --input: 140 20% 90%;
-    --ring: 140 45% 25%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 210 100% 45%;
 
     --radius: 0.5rem;
 
-    /* Custom Gavé colors */
-    --agave-green: 140 45% 25%;
-    --earth-brown: 25 35% 35%;
-    --desert-sand: 45 40% 85%;
-    --impact-blue: 200 40% 30%;
-    --growth-lime: 90 40% 50%;
+    /* Gavé Official Brand Colors */
+    --gave-blue-primary: 210 100% 45%;
+    --gave-blue-secondary: 210 80% 50%;
+    --gave-blue-light: 210 100% 85%;
+    --gave-yellow-accent: 45 100% 50%;
+    --gave-green-natural: 140 30% 35%;
+    --gave-earth-brown: 25 35% 35%;
+    --gave-desert-sand: 45 40% 85%;
   }
 
   .dark {
-    --background: 160 25% 8%;
+    --background: 210 25% 8%;
     --foreground: 45 25% 95%;
 
-    --card: 160 20% 10%;
+    --card: 210 20% 10%;
     --card-foreground: 45 25% 95%;
 
-    --popover: 160 20% 10%;
+    --popover: 210 20% 10%;
     --popover-foreground: 45 25% 95%;
 
-    --primary: 140 45% 35%;
-    --primary-foreground: 160 25% 8%;
+    --primary: 210 100% 55%;
+    --primary-foreground: 210 25% 8%;
 
-    --secondary: 160 15% 15%;
+    --secondary: 210 15% 15%;
     --secondary-foreground: 45 25% 95%;
 
-    --muted: 160 15% 15%;
+    --muted: 210 15% 15%;
     --muted-foreground: 45 15% 65%;
 
-    --accent: 140 30% 25%;
+    --accent: 210 80% 60%;
     --accent-foreground: 45 25% 95%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 160 15% 20%;
-    --input: 160 15% 20%;
-    --ring: 140 45% 35%;
+    --border: 210 15% 20%;
+    --input: 210 15% 20%;
+    --ring: 210 100% 55%;
   }
 }
 
@@ -88,39 +90,39 @@
 }
 
 @layer utilities {
-  .text-agave-green {
-    color: hsl(var(--agave-green));
+  .text-gave-blue {
+    color: hsl(var(--gave-blue-primary));
   }
   
-  .bg-agave-green {
-    background-color: hsl(var(--agave-green));
+  .bg-gave-blue {
+    background-color: hsl(var(--gave-blue-primary));
   }
   
-  .text-earth-brown {
-    color: hsl(var(--earth-brown));
+  .text-gave-yellow {
+    color: hsl(var(--gave-yellow-accent));
   }
   
-  .bg-earth-brown {
-    background-color: hsl(var(--earth-brown));
+  .bg-gave-yellow {
+    background-color: hsl(var(--gave-yellow-accent));
   }
   
-  .bg-desert-sand {
-    background-color: hsl(var(--desert-sand));
+  .bg-gave-green {
+    background-color: hsl(var(--gave-green-natural));
   }
   
-  .text-impact-blue {
-    color: hsl(var(--impact-blue));
+  .bg-gave-earth {
+    background-color: hsl(var(--gave-earth-brown));
   }
   
-  .bg-impact-blue {
-    background-color: hsl(var(--impact-blue));
+  .bg-gave-sand {
+    background-color: hsl(var(--gave-desert-sand));
   }
   
-  .gradient-hero {
-    background: linear-gradient(135deg, hsl(var(--agave-green)) 0%, hsl(var(--earth-brown)) 100%);
+  .gradient-hero-gave {
+    background: linear-gradient(135deg, hsl(var(--gave-blue-primary)) 0%, hsl(var(--gave-blue-secondary)) 100%);
   }
   
-  .gradient-impact {
-    background: linear-gradient(90deg, hsl(var(--impact-blue)) 0%, hsl(var(--agave-green)) 100%);
+  .gradient-impact-gave {
+    background: linear-gradient(90deg, hsl(var(--gave-blue-primary)) 0%, hsl(var(--gave-green-natural)) 100%);
   }
 }

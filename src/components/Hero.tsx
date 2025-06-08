@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -71,14 +70,14 @@ const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
-      {/* Background with gradient */}
-      <div className="absolute inset-0 gradient-hero opacity-90"></div>
+      {/* Background with gradient using new Gavé colors */}
+      <div className="absolute inset-0 gradient-hero-gave opacity-90"></div>
       
-      {/* Background image - Agave field with native trees */}
+      {/* Background image - Agave field with native trees (mezquite) */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1920&h=1080&fit=crop&crop=center")'
+          backgroundImage: 'url("https://images.unsplash.com/photo-1472396961693-142e6e269027?w=1920&h=1080&fit=crop&crop=center")'
         }}
       ></div>
 
@@ -89,7 +88,7 @@ const Hero = () => {
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 {currentContent.title}
-                <span className="block text-yellow-300">{currentContent.titleHighlight}</span>
+                <span className="block text-gave-yellow">{currentContent.titleHighlight}</span>
               </h1>
               <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
                 {currentContent.subtitle}
@@ -122,7 +121,7 @@ const Hero = () => {
                     />
                     <Button 
                       type="submit" 
-                      className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-8"
+                      className="bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900 font-semibold px-8"
                     >
                       {currentContent.getStarted}
                     </Button>
@@ -153,12 +152,12 @@ const Hero = () => {
 
           {/* Right Column - Video/Image Showcase */}
           <div className="space-y-6 animate-fade-in">
-            {/* Main Video/Image Card */}
+            {/* Main Video/Image Card - Agave with mezquite trees */}
             <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20">
               <div className="relative aspect-video">
                 <img 
                   src="https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=800&h=600&fit=crop&crop=center"
-                  alt="Agave field with native vegetation"
+                  alt="Agave field with mezquite trees and native vegetation"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -172,7 +171,7 @@ const Hero = () => {
                 </div>
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-white text-sm font-medium">
-                    {language === 'EN' ? 'Agave Cultivation with Native Species' : 'Cultivo de Agave con Especies Nativas'}
+                    {language === 'EN' ? 'Agave Cultivation with Mezquite Trees & Native Species' : 'Cultivo de Agave con Mezquites y Especies Nativas'}
                   </p>
                 </div>
               </div>
@@ -181,25 +180,25 @@ const Hero = () => {
             {/* Impact Stats Grid */}
             <div className="grid grid-cols-2 gap-4">
               <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <div className="text-3xl font-bold text-yellow-300 animate-counter-up">2,450</div>
+                <div className="text-3xl font-bold text-gave-yellow animate-counter-up">2,450</div>
                 <div className="text-sm opacity-80">
                   {language === 'EN' ? 'Hectares Reforested' : 'Hectáreas Reforestadas'}
                 </div>
               </Card>
               <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <div className="text-3xl font-bold text-yellow-300 animate-counter-up">15,670</div>
+                <div className="text-3xl font-bold text-gave-yellow animate-counter-up">15,670</div>
                 <div className="text-sm opacity-80">
                   {language === 'EN' ? 'Tons CO₂ Sequestered' : 'Toneladas CO₂ Capturadas'}
                 </div>
               </Card>
               <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <div className="text-3xl font-bold text-yellow-300 animate-counter-up">1,200</div>
+                <div className="text-3xl font-bold text-gave-yellow animate-counter-up">1,200</div>
                 <div className="text-sm opacity-80">
                   {language === 'EN' ? 'Families Supported' : 'Familias Apoyadas'}
                 </div>
               </Card>
               <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <div className="text-3xl font-bold text-yellow-300 animate-counter-up">18-25%</div>
+                <div className="text-3xl font-bold text-gave-yellow animate-counter-up">18-25%</div>
                 <div className="text-sm opacity-80">
                   {language === 'EN' ? 'Expected Returns' : 'Retornos Esperados'}
                 </div>
@@ -211,7 +210,7 @@ const Hero = () => {
               <ul className="space-y-2 text-sm">
                 {currentContent.agavePoints.map((point, index) => (
                   <li key={index} className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-yellow-300 rounded-full"></div>
+                    <div className="w-2 h-2 bg-gave-yellow rounded-full"></div>
                     <span>{point}</span>
                   </li>
                 ))}

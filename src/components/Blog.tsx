@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 
 const Blog = () => {
+  const navigate = useNavigate();
   // Get initial language from window object or default to EN
   const [language, setLanguage] = useState(() => {
     // Check if there's a stored language preference or get from a global state
@@ -97,7 +99,7 @@ const Blog = () => {
     <section id="blog" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gave-blue">
             {currentContent.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -107,7 +109,8 @@ const Blog = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {blogPosts.map((post) => (
-            <Card key={post.id} className="hover:shadow-lg transition-shadow overflow-hidden">
+            <Card key={post.id} className="hover:shadow-lg transition-shadow overflow-hidden border-gave-blue/20 cursor-pointer"
+                  onClick={() => navigate(`/blog/${post.id}`)}>
               <div className="aspect-video overflow-hidden">
                 <img 
                   src={post.image} 
@@ -117,7 +120,7 @@ const Blog = () => {
               </div>
               <CardHeader>
                 <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
-                  <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs">
+                  <span className="bg-gave-blue/10 text-gave-blue px-2 py-1 rounded-full text-xs">
                     {language === 'EN' ? post.category : post.categoryES}
                   </span>
                   <div className="flex items-center space-x-1">
@@ -125,7 +128,7 @@ const Blog = () => {
                     <span>{new Date(post.date).toLocaleDateString()}</span>
                   </div>
                 </div>
-                <CardTitle className="text-lg leading-tight hover:text-primary transition-colors">
+                <CardTitle className="text-lg leading-tight hover:text-gave-blue transition-colors">
                   {language === 'EN' ? post.title : post.titleES}
                 </CardTitle>
               </CardHeader>
@@ -138,7 +141,7 @@ const Blog = () => {
                     <User className="w-3 h-3" />
                     <span>{language === 'EN' ? post.author : post.authorES}</span>
                   </div>
-                  <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
+                  <Button variant="ghost" size="sm" className="text-gave-blue hover:text-gave-blue/80">
                     {currentContent.readMore}
                     <ArrowRight className="w-3 h-3 ml-1" />
                   </Button>
@@ -149,7 +152,7 @@ const Blog = () => {
         </div>
 
         <div className="text-center">
-          <Button variant="outline" size="lg" className="px-8">
+          <Button variant="outline" size="lg" className="px-8 border-gave-blue text-gave-blue hover:bg-gave-blue hover:text-white">
             {currentContent.viewAll}
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
