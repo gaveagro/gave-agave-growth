@@ -1,12 +1,14 @@
 
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import TrustedPartners from '@/components/TrustedPartners';
 import ImpactSection from '@/components/ImpactSection';
 import HowItWorks from '@/components/HowItWorks';
 import OurFarms from '@/components/OurFarms';
 import MonitoringPlatform from '@/components/MonitoringPlatform';
-import Blog from '@/components/Blog';
+import InvestmentSimulator from '@/components/InvestmentSimulator';
 import Testimonials from '@/components/Testimonials';
+import Blog from '@/components/Blog';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 
@@ -15,10 +17,12 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
+      <TrustedPartners />
       <ImpactSection />
       <HowItWorks />
       <OurFarms />
       <MonitoringPlatform />
+      <InvestmentSimulator />
       <Testimonials />
       <Blog />
       <FAQ />

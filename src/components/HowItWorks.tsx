@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -64,8 +65,7 @@ const HowItWorks = () => {
             'Predictable yields',
             'More inventory available'
           ],
-          agaveImage: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=300&h=200&fit=crop&crop=center',
-          farmImage: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=300&h=200&fit=crop&crop=center'
+          agaveImage: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=300&h=200&fit=crop&crop=center'
         },
         {
           name: 'Salmiana',
@@ -78,8 +78,7 @@ const HowItWorks = () => {
             'Soil regeneration',
             'Superior environmental benefits'
           ],
-          agaveImage: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&h=200&fit=crop&crop=center',
-          farmImage: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=300&h=200&fit=crop&crop=center'
+          agaveImage: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&h=200&fit=crop&crop=center'
         }
       ]
     },
@@ -131,8 +130,7 @@ const HowItWorks = () => {
             'Rendimientos predecibles',
             'Más inventario disponible'
           ],
-          agaveImage: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=300&h=200&fit=crop&crop=center',
-          farmImage: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=300&h=200&fit=crop&crop=center'
+          agaveImage: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=300&h=200&fit=crop&crop=center'
         },
         {
           name: 'Salmiana',
@@ -145,8 +143,7 @@ const HowItWorks = () => {
             'Regeneración del suelo',
             'Beneficios ambientales superiores'
           ],
-          agaveImage: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&h=200&fit=crop&crop=center',
-          farmImage: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=300&h=200&fit=crop&crop=center'
+          agaveImage: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&h=200&fit=crop&crop=center'
         }
       ]
     }
@@ -244,18 +241,6 @@ const HowItWorks = () => {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {model.description}
                   </p>
-                  
-                  {/* Farm Example Image */}
-                  <div className="mb-4">
-                    <img 
-                      src={model.farmImage} 
-                      alt={`${model.name} Farm Example`}
-                      className="w-full h-32 object-cover rounded-lg"
-                    />
-                    <p className="text-xs text-muted-foreground mt-2 text-center">
-                      {language === 'EN' ? 'Farm Example' : 'Ejemplo de Granja'}
-                    </p>
-                  </div>
                   
                   <ul className="space-y-2">
                     {model.features.map((feature, featureIndex) => (
