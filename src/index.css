@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 15% 20%;
 
-    --primary: 210 100% 45%;
+    --primary: 140 60% 45%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 45 25% 95%;
@@ -25,7 +25,7 @@
     --muted: 210 10% 96%;
     --muted-foreground: 210 10% 45%;
 
-    --accent: 210 80% 50%;
+    --accent: 140 70% 50%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -33,48 +33,48 @@
 
     --border: 210 20% 90%;
     --input: 210 20% 90%;
-    --ring: 210 100% 45%;
+    --ring: 140 60% 45%;
 
     --radius: 0.5rem;
 
-    /* Gavé Official Brand Colors - Restored */
-    --gave-blue-primary: 210 100% 45%;
-    --gave-blue-secondary: 210 80% 50%;
-    --gave-blue-light: 210 100% 85%;
+    /* Gavé Official Brand Colors - Updated to Green Theme */
+    --gave-green-primary: 140 60% 45%;
+    --gave-green-secondary: 140 70% 50%;
+    --gave-green-light: 140 50% 85%;
     --gave-yellow-accent: 45 100% 50%;
-    --gave-green-natural: 140 30% 35%;
     --gave-earth-brown: 25 35% 35%;
     --gave-desert-sand: 45 40% 85%;
+    --gave-natural-dark: 140 30% 35%;
   }
 
   .dark {
-    --background: 210 25% 8%;
+    --background: 140 25% 8%;
     --foreground: 45 25% 95%;
 
-    --card: 210 20% 10%;
+    --card: 140 20% 10%;
     --card-foreground: 45 25% 95%;
 
-    --popover: 210 20% 10%;
+    --popover: 140 20% 10%;
     --popover-foreground: 45 25% 95%;
 
-    --primary: 210 100% 55%;
-    --primary-foreground: 210 25% 8%;
+    --primary: 140 70% 55%;
+    --primary-foreground: 140 25% 8%;
 
-    --secondary: 210 15% 15%;
+    --secondary: 140 15% 15%;
     --secondary-foreground: 45 25% 95%;
 
-    --muted: 210 15% 15%;
+    --muted: 140 15% 15%;
     --muted-foreground: 45 15% 65%;
 
-    --accent: 210 80% 60%;
+    --accent: 140 80% 60%;
     --accent-foreground: 45 25% 95%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 15% 20%;
-    --input: 210 15% 20%;
-    --ring: 210 100% 55%;
+    --border: 140 15% 20%;
+    --input: 140 15% 20%;
+    --ring: 140 70% 55%;
   }
 }
 
@@ -90,12 +90,12 @@
 }
 
 @layer utilities {
-  .text-gave-blue {
-    color: hsl(var(--gave-blue-primary));
+  .text-gave-green {
+    color: hsl(var(--gave-green-primary));
   }
   
-  .bg-gave-blue {
-    background-color: hsl(var(--gave-blue-primary));
+  .bg-gave-green {
+    background-color: hsl(var(--gave-green-primary));
   }
   
   .text-gave-yellow {
@@ -106,10 +106,6 @@
     background-color: hsl(var(--gave-yellow-accent));
   }
   
-  .bg-gave-green {
-    background-color: hsl(var(--gave-green-natural));
-  }
-  
   .bg-gave-earth {
     background-color: hsl(var(--gave-earth-brown));
   }
@@ -118,11 +114,15 @@
     background-color: hsl(var(--gave-desert-sand));
   }
   
+  .bg-gave-natural {
+    background-color: hsl(var(--gave-natural-dark));
+  }
+  
   .gradient-hero-gave {
-    background: linear-gradient(135deg, hsl(var(--gave-blue-primary)) 0%, hsl(var(--gave-blue-secondary)) 100%);
+    background: linear-gradient(135deg, hsl(var(--gave-green-primary)) 0%, hsl(var(--gave-green-secondary)) 100%);
   }
   
   .gradient-impact-gave {
-    background: linear-gradient(90deg, hsl(var(--gave-blue-primary)) 0%, hsl(var(--gave-green-natural)) 100%);
+    background: linear-gradient(90deg, hsl(var(--gave-green-primary)) 0%, hsl(var(--gave-natural-dark)) 100%);
   }
 }

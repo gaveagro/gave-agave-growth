@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { MapPin, Camera, BarChart3 } from 'lucide-react';
+import { MapPin, BarChart3 } from 'lucide-react';
+import InvestmentModal from './InvestmentModal';
 
 const OurFarms = () => {
   const [language, setLanguage] = useState(() => {
@@ -31,9 +32,9 @@ const OurFarms = () => {
       viewAll: 'View All Farms',
       location: 'Location',
       farmStats: 'Farm Statistics',
-      tours: 'Virtual Tours Available',
-      monitoring: 'Real-time Monitoring',
-      visitFarm: 'Visit Farm'
+      monitoring: 'Access Monitoring',
+      visitFarm: 'Visit Farm',
+      registerToView: 'Register to access real-time monitoring'
     },
     ES: {
       title: 'Nuestras Granjas de Agave',
@@ -41,9 +42,9 @@ const OurFarms = () => {
       viewAll: 'Ver Todas las Granjas',
       location: 'Ubicación',
       farmStats: 'Estadísticas de la Granja',
-      tours: 'Tours Virtuales Disponibles',
-      monitoring: 'Monitoreo en Tiempo Real',
-      visitFarm: 'Visitar Granja'
+      monitoring: 'Acceder a Monitoreo',
+      visitFarm: 'Visitar Granja',
+      registerToView: 'Regístrate para acceder al monitoreo en tiempo real'
     }
   };
 
@@ -86,7 +87,7 @@ const OurFarms = () => {
     <section id="farms" className="py-20 bg-gave-sand/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gave-blue">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gave-green">
             {currentContent.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -96,7 +97,7 @@ const OurFarms = () => {
 
         <div className="grid lg:grid-cols-3 gap-8 mb-12">
           {farms.map((farm) => (
-            <Card key={farm.id} className="hover:shadow-xl transition-all duration-300 overflow-hidden border-gave-blue/20">
+            <Card key={farm.id} className="hover:shadow-xl transition-all duration-300 overflow-hidden border-gave-green/20">
               <div className="aspect-video overflow-hidden">
                 <img 
                   src={farm.image} 
@@ -106,7 +107,7 @@ const OurFarms = () => {
               </div>
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="bg-gave-blue/10 text-gave-blue px-3 py-1 rounded-full text-sm">
+                  <span className="bg-gave-green/10 text-gave-green px-3 py-1 rounded-full text-sm">
                     {language === 'EN' ? 'Est.' : 'Est.'} {farm.established}
                   </span>
                   <div className="flex items-center text-muted-foreground text-sm">
@@ -114,7 +115,7 @@ const OurFarms = () => {
                     <span>{farm.location}</span>
                   </div>
                 </div>
-                <CardTitle className="text-lg text-gave-blue">
+                <CardTitle className="text-lg text-gave-green">
                   {language === 'EN' ? farm.nameEN : farm.name}
                 </CardTitle>
               </CardHeader>
@@ -123,7 +124,7 @@ const OurFarms = () => {
                   <h4 className="font-medium text-sm mb-2">{language === 'EN' ? 'Species:' : 'Especies:'}</h4>
                   <div className="flex flex-wrap gap-1">
                     {farm.species.map((species, index) => (
-                      <span key={index} className="bg-gave-green/10 text-gave-green text-xs px-2 py-1 rounded">
+                      <span key={index} className="bg-gave-natural/10 text-gave-natural text-xs px-2 py-1 rounded">
                         {species}
                       </span>
                     ))}
@@ -139,15 +140,16 @@ const OurFarms = () => {
                   ))}
                 </div>
 
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" className="flex-1 border-gave-blue text-gave-blue hover:bg-gave-blue hover:text-white">
-                    <Camera className="w-4 h-4 mr-1" />
-                    {currentContent.tours}
-                  </Button>
-                  <Button size="sm" className="flex-1 bg-gave-blue hover:bg-gave-blue/90">
-                    <BarChart3 className="w-4 h-4 mr-1" />
-                    {currentContent.monitoring}
-                  </Button>
+                <div className="space-y-2">
+                  <InvestmentModal>
+                    <Button size="sm" className="w-full bg-gave-green hover:bg-gave-green/90">
+                      <BarChart3 className="w-4 h-4 mr-1" />
+                      {currentContent.monitoring}
+                    </Button>
+                  </InvestmentModal>
+                  <p className="text-xs text-muted-foreground text-center">
+                    {currentContent.registerToView}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -155,7 +157,7 @@ const OurFarms = () => {
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="bg-gave-blue hover:bg-gave-blue/90 px-8">
+          <Button size="lg" className="bg-gave-green hover:bg-gave-green/90 px-8">
             {currentContent.viewAll}
           </Button>
         </div>

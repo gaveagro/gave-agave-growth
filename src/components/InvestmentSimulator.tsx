@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
-import { Calculator, TrendingUp, DollarSign } from 'lucide-react';
+import { Calculator, TrendingUp, DollarSign, Leaf } from 'lucide-react';
 
 const InvestmentSimulator = () => {
   const [language, setLanguage] = useState(() => {
@@ -15,6 +15,7 @@ const InvestmentSimulator = () => {
   const [investmentAmount, setInvestmentAmount] = useState(50000);
   const [weightPerPlant, setWeightPerPlant] = useState([50]);
   const [pricePerKg, setPricePerKg] = useState([12]);
+  const [selectedSpecies, setSelectedSpecies] = useState('espadín');
   
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {
@@ -35,6 +36,7 @@ const InvestmentSimulator = () => {
     EN: {
       title: 'Investment Simulator',
       subtitle: 'Calculate your potential returns with our investment calculator',
+      speciesLabel: 'Agave Species',
       plantYearLabel: 'Plant Year',
       investmentLabel: 'Initial Investment (MXN)',
       weightLabel: 'Weight per Plant at Harvest (kg)',
@@ -48,11 +50,18 @@ const InvestmentSimulator = () => {
       annualROI: 'Annual ROI',
       simulate: 'Recalculate',
       disclaimer: 'These calculations are estimates based on current market conditions and historical data. Actual results may vary.',
-      years: 'years'
+      years: 'years',
+      profitDistribution: 'Profit Distribution Explained',
+      gaveShare: 'Gavé Share (35%)',
+      investorShare: 'Investor Share (65%)',
+      profitExplanation: 'After recovering your initial investment, Gavé keeps 35% of profits for cultivation management and finding buyers. You receive 65% of the profits.',
+      grossProfit: 'Gross Profit',
+      investmentRecovery: 'Investment Recovery'
     },
     ES: {
       title: 'Simulador de Inversión',
       subtitle: 'Calcula tus retornos potenciales con nuestra calculadora de inversión',
+      speciesLabel: 'Especie de Agave',
       plantYearLabel: 'Año de Planta',
       investmentLabel: 'Inversión Inicial (MXN)',
       weightLabel: 'Peso por Planta en Cosecha (kg)',
@@ -66,11 +75,30 @@ const InvestmentSimulator = () => {
       annualROI: 'ROI Anual',
       simulate: 'Recalcular',
       disclaimer: 'Estos cálculos son estimaciones basadas en condiciones actuales del mercado y datos históricos. Los resultados reales pueden variar.',
-      years: 'años'
+      years: 'años',
+      profitDistribution: 'Distribución de Ganancias Explicada',
+      gaveShare: 'Parte de Gavé (35%)',
+      investorShare: 'Parte del Inversionista (65%)',
+      profitExplanation: 'Después de recuperar tu inversión inicial, Gavé se queda con el 35% de las ganancias por el manejo del cultivo y encontrar compradores. Tú recibes el 65% de las ganancias.',
+      grossProfit: 'Ganancia Bruta',
+      investmentRecovery: 'Recuperación de Inversión'
     }
   };
 
   const currentContent = content[language as keyof typeof content];
+
+  const species = {
+    'espadín': {
+      name: 'Espadín',
+      maturationYears: 5,
+      normalWeightRange: '30-70 kg'
+    },
+    'salmiana': {
+      name: 'Salmiana', 
+      maturationYears: 7,
+      normalWeightRange: '40-120 kg'
+    }
+  };
 
   // Pricing logic
   const getPlantPrice = (year: number) => {
@@ -80,7 +108,7 @@ const InvestmentSimulator = () => {
   };
 
   const getMaturationYears = () => {
-    return 6; // Assuming Espadín for simplicity
+    return species[selectedSpecies as keyof typeof species].maturationYears;
   };
 
   // Calculations
@@ -90,6 +118,7 @@ const InvestmentSimulator = () => {
   const totalWeight = plantsCount * weightPerPlant[0];
   const grossRevenue = totalWeight * pricePerKg[0];
   const profit = grossRevenue - investmentAmount;
+  const gaveShare = profit * 0.35;
   const investorShare = profit * 0.65;
   const totalReturn = investmentAmount + investorShare;
   const totalROI = ((totalReturn - investmentAmount) / investmentAmount) * 100;
@@ -99,7 +128,7 @@ const InvestmentSimulator = () => {
     <section id="investment-simulator" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gave-blue">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gave-green">
             {currentContent.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -110,14 +139,29 @@ const InvestmentSimulator = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Input Controls */}
-            <Card className="border-gave-blue/20">
+            <Card className="border-gave-green/20">
               <CardHeader>
-                <CardTitle className="flex items-center text-gave-blue">
+                <CardTitle className="flex items-center text-gave-green">
                   <Calculator className="w-5 h-5 mr-2" />
                   {language === 'EN' ? 'Investment Parameters' : 'Parámetros de Inversión'}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2">{currentContent.speciesLabel}</label>
+                  <select 
+                    value={selectedSpecies} 
+                    onChange={(e) => setSelectedSpecies(e.target.value)}
+                    className="w-full p-2 border border-input rounded-md bg-background"
+                  >
+                    <option value="espadín">Espadín (5 {currentContent.years})</option>
+                    <option value="salmiana">Salmiana (7 {currentContent.years})</option>
+                  </select>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {language === 'EN' ? 'Normal weight range:' : 'Rango normal de peso:'} {species[selectedSpecies as keyof typeof species].normalWeightRange}
+                  </p>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium mb-2">{currentContent.plantYearLabel}</label>
                   <select 
@@ -141,7 +185,7 @@ const InvestmentSimulator = () => {
                     onChange={(e) => setInvestmentAmount(Number(e.target.value))}
                     min={50000}
                     step={1000}
-                    className="border-gave-blue/20"
+                    className="border-gave-green/20"
                   />
                   <p className="text-xs text-muted-foreground mt-1">
                     {language === 'EN' ? 'Minimum: $50,000 MXN' : 'Mínimo: $50,000 MXN'}
@@ -155,14 +199,14 @@ const InvestmentSimulator = () => {
                   <Slider
                     value={weightPerPlant}
                     onValueChange={setWeightPerPlant}
-                    max={120}
-                    min={30}
+                    max={selectedSpecies === 'salmiana' ? 120 : 70}
+                    min={selectedSpecies === 'salmiana' ? 40 : 30}
                     step={5}
                     className="w-full"
                   />
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                    <span>30 kg</span>
-                    <span>120 kg</span>
+                    <span>{selectedSpecies === 'salmiana' ? '40' : '30'} kg</span>
+                    <span>{selectedSpecies === 'salmiana' ? '120' : '70'} kg</span>
                   </div>
                 </div>
 
@@ -190,9 +234,9 @@ const InvestmentSimulator = () => {
             </Card>
 
             {/* Results */}
-            <Card className="border-gave-blue/20">
+            <Card className="border-gave-green/20">
               <CardHeader>
-                <CardTitle className="flex items-center text-gave-blue">
+                <CardTitle className="flex items-center text-gave-green">
                   <TrendingUp className="w-5 h-5 mr-2" />
                   {currentContent.results}
                 </CardTitle>
@@ -200,11 +244,11 @@ const InvestmentSimulator = () => {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 bg-gave-sand/20 rounded-lg">
-                    <div className="text-2xl font-bold text-gave-blue">{plantsCount.toLocaleString()}</div>
+                    <div className="text-2xl font-bold text-gave-green">{plantsCount.toLocaleString()}</div>
                     <div className="text-sm text-muted-foreground">{currentContent.plantsAcquired}</div>
                   </div>
                   <div className="text-center p-4 bg-gave-sand/20 rounded-lg">
-                    <div className="text-2xl font-bold text-gave-blue">{maturationYears}</div>
+                    <div className="text-2xl font-bold text-gave-green">{maturationYears}</div>
                     <div className="text-sm text-muted-foreground">{currentContent.maturationTime} ({currentContent.years})</div>
                   </div>
                 </div>
@@ -212,32 +256,46 @@ const InvestmentSimulator = () => {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center p-3 bg-gave-sand/10 rounded">
                     <span className="font-medium">{currentContent.grossRevenue}:</span>
-                    <span className="text-lg font-bold text-gave-blue">${grossRevenue.toLocaleString()} MXN</span>
+                    <span className="text-lg font-bold text-gave-green">${grossRevenue.toLocaleString()} MXN</span>
                   </div>
                   
                   <div className="text-sm text-muted-foreground px-3">
-                    {language === 'EN' ? 'Profit calculation:' : 'Cálculo de ganancias:'}
+                    <Leaf className="w-4 h-4 inline mr-1" />
+                    {currentContent.profitDistribution}:
                   </div>
                   
-                  <div className="flex justify-between items-center p-3 bg-gave-sand/10 rounded">
-                    <span>{language === 'EN' ? 'Gross Profit:' : 'Ganancia Bruta:'}</span>
-                    <span className="font-bold">${profit.toLocaleString()} MXN</span>
-                  </div>
-                  
-                  <div className="flex justify-between items-center p-3 bg-gave-blue/10 rounded">
-                    <span className="font-medium">{currentContent.yourReturn} (65%):</span>
-                    <span className="text-lg font-bold text-gave-blue">${investorShare.toLocaleString()} MXN</span>
+                  <div className="bg-gave-sand/20 p-4 rounded-lg">
+                    <div className="text-xs text-muted-foreground mb-3">
+                      {currentContent.profitExplanation}
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-sm">
+                        <span>{currentContent.grossProfit}:</span>
+                        <span className="font-bold">${profit.toLocaleString()} MXN</span>
+                      </div>
+                      
+                      <div className="flex justify-between items-center text-sm">
+                        <span>{currentContent.gaveShare}:</span>
+                        <span className="text-gave-earth">${gaveShare.toLocaleString()} MXN</span>
+                      </div>
+                      
+                      <div className="flex justify-between items-center text-sm">
+                        <span>{currentContent.investorShare}:</span>
+                        <span className="text-gave-green font-bold">${investorShare.toLocaleString()} MXN</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
                 <div className="border-t pt-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-lg font-semibold">{currentContent.totalReturn}:</span>
-                    <span className="text-2xl font-bold text-gave-blue">${totalReturn.toLocaleString()} MXN</span>
+                    <span className="text-2xl font-bold text-gave-green">${totalReturn.toLocaleString()} MXN</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">{currentContent.annualROI}:</span>
-                    <span className="text-xl font-bold text-gave-green">{annualROI.toFixed(1)}%</span>
+                    <span className="text-xl font-bold text-gave-natural">{annualROI.toFixed(1)}%</span>
                   </div>
                 </div>
 
