@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -177,41 +178,14 @@ const Hero = () => {
               </div>
             </Card>
 
-            {/* Impact Stats Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <div className="text-3xl font-bold text-gave-yellow animate-counter-up">2,450</div>
-                <div className="text-sm opacity-80">
-                  {language === 'EN' ? 'Hectares Reforested' : 'Hectáreas Reforestadas'}
-                </div>
-              </Card>
-              <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <div className="text-3xl font-bold text-gave-yellow animate-counter-up">15,670</div>
-                <div className="text-sm opacity-80">
-                  {language === 'EN' ? 'Tons CO₂ Sequestered' : 'Toneladas CO₂ Capturadas'}
-                </div>
-              </Card>
-              <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <div className="text-3xl font-bold text-gave-yellow animate-counter-up">1,200</div>
-                <div className="text-sm opacity-80">
-                  {language === 'EN' ? 'Families Supported' : 'Familias Apoyadas'}
-                </div>
-              </Card>
-              <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <div className="text-3xl font-bold text-gave-yellow animate-counter-up">18-25%</div>
-                <div className="text-sm opacity-80">
-                  {language === 'EN' ? 'Expected Returns' : 'Retornos Esperados'}
-                </div>
-              </Card>
-            </div>
-
-            <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-              <h3 className="text-lg font-semibold mb-3">{currentContent.whyAgave}</h3>
-              <ul className="space-y-2 text-sm">
+            {/* Enhanced Why Agave Section */}
+            <Card className="p-8 bg-white/10 backdrop-blur-sm border-white/20 text-white">
+              <h3 className="text-2xl font-bold mb-6 text-gave-yellow text-center">{currentContent.whyAgave}</h3>
+              <ul className="space-y-4 text-lg">
                 {currentContent.agavePoints.map((point, index) => (
-                  <li key={index} className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-gave-yellow rounded-full"></div>
-                    <span>{point}</span>
+                  <li key={index} className="flex items-start space-x-3">
+                    <div className="w-3 h-3 bg-gave-yellow rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="leading-relaxed">{point}</span>
                   </li>
                 ))}
               </ul>

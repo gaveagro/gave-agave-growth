@@ -47,6 +47,7 @@ const InvestmentSimulator = () => {
       grossRevenue: 'Gross Revenue',
       yourReturn: 'Your Return',
       totalReturn: 'Total Return',
+      totalROI: 'Total ROI',
       annualROI: 'Annual ROI',
       simulate: 'Recalculate',
       disclaimer: 'These calculations are estimates based on current market conditions and historical data. Actual results may vary.',
@@ -72,6 +73,7 @@ const InvestmentSimulator = () => {
       grossRevenue: 'Ingresos Brutos',
       yourReturn: 'Tu Retorno',
       totalReturn: 'Retorno Total',
+      totalROI: 'ROI Total',
       annualROI: 'ROI Anual',
       simulate: 'Recalcular',
       disclaimer: 'Estos cálculos son estimaciones basadas en condiciones actuales del mercado y datos históricos. Los resultados reales pueden variar.',
@@ -293,9 +295,13 @@ const InvestmentSimulator = () => {
                     <span className="text-lg font-semibold">{currentContent.totalReturn}:</span>
                     <span className="text-2xl font-bold text-gave-green">${totalReturn.toLocaleString()} MXN</span>
                   </div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-medium">{currentContent.totalROI}:</span>
+                    <span className="text-xl font-bold text-gave-natural">{totalROI.toFixed(1)}%</span>
+                  </div>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">{currentContent.annualROI}:</span>
-                    <span className="text-xl font-bold text-gave-natural">{annualROI.toFixed(1)}%</span>
+                    <span className="text-lg font-bold text-gave-natural">{annualROI.toFixed(1)}%</span>
                   </div>
                 </div>
 

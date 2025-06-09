@@ -51,7 +51,6 @@ const Header = () => {
               alt="Gavé"
               className="w-10 h-10 object-contain"
             />
-            <span className="ml-2 text-xl font-bold text-primary">Gavé</span>
           </div>
 
           {/* Desktop Navigation */}
