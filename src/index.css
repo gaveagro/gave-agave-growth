@@ -3,78 +3,78 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Gavé Agro Design System - Official Brand Colors */
+/* Gavé Agro Design System - Regenerative Agriculture Focus */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 210 15% 20%;
+    --foreground: 140 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 15% 20%;
+    --card-foreground: 140 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 15% 20%;
+    --popover-foreground: 140 25% 15%;
 
-    --primary: 140 50% 35%;
+    --primary: 140 60% 25%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 45 25% 95%;
-    --secondary-foreground: 210 15% 20%;
+    --secondary-foreground: 140 25% 15%;
 
-    --muted: 210 10% 96%;
-    --muted-foreground: 210 10% 45%;
+    --muted: 140 5% 96%;
+    --muted-foreground: 140 15% 45%;
 
-    --accent: 140 60% 40%;
+    --accent: 140 70% 30%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 140 50% 35%;
+    --border: 140 20% 88%;
+    --input: 140 20% 88%;
+    --ring: 140 60% 25%;
 
     --radius: 0.5rem;
 
-    /* Gavé Official Brand Colors - Updated to Darker Green Theme */
-    --gave-green-primary: 140 50% 35%;
-    --gave-green-secondary: 140 60% 40%;
+    /* Gavé Regenerative Brand Colors - Darker Green Theme */
+    --gave-green-primary: 140 60% 25%;
+    --gave-green-secondary: 140 70% 30%;
     --gave-green-light: 140 40% 75%;
     --gave-yellow-accent: 45 100% 50%;
     --gave-earth-brown: 25 35% 35%;
     --gave-desert-sand: 45 40% 85%;
-    --gave-natural-dark: 140 40% 25%;
+    --gave-natural-dark: 140 50% 20%;
   }
 
   .dark {
-    --background: 140 25% 8%;
+    --background: 140 30% 8%;
     --foreground: 45 25% 95%;
 
-    --card: 140 20% 10%;
+    --card: 140 25% 10%;
     --card-foreground: 45 25% 95%;
 
-    --popover: 140 20% 10%;
+    --popover: 140 25% 10%;
     --popover-foreground: 45 25% 95%;
 
-    --primary: 140 60% 45%;
-    --primary-foreground: 140 25% 8%;
+    --primary: 140 70% 35%;
+    --primary-foreground: 140 30% 8%;
 
-    --secondary: 140 15% 15%;
+    --secondary: 140 20% 15%;
     --secondary-foreground: 45 25% 95%;
 
-    --muted: 140 15% 15%;
+    --muted: 140 20% 15%;
     --muted-foreground: 45 15% 65%;
 
-    --accent: 140 70% 50%;
+    --accent: 140 80% 40%;
     --accent-foreground: 45 25% 95%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 140 15% 20%;
-    --input: 140 15% 20%;
-    --ring: 140 60% 45%;
+    --border: 140 20% 20%;
+    --input: 140 20% 20%;
+    --ring: 140 70% 35%;
   }
 }
 
@@ -86,6 +86,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
   }
 }
 
@@ -119,10 +120,28 @@
   }
   
   .gradient-hero-gave {
-    background: linear-gradient(135deg, hsl(var(--gave-green-primary)) 0%, hsl(var(--gave-green-secondary)) 100%);
+    background: linear-gradient(135deg, hsl(var(--gave-green-primary)) 0%, hsl(var(--gave-natural-dark)) 100%);
   }
   
   .gradient-impact-gave {
     background: linear-gradient(90deg, hsl(var(--gave-green-primary)) 0%, hsl(var(--gave-natural-dark)) 100%);
   }
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--gave-green-primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gave-green-secondary));
 }
