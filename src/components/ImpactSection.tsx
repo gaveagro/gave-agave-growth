@@ -29,7 +29,7 @@ const ImpactSection = () => {
         {
           title: 'Carbon Sequestration',
           description: 'Agave plants and soil restoration sequester significant carbon, directly combating climate change.',
-          metric: '12-15',
+          metric: '20-60',
           unit: 'Tons CO₂/hectare/year',
           icon: '🌍'
         },
@@ -73,7 +73,7 @@ const ImpactSection = () => {
         {
           title: 'Captura de Carbono',
           description: 'Las plantas de agave y la restauración del suelo capturan carbono significativo, combatiendo directamente el cambio climático.',
-          metric: '12-15',
+          metric: '20-60',
           unit: 'Toneladas CO₂/hectárea/año',
           icon: '🌍'
         },
@@ -140,27 +140,27 @@ const ImpactSection = () => {
           ))}
         </div>
 
-        {/* Climate Resilience Section - New Design */}
+        {/* Climate Resilience Section - Fixed Colors */}
         <div className="max-w-7xl mx-auto">
-          <div className="bg-gradient-to-r from-gave-green to-gave-natural-dark rounded-3xl p-12 md:p-16 text-white relative overflow-hidden">
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-10">
+          <div className="bg-gave-green rounded-3xl p-12 md:p-16 text-white relative overflow-hidden">
+            {/* Background pattern with reduced opacity */}
+            <div className="absolute inset-0 opacity-5">
               <div className="absolute top-0 left-0 w-full h-full" 
                    style={{backgroundImage: 'url("https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&crop=center")', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
             </div>
             
             <div className="relative z-10">
               <div className="text-center mb-12">
-                <h3 className="text-4xl md:text-5xl font-bold mb-6">
+                <h3 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                   {currentContent.resilienceTitle}
                 </h3>
-                <p className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto mb-8">
+                <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto mb-8">
                   {currentContent.resilienceSubtitle}
                 </p>
                 
-                {/* Carbon Quote - Prominent */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-white/20">
-                  <blockquote className="text-2xl md:text-3xl italic font-light leading-relaxed">
+                {/* Carbon Quote - Prominent with better contrast */}
+                <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-white/30">
+                  <blockquote className="text-2xl md:text-3xl italic font-light leading-relaxed text-white">
                     {currentContent.carbonQuote}
                   </blockquote>
                   <div className="text-gave-yellow font-semibold mt-6 text-lg">
@@ -174,7 +174,7 @@ const ImpactSection = () => {
                   {currentContent.resiliencePoints.map((point, index) => (
                     <div key={index} className="flex items-start space-x-4">
                       <div className="w-4 h-4 bg-gave-yellow rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-lg md:text-xl leading-relaxed opacity-90">{point}</span>
+                      <span className="text-lg md:text-xl leading-relaxed text-white">{point}</span>
                     </div>
                   ))}
                 </div>

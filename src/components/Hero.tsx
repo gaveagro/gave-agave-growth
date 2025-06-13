@@ -30,7 +30,7 @@ const Hero = () => {
     EN: {
       mainTitle: 'Regenerate land.',
       subtitle: 'Generate returns.',
-      description: 'Invest in regenerative agave cultivation that restores degraded ecosystems while delivering profitable returns in 5-9 years.',
+      description: 'Invest in regenerative agave cultivation that restores degraded ecosystems while delivering profitable returns.',
       mission: 'Growing healthy soil and restoring degraded ecosystems.',
       formTitle: 'Start Your Regenerative Investment',
       emailPlaceholder: 'Enter your email address',
@@ -42,7 +42,7 @@ const Hero = () => {
     ES: {
       mainTitle: 'Regenera la tierra.',
       subtitle: 'Genera retornos.',
-      description: 'Invierte en cultivo regenerativo de agave que restaura ecosistemas degradados mientras entrega retornos rentables en 5-9 años.',
+      description: 'Invierte en cultivo regenerativo de agave que restaura ecosistemas degradados mientras entrega retornos rentables.',
       mission: 'Cultivando suelos saludables y restaurando ecosistemas degradados.',
       formTitle: 'Comienza tu Inversión Regenerativa',
       emailPlaceholder: 'Ingresa tu dirección de correo',

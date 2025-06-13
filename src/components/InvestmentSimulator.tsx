@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -49,7 +48,7 @@ const InvestmentSimulator = () => {
       totalReturn: 'Total Return',
       totalROI: 'Total ROI',
       annualROI: 'Annual ROI',
-      co2Sequestered: 'CO₂ Sequestered',
+      co2Sequestered: 'Total CO₂ Sequestered',
       simulate: 'Recalculate',
       disclaimer: 'These calculations are estimates based on current market conditions and historical data. Actual results may vary.',
       years: 'years',
@@ -77,7 +76,7 @@ const InvestmentSimulator = () => {
       totalReturn: 'Retorno Total',
       totalROI: 'ROI Total',
       annualROI: 'ROI Anual',
-      co2Sequestered: 'CO₂ Capturado',
+      co2Sequestered: 'Total CO₂ Capturado',
       simulate: 'Recalcular',
       disclaimer: 'Estos cálculos son estimaciones basadas en condiciones actuales del mercado y datos históricos. Los resultados reales pueden variar.',
       years: 'años',
@@ -117,12 +116,13 @@ const InvestmentSimulator = () => {
     return species[selectedSpecies as keyof typeof species].maturationYears;
   };
 
-  // CO2 Sequestration calculation
+  // CO2 Sequestration calculation - CORRECTED to be per year over maturation period
   const calculateCO2Sequestration = (plantsCount: number, maturationYears: number) => {
     // Assuming density of 2,000 plants per hectare
-    // 30-60 tons CO2 per hectare over maturation period
+    // 20-60 tons CO2 per hectare PER YEAR
     const hectares = plantsCount / 2000;
-    const totalCO2 = hectares * 45 * maturationYears; // Using average of 45 tons/hectare/year
+    const averageCO2PerHectarePerYear = 40; // Using average of 20-60 tons/hectare/year
+    const totalCO2 = hectares * averageCO2PerHectarePerYear * maturationYears; // Total over entire maturation period
     return totalCO2;
   };
 
@@ -279,7 +279,7 @@ const InvestmentSimulator = () => {
                     <span className="text-lg font-bold text-gave-green">{co2Sequestered.toFixed(1)} {currentContent.tons}</span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-2">
-                    {language === 'EN' ? 'Based on 30-60 tons CO₂/hectare sequestration with 2,000 plants/hectare density' : 'Basado en 30-60 toneladas CO₂/hectárea con densidad de 2,000 plantas/hectárea'}
+                    {language === 'EN' ? 'Based on 20-60 tons CO₂/hectare/year sequestration with 2,000 plants/hectare density over the entire maturation period' : 'Basado en 20-60 toneladas CO₂/hectárea/año con densidad de 2,000 plantas/hectárea durante todo el período de maduración'}
                   </p>
                 </div>
 
