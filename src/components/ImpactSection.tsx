@@ -50,6 +50,8 @@ const ImpactSection = () => {
       ],
       resilienceTitle: 'Building Climate Resilience',
       resilienceSubtitle: 'Regenerative farming increases production and profitability while creating drought, flood and fire resilience.',
+      carbonQuote: '"A mere 2% increase in the carbon content of the planet\'s soils could offset 100% of all greenhouse gas emissions going into the atmosphere"',
+      carbonAuthor: 'Rattan Lal, Soil Scientist',
       resiliencePoints: [
         'Improved soil structure reduces flood and erosion risk',
         'Enhanced water retention creates drought resilience',
@@ -92,6 +94,8 @@ const ImpactSection = () => {
       ],
       resilienceTitle: 'Construyendo Resiliencia Climática',
       resilienceSubtitle: 'La agricultura regenerativa aumenta la producción y rentabilidad mientras crea resiliencia a sequías, inundaciones e incendios.',
+      carbonQuote: '"Un mero aumento del 2% en el contenido de carbono de los suelos del planeta podría compensar el 100% de todas las emisiones de gases de efecto invernadero que van a la atmósfera"',
+      carbonAuthor: 'Rattan Lal, Científico del Suelo',
       resiliencePoints: [
         'Estructura mejorada del suelo reduce el riesgo de inundaciones y erosión',
         'Mayor retención de agua crea resiliencia a la sequía',
@@ -136,37 +140,55 @@ const ImpactSection = () => {
           ))}
         </div>
 
-        {/* Climate Resilience Section */}
-        <div className="max-w-6xl mx-auto">
-          <Card className="p-12 bg-gradient-to-br from-gave-green/5 to-gave-green/10 border-gave-green/20">
-            <div className="text-center mb-10">
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gave-green">
-                {currentContent.resilienceTitle}
-              </h3>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                {currentContent.resilienceSubtitle}
-              </p>
+        {/* Climate Resilience Section - New Design */}
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-gradient-to-r from-gave-green to-gave-natural-dark rounded-3xl p-12 md:p-16 text-white relative overflow-hidden">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 left-0 w-full h-full" 
+                   style={{backgroundImage: 'url("https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&crop=center")', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
             </div>
-
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="space-y-6">
-                {currentContent.resiliencePoints.map((point, index) => (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className="w-3 h-3 bg-gave-green rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-lg leading-relaxed">{point}</span>
+            
+            <div className="relative z-10">
+              <div className="text-center mb-12">
+                <h3 className="text-4xl md:text-5xl font-bold mb-6">
+                  {currentContent.resilienceTitle}
+                </h3>
+                <p className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto mb-8">
+                  {currentContent.resilienceSubtitle}
+                </p>
+                
+                {/* Carbon Quote - Prominent */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-white/20">
+                  <blockquote className="text-2xl md:text-3xl italic font-light leading-relaxed">
+                    {currentContent.carbonQuote}
+                  </blockquote>
+                  <div className="text-gave-yellow font-semibold mt-6 text-lg">
+                    — {currentContent.carbonAuthor}
                   </div>
-                ))}
+                </div>
               </div>
-              
-              <div className="text-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&h=400&fit=crop&crop=center" 
-                  alt="Regenerative landscape showing restored ecosystem"
-                  className="w-full rounded-lg shadow-lg"
-                />
+
+              <div className="grid md:grid-cols-2 gap-12 items-start">
+                <div className="space-y-8">
+                  {currentContent.resiliencePoints.map((point, index) => (
+                    <div key={index} className="flex items-start space-x-4">
+                      <div className="w-4 h-4 bg-gave-yellow rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="text-lg md:text-xl leading-relaxed opacity-90">{point}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="text-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1574263867128-e1aca4eb22b7?w=600&h=400&fit=crop&crop=center" 
+                    alt="Regenerative landscape showing restored ecosystem"
+                    className="w-full rounded-2xl shadow-2xl"
+                  />
+                </div>
               </div>
             </div>
-          </Card>
+          </div>
         </div>
       </div>
     </section>

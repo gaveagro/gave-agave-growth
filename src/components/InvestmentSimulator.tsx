@@ -49,6 +49,7 @@ const InvestmentSimulator = () => {
       totalReturn: 'Total Return',
       totalROI: 'Total ROI',
       annualROI: 'Annual ROI',
+      co2Sequestered: 'CO₂ Sequestered',
       simulate: 'Recalculate',
       disclaimer: 'These calculations are estimates based on current market conditions and historical data. Actual results may vary.',
       years: 'years',
@@ -57,7 +58,8 @@ const InvestmentSimulator = () => {
       investorShare: 'Investor Share (65%)',
       profitExplanation: 'After recovering your initial investment, Gavé keeps 35% of profits for cultivation management and finding buyers. You receive 65% of the profits.',
       grossProfit: 'Gross Profit',
-      investmentRecovery: 'Investment Recovery'
+      investmentRecovery: 'Investment Recovery',
+      tons: 'tons'
     },
     ES: {
       title: 'Simulador de Inversión',
@@ -75,6 +77,7 @@ const InvestmentSimulator = () => {
       totalReturn: 'Retorno Total',
       totalROI: 'ROI Total',
       annualROI: 'ROI Anual',
+      co2Sequestered: 'CO₂ Capturado',
       simulate: 'Recalcular',
       disclaimer: 'Estos cálculos son estimaciones basadas en condiciones actuales del mercado y datos históricos. Los resultados reales pueden variar.',
       years: 'años',
@@ -83,7 +86,8 @@ const InvestmentSimulator = () => {
       investorShare: 'Parte del Inversionista (65%)',
       profitExplanation: 'Después de recuperar tu inversión inicial, Gavé se queda con el 35% de las ganancias por el manejo del cultivo y encontrar compradores. Tú recibes el 65% de las ganancias.',
       grossProfit: 'Ganancia Bruta',
-      investmentRecovery: 'Recuperación de Inversión'
+      investmentRecovery: 'Recuperación de Inversión',
+      tons: 'toneladas'
     }
   };
 
@@ -113,6 +117,15 @@ const InvestmentSimulator = () => {
     return species[selectedSpecies as keyof typeof species].maturationYears;
   };
 
+  // CO2 Sequestration calculation
+  const calculateCO2Sequestration = (plantsCount: number, maturationYears: number) => {
+    // Assuming density of 2,000 plants per hectare
+    // 30-60 tons CO2 per hectare over maturation period
+    const hectares = plantsCount / 2000;
+    const totalCO2 = hectares * 45 * maturationYears; // Using average of 45 tons/hectare/year
+    return totalCO2;
+  };
+
   // Calculations
   const plantPrice = getPlantPrice(plantYear);
   const plantsCount = Math.floor(investmentAmount / plantPrice);
@@ -125,6 +138,7 @@ const InvestmentSimulator = () => {
   const totalReturn = investmentAmount + investorShare;
   const totalROI = ((totalReturn - investmentAmount) / investmentAmount) * 100;
   const annualROI = totalROI / maturationYears;
+  const co2Sequestered = calculateCO2Sequestration(plantsCount, maturationYears);
 
   return (
     <section id="investment-simulator" className="py-20 bg-background">
@@ -255,6 +269,20 @@ const InvestmentSimulator = () => {
                   </div>
                 </div>
 
+                {/* CO2 Sequestration Section */}
+                <div className="bg-gave-green/10 p-4 rounded-lg border border-gave-green/20">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Leaf className="w-5 h-5 text-gave-green mr-2" />
+                      <span className="font-medium text-gave-green">{currentContent.co2Sequestered}:</span>
+                    </div>
+                    <span className="text-lg font-bold text-gave-green">{co2Sequestered.toFixed(1)} {currentContent.tons}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    {language === 'EN' ? 'Based on 30-60 tons CO₂/hectare sequestration with 2,000 plants/hectare density' : 'Basado en 30-60 toneladas CO₂/hectárea con densidad de 2,000 plantas/hectárea'}
+                  </p>
+                </div>
+
                 <div className="space-y-3">
                   <div className="flex justify-between items-center p-3 bg-gave-sand/10 rounded">
                     <span className="font-medium">{currentContent.grossRevenue}:</span>
@@ -262,7 +290,7 @@ const InvestmentSimulator = () => {
                   </div>
                   
                   <div className="text-sm text-muted-foreground px-3">
-                    <Leaf className="w-4 h-4 inline mr-1" />
+                    <DollarSign className="w-4 h-4 inline mr-1" />
                     {currentContent.profitDistribution}:
                   </div>
                   

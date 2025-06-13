@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { ArrowDown, Play } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 const Hero = () => {
   const [email, setEmail] = useState('');
@@ -28,46 +28,28 @@ const Hero = () => {
 
   const content = {
     EN: {
-      mainTitle: 'Invest in Gavé and watch your money grow.',
-      subtitle: 'Literally.',
-      description: 'Regenerative agriculture that works with nature to restore soil and ecosystem health while delivering profitable returns through sustainable agave cultivation.',
-      quote: '"A mere 2% increase in the carbon content of the planet\'s soils could offset 100% of all greenhouse gas emissions going into the atmosphere"',
-      quoteAuthor: 'Rattan Lal, Soil Scientist',
+      mainTitle: 'Regenerate land.',
+      subtitle: 'Generate returns.',
+      description: 'Invest in regenerative agave cultivation that restores degraded ecosystems while delivering profitable returns in 5-9 years.',
       mission: 'Growing healthy soil and restoring degraded ecosystems.',
       formTitle: 'Start Your Regenerative Investment',
       emailPlaceholder: 'Enter your email address',
       getStarted: 'Get Started',
       joinText: 'Join investors creating environmental impact while earning returns',
       thankYou: 'Thank you!',
-      thankYouText: "We'll be in touch with investment opportunities soon.",
-      whyAgave: 'Why Regenerative Agave?',
-      agavePoints: [
-        'Drought-resistant crop requiring minimal water - perfect for degraded lands',
-        'Restores soil health and increases biodiversity through agrosilvopastoral systems',
-        'Sequester carbon while generating profitable returns in 5-9 years',
-        'Creates resilient ecosystems that reduce drought, flood and fire risk'
-      ]
+      thankYouText: "We'll be in touch with investment opportunities soon."
     },
     ES: {
-      mainTitle: 'Invierte en Gavé y ve crecer tu dinero.',
-      subtitle: 'Literalmente.',
-      description: 'Agricultura regenerativa que trabaja con la naturaleza para restaurar la salud del suelo y los ecosistemas mientras entrega retornos rentables a través del cultivo sustentable de agave.',
-      quote: '"Un mero aumento del 2% en el contenido de carbono de los suelos del planeta podría compensar el 100% de todas las emisiones de gases de efecto invernadero que van a la atmósfera"',
-      quoteAuthor: 'Rattan Lal, Científico del Suelo',
+      mainTitle: 'Regenera la tierra.',
+      subtitle: 'Genera retornos.',
+      description: 'Invierte en cultivo regenerativo de agave que restaura ecosistemas degradados mientras entrega retornos rentables en 5-9 años.',
       mission: 'Cultivando suelos saludables y restaurando ecosistemas degradados.',
       formTitle: 'Comienza tu Inversión Regenerativa',
       emailPlaceholder: 'Ingresa tu dirección de correo',
       getStarted: 'Comenzar',
       joinText: 'Únete a inversionistas creando impacto ambiental mientras obtienen retornos',
       thankYou: '¡Gracias!',
-      thankYouText: 'Nos pondremos en contacto pronto con oportunidades de inversión.',
-      whyAgave: '¿Por qué Agave Regenerativo?',
-      agavePoints: [
-        'Cultivo resistente a la sequía que requiere agua mínima - perfecto para tierras degradadas',
-        'Restaura la salud del suelo y aumenta la biodiversidad a través de sistemas agrosilvopastorales',
-        'Captura carbono mientras genera retornos rentables en 5-9 años',
-        'Crea ecosistemas resilientes que reducen el riesgo de sequía, inundaciones e incendios'
-      ]
+      thankYouText: 'Nos pondremos en contacto pronto con oportunidades de inversión.'
     }
   };
 
@@ -89,31 +71,21 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20">
         <div className="min-h-screen flex flex-col justify-center">
           {/* Main Content - Centered */}
-          <div className="text-center text-white space-y-12 mb-16">
-            <div className="space-y-6 max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <div className="text-center text-white space-y-16 mb-16">
+            <div className="space-y-8 max-w-5xl mx-auto">
+              <h1 className="text-6xl md:text-8xl font-bold leading-tight">
                 {currentContent.mainTitle}
-                <span className="block text-gave-yellow text-4xl md:text-6xl mt-2">
+                <span className="block text-gave-yellow text-5xl md:text-7xl mt-4">
                   {currentContent.subtitle}
                 </span>
               </h1>
               
-              <p className="text-xl md:text-2xl opacity-90 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-2xl md:text-3xl opacity-90 leading-relaxed max-w-4xl mx-auto">
                 {currentContent.description}
               </p>
 
-              <div className="text-lg md:text-xl font-medium text-gave-yellow">
+              <div className="text-xl md:text-2xl font-medium text-gave-yellow">
                 {currentContent.mission}
-              </div>
-            </div>
-
-            {/* Powerful Quote */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-4xl mx-auto border border-white/20">
-              <blockquote className="text-lg md:text-xl italic text-white/95 leading-relaxed">
-                {currentContent.quote}
-              </blockquote>
-              <div className="text-gave-yellow font-semibold mt-4">
-                — {currentContent.quoteAuthor}
               </div>
             </div>
 
@@ -151,45 +123,6 @@ const Hero = () => {
                   <p className="text-white/80">{currentContent.thankYouText}</p>
                 </div>
               )}
-            </Card>
-          </div>
-
-          {/* Why Regenerative Agave - Prominent Section */}
-          <div className="max-w-6xl mx-auto">
-            <Card className="p-12 bg-white/15 backdrop-blur-sm border-white/20 text-white">
-              <div className="text-center mb-10">
-                <h2 className="text-4xl md:text-5xl font-bold text-gave-yellow mb-4">
-                  {currentContent.whyAgave}
-                </h2>
-                <div className="w-24 h-1 bg-gave-yellow mx-auto"></div>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  {currentContent.agavePoints.slice(0, 2).map((point, index) => (
-                    <div key={index} className="flex items-start space-x-4">
-                      <div className="w-4 h-4 bg-gave-yellow rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-lg leading-relaxed">{point}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="space-y-6">
-                  {currentContent.agavePoints.slice(2).map((point, index) => (
-                    <div key={index + 2} className="flex items-start space-x-4">
-                      <div className="w-4 h-4 bg-gave-yellow rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-lg leading-relaxed">{point}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="text-center mt-10">
-                <img 
-                  src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=400&fit=crop&crop=center" 
-                  alt="Regenerative agave landscape with native trees"
-                  className="w-full max-w-2xl mx-auto rounded-lg opacity-80"
-                />
-              </div>
             </Card>
           </div>
 

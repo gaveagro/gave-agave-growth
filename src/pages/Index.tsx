@@ -2,6 +2,7 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import TrustedPartners from '@/components/TrustedPartners';
+import HowSustainableAgave from '@/components/HowSustainableAgave';
 import ImpactSection from '@/components/ImpactSection';
 import HowItWorks from '@/components/HowItWorks';
 import OurFarms from '@/components/OurFarms';
@@ -18,6 +19,7 @@ const Index = () => {
       <Header />
       <Hero />
       <TrustedPartners />
+      <HowSustainableAgave />
       <ImpactSection />
       <HowItWorks />
       <OurFarms />
