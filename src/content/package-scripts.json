@@ -1,0 +1,7 @@
+
+{
+  "scripts": {
+    "generate-content": "node scripts/generate-content.js",
+    "dev-with-cms": "npm run generate-content && npm run dev"
+  }
+}

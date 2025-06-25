@@ -4,11 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { ArrowDown } from 'lucide-react';
+import { useContent } from '@/hooks/useContent';
+import NetlifyForm from './NetlifyForm';
 
 const Hero = () => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [language, setLanguage] = useState('EN');
+  const { content: heroContent, loading } = useContent('hero');
 
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {
@@ -19,14 +22,8 @@ const Hero = () => {
     return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Lead captured:', email);
-    setIsSubmitted(true);
-    // Here you would integrate with your lead capture system
-  };
-
-  const content = {
+  // Fallback content while loading
+  const defaultContent = {
     EN: {
       mainTitle: 'Regenerate land.',
       subtitle: 'Generate returns.',
@@ -53,7 +50,16 @@ const Hero = () => {
     }
   };
 
-  const currentContent = content[language as keyof typeof content];
+  const currentContent = loading ? 
+    defaultContent[language as keyof typeof defaultContent] : 
+    heroContent?.[language.toLowerCase()] || defaultContent[language as keyof typeof defaultContent];
+
+  const backgroundImage = heroContent?.backgroundImage || "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1920&h=1080&fit=crop&crop=center";
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
 
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
@@ -64,7 +70,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20" 
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1920&h=1080&fit=crop&crop=center")'
+          backgroundImage: `url("${backgroundImage}")`
         }}
       ></div>
 
@@ -95,10 +101,11 @@ const Hero = () => {
                 {currentContent.formTitle}
               </h3>
               {!isSubmitted ? (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <NetlifyForm formName="hero-lead-capture" className="space-y-4">
                   <div className="flex flex-col gap-4">
                     <Input
                       type="email"
+                      name="email"
                       placeholder={currentContent.emailPlaceholder}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -116,7 +123,7 @@ const Hero = () => {
                   <p className="text-sm text-white/70">
                     {currentContent.joinText}
                   </p>
-                </form>
+                </NetlifyForm>
               ) : (
                 <div className="text-center py-4">
                   <h4 className="text-xl font-semibold text-white mb-2">{currentContent.thankYou}</h4>

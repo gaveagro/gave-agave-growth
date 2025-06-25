@@ -1,0 +1,253 @@
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+locale: "es"
+display_url: https://gaveagro.com
+logo_url: /images/logo.png
+
+collections:
+  - name: "settings"
+    label: "Configuración del Sitio"
+    files:
+      - file: "src/content/site-settings.json"
+        label: "Configuración General"
+        name: "site_settings"
+        fields:
+          - {label: "Título del Sitio (ES)", name: "title_es", widget: "string"}
+          - {label: "Título del Sitio (EN)", name: "title_en", widget: "string"}
+          - {label: "Descripción (ES)", name: "description_es", widget: "text"}
+          - {label: "Descripción (EN)", name: "description_en", widget: "text"}
+          - {label: "Email de Contacto", name: "contact_email", widget: "string"}
+          - {label: "Teléfono", name: "phone", widget: "string"}
+          - {label: "Logo", name: "logo", widget: "image"}
+
+  - name: "hero"
+    label: "Sección Hero"
+    files:
+      - file: "src/content/hero.json"
+        label: "Contenido Hero"
+        name: "hero_content"
+        fields:
+          - label: "Contenido en Español"
+            name: "es"
+            widget: "object"
+            fields:
+              - {label: "Título Principal", name: "mainTitle", widget: "string"}
+              - {label: "Subtítulo", name: "subtitle", widget: "string"}
+              - {label: "Descripción", name: "description", widget: "text"}
+              - {label: "Misión", name: "mission", widget: "string"}
+              - {label: "Título del Formulario", name: "formTitle", widget: "string"}
+              - {label: "Placeholder Email", name: "emailPlaceholder", widget: "string"}
+              - {label: "Botón Comenzar", name: "getStarted", widget: "string"}
+              - {label: "Texto de Unirse", name: "joinText", widget: "string"}
+              - {label: "Gracias", name: "thankYou", widget: "string"}
+              - {label: "Mensaje de Gracias", name: "thankYouText", widget: "string"}
+          - label: "Contenido en Inglés"
+            name: "en"
+            widget: "object"
+            fields:
+              - {label: "Main Title", name: "mainTitle", widget: "string"}
+              - {label: "Subtitle", name: "subtitle", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Mission", name: "mission", widget: "string"}
+              - {label: "Form Title", name: "formTitle", widget: "string"}
+              - {label: "Email Placeholder", name: "emailPlaceholder", widget: "string"}
+              - {label: "Get Started Button", name: "getStarted", widget: "string"}
+              - {label: "Join Text", name: "joinText", widget: "string"}
+              - {label: "Thank You", name: "thankYou", widget: "string"}
+              - {label: "Thank You Text", name: "thankYouText", widget: "string"}
+          - {label: "Imagen de Fondo", name: "backgroundImage", widget: "image"}
+
+  - name: "impact"
+    label: "Sección de Impacto"
+    files:
+      - file: "src/content/impact.json"
+        label: "Contenido de Impacto"
+        name: "impact_content"
+        fields:
+          - label: "Contenido en Español"
+            name: "es"
+            widget: "object"
+            fields:
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Subtítulo", name: "subtitle", widget: "text"}
+              - {label: "Título de Resiliencia", name: "resilienceTitle", widget: "string"}
+              - {label: "Subtítulo de Resiliencia", name: "resilienceSubtitle", widget: "text"}
+              - {label: "Cita de Carbono", name: "carbonQuote", widget: "text"}
+              - {label: "Autor de la Cita", name: "carbonAuthor", widget: "string"}
+              - label: "Áreas de Impacto"
+                name: "impactAreas"
+                widget: "list"
+                fields:
+                  - {label: "Título", name: "title", widget: "string"}
+                  - {label: "Descripción", name: "description", widget: "text"}
+                  - {label: "Métrica", name: "metric", widget: "string"}
+                  - {label: "Unidad", name: "unit", widget: "string"}
+                  - {label: "Icono", name: "icon", widget: "string"}
+              - label: "Puntos de Resiliencia"
+                name: "resiliencePoints"
+                widget: "list"
+                field: {label: "Punto", name: "point", widget: "string"}
+          - label: "Contenido en Inglés"
+            name: "en"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Subtitle", name: "subtitle", widget: "text"}
+              - {label: "Resilience Title", name: "resilienceTitle", widget: "string"}
+              - {label: "Resilience Subtitle", name: "resilienceSubtitle", widget: "text"}
+              - {label: "Carbon Quote", name: "carbonQuote", widget: "text"}
+              - {label: "Carbon Author", name: "carbonAuthor", widget: "string"}
+              - label: "Impact Areas"
+                name: "impactAreas"
+                widget: "list"
+                fields:
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Description", name: "description", widget: "text"}
+                  - {label: "Metric", name: "metric", widget: "string"}
+                  - {label: "Unit", name: "unit", widget: "string"}
+                  - {label: "Icon", name: "icon", widget: "string"}
+              - label: "Resilience Points"
+                name: "resiliencePoints"
+                widget: "list"
+                field: {label: "Point", name: "point", widget: "string"}
+
+  - name: "how_agave_works"
+    label: "Cómo Funciona la Inversión"
+    files:
+      - file: "src/content/how-agave-works.json"
+        label: "Contenido Cómo Funciona"
+        name: "how_agave_works_content"
+        fields:
+          - label: "Contenido en Español"
+            name: "es"
+            widget: "object"
+            fields:
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Subtítulo", name: "subtitle", widget: "text"}
+              - {label: "Título del Proceso", name: "processTitle", widget: "string"}
+              - {label: "Modelo de Inversión", name: "investmentModel", widget: "string"}
+              - {label: "Beneficios Regenerativos", name: "regenerativeBenefits", widget: "string"}
+              - {label: "Botón CTA", name: "ctaButton", widget: "string"}
+              - label: "Pasos del Proceso"
+                name: "steps"
+                widget: "list"
+                fields:
+                  - {label: "Título", name: "title", widget: "string"}
+                  - {label: "Descripción", name: "description", widget: "text"}
+                  - {label: "Cronograma", name: "timeline", widget: "string"}
+              - label: "Características del Modelo"
+                name: "modelFeatures"
+                widget: "list"
+                fields:
+                  - {label: "Título", name: "title", widget: "string"}
+                  - {label: "Descripción", name: "description", widget: "string"}
+              - label: "Características de Impacto"
+                name: "impactFeatures"
+                widget: "list"
+                fields:
+                  - {label: "Título", name: "title", widget: "string"}
+                  - {label: "Descripción", name: "description", widget: "string"}
+          - label: "Contenido en Inglés"
+            name: "en"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Subtitle", name: "subtitle", widget: "text"}
+              - {label: "Process Title", name: "processTitle", widget: "string"}
+              - {label: "Investment Model", name: "investmentModel", widget: "string"}
+              - {label: "Regenerative Benefits", name: "regenerativeBenefits", widget: "string"}
+              - {label: "CTA Button", name: "ctaButton", widget: "string"}
+              - label: "Process Steps"
+                name: "steps"
+                widget: "list"
+                fields:
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Description", name: "description", widget: "text"}
+                  - {label: "Timeline", name: "timeline", widget: "string"}
+              - label: "Model Features"
+                name: "modelFeatures"
+                widget: "list"
+                fields:
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Description", name: "description", widget: "string"}
+              - label: "Impact Features"
+                name: "impactFeatures"
+                widget: "list"
+                fields:
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Description", name: "description", widget: "string"}
+
+  - name: "faq"
+    label: "Preguntas Frecuentes"
+    files:
+      - file: "src/content/faq.json"
+        label: "Contenido FAQ"
+        name: "faq_content"
+        fields:
+          - label: "Contenido en Español"
+            name: "es"
+            widget: "object"
+            fields:
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Subtítulo", name: "subtitle", widget: "text"}
+              - {label: "¿Aún tienes preguntas?", name: "stillHaveQuestions", widget: "string"}
+              - {label: "Contactar Equipo", name: "contactTeam", widget: "string"}
+              - label: "Preguntas y Respuestas"
+                name: "faqs"
+                widget: "list"
+                fields:
+                  - {label: "Pregunta", name: "question", widget: "string"}
+                  - {label: "Respuesta", name: "answer", widget: "text"}
+          - label: "Contenido en Inglés"
+            name: "en"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Subtitle", name: "subtitle", widget: "text"}
+              - {label: "Still Have Questions", name: "stillHaveQuestions", widget: "string"}
+              - {label: "Contact Team", name: "contactTeam", widget: "string"}
+              - label: "Questions and Answers"
+                name: "faqs"
+                widget: "list"
+                fields:
+                  - {label: "Question", name: "question", widget: "string"}
+                  - {label: "Answer", name: "answer", widget: "text"}
+
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título (ES)", name: "title_es", widget: "string"}
+      - {label: "Título (EN)", name: "title_en", widget: "string"}
+      - {label: "Extracto (ES)", name: "excerpt_es", widget: "text"}
+      - {label: "Extracto (EN)", name: "excerpt_en", widget: "text"}
+      - {label: "Contenido (ES)", name: "body_es", widget: "markdown"}
+      - {label: "Contenido (EN)", name: "body_en", widget: "markdown"}
+      - {label: "Autor (ES)", name: "author_es", widget: "string"}
+      - {label: "Autor (EN)", name: "author_en", widget: "string"}
+      - {label: "Fecha", name: "date", widget: "datetime"}
+      - {label: "Categoría (ES)", name: "category_es", widget: "string"}
+      - {label: "Categoría (EN)", name: "category_en", widget: "string"}
+      - {label: "Imagen Principal", name: "image", widget: "image"}
+      - {label: "Publicado", name: "published", widget: "boolean", default: false}
+
+  - name: "images"
+    label: "Galería de Imágenes"
+    folder: "src/content/images"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nombre", name: "name", widget: "string"}
+      - {label: "Descripción", name: "description", widget: "text", required: false}
+      - {label: "Imagen", name: "image", widget: "image"}
+      - {label: "Alt Text (ES)", name: "alt_es", widget: "string"}
+      - {label: "Alt Text (EN)", name: "alt_en", widget: "string"}
+      - {label: "Categoría", name: "category", widget: "select", options: ["hero", "impact", "farms", "team", "general"]}
