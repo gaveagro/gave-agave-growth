@@ -1,0 +1,93 @@
+
+{
+  "es": {
+    "title": "Nuestro Impacto Regenerativo",
+    "subtitle": "Transformando ecosistemas degradados en fuentes de carbono, biodiversidad y prosperidad económica.",
+    "resilienceTitle": "Construyendo Resiliencia Climática",
+    "resilienceSubtitle": "El agave prospera en tierras áridas donde otros cultivos fallan, creando oportunidades económicas mientras restaura el ecosistema.",
+    "carbonQuote": "Nuestras plantaciones de agave capturan hasta 4 toneladas de CO2 por hectárea anualmente, contribuyendo significativamente a la mitigación del cambio climático.",
+    "carbonAuthor": "Dr. Elena Martínez, Directora de Investigación",
+    "impactAreas": [
+      {
+        "title": "Captura de Carbono",
+        "description": "Secuestro activo de CO2 atmosférico",
+        "metric": "4+",
+        "unit": "toneladas CO2/ha/año",
+        "icon": "Leaf"
+      },
+      {
+        "title": "Restauración de Suelos",
+        "description": "Recuperación de tierras degradadas",
+        "metric": "500+",
+        "unit": "hectáreas restauradas",
+        "icon": "Sprout"
+      },
+      {
+        "title": "Conservación de Agua",
+        "description": "Uso eficiente del recurso hídrico",
+        "metric": "80%",
+        "unit": "menos agua vs cultivos tradicionales",
+        "icon": "Droplets"
+      },
+      {
+        "title": "Empleos Locales",
+        "description": "Generación de empleo rural sustentable",
+        "metric": "150+",
+        "unit": "empleos directos creados",
+        "icon": "Users"
+      }
+    ],
+    "resiliencePoints": [
+      "Resistente a sequías prolongadas",
+      "Prospera en suelos pobres y degradados",
+      "Requiere mínimos insumos externos",
+      "Ciclo de vida de 6-8 años",
+      "Compatible con ganadería extensiva"
+    ]
+  },
+  "en": {
+    "title": "Our Regenerative Impact",
+    "subtitle": "Transforming degraded ecosystems into sources of carbon, biodiversity, and economic prosperity.",
+    "resilienceTitle": "Building Climate Resilience",
+    "resilienceSubtitle": "Agave thrives on arid lands where other crops fail, creating economic opportunities while restoring the ecosystem.",
+    "carbonQuote": "Our agave plantations capture up to 4 tons of CO2 per hectare annually, contributing significantly to climate change mitigation.",
+    "carbonAuthor": "Dr. Elena Martínez, Research Director",
+    "impactAreas": [
+      {
+        "title": "Carbon Capture",
+        "description": "Active sequestration of atmospheric CO2",
+        "metric": "4+",
+        "unit": "tons CO2/ha/year",
+        "icon": "Leaf"
+      },
+      {
+        "title": "Soil Restoration",
+        "description": "Recovery of degraded lands",
+        "metric": "500+",
+        "unit": "hectares restored",
+        "icon": "Sprout"
+      },
+      {
+        "title": "Water Conservation",
+        "description": "Efficient use of water resources",
+        "metric": "80%",
+        "unit": "less water vs traditional crops",
+        "icon": "Droplets"
+      },
+      {
+        "title": "Local Jobs",
+        "description": "Sustainable rural employment generation",
+        "metric": "150+",
+        "unit": "direct jobs created",
+        "icon": "Users"
+      }
+    ],
+    "resiliencePoints": [
+      "Resistant to prolonged droughts",
+      "Thrives in poor and degraded soils",
+      "Requires minimal external inputs",
+      "6-8 year life cycle",
+      "Compatible with extensive livestock"
+    ]
+  }
+}

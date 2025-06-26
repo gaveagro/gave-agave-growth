@@ -1,0 +1,67 @@
+
+{
+  "es": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Encuentra respuestas a las preguntas más comunes sobre la inversión en agave regenerativo.",
+    "stillHaveQuestions": "¿Aún tienes preguntas?",
+    "contactTeam": "Contacta a nuestro equipo",
+    "faqs": [
+      {
+        "question": "¿Cuál es el retorno esperado de la inversión en agave?",
+        "answer": "Nuestros modelos proyectan un TIR (Tasa Interna de Retorno) del 8-12% anual, con potencial de apreciación adicional basada en el mercado de productos derivados del agave y créditos de carbono."
+      },
+      {
+        "question": "¿Cuánto tiempo toma ver retornos de la inversión?",
+        "answer": "El agave Espadín tiene un ciclo de 5-6 años, mientras que el Salmiana toma 7-9 años. Los retornos se obtienen principalmente al final del ciclo, aunque existen oportunidades de ingresos intermedios por servicios ecosistémicos."
+      },
+      {
+        "question": "¿Cómo se mide el impacto ambiental?",
+        "answer": "Utilizamos tecnología satelital, sensores IoT y metodologías científicas verificadas para medir la captura de carbono, restauración del suelo, conservación de agua y biodiversidad. Todos los datos son auditados por terceros independientes."
+      },
+      {
+        "question": "¿Cuál es la inversión mínima requerida?",
+        "answer": "La inversión mínima es de $10,000 USD, lo que equivale aproximadamente a 1 hectárea de cultivo de agave, incluyendo establecimiento, mantenimiento y monitoreo durante todo el ciclo."
+      },
+      {
+        "question": "¿Qué riesgos involucra esta inversión?",
+        "answer": "Como toda inversión agrícola, existen riesgos climáticos, de mercado y operacionales. Sin embargo, el agave es extremadamente resiliente a sequías y condiciones adversas. Además, tenemos seguros agrícolas y diversificación de mercados para mitigar riesgos."
+      },
+      {
+        "question": "¿Cómo puedo monitorear mi inversión?",
+        "answer": "Proporcionamos una plataforma digital donde puedes ver en tiempo real el crecimiento de tu plantación, métricas de impacto ambiental, reportes financieros y actualizaciones del equipo técnico."
+      }
+    ]
+  },
+  "en": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to the most common questions about regenerative agave investment.",
+    "stillHaveQuestions": "Still have questions?",
+    "contactTeam": "Contact our team",
+    "faqs": [
+      {
+        "question": "What is the expected return on agave investment?",
+        "answer": "Our models project an IRR (Internal Rate of Return) of 8-12% annually, with potential for additional appreciation based on agave-derived products market and carbon credits."
+      },
+      {
+        "question": "How long does it take to see investment returns?",
+        "answer": "Espadín agave has a 5-6 year cycle, while Salmiana takes 7-9 years. Returns are obtained mainly at the end of the cycle, although there are opportunities for intermediate income through ecosystem services."
+      },
+      {
+        "question": "How is environmental impact measured?",
+        "answer": "We use satellite technology, IoT sensors, and verified scientific methodologies to measure carbon capture, soil restoration, water conservation, and biodiversity. All data is audited by independent third parties."
+      },
+      {
+        "question": "What is the minimum investment required?",
+        "answer": "The minimum investment is $10,000 USD, which equals approximately 1 hectare of agave cultivation, including establishment, maintenance, and monitoring throughout the entire cycle."
+      },
+      {
+        "question": "What risks does this investment involve?",
+        "answer": "Like all agricultural investments, there are climate, market, and operational risks. However, agave is extremely resilient to droughts and adverse conditions. Additionally, we have agricultural insurance and market diversification to mitigate risks."
+      },
+      {
+        "question": "How can I monitor my investment?",
+        "answer": "We provide a digital platform where you can see real-time growth of your plantation, environmental impact metrics, financial reports, and updates from the technical team."
+      }
+    ]
+  }
+}

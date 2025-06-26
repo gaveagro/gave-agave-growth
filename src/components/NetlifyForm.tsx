@@ -1,17 +1,20 @@
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
 import { toast } from 'sonner';
 
 interface NetlifyFormProps {
   formName: string;
   children: React.ReactNode;
   className?: string;
+  onSubmit?: () => void;
 }
 
-export const NetlifyForm: React.FC<NetlifyFormProps> = ({ formName, children, className }) => {
+export const NetlifyForm: React.FC<NetlifyFormProps> = ({ 
+  formName, 
+  children, 
+  className,
+  onSubmit 
+}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,10 +34,12 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({ formName, children, cl
       if (response.ok) {
         toast.success('¡Mensaje enviado exitosamente!');
         form.reset();
+        onSubmit?.();
       } else {
         throw new Error('Error en el envío');
       }
     } catch (error) {
+      console.error('Form submission error:', error);
       toast.error('Error al enviar el mensaje. Por favor intenta de nuevo.');
     } finally {
       setIsSubmitting(false);

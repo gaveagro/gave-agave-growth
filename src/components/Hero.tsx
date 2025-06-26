@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -49,14 +50,13 @@ const Hero = () => {
     }
   };
 
-  const currentContent = loading ? 
+  const currentContent = loading || !heroContent ? 
     defaultContent[language as keyof typeof defaultContent] : 
-    heroContent?.[language.toLowerCase()] || defaultContent[language as keyof typeof defaultContent];
+    heroContent[language.toLowerCase()] || defaultContent[language as keyof typeof defaultContent];
 
   const backgroundImage = heroContent?.backgroundImage || "/lovable-uploads/d70723cf-3b9d-404d-9b70-864768a8de4f.png";
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleFormSubmit = () => {
     setIsSubmitted(true);
   };
 
@@ -100,7 +100,7 @@ const Hero = () => {
                 {currentContent.formTitle}
               </h3>
               {!isSubmitted ? (
-                <NetlifyForm formName="hero-lead-capture" className="space-y-4">
+                <NetlifyForm formName="hero-lead-capture" className="space-y-4" onSubmit={handleFormSubmit}>
                   <div className="flex flex-col gap-4">
                     <Input
                       type="email"
