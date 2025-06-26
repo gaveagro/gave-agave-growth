@@ -7,14 +7,14 @@ media_folder: "public/images"
 public_folder: "/images"
 
 locale: "es"
-display_url: https://gaveagro.com
-logo_url: /images/logo.png
+display_url: https://gaveagtech.netlify.app
+logo_url: /lovable-uploads/4c7e4344-7b1e-4dac-8922-7356da9646e3.png
 
 collections:
   - name: "settings"
     label: "Configuración del Sitio"
     files:
-      - file: "src/content/site-settings.json"
+      - file: "public/content/site-settings.json"
         label: "Configuración General"
         name: "site_settings"
         fields:
@@ -24,12 +24,11 @@ collections:
           - {label: "Descripción (EN)", name: "description_en", widget: "text"}
           - {label: "Email de Contacto", name: "contact_email", widget: "string"}
           - {label: "Teléfono", name: "phone", widget: "string"}
-          - {label: "Logo", name: "logo", widget: "image"}
 
   - name: "hero"
     label: "Sección Hero"
     files:
-      - file: "src/content/hero.json"
+      - file: "public/content/hero.json"
         label: "Contenido Hero"
         name: "hero_content"
         fields:
@@ -66,7 +65,7 @@ collections:
   - name: "impact"
     label: "Sección de Impacto"
     files:
-      - file: "src/content/impact.json"
+      - file: "public/content/impact.json"
         label: "Contenido de Impacto"
         name: "impact_content"
         fields:
@@ -120,7 +119,7 @@ collections:
   - name: "how_agave_works"
     label: "Cómo Funciona la Inversión"
     files:
-      - file: "src/content/how-agave-works.json"
+      - file: "public/content/how-agave-works.json"
         label: "Contenido Cómo Funciona"
         name: "how_agave_works_content"
         fields:
@@ -186,7 +185,7 @@ collections:
   - name: "faq"
     label: "Preguntas Frecuentes"
     files:
-      - file: "src/content/faq.json"
+      - file: "public/content/faq.json"
         label: "Contenido FAQ"
         name: "faq_content"
         fields:
@@ -221,7 +220,7 @@ collections:
 
   - name: "blog"
     label: "Blog"
-    folder: "src/content/blog"
+    folder: "public/content/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
@@ -238,16 +237,3 @@ collections:
       - {label: "Categoría (EN)", name: "category_en", widget: "string"}
       - {label: "Imagen Principal", name: "image", widget: "image"}
       - {label: "Publicado", name: "published", widget: "boolean", default: false}
-
-  - name: "images"
-    label: "Galería de Imágenes"
-    folder: "src/content/images"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Nombre", name: "name", widget: "string"}
-      - {label: "Descripción", name: "description", widget: "text", required: false}
-      - {label: "Imagen", name: "image", widget: "image"}
-      - {label: "Alt Text (ES)", name: "alt_es", widget: "string"}
-      - {label: "Alt Text (EN)", name: "alt_en", widget: "string"}
-      - {label: "Categoría", name: "category", widget: "select", options: ["hero", "impact", "farms", "team", "general"]}
