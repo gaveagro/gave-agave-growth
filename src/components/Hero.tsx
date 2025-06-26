@@ -73,7 +73,7 @@ const Hero = () => {
         }}
       ></div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         <div className="min-h-screen flex flex-col justify-center">
           {/* Main Content - Centered with enhanced contrast */}
           <div className="text-center text-white space-y-16 mb-16">

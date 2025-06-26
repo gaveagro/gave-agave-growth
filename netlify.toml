@@ -20,10 +20,6 @@
 [template.environment]
   NETLIFY_IDENTITY_WIDGET = "true"
 
-# Form handling
-[[plugins]]
-  package = "netlify-plugin-form-submissions"
-
 # Netlify Functions
 [functions]
   directory = "netlify/functions"

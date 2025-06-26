@@ -43,13 +43,13 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-20">
+          {/* Logo - Made larger and more prominent */}
           <div className="flex items-center">
             <img 
               src="/lovable-uploads/4c7e4344-7b1e-4dac-8922-7356da9646e3.png" 
               alt="Gavé"
-              className="w-10 h-10 object-contain"
+              className="w-14 h-14 object-contain"
             />
           </div>
 

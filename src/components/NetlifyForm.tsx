@@ -24,6 +24,23 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({
     const form = e.currentTarget;
     const formData = new FormData(form);
 
+    // Anti-bot protection: check honeypot field
+    const honeypotValue = formData.get('bot-field');
+    if (honeypotValue) {
+      console.log('Bot detected, blocking submission');
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Additional anti-bot: time-based protection
+    const formStartTime = formData.get('form-start-time');
+    const currentTime = Date.now();
+    if (formStartTime && (currentTime - parseInt(formStartTime as string)) < 3000) {
+      console.log('Form submitted too quickly, blocking submission');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const response = await fetch('/', {
         method: 'POST',
@@ -56,7 +73,31 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({
       className={className}
     >
       <input type="hidden" name="form-name" value={formName} />
-      <input type="hidden" name="bot-field" />
+      {/* Primary honeypot - hidden from users */}
+      <div style={{ display: 'none' }}>
+        <label>
+          Don't fill this out if you're human:
+          <input name="bot-field" />
+        </label>
+      </div>
+      {/* Secondary honeypot with CSS hiding */}
+      <input 
+        type="text" 
+        name="website" 
+        placeholder="Website" 
+        style={{
+          position: 'absolute',
+          left: '-9999px',
+          width: '1px',
+          height: '1px',
+          opacity: 0,
+          pointerEvents: 'none'
+        }}
+        tabIndex={-1}
+        autoComplete="off"
+      />
+      {/* Time-based protection */}
+      <input type="hidden" name="form-start-time" value={Date.now()} />
       {children}
     </form>
   );

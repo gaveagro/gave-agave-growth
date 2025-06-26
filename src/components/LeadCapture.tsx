@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import NetlifyForm from './NetlifyForm';
 
 const LeadCapture = () => {
   const [language, setLanguage] = useState(() => {
@@ -80,11 +80,9 @@ const LeadCapture = () => {
 
   const currentContent = content[language as keyof typeof content];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleFormSubmit = () => {
     console.log('Lead captured:', formData);
     setIsSubmitted(true);
-    // Here you would integrate with your lead capture system
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -114,11 +112,12 @@ const LeadCapture = () => {
         <p className="text-center text-muted-foreground">{currentContent.subtitle}</p>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <NetlifyForm formName="investment-lead-capture" onSubmit={handleFormSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-2">{currentContent.name}</label>
               <Input
+                name="name"
                 required
                 placeholder={currentContent.namePlaceholder}
                 value={formData.name}
@@ -128,6 +127,7 @@ const LeadCapture = () => {
             <div>
               <label className="block text-sm font-medium mb-2">{currentContent.email}</label>
               <Input
+                name="email"
                 type="email"
                 required
                 placeholder={currentContent.emailPlaceholder}
@@ -141,6 +141,7 @@ const LeadCapture = () => {
             <div>
               <label className="block text-sm font-medium mb-2">{currentContent.phone}</label>
               <Input
+                name="phone"
                 type="tel"
                 placeholder={currentContent.phonePlaceholder}
                 value={formData.phone}
@@ -150,6 +151,7 @@ const LeadCapture = () => {
             <div>
               <label className="block text-sm font-medium mb-2">{currentContent.investmentAmount}</label>
               <Input
+                name="investmentAmount"
                 type="number"
                 min="1000"
                 step="1000"
@@ -162,7 +164,7 @@ const LeadCapture = () => {
 
           <div>
             <label className="block text-sm font-medium mb-2">{currentContent.investmentModel}</label>
-            <Select value={formData.investmentModel} onValueChange={(value) => handleInputChange('investmentModel', value)}>
+            <Select name="investmentModel" value={formData.investmentModel} onValueChange={(value) => handleInputChange('investmentModel', value)}>
               <SelectTrigger>
                 <SelectValue placeholder={currentContent.selectModel} />
               </SelectTrigger>
@@ -171,11 +173,13 @@ const LeadCapture = () => {
                 <SelectItem value="salmiana">{currentContent.salmianaModel}</SelectItem>
               </SelectContent>
             </Select>
+            <input type="hidden" name="investmentModel" value={formData.investmentModel} />
           </div>
 
           <div>
             <label className="block text-sm font-medium mb-2">{currentContent.message}</label>
             <Textarea
+              name="message"
               placeholder={currentContent.messagePlaceholder}
               value={formData.message}
               onChange={(e) => handleInputChange('message', e.target.value)}
@@ -186,7 +190,7 @@ const LeadCapture = () => {
           <Button type="submit" className="w-full bg-primary hover:bg-primary/90" size="lg">
             {currentContent.submitButton}
           </Button>
-        </form>
+        </NetlifyForm>
       </CardContent>
     </Card>
   );
