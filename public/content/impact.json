@@ -1,17 +1,16 @@
-
 {
   "es": {
     "title": "Nuestro Impacto Regenerativo",
     "subtitle": "Transformando ecosistemas degradados en fuentes de carbono, biodiversidad y prosperidad económica.",
     "resilienceTitle": "Construyendo Resiliencia Climática",
     "resilienceSubtitle": "El agave prospera en tierras áridas donde otros cultivos fallan, creando oportunidades económicas mientras restaura el ecosistema.",
-    "carbonQuote": "Nuestras plantaciones de agave capturan hasta 4 toneladas de CO2 por hectárea anualmente, contribuyendo significativamente a la mitigación del cambio climático.",
+    "carbonQuote": "Nuestras plantaciones de Agave secuestran entre 30 y 60 toneladas de CO2 por hectárea anualmente, contribuyendo significativamente a la mitigación del cambio climático.",
     "carbonAuthor": "Dr. Elena Martínez, Directora de Investigación",
     "impactAreas": [
       {
         "title": "Captura de Carbono",
         "description": "Secuestro activo de CO2 atmosférico",
-        "metric": "4+",
+        "metric": "+30",
         "unit": "toneladas CO2/ha/año",
         "icon": "Leaf"
       },
@@ -41,7 +40,7 @@
       "Resistente a sequías prolongadas",
       "Prospera en suelos pobres y degradados",
       "Requiere mínimos insumos externos",
-      "Ciclo de vida de 6-8 años",
+      "Ciclo de vida de 5-8 años",
       "Compatible con ganadería extensiva"
     ]
   },
@@ -50,13 +49,13 @@
     "subtitle": "Transforming degraded ecosystems into sources of carbon, biodiversity, and economic prosperity.",
     "resilienceTitle": "Building Climate Resilience",
     "resilienceSubtitle": "Agave thrives on arid lands where other crops fail, creating economic opportunities while restoring the ecosystem.",
-    "carbonQuote": "Our agave plantations capture up to 4 tons of CO2 per hectare annually, contributing significantly to climate change mitigation.",
+    "carbonQuote": "Our agave plantations sequesters up to 30 tons of CO2 per hectare annually, contributing significantly to climate change mitigation.",
     "carbonAuthor": "Dr. Elena Martínez, Research Director",
     "impactAreas": [
       {
         "title": "Carbon Capture",
         "description": "Active sequestration of atmospheric CO2",
-        "metric": "4+",
+        "metric": "30 +",
         "unit": "tons CO2/ha/year",
         "icon": "Leaf"
       },
@@ -86,7 +85,7 @@
       "Resistant to prolonged droughts",
       "Thrives in poor and degraded soils",
       "Requires minimal external inputs",
-      "6-8 year life cycle",
+      "5-8 year life cycle",
       "Compatible with extensive livestock"
     ]
   }
