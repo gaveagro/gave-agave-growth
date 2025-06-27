@@ -1,119 +1,118 @@
-
 {
   "es": {
-    "title": "Cómo Funciona la Inversión en Agave",
-    "subtitle": "Un modelo de inversión transparente que combina retornos financieros con impacto ambiental positivo.",
+    "ctaButton": "Comenzar Inversión",
+    "impactFeatures": [
+      {
+        "title": "Restauración del suelo",
+        "description": "Las prácticas regenerativas reconstruyen la materia orgánica y fertilidad del suelo"
+      },
+      {
+        "title": "Empleo Rural",
+        "description": "Crea empleos sostenibles en comunidades rurales mexicanas"
+      },
+      {
+        "title": "Captura de Carbono",
+        "description": "30-60 toneladas CO₂ secuestradas por hectárea anualmente"
+      }
+    ],
+    "modelFeatures": [
+      {
+        "title": "Garantía de reemplazo de plantas.",
+        "description": "Protección completa contra mortalidad de plantas con garantías de reemplazo"
+      },
+      {
+        "title": "Participación en Ganancias",
+        "description": "Recibes el 65% de los márgenes de ganancia después de la recuperación de costos."
+      },
+      {
+        "title": "Cronograma transparente",
+        "description": "Períodos de maduración claros: Espadín 5-6 años, Salmiana 7-9 años"
+      }
+    ],
+    "steps": [
+      {
+        "title": "Adquieres plantas",
+        "description": "Compras plantas de agave de Gavé, ya establecidas en nuestros predios, administrados por nosotros. La propiedad legal de las plantas se transfiere a ti con documentación completa.",
+        "timeline": "Inicio"
+      },
+      {
+        "title": "Administramos el cultivo",
+        "description": "Gavé maneja todo el cultivo: arrendamiento de tierra, mano de obra, seguro, fertilización, control de plagas y garantías de reemplazo. Tú eres dueño de las plantas, nosotros manejamos todo.",
+        "timeline": "5 a 6 años"
+      },
+      {
+        "title": "Cosecha y venta",
+        "description": "En la madurez, Gavé cosecha y vende al mejor postor. Después de recuperar tu inversión inicial, recibes el 65% de las ganancias. Al final, Gavé cobra una comisión sobre las ganancias. ",
+        "timeline": "Año 5"
+      },
+      {
+        "title": "Impacto Regenerativo",
+        "description": "Tu inversión restaura activamente tierras degradadas, captura carbono y mejora la biodiversidad mientras genera retornos.",
+        "timeline": "Impacto a largo plazo."
+      }
+    ],
     "processTitle": "Proceso de Inversión",
     "investmentModel": "Modelo de Inversión",
     "regenerativeBenefits": "Beneficios Regenerativos",
-    "ctaButton": "Comenzar Inversión",
-    "steps": [
+    "subtitle": "Un modelo de inversión transparente que combina retornos financieros con impacto ambiental positivo.",
+    "title": "Cómo Funciona la Inversión en Agave"
+  },
+  "en": {
+    "ctaButton": "Start Investment",
+    "impactFeatures": [
       {
-        "title": "Evaluación y Selección",
-        "description": "Analizamos tu perfil de inversión y objetivos para recomendarte la mejor opción de cultivo de agave.",
-        "timeline": "Semana 1"
+        "title": "Soil Restoration",
+        "description": "Regenerative practices rebuild soil organic matter and fertility"
       },
       {
-        "title": "Plantación y Establecimiento",
-        "description": "Establecemos tu plantación con las mejores prácticas regenerativas en tierras cuidadosamente seleccionadas.",
-        "timeline": "Meses 1-3"
+        "title": "Rural Employment",
+        "description": "Creates sustainable jobs in rural Mexican communities"
       },
       {
-        "title": "Monitoreo y Cuidado",
-        "description": "Seguimiento continuo del crecimiento, salud del suelo y captura de carbono con tecnología avanzada.",
-        "timeline": "Años 1-6"
-      },
-      {
-        "title": "Cosecha y Retornos",
-        "description": "Cosecha sostenible y distribución de retornos basados en el rendimiento y los precios del mercado.",
-        "timeline": "Años 6-8"
+        "title": "Carbon Sequestration",
+        "description": "30-60 tons CO₂ captured per hectare annually"
       }
     ],
     "modelFeatures": [
       {
-        "title": "Transparencia Total",
-        "description": "Seguimiento en tiempo real de tu inversión y su impacto"
+        "title": "Plant Replacement Guarantee",
+        "description": "Full protection against plant mortality with replacement guarantees"
       },
       {
-        "title": "Retornos Proyectados",
-        "description": "8-12% TIR anual con potencial de apreciación adicional"
+        "title": "65% Profit Share",
+        "description": "You receive 65% of profit margins after cost recovery"
       },
       {
-        "title": "Impacto Medible",
-        "description": "Métricas verificables de captura de carbono y restauración"
+        "title": "Transparent Timeline",
+        "description": "Clear maturation periods: Espadín 5-6 years, Salmiana 7-9 years"
       }
     ],
-    "impactFeatures": [
+    "steps": [
       {
-        "title": "Captura de Carbono",
-        "description": "Contribuye activamente a la mitigación del cambio climático"
+        "title": "Acquire Plants",
+        "description": "You purchase agave plants from Gavé, established in our managed fields in San Luis Potosí. Legal ownership is transferred to you with full documentation.",
+        "timeline": "Start"
       },
       {
-        "title": "Restauración Ecológica",
-        "description": "Regenera ecosistemas degradados y biodiversidad local"
+        "title": "We manage the crop",
+        "description": "Gavé handles all cultivation: land lease, labor, insurance, fertilization, pest control, and plant replacement guarantees. You own the plants, we manage everything.",
+        "timeline": "5-6 years"
       },
       {
-        "title": "Desarrollo Comunitario",
-        "description": "Crea empleos y oportunidades en comunidades rurales"
+        "title": "Harvest & Sale",
+        "description": "At maturity, Gavé harvests and sells to the highest bidder. You receive 65% of profit margins above production costs.",
+        "timeline": "Year 5"
+      },
+      {
+        "title": "Regenerative Impact",
+        "description": "Your investment actively restores degraded land, sequesters carbon, and enhances biodiversity while generating returns.",
+        "timeline": "Lasting Impact"
       }
-    ]
-  },
-  "en": {
-    "title": "How Agave Investment Works",
-    "subtitle": "A transparent investment model that combines financial returns with positive environmental impact.",
+    ],
     "processTitle": "Investment Process",
     "investmentModel": "Investment Model",
     "regenerativeBenefits": "Regenerative Benefits",
-    "ctaButton": "Start Investment",
-    "steps": [
-      {
-        "title": "Assessment and Selection",
-        "description": "We analyze your investment profile and objectives to recommend the best agave cultivation option for you.",
-        "timeline": "Week 1"
-      },
-      {
-        "title": "Planting and Establishment",
-        "description": "We establish your plantation with the best regenerative practices on carefully selected lands.",
-        "timeline": "Months 1-3"
-      },
-      {
-        "title": "Monitoring and Care",
-        "description": "Continuous monitoring of growth, soil health, and carbon capture using advanced technology.",
-        "timeline": "Years 1-6"
-      },
-      {
-        "title": "Harvest and Returns",
-        "description": "Sustainable harvest and distribution of returns based on yield and market prices.",
-        "timeline": "Years 6-8"
-      }
-    ],
-    "modelFeatures": [
-      {
-        "title": "Total Transparency",
-        "description": "Real-time tracking of your investment and its impact"
-      },
-      {
-        "title": "Projected Returns",
-        "description": "8-12% annual IRR with potential for additional appreciation"
-      },
-      {
-        "title": "Measurable Impact",
-        "description": "Verifiable metrics for carbon capture and restoration"
-      }
-    ],
-    "impactFeatures": [
-      {
-        "title": "Carbon Capture",
-        "description": "Actively contributes to climate change mitigation"
-      },
-      {
-        "title": "Ecological Restoration",
-        "description": "Regenerates degraded ecosystems and local biodiversity"
-      },
-      {
-        "title": "Community Development",
-        "description": "Creates jobs and opportunities in rural communities"
-      }
-    ]
+    "subtitle": "A transparent investment model that combines financial returns with positive environmental impact.",
+    "title": "How Agave Investment Works"
   }
 }
