@@ -3,18 +3,18 @@
   publish = "dist"
   command = "npm run build"
 
-# Netlify Visual Editor configuration
 [build.environment]
   NODE_VERSION = "18"
+  NETLIFY_VISUAL_EDITOR = "true"
 
-# Enable Visual Editor
+# Visual Editor Plugin
 [[plugins]]
   package = "@netlify/plugin-visual-editor"
 
 # Redirects for Visual Editor
 [[redirects]]
-  from = "/visual-editor/*"
-  to = "/.netlify/functions/visual-editor/:splat"
+  from = "/admin/*"
+  to = "/.netlify/functions/cms-proxy/:splat"
   status = 200
 
 [[redirects]]
@@ -34,9 +34,17 @@
     Cache-Control = "public, max-age=3600"
     Access-Control-Allow-Origin = "*"
 
-# Enable Visual Editor features
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Enable Visual Editor for all contexts
 [context.production.environment]
   NETLIFY_VISUAL_EDITOR = "true"
 
 [context.deploy-preview.environment]
+  NETLIFY_VISUAL_EDITOR = "true"
+
+[context.branch-deploy.environment]
   NETLIFY_VISUAL_EDITOR = "true"

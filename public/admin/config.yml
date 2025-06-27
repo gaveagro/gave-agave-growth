@@ -1,0 +1,65 @@
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "public/content/hero.json"
+        label: "Hero Section"
+        name: "hero"
+        fields:
+          - label: "Spanish Content"
+            name: "es"
+            widget: "object"
+            fields:
+              - {label: "Main Title", name: "mainTitle", widget: "string"}
+              - {label: "Subtitle", name: "subtitle", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Mission", name: "mission", widget: "string"}
+              - {label: "Form Title", name: "formTitle", widget: "string"}
+              - {label: "Email Placeholder", name: "emailPlaceholder", widget: "string"}
+              - {label: "Get Started Button", name: "getStarted", widget: "string"}
+              - {label: "Join Text", name: "joinText", widget: "text"}
+              - {label: "Thank You", name: "thankYou", widget: "string"}
+              - {label: "Thank You Text", name: "thankYouText", widget: "text"}
+          - label: "English Content"
+            name: "en"
+            widget: "object"
+            fields:
+              - {label: "Main Title", name: "mainTitle", widget: "string"}
+              - {label: "Subtitle", name: "subtitle", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Mission", name: "mission", widget: "string"}
+              - {label: "Form Title", name: "formTitle", widget: "string"}
+              - {label: "Email Placeholder", name: "emailPlaceholder", widget: "string"}
+              - {label: "Get Started Button", name: "getStarted", widget: "string"}
+              - {label: "Join Text", name: "joinText", widget: "text"}
+              - {label: "Thank You", name: "thankYou", widget: "string"}
+              - {label: "Thank You Text", name: "thankYouText", widget: "text"}
+          - {label: "Background Image", name: "backgroundImage", widget: "image"}
+
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "public/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title (English)", name: "title_en", widget: "string"}
+      - {label: "Title (Spanish)", name: "title_es", widget: "string"}
+      - {label: "Excerpt (English)", name: "excerpt_en", widget: "text"}
+      - {label: "Excerpt (Spanish)", name: "excerpt_es", widget: "text"}
+      - {label: "Content (English)", name: "body_en", widget: "markdown"}
+      - {label: "Content (Spanish)", name: "body_es", widget: "markdown"}
+      - {label: "Author (English)", name: "author_en", widget: "string"}
+      - {label: "Author (Spanish)", name: "author_es", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Category (English)", name: "category_en", widget: "string"}
+      - {label: "Category (Spanish)", name: "category_es", widget: "string"}
+      - {label: "Featured Image", name: "image", widget: "image"}
+      - {label: "Published", name: "published", widget: "boolean", default: false}

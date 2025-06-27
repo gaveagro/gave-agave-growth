@@ -1,5 +1,14 @@
 
 export default {
+  // Framework configuration
+  framework: {
+    name: 'react',
+    build: {
+      command: 'npm run build',
+      output: 'dist'
+    }
+  },
+
   // Content collections for Visual Editor
   collections: [
     {
@@ -47,6 +56,53 @@ export default {
             },
             { name: 'backgroundImage', label: 'Background Image', widget: 'image' }
           ]
+        },
+        {
+          name: 'faq',
+          label: 'FAQ Section',
+          file: 'public/content/faq.json',
+          fields: [
+            {
+              name: 'es',
+              label: 'Spanish Content',
+              widget: 'object',
+              fields: [
+                { name: 'title', label: 'Title', widget: 'string' },
+                { name: 'subtitle', label: 'Subtitle', widget: 'string' },
+                { name: 'stillHaveQuestions', label: 'Still Have Questions', widget: 'string' },
+                { name: 'contactTeam', label: 'Contact Team', widget: 'string' },
+                {
+                  name: 'faqs',
+                  label: 'FAQs',
+                  widget: 'list',
+                  fields: [
+                    { name: 'question', label: 'Question', widget: 'string' },
+                    { name: 'answer', label: 'Answer', widget: 'text' }
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'en',
+              label: 'English Content',
+              widget: 'object',
+              fields: [
+                { name: 'title', label: 'Title', widget: 'string' },
+                { name: 'subtitle', label: 'Subtitle', widget: 'string' },
+                { name: 'stillHaveQuestions', label: 'Still Have Questions', widget: 'string' },
+                { name: 'contactTeam', label: 'Contact Team', widget: 'string' },
+                {
+                  name: 'faqs',
+                  label: 'FAQs',
+                  widget: 'list',
+                  fields: [
+                    { name: 'question', label: 'Question', widget: 'string' },
+                    { name: 'answer', label: 'Answer', widget: 'text' }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -56,6 +112,9 @@ export default {
       folder: 'public/content/blog',
       create: true,
       slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+      editor: {
+        preview: true
+      },
       fields: [
         { name: 'title_en', label: 'Title (English)', widget: 'string' },
         { name: 'title_es', label: 'Title (Spanish)', widget: 'string' },
@@ -73,17 +132,19 @@ export default {
       ]
     }
   ],
-  // Visual editing settings
-  visual: {
-    enabled: true,
-    preview: {
-      template: 'react',
-      port: 8080
-    }
-  },
+
   // Media settings
   media: {
     folder: 'public/images',
     public_folder: '/images'
-  }
+  },
+
+  // Development settings
+  local_backend: true,
+  
+  // Site URL for preview
+  site_url: 'https://gaveagtech.netlify.app',
+  
+  // Display URL for CMS
+  display_url: 'https://gaveagtech.netlify.app'
 };
