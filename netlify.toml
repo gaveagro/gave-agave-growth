@@ -3,14 +3,23 @@
   publish = "dist"
   command = "npm run build"
 
+# Netlify Visual Editor configuration
+[build.environment]
+  NODE_VERSION = "18"
+
+# Enable Visual Editor
+[[plugins]]
+  package = "@netlify/plugin-visual-editor"
+
+# Redirects for Visual Editor
 [[redirects]]
-  from = "/admin/*"
-  to = "/admin/index.html"
+  from = "/visual-editor/*"
+  to = "/.netlify/functions/visual-editor/:splat"
   status = 200
 
 [[redirects]]
-  from = "/content/*"
-  to = "/content/:splat"
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
   status = 200
 
 [[redirects]]
@@ -18,26 +27,16 @@
   to = "/index.html"
   status = 200
 
-[build.environment]
-  NODE_VERSION = "18"
-
-# Enable Git Gateway for Decap CMS
-[template.environment]
-  NETLIFY_IDENTITY_WIDGET = "true"
-
-# Netlify Functions
-[functions]
-  directory = "netlify/functions"
-
-# Headers for static files
+# Headers for content files
 [[headers]]
   for = "/content/*"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+    Access-Control-Allow-Origin = "*"
 
-# Headers for admin
-[[headers]]
-  for = "/admin/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
+# Enable Visual Editor features
+[context.production.environment]
+  NETLIFY_VISUAL_EDITOR = "true"
+
+[context.deploy-preview.environment]
+  NETLIFY_VISUAL_EDITOR = "true"
