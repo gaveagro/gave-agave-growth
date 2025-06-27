@@ -1,28 +1,27 @@
-
 {
   "es": {
-    "mainTitle": "Regenera la tierra.",
-    "subtitle": "Genera retornos.",
-    "description": "Invierte en cultivo regenerativo de agave que restaura ecosistemas degradados mientras entrega retornos rentables.",
-    "mission": "Cultivando suelos saludables y restaurando ecosistemas degradados.",
-    "formTitle": "Comienza tu Inversión Regenerativa",
-    "emailPlaceholder": "Ingresa tu dirección de correo",
+    "thankYouText": "Nos pondremos en contacto pronto.",
     "getStarted": "Comenzar",
-    "joinText": "Únete a inversionistas creando impacto ambiental mientras obtienen retornos",
+    "mission": "Cultivamos Agaves, restauramos suelos, y hacemos florecer oportunidades.",
+    "formTitle": "Comienza tu Inversión Regenerativa",
     "thankYou": "¡Gracias!",
-    "thankYouText": "Nos pondremos en contacto pronto con oportunidades de inversión."
+    "emailPlaceholder": "Ingresa tu dirección de correo",
+    "joinText": "Únete a inversionistas creando impacto ambiental mientras obtienes retornos.",
+    "subtitle": "Cosecha rendimientos.",
+    "description": "Invierte en cultivo regenerativo de Agave que restaura ecosistemas degradados, mientras genera valor económico. ",
+    "mainTitle": "Regenera la tierra."
   },
   "en": {
-    "mainTitle": "Regenerate land.",
-    "subtitle": "Generate returns.",
-    "description": "Invest in regenerative agave cultivation that restores degraded ecosystems while delivering profitable returns.",
+    "thankYouText": "We'll be in touch with investment opportunities soon.",
+    "getStarted": "Get Started",
     "mission": "Growing healthy soil and restoring degraded ecosystems.",
     "formTitle": "Start Your Regenerative Investment",
-    "emailPlaceholder": "Enter your email address",
-    "getStarted": "Get Started",
-    "joinText": "Join investors creating environmental impact while earning returns",
     "thankYou": "Thank you!",
-    "thankYouText": "We'll be in touch with investment opportunities soon."
+    "emailPlaceholder": "Enter your email address",
+    "joinText": "Join investors creating environmental impact while earning returns",
+    "subtitle": "Generate returns.",
+    "description": "Invest in regenerative agave cultivation that restores degraded ecosystems while delivering profitable returns.",
+    "mainTitle": "Regenerate land."
   },
   "backgroundImage": "/lovable-uploads/d70723cf-3b9d-404d-9b70-864768a8de4f.png"
 }
