@@ -21,16 +21,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Netlify Visual Editor Scripts -->
-    <script>
-      window.netlifyVisualEditor = {
-        enabled: true,
-        apiUrl: '/.netlify/functions/cms-proxy'
-      };
-    </script>
-    <script type="module" src="https://unpkg.com/@netlify/visual-editor@latest/dist/visual-editor.esm.js"></script>
+    <!-- Netlify Identity para autenticación -->
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Netlify Identity for Authentication -->
+    <!-- Script de Netlify Identity -->
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
@@ -42,11 +41,5 @@
         });
       }
     </script>
-    <script type="module" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

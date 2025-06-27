@@ -5,21 +5,15 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  NETLIFY_VISUAL_EDITOR = "true"
 
-# Visual Editor Plugin
+# Plugin de Visual Editor - configuración simplificada
 [[plugins]]
   package = "@netlify/plugin-visual-editor"
 
-# Redirects for Visual Editor
+# Redirects básicos
 [[redirects]]
   from = "/admin/*"
-  to = "/.netlify/functions/cms-proxy/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  to = "/admin/index.html"
   status = 200
 
 [[redirects]]
@@ -27,7 +21,7 @@
   to = "/index.html"
   status = 200
 
-# Headers for content files
+# Headers para archivos de contenido
 [[headers]]
   for = "/content/*"
   [headers.values]
@@ -38,13 +32,3 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
-
-# Enable Visual Editor for all contexts
-[context.production.environment]
-  NETLIFY_VISUAL_EDITOR = "true"
-
-[context.deploy-preview.environment]
-  NETLIFY_VISUAL_EDITOR = "true"
-
-[context.branch-deploy.environment]
-  NETLIFY_VISUAL_EDITOR = "true"

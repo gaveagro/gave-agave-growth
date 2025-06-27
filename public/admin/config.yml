@@ -7,11 +7,11 @@ media_folder: "public/images"
 public_folder: "/images"
 
 collections:
-  - name: "pages"
-    label: "Pages"
+  - name: "hero"
+    label: "Hero Section"
     files:
       - file: "public/content/hero.json"
-        label: "Hero Section"
+        label: "Hero Content"
         name: "hero"
         fields:
           - label: "Spanish Content"
