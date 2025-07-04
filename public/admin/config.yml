@@ -6,60 +6,74 @@ backend:
 media_folder: "public/images"
 public_folder: "/images"
 
+# Configuración de vista previa local
+local_backend: true
+
 collections:
-  - name: "hero"
-    label: "Hero Section"
+  - name: "pages"
+    label: "Páginas"
     files:
       - file: "public/content/hero.json"
-        label: "Hero Content"
+        label: "Página Principal - Hero"
         name: "hero"
         fields:
-          - label: "Spanish Content"
+          - label: "Contenido en Español"
             name: "es"
             widget: "object"
             fields:
-              - {label: "Main Title", name: "mainTitle", widget: "string"}
-              - {label: "Subtitle", name: "subtitle", widget: "string"}
-              - {label: "Description", name: "description", widget: "text"}
-              - {label: "Mission", name: "mission", widget: "string"}
-              - {label: "Form Title", name: "formTitle", widget: "string"}
-              - {label: "Email Placeholder", name: "emailPlaceholder", widget: "string"}
-              - {label: "Get Started Button", name: "getStarted", widget: "string"}
-              - {label: "Join Text", name: "joinText", widget: "text"}
-              - {label: "Thank You", name: "thankYou", widget: "string"}
-              - {label: "Thank You Text", name: "thankYouText", widget: "text"}
-          - label: "English Content"
+              - {label: "Título Principal", name: "mainTitle", widget: "string"}
+              - {label: "Subtítulo", name: "subtitle", widget: "string"}
+              - {label: "Descripción", name: "description", widget: "text"}
+              - {label: "Misión", name: "mission", widget: "string"}
+              - {label: "Título del Formulario", name: "formTitle", widget: "string"}
+              - {label: "Placeholder del Email", name: "emailPlaceholder", widget: "string"}
+              - {label: "Botón Comenzar", name: "getStarted", widget: "string"}
+              - {label: "Texto de Unirse", name: "joinText", widget: "text"}
+              - {label: "Mensaje de Gracias", name: "thankYou", widget: "string"}
+              - {label: "Texto de Gracias", name: "thankYouText", widget: "text"}
+          - label: "Contenido en Inglés"
             name: "en"
             widget: "object"
             fields:
-              - {label: "Main Title", name: "mainTitle", widget: "string"}
-              - {label: "Subtitle", name: "subtitle", widget: "string"}
-              - {label: "Description", name: "description", widget: "text"}
-              - {label: "Mission", name: "mission", widget: "string"}
-              - {label: "Form Title", name: "formTitle", widget: "string"}
-              - {label: "Email Placeholder", name: "emailPlaceholder", widget: "string"}
-              - {label: "Get Started Button", name: "getStarted", widget: "string"}
-              - {label: "Join Text", name: "joinText", widget: "text"}
-              - {label: "Thank You", name: "thankYou", widget: "string"}
-              - {label: "Thank You Text", name: "thankYouText", widget: "text"}
-          - {label: "Background Image", name: "backgroundImage", widget: "image"}
+              - {label: "Título Principal", name: "mainTitle", widget: "string"}
+              - {label: "Subtítulo", name: "subtitle", widget: "string"}
+              - {label: "Descripción", name: "description", widget: "text"}
+              - {label: "Misión", name: "mission", widget: "string"}
+              - {label: "Título del Formulario", name: "formTitle", widget: "string"}
+              - {label: "Placeholder del Email", name: "emailPlaceholder", widget: "string"}
+              - {label: "Botón Comenzar", name: "getStarted", widget: "string"}
+              - {label: "Texto de Unirse", name: "joinText", widget: "text"}
+              - {label: "Mensaje de Gracias", name: "thankYou", widget: "string"}
+              - {label: "Texto de Gracias", name: "thankYouText", widget: "text"}
+          - {label: "Imagen de Fondo", name: "backgroundImage", widget: "image"}
+
+      - file: "public/content/site-settings.json"
+        label: "Configuración del Sitio"
+        name: "site-settings"
+        fields:
+          - {label: "Título en Español", name: "title_es", widget: "string"}
+          - {label: "Título en Inglés", name: "title_en", widget: "string"}
+          - {label: "Descripción en Español", name: "description_es", widget: "text"}
+          - {label: "Descripción en Inglés", name: "description_en", widget: "text"}
+          - {label: "Email de Contacto", name: "contact_email", widget: "string"}
+          - {label: "Teléfono", name: "phone", widget: "string"}
 
   - name: "blog"
-    label: "Blog Posts"
+    label: "Blog"
     folder: "public/content/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Title (English)", name: "title_en", widget: "string"}
-      - {label: "Title (Spanish)", name: "title_es", widget: "string"}
-      - {label: "Excerpt (English)", name: "excerpt_en", widget: "text"}
-      - {label: "Excerpt (Spanish)", name: "excerpt_es", widget: "text"}
-      - {label: "Content (English)", name: "body_en", widget: "markdown"}
-      - {label: "Content (Spanish)", name: "body_es", widget: "markdown"}
-      - {label: "Author (English)", name: "author_en", widget: "string"}
-      - {label: "Author (Spanish)", name: "author_es", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Category (English)", name: "category_en", widget: "string"}
-      - {label: "Category (Spanish)", name: "category_es", widget: "string"}
-      - {label: "Featured Image", name: "image", widget: "image"}
-      - {label: "Published", name: "published", widget: "boolean", default: false}
+      - {label: "Título (Inglés)", name: "title_en", widget: "string"}
+      - {label: "Título (Español)", name: "title_es", widget: "string"}
+      - {label: "Extracto (Inglés)", name: "excerpt_en", widget: "text"}
+      - {label: "Extracto (Español)", name: "excerpt_es", widget: "text"}
+      - {label: "Contenido (Inglés)", name: "body_en", widget: "markdown"}
+      - {label: "Contenido (Español)", name: "body_es", widget: "markdown"}
+      - {label: "Autor (Inglés)", name: "author_en", widget: "string"}
+      - {label: "Autor (Español)", name: "author_es", widget: "string"}
+      - {label: "Fecha", name: "date", widget: "datetime"}
+      - {label: "Categoría (Inglés)", name: "category_en", widget: "string"}
+      - {label: "Categoría (Español)", name: "category_es", widget: "string"}
+      - {label: "Imagen Destacada", name: "image", widget: "image"}
+      - {label: "Publicado", name: "published", widget: "boolean", default: false}

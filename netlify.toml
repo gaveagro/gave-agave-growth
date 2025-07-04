@@ -6,11 +6,7 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Plugin de Visual Editor - configuración simplificada
-[[plugins]]
-  package = "@netlify/plugin-visual-editor"
-
-# Redirects básicos
+# Redirects para el CMS
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
