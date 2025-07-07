@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -55,7 +54,7 @@ const OurFarms = () => {
       nameEN: 'Main Farm - Espadín',
       location: 'San Luis Potosí, México',
       species: ['Agave Angustifolia (Espadín)'],
-      image: '/lovable-uploads/97c0e0e2-e0c1-4f24-bdc0-bc91513df0d4.png',
+      image: '/lovable-uploads/6de61ebc-0cfe-453b-91d7-b052959dcdf0.png',
       established: '2019',
       features: ['Irrigation System', 'Soil Analysis', 'Drone Monitoring']
     },

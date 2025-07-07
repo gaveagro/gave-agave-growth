@@ -1,9 +1,11 @@
-
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Leaf, Sprout, Droplets, Users, Quote } from 'lucide-react';
 
 const ImpactSection = () => {
-  const [language, setLanguage] = useState('EN');
+  const [language, setLanguage] = useState(() => {
+    return (window as any).currentLanguage || 'EN';
+  });
 
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {
@@ -11,187 +13,106 @@ const ImpactSection = () => {
     };
 
     window.addEventListener('languageChange', handleLanguageChange as EventListener);
+    
+    const currentLang = (window as any).currentLanguage;
+    if (currentLang && currentLang !== language) {
+      setLanguage(currentLang);
+    }
+
     return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
+  }, [language]);
+
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    fetch('/content/impact.json')
+      .then(response => response.json())
+      .then(data => setContent(data))
+      .catch(error => console.error('Error loading impact content:', error));
   }, []);
 
-  const content = {
-    EN: {
-      title: 'Regenerative Agriculture Impact',
-      subtitle: 'Every investment restores degraded land, sequesters carbon, and creates resilient ecosystems while delivering profitable returns.',
-      impactAreas: [
-        {
-          title: 'Soil Health Restoration',
-          description: 'Our regenerative practices rebuild soil organic matter, increase water retention, and restore natural fertility cycles.',
-          metric: '',
-          unit: 'Enhanced Soil Quality',
-          icon: '🌱'
-        },
-        {
-          title: 'Carbon Sequestration',
-          description: 'Agave plants and soil restoration sequester significant carbon, directly combating climate change.',
-          metric: '30-60',
-          unit: 'Tons CO₂/hectare/year',
-          icon: '🌍'
-        },
-        {
-          title: 'Biodiversity Enhancement',
-          description: 'Agrosilvopastoral systems support native species and create wildlife corridors in degraded landscapes.',
-          metric: '',
-          unit: 'Species Diversity Increase',
-          icon: '🦋'
-        },
-        {
-          title: 'Water Cycle Restoration',
-          description: 'Healthy soils and diverse plantings improve water infiltration and reduce erosion significantly.',
-          metric: '',
-          unit: 'Water Retention Improvement',
-          icon: '💧'
-        }
-      ],
-      resilienceTitle: 'Building Climate Resilience',
-      resilienceSubtitle: 'Regenerative farming increases production and profitability while creating drought, flood and fire resilience.',
-      carbonQuote: '"A mere 2% increase in the carbon content of the planet\'s soils could offset 100% of all greenhouse gas emissions going into the atmosphere"',
-      carbonAuthor: 'Rattan Lal, Soil Scientist',
-      resiliencePoints: [
-        'Improved soil structure reduces flood and erosion risk',
-        'Enhanced water retention creates drought resilience',
-        'Diverse ecosystems provide natural pest and disease control',
-        'Carbon-rich soils store more nutrients and support healthy plant growth'
-      ]
-    },
-    ES: {
-      title: 'Impacto de la Agricultura Regenerativa',
-      subtitle: 'Cada inversión restaura tierras degradadas, captura carbono y crea ecosistemas resilientes mientras entrega retornos rentables.',
-      impactAreas: [
-        {
-          title: 'Restauración de Salud del Suelo',
-          description: 'Nuestras prácticas regenerativas reconstruyen la materia orgánica del suelo, aumentan la retención de agua y restauran los ciclos naturales de fertilidad.',
-          metric: '',
-          unit: 'Mejora de Calidad del Suelo',
-          icon: '🌱'
-        },
-        {
-          title: 'Captura de Carbono',
-          description: 'Las plantas de agave y la restauración del suelo capturan carbono significativo, combatiendo directamente el cambio climático.',
-          metric: '30-60',
-          unit: 'Toneladas CO₂/hectárea/año',
-          icon: '🌍'
-        },
-        {
-          title: 'Mejora de Biodiversidad',
-          description: 'Los sistemas agrosilvopastorales apoyan especies nativas y crean corredores de vida silvestre en paisajes degradados.',
-          metric: '',
-          unit: 'Aumento de Diversidad de Especies',
-          icon: '🦋'
-        },
-        {
-          title: 'Restauración del Ciclo del Agua',
-          description: 'Suelos saludables y plantaciones diversas mejoran la infiltración de agua y reducen significativamente la erosión.',
-          metric: '',
-          unit: 'Mejora en Retención de Agua',
-          icon: '💧'
-        }
-      ],
-      resilienceTitle: 'Construyendo Resiliencia Climática',
-      resilienceSubtitle: 'La agricultura regenerativa aumenta la producción y rentabilidad mientras crea resiliencia a sequías, inundaciones e incendios.',
-      carbonQuote: '"Un mero aumento del 2% en el contenido de carbono de los suelos del planeta podría compensar el 100% de todas las emisiones de gases de efecto invernadero que van a la atmósfera"',
-      carbonAuthor: 'Rattan Lal, Científico del Suelo',
-      resiliencePoints: [
-        'Estructura mejorada del suelo reduce el riesgo de inundaciones y erosión',
-        'Mayor retención de agua crea resiliencia a la sequía',
-        'Ecosistemas diversos proporcionan control natural de plagas y enfermedades',
-        'Suelos ricos en carbono almacenan más nutrientes y apoyan el crecimiento saludable de plantas'
-      ]
-    }
-  };
+  if (!content) return null;
 
-  const currentContent = content[language as keyof typeof content];
+  const currentContent = content[language.toLowerCase() as keyof typeof content];
+  if (!currentContent) return null;
 
   return (
-    <section id="impact" className="py-24 bg-background">
+    <section className="py-24 bg-gave-sand/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gave-green">
             {currentContent.title}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
             {currentContent.subtitle}
           </p>
         </div>
 
-        {/* Impact Metrics */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        {/* Impact Metrics Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {currentContent.impactAreas.map((area, index) => (
-            <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 border-gave-green/20 hover:border-gave-green/40">
+            <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 border-gave-green/20">
               <CardHeader className="pb-4">
-                <div className="text-5xl mb-4">{area.icon}</div>
-                <CardTitle className="text-xl mb-2 text-gave-green">{area.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-1">
-                  {area.metric && (
-                    <div className="text-3xl font-bold text-gave-green">{area.metric}</div>
-                  )}
-                  <div className="text-sm font-medium text-gave-green/80">{area.unit}</div>
+                <div className="w-16 h-16 mx-auto mb-4 bg-gave-green/10 rounded-full flex items-center justify-center">
+                  {area.icon === 'Leaf' && <Leaf className="w-8 h-8 text-gave-green" />}
+                  {area.icon === 'Sprout' && <Sprout className="w-8 h-8 text-gave-green" />}
+                  {area.icon === 'Droplets' && <Droplets className="w-8 h-8 text-gave-green" />}
+                  {area.icon === 'Users' && <Users className="w-8 h-8 text-gave-green" />}
                 </div>
-                <CardDescription className="text-sm leading-relaxed">
-                  {area.description}
-                </CardDescription>
+                <CardTitle className="text-xl text-gave-green">{area.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="mb-4">
+                  <span className="text-3xl font-bold text-gave-yellow">{area.metric}</span>
+                  {area.unit && <p className="text-sm text-muted-foreground mt-1">{area.unit}</p>}
+                </div>
+                <p className="text-muted-foreground text-sm">{area.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Climate Resilience Section - Fixed Colors */}
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-gave-green rounded-3xl p-12 md:p-16 text-white relative overflow-hidden">
-            {/* Background pattern with reduced opacity */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-0 left-0 w-full h-full" 
-                   style={{backgroundImage: 'url("/lovable-uploads/6de61ebc-0cfe-453b-91d7-b052959dcdf0.png")', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
-            </div>
+        {/* Climate Resilience Section */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div>
+            <h3 className="text-3xl font-bold mb-6 text-gave-green">
+              {currentContent.resilienceTitle}
+            </h3>
+            <p className="text-lg text-muted-foreground mb-8">
+              {currentContent.resilienceSubtitle}
+            </p>
             
-            <div className="relative z-10">
-              <div className="text-center mb-12">
-                <h3 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-                  {currentContent.resilienceTitle}
-                </h3>
-                <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto mb-8">
-                  {currentContent.resilienceSubtitle}
-                </p>
-                
-                {/* Carbon Quote - Prominent with better contrast */}
-                <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-white/30">
-                  <blockquote className="text-2xl md:text-3xl italic font-light leading-relaxed text-white">
-                    {currentContent.carbonQuote}
-                  </blockquote>
-                  <div className="text-gave-yellow font-semibold mt-6 text-lg">
-                    — {currentContent.carbonAuthor}
-                  </div>
+            <div className="space-y-4">
+              {currentContent.resiliencePoints.map((point, index) => (
+                <div key={index} className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-gave-yellow rounded-full flex-shrink-0"></div>
+                  <span className="text-muted-foreground">{point}</span>
                 </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-12 items-start">
-                <div className="space-y-8">
-                  {currentContent.resiliencePoints.map((point, index) => (
-                    <div key={index} className="flex items-start space-x-4">
-                      <div className="w-4 h-4 bg-gave-yellow rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-lg md:text-xl leading-relaxed text-white">{point}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="text-center">
-                  <img 
-                    src="/lovable-uploads/6de61ebc-0cfe-453b-91d7-b052959dcdf0.png" 
-                    alt="Building climate resilience - agave farm landscape"
-                    className="w-full rounded-2xl shadow-2xl"
-                  />
-                </div>
-              </div>
+              ))}
             </div>
           </div>
+          
+          <div className="relative">
+            <img 
+              src="/lovable-uploads/97c0e0e2-e0c1-4f24-bdc0-bc91513df0d4.png" 
+              alt="Climate Resilience - Agave Farm"
+              className="w-full h-auto rounded-lg shadow-xl"
+            />
+          </div>
         </div>
+
+        {/* Quote Section */}
+        <Card className="max-w-4xl mx-auto bg-gave-green/5 border-gave-green/20">
+          <CardContent className="p-8 text-center">
+            <Quote className="w-12 h-12 text-gave-green/30 mx-auto mb-6" />
+            <blockquote className="text-xl italic text-muted-foreground mb-6">
+              "{currentContent.carbonQuote}"
+            </blockquote>
+            <cite className="text-gave-green font-semibold">
+              — {currentContent.carbonAuthor}
+            </cite>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );

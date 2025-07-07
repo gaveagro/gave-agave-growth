@@ -1,3 +1,4 @@
+
 {
   "es": {
     "title": "Preguntas Frecuentes",
@@ -7,7 +8,15 @@
     "faqs": [
       {
         "question": "¿Cuál es el retorno esperado de la inversión en agave?",
-        "answer": "Nuestros modelos proyectan un TIR (Tasa Interna de Retorno) del 9-19% anual, con potencial de apreciación adicional basada en el mercado de productos derivados del agave y créditos de carbono. Sin embargo, los retornos dependen de las condiciones de mercado en ese momento. Puedes simular tu inversión aquí. "
+        "answer": "Nuestros modelos proyectan un TIR (Tasa Interna de Retorno) del 9-19% anual, con potencial de apreciación adicional basada en el mercado de productos derivados del agave y créditos de carbono. Sin embargo, los retornos dependen de las condiciones de mercado en ese momento. El modelo contempla utilizar la inversión inicial como el costo de producción por planta (se ajusta a la cantidad de plantas que haya adquirido el inversionista), y las ganancias se dan por haber vendido la cosecha al mejor postor en ese momento, lo que típicamente está correlacionado con el precio de mercado. Puedes simular tu inversión aquí."
+      },
+      {
+        "question": "¿Qué es la inversión en agave y cómo funciona?",
+        "answer": "La inversión en agave permite a inversionistas participar en proyectos de agricultura regenerativa adquiriendo plantas de agave en nuestras granjas administradas. El ciclo completo toma entre 5-6 años (dependiendo de la especie), durante los cuales manejamos todo el cultivo, cosecha y venta, mientras el inversionista obtiene retornos financieros y contribuye a la restauración ambiental."
+      },
+      {
+        "question": "¿Cuáles son los retornos esperados y el período de inversión?",
+        "answer": "Los retornos proyectados son del 9-19% TIR anual, con un período de maduración de 5-6 años para Espadín y 7-9 años para Salmiana. Los retornos dependen de las condiciones de mercado, ya que el modelo utiliza la inversión inicial como costo de producción por planta, y las ganancias provienen de la venta de la cosecha al mejor postor, correlacionado con los precios de mercado del momento."
       },
       {
         "question": "¿Cuánto tiempo toma ver retornos de la inversión?",
@@ -15,19 +24,27 @@
       },
       {
         "question": "¿Cómo se mide el impacto ambiental?",
-        "answer": "Utilizamos tecnología satelital, sensores IoT y metodologías científicas verificadas para medir la captura de carbono, restauración del suelo, conservación de agua y biodiversidad. "
+        "answer": "Utilizamos tecnología satelital, sensores y metodologías científicas verificadas para medir la captura de carbono, restauración del suelo, conservación de agua y biodiversidad."
       },
       {
         "question": "¿Cuál es la inversión mínima requerida?",
-        "answer": "La inversión mínima es de $50,000 MXN, lo que equivale aproximadamente al 8% de una hectárea de cultivo de agave. Puedes comprar plantas de distintas edades. Cada generación de planta tiene un precio distinto. "
+        "answer": "La inversión mínima es de $50,000 MXN, lo que equivale aproximadamente al 8% de una hectárea de cultivo de agave. Puedes comprar plantas de distintas edades. Cada generación de planta tiene un precio distinto."
       },
       {
         "question": "¿Qué riesgos involucra esta inversión?",
-        "answer": "Tus plantas están protegidas por un seguro agrícola que cubre plagas, enfermedades, deficiencias nutricionales, invasión de malezas, daños por animales domésticos y/o fauna silvestre. Como toda inversión agrícola, existen riesgos de mercado. Sin embargo, estamos integrados con los siguientes eslabones de producción y el destilado de esta planta, no sufre la misma fluctuación ni es perecedero. Pregúntanos por más información. "
+        "answer": "Tus plantas están protegidas por un seguro agrícola que cubre plagas, enfermedades, deficiencias nutricionales, invasión de malezas, daños por animales domésticos y/o fauna silvestre. Como toda inversión agrícola, existen riesgos de mercado. Sin embargo, estamos integrados con los siguientes eslabones de producción y el destilado de esta planta, no sufre la misma fluctuación ni es perecedero. Pregúntanos por más información."
+      },
+      {
+        "question": "¿Cuál es la diferencia entre agricultura intensiva y modelos agrosilvopastoriles?",
+        "answer": "Los modelos agrosilvopastoriles integran árboles, cultivos y ganadería en un mismo sistema, promoviendo la biodiversidad y la salud del suelo. A diferencia de la agricultura intensiva, estos sistemas son más resilientes al cambio climático, mejoran la captura de carbono y crean ecosistemas más equilibrados que benefician tanto al medio ambiente como a las comunidades locales."
       },
       {
         "question": "¿Cómo puedo monitorear mi inversión?",
-        "answer": "Proporcionamos una plataforma digital donde puedes ver el crecimiento de tu plantación, métricas de impacto ambiental, reportes financieros y actualizaciones del equipo técnico."
+        "answer": "Proporcionamos una plataforma digital donde puedes ver el crecimiento de tu plantación, métricas de impacto ambiental, reportes financieros y actualizaciones del equipo técnico. Además, los inversionistas pueden visitar las granjas para ver directamente el progreso de sus plantas."
+      },
+      {
+        "question": "¿Quién compra el agave cosechado y a qué precio?",
+        "answer": "Vendemos el agave cosechado a destilerías de mezcal y tequila, así como a la industria de edulcorantes (jarabe de agave) y prebióticos (inulina). Los precios se determinan por las condiciones del mercado al momento de la cosecha, y siempre buscamos obtener el mejor precio posible para maximizar los retornos de nuestros inversionistas."
       }
     ]
   },
@@ -39,7 +56,15 @@
     "faqs": [
       {
         "question": "What is the expected return on agave investment?",
-        "answer": "Our models project an IRR (Internal Rate of Return) of 9-19% per year, with potential for additional appreciation based on the market for agave-derived products and carbon credits. However, returns depend on current market conditions. You can simulate your investment here."
+        "answer": "Our models project an IRR (Internal Rate of Return) of 9-19% per year, with potential for additional appreciation based on the market for agave-derived products and carbon credits. However, returns depend on current market conditions. The model uses the initial investment as the production cost per plant (adjusted to the number of plants acquired by the investor), and profits come from selling the harvest to the highest bidder, typically correlated with market prices at that time. You can simulate your investment here."
+      },
+      {
+        "question": "What is agave investment and how does it work?",
+        "answer": "Agave investment allows investors to participate in regenerative agriculture projects by acquiring agave plants in our managed farms. The complete cycle takes 5-6 years (depending on the species), during which we handle all cultivation, harvest, and sales, while the investor obtains financial returns and contributes to environmental restoration."
+      },
+      {
+        "question": "What are the expected returns and investment period?",
+        "answer": "Projected returns are 9-19% IRR annually, with a maturation period of 5-6 years for Espadín and 7-9 years for Salmiana. Returns depend on market conditions, as the model uses the initial investment as production cost per plant, and profits come from selling the harvest to the highest bidder, correlated with market prices at the time."
       },
       {
         "question": "How long does it take to see investment returns?",
@@ -47,7 +72,7 @@
       },
       {
         "question": "How is environmental impact measured?",
-        "answer": "We use satellite technology, IoT sensors, and verified scientific methodologies to measure carbon capture, soil restoration, water conservation, and biodiversity. "
+        "answer": "We use satellite technology, sensors, and verified scientific methodologies to measure carbon capture, soil restoration, water conservation, and biodiversity."
       },
       {
         "question": "What is the minimum investment required?",
@@ -55,11 +80,19 @@
       },
       {
         "question": "What risks does this investment involve?",
-        "answer": "Your plants are protected by agricultural insurance that covers pests, diseases, nutritional deficiencies, weed invasion, and damage from pets and/or wildlife. Like any agricultural investment, there are market risks. \n\nHowever, we are integrated with the following production chains, and the distillate from this plant does not suffer the same fluctuations or perishability. Ask us for more information."
+        "answer": "Your plants are protected by agricultural insurance that covers pests, diseases, nutritional deficiencies, weed invasion, and damage from pets and/or wildlife. Like any agricultural investment, there are market risks. However, we are integrated with the following production chains, and the distillate from this plant does not suffer the same fluctuations or perishability. Ask us for more information."
+      },
+      {
+        "question": "What's the difference between intensive agriculture and agrosilvopastoral models?",
+        "answer": "Agrosilvopastoral models integrate trees, crops, and livestock in the same system, promoting biodiversity and soil health. Unlike intensive agriculture, these systems are more resilient to climate change, improve carbon sequestration, and create more balanced ecosystems that benefit both the environment and local communities."
       },
       {
         "question": "How can I monitor my investment?",
-        "answer": "We provide a digital platform where you can view your plantation's growth, environmental impact metrics, financial reports, and updates from the technical team."
+        "answer": "We provide a digital platform where you can view your plantation's growth, environmental impact metrics, financial reports, and updates from the technical team. Additionally, investors can visit the farms to directly see the progress of their plants."
+      },
+      {
+        "question": "Who buys the harvested agave and at what price?",
+        "answer": "We sell the harvested agave to mezcal and tequila distilleries, as well as to the sweetener industry (agave syrup) and prebiotics industry (inulin). Prices are determined by market conditions at the time of harvest, and we always seek to obtain the best possible price to maximize returns for our investors."
       }
     ]
   }

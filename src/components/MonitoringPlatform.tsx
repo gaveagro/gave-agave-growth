@@ -57,8 +57,8 @@ const MonitoringPlatform = () => {
         },
         {
           icon: Monitor,
-          title: 'IoT Sensors',
-          description: 'Connected sensors providing soil and environmental data'
+          title: 'Digital Dashboard',
+          description: 'Comprehensive platform for tracking all aspects of your investment'
         }
       ]
     },
@@ -94,8 +94,8 @@ const MonitoringPlatform = () => {
         },
         {
           icon: Monitor,
-          title: 'Sensores IoT',
-          description: 'Sensores conectados proporcionando datos del suelo y ambientales'
+          title: 'Dashboard Digital',
+          description: 'Plataforma integral para rastrear todos los aspectos de tu inversión'
         }
       ]
     }
@@ -144,46 +144,38 @@ const MonitoringPlatform = () => {
             </div>
           </div>
 
-          {/* Right side - Screenshot mockups */}
+          {/* Right side - Dashboard Screenshots */}
           <div className="space-y-6">
+            {/* Main Dashboard Overview */}
             <Card className="overflow-hidden">
-              <div className="aspect-video bg-gradient-to-br from-green-50 to-blue-50 p-6 flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <Monitor className="w-16 h-16 text-primary mx-auto" />
-                  <div className="space-y-2">
-                    <div className="h-2 bg-primary/20 rounded w-32 mx-auto"></div>
-                    <div className="h-2 bg-primary/30 rounded w-24 mx-auto"></div>
-                    <div className="h-2 bg-primary/20 rounded w-28 mx-auto"></div>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    {language === 'EN' ? 'Dashboard Overview' : 'Vista General del Dashboard'}
-                  </p>
-                </div>
+              <div className="aspect-video">
+                <img 
+                  src="/lovable-uploads/cc3ee809-ce5a-4adc-9cd1-9916917ce870.png" 
+                  alt={language === 'EN' ? 'Dashboard Overview' : 'Vista General del Dashboard'}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </Card>
 
+            {/* Investment Details and Plot Information */}
             <div className="grid grid-cols-2 gap-4">
               <Card className="overflow-hidden">
-                <div className="aspect-square bg-gradient-to-br from-yellow-50 to-orange-50 p-4 flex items-center justify-center">
-                  <div className="text-center space-y-2">
-                    <Satellite className="w-8 h-8 text-primary mx-auto" />
-                    <div className="space-y-1">
-                      <div className="h-1 bg-primary/20 rounded w-16 mx-auto"></div>
-                      <div className="h-1 bg-primary/30 rounded w-12 mx-auto"></div>
-                    </div>
-                  </div>
+                <div className="aspect-square">
+                  <img 
+                    src="/lovable-uploads/60acd259-0231-4725-a03f-71f79b79b881.png" 
+                    alt={language === 'EN' ? 'Investment Details' : 'Detalles de Inversión'}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </Card>
               
               <Card className="overflow-hidden">
-                <div className="aspect-square bg-gradient-to-br from-blue-50 to-cyan-50 p-4 flex items-center justify-center">
-                  <div className="text-center space-y-2">
-                    <BarChart3 className="w-8 h-8 text-primary mx-auto" />
-                    <div className="space-y-1">
-                      <div className="h-1 bg-primary/20 rounded w-16 mx-auto"></div>
-                      <div className="h-1 bg-primary/30 rounded w-14 mx-auto"></div>
-                    </div>
-                  </div>
+                <div className="aspect-square">
+                  <img 
+                    src="/lovable-uploads/d2be563c-1ae7-4cc7-b016-07e945f25ea9.png" 
+                    alt={language === 'EN' ? 'Plot Information' : 'Información de Parcelas'}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </Card>
             </div>
