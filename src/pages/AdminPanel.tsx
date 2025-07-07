@@ -56,14 +56,31 @@ const AdminPanel = () => {
 
   // Cargar datos del contenido existente
   useEffect(() => {
-    if (heroContent) {
-      setHeroData(heroContent);
+    if (heroContent && typeof heroContent === 'object') {
+      // Verificar que heroContent tiene la estructura correcta
+      if ('es' in heroContent && 'en' in heroContent) {
+        setHeroData({
+          es: heroContent.es || heroData.es,
+          en: heroContent.en || heroData.en,
+          backgroundImage: heroContent.backgroundImage || ''
+        });
+      }
     }
   }, [heroContent]);
 
   useEffect(() => {
-    if (siteSettings) {
-      setSiteData(siteSettings);
+    if (siteSettings && typeof siteSettings === 'object') {
+      // Verificar que siteSettings tiene la estructura correcta
+      if ('title_es' in siteSettings) {
+        setSiteData({
+          title_es: siteSettings.title_es || '',
+          title_en: siteSettings.title_en || '',
+          description_es: siteSettings.description_es || '',
+          description_en: siteSettings.description_en || '',
+          contact_email: siteSettings.contact_email || '',
+          phone: siteSettings.phone || ''
+        });
+      }
     }
   }, [siteSettings]);
 
