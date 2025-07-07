@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useContent } from '@/hooks/useContent';
+import { useContentManager } from '@/hooks/useContentManager';
 import { toast } from 'sonner';
+import VisualEditor from '@/components/admin/VisualEditor';
+import BackupManager from '@/components/admin/BackupManager';
 
 const AdminPanel = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,6 +17,7 @@ const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('hero');
   const { content: heroContent } = useContent('hero');
   const { content: siteSettings } = useContent('site-settings');
+  const { saveContent, loadContent, isSaving } = useContentManager();
 
   // Datos del contenido para editar
   const [heroData, setHeroData] = useState({
@@ -56,8 +59,12 @@ const AdminPanel = () => {
 
   // Cargar datos del contenido existente
   useEffect(() => {
-    if (heroContent && typeof heroContent === 'object') {
-      // Verificar que heroContent tiene la estructura correcta
+    // Primero intentar cargar desde localStorage (contenido editado)
+    const savedHeroData = loadContent('hero');
+    if (savedHeroData) {
+      setHeroData(savedHeroData);
+    } else if (heroContent && typeof heroContent === 'object') {
+      // Si no hay contenido guardado, usar el contenido original
       if ('es' in heroContent && 'en' in heroContent) {
         setHeroData({
           es: heroContent.es || heroData.es,
@@ -69,8 +76,10 @@ const AdminPanel = () => {
   }, [heroContent]);
 
   useEffect(() => {
-    if (siteSettings && typeof siteSettings === 'object') {
-      // Verificar que siteSettings tiene la estructura correcta
+    const savedSiteData = loadContent('site');
+    if (savedSiteData) {
+      setSiteData(savedSiteData);
+    } else if (siteSettings && typeof siteSettings === 'object') {
       if ('title_es' in siteSettings) {
         setSiteData({
           title_es: siteSettings.title_es || '',
@@ -85,56 +94,63 @@ const AdminPanel = () => {
   }, [siteSettings]);
 
   const handleLogin = () => {
-    // Sistema de autenticación simple
     if (password === 'admin123') {
       setIsAuthenticated(true);
-      toast.success('¡Acceso concedido al panel de administración!');
+      toast.success('🎉 ¡Bienvenido al Panel de Administración Visual!');
     } else {
-      toast.error('Contraseña incorrecta');
+      toast.error('❌ Contraseña incorrecta');
     }
   };
 
-  const handleSaveHero = () => {
-    // Simular guardado de contenido
-    console.log('Guardando contenido del Hero:', heroData);
-    toast.success('¡Contenido del Hero guardado exitosamente!');
+  const handleSaveHero = async (data: any) => {
+    const success = await saveContent('hero', data);
+    if (success) {
+      setHeroData(data);
+    }
   };
 
-  const handleSaveSite = () => {
-    // Simular guardado de configuración del sitio
-    console.log('Guardando configuración del sitio:', siteData);
-    toast.success('¡Configuración del sitio guardada exitosamente!');
+  const handleSaveSite = async () => {
+    const success = await saveContent('site', siteData);
+    if (success) {
+      // Datos guardados exitosamente
+    }
   };
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="w-full max-w-md p-8">
+      <div className="min-h-screen bg-gradient-to-br from-gave-yellow/10 to-green-50 flex items-center justify-center">
+        <Card className="w-full max-w-md p-8 shadow-xl">
           <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-gave-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl">🔐</span>
+            </div>
             <h1 className="text-2xl font-bold text-gray-900">Panel de Administración</h1>
-            <p className="text-gray-600 mt-2">Ingresa la contraseña para acceder</p>
+            <p className="text-gray-600 mt-2">Constructor Visual para Gavé Agro</p>
           </div>
           
           <div className="space-y-4">
             <div>
-              <Label htmlFor="password">Contraseña</Label>
+              <Label htmlFor="password">Contraseña de Administrador</Label>
               <Input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
-                placeholder="Ingresa la contraseña de administrador"
+                placeholder="Ingresa la contraseña"
+                className="mt-2"
               />
             </div>
             
-            <Button onClick={handleLogin} className="w-full">
-              Acceder al Panel
+            <Button onClick={handleLogin} className="w-full bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900">
+              🚀 Acceder al Constructor Visual
             </Button>
             
-            <p className="text-sm text-gray-500 text-center">
-              Contraseña temporal: admin123
-            </p>
+            <div className="text-center p-3 bg-amber-50 rounded-lg">
+              <p className="text-sm text-amber-700 font-medium">
+                🔑 Contraseña temporal: <code className="bg-amber-100 px-2 py-1 rounded">admin123</code>
+              </p>
+            </div>
           </div>
         </Card>
       </div>
@@ -146,12 +162,21 @@ const AdminPanel = () => {
       <div className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900">Panel de Administración - Gavé Agro</h1>
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 bg-gave-yellow rounded-lg flex items-center justify-center">
+                <span className="text-xl">🎨</span>
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Constructor Visual - Gavé Agro</h1>
+                <p className="text-sm text-gray-600">Panel de administración personalizado</p>
+              </div>
+            </div>
             <Button
               variant="outline"
               onClick={() => setIsAuthenticated(false)}
+              className="text-red-600 hover:text-red-700"
             >
-              Cerrar Sesión
+              🚪 Cerrar Sesión
             </Button>
           </div>
         </div>
@@ -159,169 +184,48 @@ const AdminPanel = () => {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="hero">Página Principal</TabsTrigger>
-            <TabsTrigger value="site">Configuración</TabsTrigger>
-            <TabsTrigger value="blog">Blog</TabsTrigger>
-            <TabsTrigger value="images">Imágenes</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-5 bg-white shadow-sm">
+            <TabsTrigger value="hero" className="flex items-center gap-2">
+              🏠 Página Principal
+            </TabsTrigger>
+            <TabsTrigger value="site" className="flex items-center gap-2">
+              ⚙️ Configuración
+            </TabsTrigger>
+            <TabsTrigger value="blog" className="flex items-center gap-2">
+              📝 Blog
+            </TabsTrigger>
+            <TabsTrigger value="backups" className="flex items-center gap-2">
+              🔄 Respaldos
+            </TabsTrigger>
+            <TabsTrigger value="help" className="flex items-center gap-2">
+              ❓ Ayuda
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="hero" className="space-y-6">
-            <Card className="p-6">
-              <h2 className="text-xl font-semibold mb-4">Editar Contenido de la Página Principal</h2>
-              
-              <Tabs defaultValue="es" className="space-y-4">
-                <TabsList>
-                  <TabsTrigger value="es">Español</TabsTrigger>
-                  <TabsTrigger value="en">Inglés</TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="es" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="mainTitle-es">Título Principal</Label>
-                      <Input
-                        id="mainTitle-es"
-                        value={heroData.es.mainTitle}
-                        onChange={(e) => setHeroData({
-                          ...heroData,
-                          es: { ...heroData.es, mainTitle: e.target.value }
-                        })}
-                        placeholder="Regenera la tierra."
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="subtitle-es">Subtítulo</Label>
-                      <Input
-                        id="subtitle-es"
-                        value={heroData.es.subtitle}
-                        onChange={(e) => setHeroData({
-                          ...heroData,
-                          es: { ...heroData.es, subtitle: e.target.value }
-                        })}
-                        placeholder="Genera retornos."
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="description-es">Descripción</Label>
-                    <Textarea
-                      id="description-es"
-                      value={heroData.es.description}
-                      onChange={(e) => setHeroData({
-                        ...heroData,
-                        es: { ...heroData.es, description: e.target.value }
-                      })}
-                      placeholder="Invierte en cultivo regenerativo de agave..."
-                      rows={3}
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="mission-es">Misión</Label>
-                    <Input
-                      id="mission-es"
-                      value={heroData.es.mission}
-                      onChange={(e) => setHeroData({
-                        ...heroData,
-                        es: { ...heroData.es, mission: e.target.value }
-                      })}
-                      placeholder="Cultivamos Agaves, restauramos suelos..."
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="formTitle-es">Título del Formulario</Label>
-                      <Input
-                        id="formTitle-es"
-                        value={heroData.es.formTitle}
-                        onChange={(e) => setHeroData({
-                          ...heroData,
-                          es: { ...heroData.es, formTitle: e.target.value }
-                        })}
-                        placeholder="Comienza tu Inversión Regenerativa"
-                      />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="getStarted-es">Texto del Botón</Label>
-                      <Input
-                        id="getStarted-es"
-                        value={heroData.es.getStarted}
-                        onChange={(e) => setHeroData({
-                          ...heroData,
-                          es: { ...heroData.es, getStarted: e.target.value }
-                        })}
-                        placeholder="Comenzar"
-                      />
-                    </div>
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="en" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="mainTitle-en">Main Title</Label>
-                      <Input
-                        id="mainTitle-en"
-                        value={heroData.en.mainTitle}
-                        onChange={(e) => setHeroData({
-                          ...heroData,
-                          en: { ...heroData.en, mainTitle: e.target.value }
-                        })}
-                        placeholder="Regenerate land."
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="subtitle-en">Subtitle</Label>
-                      <Input
-                        id="subtitle-en"
-                        value={heroData.en.subtitle}
-                        onChange={(e) => setHeroData({
-                          ...heroData,
-                          en: { ...heroData.en, subtitle: e.target.value }
-                        })}
-                        placeholder="Generate returns."
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="description-en">Description</Label>
-                    <Textarea
-                      id="description-en"
-                      value={heroData.en.description}
-                      onChange={(e) => setHeroData({
-                        ...heroData,
-                        en: { ...heroData.en, description: e.target.value }
-                      })}
-                      placeholder="Invest in regenerative agave cultivation..."
-                      rows={3}
-                    />
-                  </div>
-                </TabsContent>
-              </Tabs>
-
-              <div className="mt-6 pt-4 border-t">
-                <Button onClick={handleSaveHero} size="lg" className="bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900">
-                  Guardar Cambios del Hero
-                </Button>
-              </div>
-            </Card>
+            <VisualEditor
+              initialData={heroData}
+              onSave={handleSaveHero}
+            />
           </TabsContent>
 
           <TabsContent value="site" className="space-y-6">
             <Card className="p-6">
-              <h2 className="text-xl font-semibold mb-4">Configuración General del Sitio</h2>
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <h2 className="text-xl font-semibold flex items-center gap-2">
+                    ⚙️ Configuración General del Sitio
+                  </h2>
+                  <p className="text-gray-600 mt-1">Edita la información general de tu sitio web</p>
+                </div>
+              </div>
               
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="title-es">Título del Sitio (Español)</Label>
+                    <Label htmlFor="title-es" className="text-base font-medium">
+                      🇪🇸 Título del Sitio (Español)
+                    </Label>
                     <Input
                       id="title-es"
                       value={siteData.title_es}
@@ -330,11 +234,14 @@ const AdminPanel = () => {
                         title_es: e.target.value
                       })}
                       placeholder="Gavé - Inversión Regenerativa en Agave"
+                      className="mt-2"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="title-en">Site Title (English)</Label>
+                    <Label htmlFor="title-en" className="text-base font-medium">
+                      🇺🇸 Site Title (English)
+                    </Label>
                     <Input
                       id="title-en"
                       value={siteData.title_en}
@@ -343,41 +250,16 @@ const AdminPanel = () => {
                         title_en: e.target.value
                       })}
                       placeholder="Gavé - Regenerative Agave Investment"
+                      className="mt-2"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <Label htmlFor="description-es">Descripción del Sitio (Español)</Label>
-                  <Textarea
-                    id="description-es"
-                    value={siteData.description_es}
-                    onChange={(e) => setSiteData({
-                      ...siteData,
-                      description_es: e.target.value
-                    })}
-                    placeholder="Invierte en cultivo regenerativo de agave..."
-                    rows={3}
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="description-en">Site Description (English)</Label>
-                  <Textarea
-                    id="description-en"
-                    value={siteData.description_en}
-                    onChange={(e) => setSiteData({
-                      ...siteData,
-                      description_en: e.target.value
-                    })}
-                    placeholder="Invest in regenerative agave cultivation..."
-                    rows={3}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="contact-email">Email de Contacto</Label>
+                    <Label htmlFor="contact-email" className="text-base font-medium">
+                      ✉️ Email de Contacto
+                    </Label>
                     <Input
                       id="contact-email"
                       type="email"
@@ -387,11 +269,14 @@ const AdminPanel = () => {
                         contact_email: e.target.value
                       })}
                       placeholder="hola@gaveagro.com"
+                      className="mt-2"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="phone">Teléfono</Label>
+                    <Label htmlFor="phone" className="text-base font-medium">
+                      📞 Teléfono
+                    </Label>
                     <Input
                       id="phone"
                       value={siteData.phone}
@@ -400,14 +285,20 @@ const AdminPanel = () => {
                         phone: e.target.value
                       })}
                       placeholder="+52 444 123 4567"
+                      className="mt-2"
                     />
                   </div>
                 </div>
               </div>
 
               <div className="mt-6 pt-4 border-t">
-                <Button onClick={handleSaveSite} size="lg" className="bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900">
-                  Guardar Configuración del Sitio
+                <Button 
+                  onClick={handleSaveSite} 
+                  disabled={isSaving}
+                  size="lg" 
+                  className="bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900"
+                >
+                  {isSaving ? '💾 Guardando...' : '💾 Guardar Configuración'}
                 </Button>
               </div>
             </Card>
@@ -415,19 +306,62 @@ const AdminPanel = () => {
 
           <TabsContent value="blog">
             <Card className="p-6">
-              <h2 className="text-xl font-semibold mb-4">Gestión del Blog</h2>
-              <p className="text-gray-600">
-                Aquí podrás crear y editar posts del blog. Esta funcionalidad se implementará en la siguiente fase.
-              </p>
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">📝</span>
+                </div>
+                <h2 className="text-xl font-semibold mb-2">Editor de Blog</h2>
+                <p className="text-gray-600 mb-6">
+                  Próximamente tendrás un editor visual completo para crear y editar posts del blog.
+                </p>
+                <div className="bg-blue-50 p-4 rounded-lg max-w-md mx-auto">
+                  <p className="text-sm text-blue-700">
+                    🚀 Esta funcionalidad se está desarrollando y estará disponible pronto.
+                  </p>
+                </div>
+              </div>
             </Card>
           </TabsContent>
 
-          <TabsContent value="images">
+          <TabsContent value="backups">
+            <BackupManager />
+          </TabsContent>
+
+          <TabsContent value="help">
             <Card className="p-6">
-              <h2 className="text-xl font-semibold mb-4">Gestión de Imágenes</h2>
-              <p className="text-gray-600">
-                Aquí podrás subir y gestionar las imágenes del sitio. Esta funcionalidad se implementará en la siguiente fase.
-              </p>
+              <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                ❓ Ayuda y Guía de Uso
+              </h2>
+              
+              <div className="space-y-6">
+                <div className="bg-green-50 p-4 rounded-lg">
+                  <h3 className="font-semibold text-green-800 mb-2">🎯 ¿Cómo usar este panel?</h3>
+                  <ul className="text-sm text-green-700 space-y-1">
+                    <li>• <strong>Página Principal:</strong> Edita títulos, descripciones y textos de botones</li>
+                    <li>• <strong>Configuración:</strong> Modifica información general del sitio</li>
+                    <li>• <strong>Respaldos:</strong> Restaura versiones anteriores de tu contenido</li>
+                  </ul>
+                </div>
+
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <h3 className="font-semibold text-blue-800 mb-2">🔧 Próximas Funcionalidades</h3>
+                  <ul className="text-sm text-blue-700 space-y-1">
+                    <li>• ✍️ Editor de blog con texto enriquecido</li>
+                    <li>• 🖼️ Galería de imágenes con upload</li>
+                    <li>• 🎨 Editor de colores y fuentes</li>
+                    <li>• 🔗 Editor de URLs y enlaces</li>
+                    <li>• 📊 Analytics y estadísticas</li>
+                  </ul>
+                </div>
+
+                <div className="bg-amber-50 p-4 rounded-lg">
+                  <h3 className="font-semibold text-amber-800 mb-2">🌐 Hosting y Dominio</h3>
+                  <p className="text-sm text-amber-700">
+                    Para conectar tu dominio personalizado (www.gaveagro.com), recomendamos usar GitHub + Netlify. 
+                    Esto te permitirá mantener el sitio actualizado automáticamente sin costos adicionales.
+                  </p>
+                </div>
+              </div>
             </Card>
           </TabsContent>
         </Tabs>
