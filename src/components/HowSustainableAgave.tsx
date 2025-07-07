@@ -32,7 +32,7 @@ const HowSustainableAgave = () => {
       processTitle: 'Investment Process',
       investmentModel: 'Investment & Legal Model',
       regenerativeBenefits: 'Regenerative & Social Benefits',
-      ctaButton: 'Start Your Investment Today',
+      ctaButton: 'Start Your Impact Investment',
       steps: [
         {
           icon: <DollarSign className="w-8 h-8" />,
@@ -44,12 +44,12 @@ const HowSustainableAgave = () => {
           icon: <Sprout className="w-8 h-8" />,
           title: 'We Manage Growth',
           description: 'Gavé handles all cultivation: land lease, labor, insurance, fertilization, pest control, and plant replacement guarantees. You own the plants, we manage everything.',
-          timeline: '5-9 Years'
+          timeline: '5-6 Years'
         },
         {
           icon: <TrendingUp className="w-8 h-8" />,
           title: 'Harvest & Sale',
-          description: 'At maturity, Gavé harvests and sells to the highest bidder. You receive 65% of profit margins above production costs.',
+          description: 'At maturity, Gavé harvests and sells to the highest bidder. You get your initial investment + 65% of the profits.',
           timeline: 'Harvest'
         },
         {
@@ -90,7 +90,7 @@ const HowSustainableAgave = () => {
         {
           icon: <TrendingUp className="w-6 h-6" />,
           title: 'Carbon Sequestration',
-          description: '20-60 tons CO₂ captured per hectare annually'
+          description: '30-60 tons CO₂ captured per hectare annually'
         }
       ]
     },
@@ -100,7 +100,7 @@ const HowSustainableAgave = () => {
       processTitle: 'Proceso de Inversión',
       investmentModel: 'Modelo de Inversión y Legal',
       regenerativeBenefits: 'Beneficios Regenerativos y Sociales',
-      ctaButton: 'Comienza tu Inversión Hoy',
+      ctaButton: 'Comienza tu Inversión de Impacto',
       steps: [
         {
           icon: <DollarSign className="w-8 h-8" />,
@@ -112,12 +112,12 @@ const HowSustainableAgave = () => {
           icon: <Sprout className="w-8 h-8" />,
           title: 'Manejamos el Crecimiento',
           description: 'Gavé maneja todo el cultivo: arrendamiento de tierra, mano de obra, seguro, fertilización, control de plagas y garantías de reemplazo. Tú eres dueño de las plantas, nosotros manejamos todo.',
-          timeline: '5-9 Años'
+          timeline: '5-6 Años'
         },
         {
           icon: <TrendingUp className="w-8 h-8" />,
           title: 'Cosecha y Venta',
-          description: 'En la madurez, Gavé cosecha y vende al mejor postor. Recibes el 65% de los márgenes de ganancia sobre los costos de producción.',
+          description: 'En la madurez, Gavé cosecha y vende al mejor postor. Obtienes tu inversión inicial + 65% de las ganancias.',
           timeline: 'Cosecha'
         },
         {
@@ -158,7 +158,7 @@ const HowSustainableAgave = () => {
         {
           icon: <TrendingUp className="w-6 h-6" />,
           title: 'Captura de Carbono',
-          description: '20-60 toneladas CO₂ capturadas por hectárea anualmente'
+          description: '30-60 toneladas CO₂ capturadas por hectárea anualmente'
         }
       ]
     }

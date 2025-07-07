@@ -55,7 +55,7 @@ const OurFarms = () => {
       nameEN: 'Main Farm - Espadín',
       location: 'San Luis Potosí, México',
       species: ['Agave Angustifolia (Espadín)'],
-      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=600&fit=crop&crop=center',
+      image: '/lovable-uploads/97c0e0e2-e0c1-4f24-bdc0-bc91513df0d4.png',
       established: '2019',
       features: ['Irrigation System', 'Soil Analysis', 'Drone Monitoring']
     },
@@ -65,7 +65,7 @@ const OurFarms = () => {
       nameEN: 'Salmiana Farm - Agrosilvopastoral Model',
       location: 'San Luis Potosí, México',
       species: ['Agave Salmiana', 'Mezquite Trees', 'Native Grasses'],
-      image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=600&fit=crop&crop=center',
+      image: '/lovable-uploads/fd85781d-f73a-46c5-a5cd-2b189f1f44f4.png',
       established: '2020',
       features: ['Biodiversity Conservation', 'Carbon Sequestration', 'Native Species']
     },
@@ -75,7 +75,7 @@ const OurFarms = () => {
       nameEN: 'Experimental Farm',
       location: 'San Luis Potosí, México',
       species: ['Mixed Agave Species', 'Research Plots'],
-      image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&crop=center',
+      image: '/lovable-uploads/3fb33fbb-048e-4438-adf3-0b9eb5f68ee1.png',
       established: '2021',
       features: ['Research & Development', 'New Species Testing', 'Climate Studies']
     }

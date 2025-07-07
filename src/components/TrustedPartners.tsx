@@ -26,26 +26,25 @@ const TrustedPartners = () => {
       title: 'Trusted by Leading Organizations'
     },
     ES: {
-      title: 'Confiamos en Organizaciones Líderes'
+      title: 'Con la Confianza de Organizaciones Líderes'
     }
   };
 
   const partners = [
     {
-      name: 'Startup Bootcamp',
-      logo: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=200&h=100&fit=crop&crop=center'
+      name: 'Startupbootcamp',
+      logo: '/lovable-uploads/d188f725-f292-427a-b3da-bf180602c5d0.png',
+      url: 'https://www.startupbootcamp.org/'
     },
     {
-      name: 'Techstars',
-      logo: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=200&h=100&fit=crop&crop=center'
+      name: 'Alterna',
+      logo: '/lovable-uploads/15286fc7-6f4f-436f-b8df-b11e6871077f.png',
+      url: 'https://alterna.pro/'
     },
     {
-      name: 'Y Combinator',
-      logo: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=200&h=100&fit=crop&crop=center'
-    },
-    {
-      name: 'Partner 4',
-      logo: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=200&h=100&fit=crop&crop=center'
+      name: 'AMMA',
+      logo: '/lovable-uploads/118a9dcf-5b23-45db-8503-1554b1dd7725.png',
+      url: 'https://www.amma.org.mx/'
     }
   ];
 
@@ -60,14 +59,21 @@ const TrustedPartners = () => {
           </h2>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-60 hover:opacity-80 transition-opacity duration-300">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-items-center opacity-60 hover:opacity-80 transition-opacity duration-300">
           {partners.map((partner, index) => (
             <div key={index} className="flex items-center justify-center p-4">
-              <img 
-                src={partner.logo} 
-                alt={partner.name}
-                className="max-h-12 w-auto grayscale hover:grayscale-0 transition-all duration-300"
-              />
+              <a 
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform hover:scale-105"
+              >
+                <img 
+                  src={partner.logo} 
+                  alt={partner.name}
+                  className="max-h-16 w-auto grayscale hover:grayscale-0 transition-all duration-300"
+                />
+              </a>
             </div>
           ))}
         </div>

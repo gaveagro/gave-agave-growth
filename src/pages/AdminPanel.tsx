@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -61,8 +60,14 @@ const AdminPanel = () => {
   useEffect(() => {
     // Primero intentar cargar desde localStorage (contenido editado)
     const savedHeroData = loadContent('hero');
-    if (savedHeroData) {
-      setHeroData(savedHeroData);
+    if (savedHeroData && typeof savedHeroData === 'object') {
+      // Asegurar que tiene la estructura correcta
+      const typedData = {
+        es: savedHeroData.es || heroData.es,
+        en: savedHeroData.en || heroData.en,
+        backgroundImage: savedHeroData.backgroundImage || ''
+      };
+      setHeroData(typedData);
     } else if (heroContent && typeof heroContent === 'object') {
       // Si no hay contenido guardado, usar el contenido original
       if ('es' in heroContent && 'en' in heroContent) {
@@ -77,8 +82,17 @@ const AdminPanel = () => {
 
   useEffect(() => {
     const savedSiteData = loadContent('site');
-    if (savedSiteData) {
-      setSiteData(savedSiteData);
+    if (savedSiteData && typeof savedSiteData === 'object') {
+      // Asegurar que tiene la estructura correcta
+      const typedData = {
+        title_es: savedSiteData.title_es || '',
+        title_en: savedSiteData.title_en || '',
+        description_es: savedSiteData.description_es || '',
+        description_en: savedSiteData.description_en || '',
+        contact_email: savedSiteData.contact_email || '',
+        phone: savedSiteData.phone || ''
+      };
+      setSiteData(typedData);
     } else if (siteSettings && typeof siteSettings === 'object') {
       if ('title_es' in siteSettings) {
         setSiteData({

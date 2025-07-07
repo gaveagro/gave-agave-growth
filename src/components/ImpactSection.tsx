@@ -22,28 +22,28 @@ const ImpactSection = () => {
         {
           title: 'Soil Health Restoration',
           description: 'Our regenerative practices rebuild soil organic matter, increase water retention, and restore natural fertility cycles.',
-          metric: '2-4%',
-          unit: 'Organic Matter Increase',
+          metric: '',
+          unit: 'Enhanced Soil Quality',
           icon: '🌱'
         },
         {
           title: 'Carbon Sequestration',
           description: 'Agave plants and soil restoration sequester significant carbon, directly combating climate change.',
-          metric: '20-60',
+          metric: '30-60',
           unit: 'Tons CO₂/hectare/year',
           icon: '🌍'
         },
         {
           title: 'Biodiversity Enhancement',
           description: 'Agrosilvopastoral systems support native species and create wildlife corridors in degraded landscapes.',
-          metric: '300%',
+          metric: '',
           unit: 'Species Diversity Increase',
           icon: '🦋'
         },
         {
           title: 'Water Cycle Restoration',
-          description: 'Healthy soils and diverse plantings improve water infiltration and reduce erosion by up to 80%.',
-          metric: '60%',
+          description: 'Healthy soils and diverse plantings improve water infiltration and reduce erosion significantly.',
+          metric: '',
           unit: 'Water Retention Improvement',
           icon: '💧'
         }
@@ -66,28 +66,28 @@ const ImpactSection = () => {
         {
           title: 'Restauración de Salud del Suelo',
           description: 'Nuestras prácticas regenerativas reconstruyen la materia orgánica del suelo, aumentan la retención de agua y restauran los ciclos naturales de fertilidad.',
-          metric: '2-4%',
-          unit: 'Aumento de Materia Orgánica',
+          metric: '',
+          unit: 'Mejora de Calidad del Suelo',
           icon: '🌱'
         },
         {
           title: 'Captura de Carbono',
           description: 'Las plantas de agave y la restauración del suelo capturan carbono significativo, combatiendo directamente el cambio climático.',
-          metric: '20-60',
+          metric: '30-60',
           unit: 'Toneladas CO₂/hectárea/año',
           icon: '🌍'
         },
         {
           title: 'Mejora de Biodiversidad',
           description: 'Los sistemas agrosilvopastorales apoyan especies nativas y crean corredores de vida silvestre en paisajes degradados.',
-          metric: '300%',
+          metric: '',
           unit: 'Aumento de Diversidad de Especies',
           icon: '🦋'
         },
         {
           title: 'Restauración del Ciclo del Agua',
-          description: 'Suelos saludables y plantaciones diversas mejoran la infiltración de agua y reducen la erosión hasta en un 80%.',
-          metric: '60%',
+          description: 'Suelos saludables y plantaciones diversas mejoran la infiltración de agua y reducen significativamente la erosión.',
+          metric: '',
           unit: 'Mejora en Retención de Agua',
           icon: '💧'
         }
@@ -129,7 +129,9 @@ const ImpactSection = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-1">
-                  <div className="text-3xl font-bold text-gave-green">{area.metric}</div>
+                  {area.metric && (
+                    <div className="text-3xl font-bold text-gave-green">{area.metric}</div>
+                  )}
                   <div className="text-sm font-medium text-gave-green/80">{area.unit}</div>
                 </div>
                 <CardDescription className="text-sm leading-relaxed">
@@ -146,7 +148,7 @@ const ImpactSection = () => {
             {/* Background pattern with reduced opacity */}
             <div className="absolute inset-0 opacity-5">
               <div className="absolute top-0 left-0 w-full h-full" 
-                   style={{backgroundImage: 'url("https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&crop=center")', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
+                   style={{backgroundImage: 'url("/lovable-uploads/6de61ebc-0cfe-453b-91d7-b052959dcdf0.png")', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
             </div>
             
             <div className="relative z-10">
@@ -181,8 +183,8 @@ const ImpactSection = () => {
                 
                 <div className="text-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1574263867128-e1aca4eb22b7?w=600&h=400&fit=crop&crop=center" 
-                    alt="Regenerative landscape showing restored ecosystem"
+                    src="/lovable-uploads/6de61ebc-0cfe-453b-91d7-b052959dcdf0.png" 
+                    alt="Building climate resilience - agave farm landscape"
                     className="w-full rounded-2xl shadow-2xl"
                   />
                 </div>
