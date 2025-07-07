@@ -1,6 +1,5 @@
 
-import { TinaEditProvider } from "tinacms/dist/edit-state";
-
+// Archivo temporal - se eliminará después de implementar el panel personalizado
 export const TinaProvider = ({ children }: { children: React.ReactNode }) => {
-  return <TinaEditProvider showEditButton={true}>{children}</TinaEditProvider>;
+  return <>{children}</>;
 };
