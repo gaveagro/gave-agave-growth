@@ -136,7 +136,7 @@ const HowSustainableAgave = () => {
         {
           icon: <DollarSign className="w-6 h-6" />,
           title: '65% de Participación en Ganancias',
-          description: 'Recibes el 65% de los márgenes de ganancia después de la recuperación de costos'
+          description: 'Obtienes tu inversión inicial + 65% de las ganancias'
         },
         {
           icon: <Clock className="w-6 h-6" />,

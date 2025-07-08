@@ -26,9 +26,8 @@ const OurFarms = () => {
 
   const content = {
     EN: {
-      title: 'Our Agave Farms',
+      title: 'Our Agave Plots',
       subtitle: 'Explore our sustainable agave cultivation sites across San Luis Potosí, México',
-      viewAll: 'View All Farms',
       location: 'Location',
       farmStats: 'Farm Statistics',
       monitoring: 'Access Monitoring',
@@ -36,9 +35,8 @@ const OurFarms = () => {
       registerToView: 'Register to access real-time monitoring'
     },
     ES: {
-      title: 'Nuestras Granjas de Agave',
+      title: 'Nuestras Parcelas de Agave',
       subtitle: 'Explora nuestros sitios de cultivo sustentable de agave en San Luis Potosí, México',
-      viewAll: 'Ver Todas las Granjas',
       location: 'Ubicación',
       farmStats: 'Estadísticas de la Granja',
       monitoring: 'Acceder a Monitoreo',
@@ -50,33 +48,30 @@ const OurFarms = () => {
   const farms = [
     {
       id: 1,
-      name: 'Granja Principal - Espadín',
-      nameEN: 'Main Farm - Espadín',
-      location: 'San Luis Potosí, México',
-      species: ['Agave Angustifolia (Espadín)'],
+      name: 'Tanchachin - Espadín',
+      nameEN: 'Tanchachin - Espadín',
+      location: 'Aquismon, San Luis Potosí, México',
+      species: ['Agave angustifolia Haw (Espadín)'],
       image: '/lovable-uploads/6de61ebc-0cfe-453b-91d7-b052959dcdf0.png',
-      established: '2019',
-      features: ['Irrigation System', 'Soil Analysis', 'Drone Monitoring']
+      established: '2021'
     },
     {
       id: 2,
-      name: 'Granja Salmiana - Modelo Agrosilvopastoril',
-      nameEN: 'Salmiana Farm - Agrosilvopastoral Model',
-      location: 'San Luis Potosí, México',
-      species: ['Agave Salmiana', 'Mezquite Trees', 'Native Grasses'],
+      name: 'Ébano - Espadín',
+      nameEN: 'Ébano - Espadín',
+      location: 'Ébano, San Luis Potosí, México',
+      species: ['Agave Angustifolia Haw (Espadín)'],
       image: '/lovable-uploads/fd85781d-f73a-46c5-a5cd-2b189f1f44f4.png',
-      established: '2020',
-      features: ['Biodiversity Conservation', 'Carbon Sequestration', 'Native Species']
+      established: '2023'
     },
     {
       id: 3,
-      name: 'Granja Experimental',
-      nameEN: 'Experimental Farm',
-      location: 'San Luis Potosí, México',
-      species: ['Mixed Agave Species', 'Research Plots'],
+      name: 'Moctezuma - Salmiana (modelo agrosilvopastoril)',
+      nameEN: 'Moctezuma - Salmiana (agrosilvopastoral model)',
+      location: 'Moctezuma, San Luis Potosí, México',
+      species: ['Agave Salmiana ssp. crassispina (mixed with native grasses and mezquite trees)'],
       image: '/lovable-uploads/3fb33fbb-048e-4438-adf3-0b9eb5f68ee1.png',
-      established: '2021',
-      features: ['Research & Development', 'New Species Testing', 'Climate Studies']
+      established: '2022'
     }
   ];
 
@@ -130,14 +125,6 @@ const OurFarms = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2 mb-4">
-                  {farm.features.map((feature, index) => (
-                    <div key={index} className="flex items-center text-sm">
-                      <div className="w-2 h-2 bg-gave-yellow rounded-full mr-2"></div>
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
 
                 <div className="space-y-2">
                   <InvestmentModal>
@@ -155,11 +142,6 @@ const OurFarms = () => {
           ))}
         </div>
 
-        <div className="text-center">
-          <Button size="lg" className="bg-gave-green hover:bg-gave-green/90 px-8">
-            {currentContent.viewAll}
-          </Button>
-        </div>
       </div>
     </section>
   );

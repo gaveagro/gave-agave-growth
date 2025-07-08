@@ -46,7 +46,7 @@ const FAQ = () => {
     EN: [
       {
         question: "What is agave investment and how does it work?",
-        answer: "Agave investment involves purchasing agave plants that Gavé has established in our fields in San Luis Potosí, México. The price covers all production costs including labor, land lease, insurance, fertilization, and pest control. After 8-12 years, we harvest and sell the agave, sharing 65% of the profit with you."
+        answer: "Agave investment involves purchasing agave plants that Gavé has established in our fields in San Luis Potosí, México. The price covers all production costs including labor, land lease, insurance, fertilization, and pest control. After 5-6 years (depending on the species), we harvest and sell the agave, sharing 65% of the profit with you."
       },
       {
         question: "What types of agave do you cultivate?",
@@ -54,7 +54,7 @@ const FAQ = () => {
       },
       {
         question: "What are the expected returns and investment period?",
-        answer: "Expected returns range from 18-25% annually depending on the cultivation model chosen. The investment period is typically 8-12 years, allowing the agave to reach full maturity for optimal market value."
+        answer: "Expected returns range from 18-25% annually depending on the cultivation model chosen. The investment period is typically 5-6 years (depending on the species), allowing the agave to reach full maturity for optimal market value. Returns depend on market conditions, as the model uses the initial investment as production cost per plant (adjusted to the number of plants acquired by the investor), and profits come from selling the harvest to the highest bidder, typically correlated with market prices at that time."
       },
       {
         question: "How do you ensure my investment is protected?",
@@ -62,15 +62,15 @@ const FAQ = () => {
       },
       {
         question: "What's the difference between intensive agriculture and agrosilvopastoral models?",
-        answer: "Intensive agriculture uses traditional monocrop methods with higher plant density and predictable yields (18-20% returns). The agrosilvopastoral model uses regenerative agriculture practices that enhance biodiversity and carbon sequestration while delivering higher returns (22-25%)."
+        answer: "Intensive agriculture uses traditional monocrop methods with higher plant density and predictable yields. The agrosilvopastoral model uses regenerative agriculture practices that integrate trees, crops, and livestock in the same system, promoting biodiversity and soil health while improving carbon sequestration and creating more balanced ecosystems."
       },
       {
         question: "How can I monitor my investment?",
-        answer: "You'll have access to our monitoring platform at dashboard.gaveagro.com where you can track plant growth, health metrics, environmental impact, and receive regular progress reports with IoT sensor data and satellite imagery."
+        answer: "You'll have access to our monitoring platform at dashboard.gaveagro.com where you can track plant growth, health metrics, environmental impact, and receive regular progress reports with satellite imagery. Additionally, investors can visit the farms to directly see the progress of their plants."
       },
       {
         question: "Who buys the harvested agave and at what price?",
-        answer: "At harvest time, we sell to the highest bidder in the market, which typically includes spirits distilleries, biofuel companies, and other agave product manufacturers. The final selling price depends on market conditions and agave quality."
+        answer: "At harvest time, we sell to the highest bidder in the market, which typically includes spirits distilleries, biofuel companies, sweetener industry (agave syrup), prebiotics industry (inulin), and other agave product manufacturers. The final selling price depends on market conditions and agave quality."
       },
       {
         question: "What environmental impact does my investment create?",
@@ -88,7 +88,7 @@ const FAQ = () => {
     ES: [
       {
         question: "¿Qué es la inversión en agave y cómo funciona?",
-        answer: "La inversión en agave implica comprar plantas de agave que Gavé ha establecido en nuestros campos en San Luis Potosí, México. El precio cubre todos los costos de producción incluyendo mano de obra, arrendamiento de tierra, seguro, fertilización y control de plagas. Después de 8-12 años, cosechamos y vendemos el agave, compartiendo el 65% de la ganancia contigo."
+        answer: "La inversión en agave implica comprar plantas de agave que Gavé ha establecido en nuestros campos en San Luis Potosí, México. El precio cubre todos los costos de producción incluyendo mano de obra, arrendamiento de tierra, seguro, fertilización y control de plagas. Después de 5-6 años (dependiendo de la especie), cosechamos y vendemos el agave, compartiendo el 65% de la ganancia contigo."
       },
       {
         question: "¿Qué tipos de agave cultivan?",
@@ -96,7 +96,7 @@ const FAQ = () => {
       },
       {
         question: "¿Cuáles son los retornos esperados y el período de inversión?",
-        answer: "Los retornos esperados oscilan entre 18-25% anual dependiendo del modelo de cultivo elegido. El período de inversión es típicamente de 8-12 años, permitiendo que el agave alcance la madurez completa para un valor de mercado óptimo."
+        answer: "Los retornos esperados oscilan entre 18-25% anual dependiendo del modelo de cultivo elegido. El período de inversión es típicamente de 5-6 años (dependiendo de la especie), permitiendo que el agave alcance la madurez completa para un valor de mercado óptimo. Los retornos dependen de las condiciones de mercado, ya que el modelo utiliza la inversión inicial como costo de producción por planta (se ajusta a la cantidad de plantas adquiridas por el inversionista), y las ganancias provienen de la venta de la cosecha al mejor postor, típicamente correlacionado con los precios de mercado del momento."
       },
       {
         question: "¿Cómo aseguran que mi inversión esté protegida?",
@@ -104,15 +104,15 @@ const FAQ = () => {
       },
       {
         question: "¿Cuál es la diferencia entre agricultura intensiva y modelos agrosilvopastoriles?",
-        answer: "La agricultura intensiva usa métodos tradicionales de monocultivo con mayor densidad de plantas y rendimientos predecibles (retornos del 18-20%). El modelo agrosilvopastoril usa prácticas de agricultura regenerativa que mejoran la biodiversidad y captura de carbono mientras entregan mayores retornos (22-25%)."
+        answer: "La agricultura intensiva usa métodos tradicionales de monocultivo con mayor densidad de plantas y rendimientos predecibles. Los modelos agrosilvopastoriles integran árboles, cultivos y ganadería en un mismo sistema, promoviendo la biodiversidad y la salud del suelo mientras mejoran la captura de carbono y crean ecosistemas más equilibrados."
       },
       {
         question: "¿Cómo puedo monitorear mi inversión?",
-        answer: "Tendrás acceso a nuestra plataforma de monitoreo en dashboard.gaveagro.com donde puedes rastrear el crecimiento de las plantas, métricas de salud, impacto ambiental, y recibir reportes regulares de progreso con datos de sensores IoT e imágenes satelitales."
+        answer: "Tendrás acceso a nuestra plataforma de monitoreo en dashboard.gaveagro.com donde puedes rastrear el crecimiento de las plantas, métricas de salud, impacto ambiental, y recibir reportes regulares de progreso con imágenes satelitales. Además, los inversionistas pueden visitar las parcelas para ver directamente el progreso de sus plantas."
       },
       {
         question: "¿Quién compra el agave cosechado y a qué precio?",
-        answer: "Al momento de la cosecha, vendemos al mejor postor en el mercado, que típicamente incluye destilerías de bebidas espirituosas, compañías de biocombustibles y otros fabricantes de productos de agave. El precio final de venta depende de las condiciones del mercado y la calidad del agave."
+        answer: "Al momento de la cosecha, vendemos al mejor postor en el mercado, que típicamente incluye destilerías de bebidas espirituosas, compañías de biocombustibles, industria de edulcorantes (jarabe de agave), industria de prebióticos (inulina), y otros fabricantes de productos de agave. El precio final de venta depende de las condiciones del mercado y la calidad del agave."
       },
       {
         question: "¿Qué impacto ambiental crea mi inversión?",
