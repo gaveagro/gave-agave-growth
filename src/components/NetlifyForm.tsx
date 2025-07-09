@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 interface NetlifyFormProps {
   formName: string;
@@ -42,19 +43,34 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({
     }
 
     try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+      // Convert FormData to a regular object
+      const submitData = {
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        phone: formData.get('phone') as string,
+        investmentAmount: formData.get('investmentAmount') as string,
+        investmentModel: formData.get('investmentModel') as string,
+        message: formData.get('message') as string,
+        formType: formName
+      };
+
+      console.log('Submitting form data:', submitData);
+
+      // Call the Supabase edge function
+      const { data, error } = await supabase.functions.invoke('form-submission', {
+        body: submitData,
       });
 
-      if (response.ok) {
-        toast.success('¡Mensaje enviado exitosamente!');
-        form.reset();
-        onSubmit?.();
-      } else {
-        throw new Error('Error en el envío');
+      if (error) {
+        console.error('Edge function error:', error);
+        throw error;
       }
+
+      console.log('Form submission response:', data);
+      toast.success('¡Mensaje enviado exitosamente!');
+      form.reset();
+      onSubmit?.();
+
     } catch (error) {
       console.error('Form submission error:', error);
       toast.error('Error al enviar el mensaje. Por favor intenta de nuevo.');
@@ -65,14 +81,9 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({
 
   return (
     <form
-      name={formName}
-      method="POST"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
       className={className}
     >
-      <input type="hidden" name="form-name" value={formName} />
       {/* Primary honeypot - hidden from users */}
       <div style={{ display: 'none' }}>
         <label>
@@ -99,6 +110,11 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({
       {/* Time-based protection */}
       <input type="hidden" name="form-start-time" value={Date.now()} />
       {children}
+      {isSubmitting && (
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground">Enviando...</p>
+        </div>
+      )}
     </form>
   );
 };
