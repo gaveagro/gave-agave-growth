@@ -25,17 +25,9 @@ const Footer = () => {
       dashboard: 'Dashboard',
       resourcesTitle: 'Resources',
       blog: 'Blog',
-      reports: 'Reports',
-      sustainability: 'Sustainability',
       contact: 'Contact',
-      newsletterTitle: 'Stay Updated',
-      newsletterText: 'Get the latest investment opportunities and impact reports.',
-      emailPlaceholder: 'Enter your email',
-      subscribe: 'Subscribe',
-      copyright: '© 2024 Gavé. All rights reserved.',
-      privacy: 'Privacy Policy',
-      terms: 'Terms of Service',
-      legal: 'Legal'
+      copyright: '© 2025 Gavé. All rights reserved.',
+      privacy: 'Privacy Policy'
     },
     ES: {
       description: 'Inversión sustentable en agave impulsada por tecnología que entrega retornos rentables mientras regenera tierras y apoya comunidades.',
@@ -46,17 +38,9 @@ const Footer = () => {
       dashboard: 'Dashboard',
       resourcesTitle: 'Recursos',
       blog: 'Blog',
-      reports: 'Reportes',
-      sustainability: 'Sustentabilidad',
       contact: 'Contacto',
-      newsletterTitle: 'Mantente Actualizado',
-      newsletterText: 'Recibe las últimas oportunidades de inversión y reportes de impacto.',
-      emailPlaceholder: 'Ingresa tu email',
-      subscribe: 'Suscribirse',
-      copyright: '© 2024 Gavé. Todos los derechos reservados.',
-      privacy: 'Política de Privacidad',
-      terms: 'Términos de Servicio',
-      legal: 'Legal'
+      copyright: '© 2025 Gavé. Todos los derechos reservados.',
+      privacy: 'Política de Privacidad'
     }
   };
 
@@ -101,28 +85,8 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">{currentContent.resourcesTitle}</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="/blog" className="text-primary-foreground/80 hover:text-primary-foreground">{currentContent.blog}</a></li>
-              <li><a href="/reports" className="text-primary-foreground/80 hover:text-primary-foreground">{currentContent.reports}</a></li>
-              <li><a href="/sustainability" className="text-primary-foreground/80 hover:text-primary-foreground">{currentContent.sustainability}</a></li>
               <li><a href="/contact" className="text-primary-foreground/80 hover:text-primary-foreground">{currentContent.contact}</a></li>
             </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h3 className="font-semibold mb-4">{currentContent.newsletterTitle}</h3>
-            <p className="text-primary-foreground/80 text-sm mb-4">
-              {currentContent.newsletterText}
-            </p>
-            <div className="space-y-3">
-              <Input 
-                type="email" 
-                placeholder={currentContent.emailPlaceholder}
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60" 
-              />
-              <Button variant="secondary" size="sm" className="w-full">
-                {currentContent.subscribe}
-              </Button>
-            </div>
           </div>
         </div>
 
@@ -133,8 +97,6 @@ const Footer = () => {
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/privacy" className="text-primary-foreground/80 hover:text-primary-foreground text-sm">{currentContent.privacy}</a>
-              <a href="/terms" className="text-primary-foreground/80 hover:text-primary-foreground text-sm">{currentContent.terms}</a>
-              <a href="/legal" className="text-primary-foreground/80 hover:text-primary-foreground text-sm">{currentContent.legal}</a>
             </div>
           </div>
         </div>

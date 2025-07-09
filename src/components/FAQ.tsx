@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import InvestmentModal from './InvestmentModal';
 
 const FAQ = () => {
   const [language, setLanguage] = useState(() => {
@@ -167,9 +168,11 @@ const FAQ = () => {
           <p className="text-muted-foreground mb-4">
             {currentContent.stillHaveQuestions}
           </p>
-          <button className="text-primary hover:text-primary/80 font-semibold">
-            {currentContent.contactTeam}
-          </button>
+          <InvestmentModal>
+            <button className="text-primary hover:text-primary/80 font-semibold">
+              {currentContent.contactTeam}
+            </button>
+          </InvestmentModal>
         </div>
       </div>
     </section>
