@@ -53,9 +53,72 @@ export const useBlogPosts = () => {
     const loadBlogPosts = async () => {
       try {
         setLoading(true);
-        // In a real implementation, this would fetch from your CMS
-        // For now, we'll return an empty array to remove test posts
-        setPosts([]);
+        const blogDir = '/content/blog/';
+        
+        // Try to load posts from Netlify CMS created files
+        const postFiles = [
+          '2025-07-09-map-author_es-prueba-body_en-prueba-excerpt_en-prueba-category_en-prueba-body_es-prueba-excerpt_es-prueba-published-true-date-wed-jul-09-2025-06-45-00-gmt-0600-hora-estándar-central-category_es-pruebta-1.md',
+          '2025-07-09-map-author_es-prueba-body_en-prueba-excerpt_en-prueba-category_en-prueba-body_es-prueba-excerpt_es-prueba-published-true-date-wed-jul-09-2025-06-45-00-gmt-0600-hora-estándar-central-category_es-pruebta.md'
+        ];
+        
+        const loadedPosts = [];
+        
+        for (const filename of postFiles) {
+          try {
+            const response = await fetch(`${blogDir}${filename}`);
+            if (response.ok) {
+              let post;
+              
+              if (filename.endsWith('.md')) {
+                // Parse markdown frontmatter for Netlify CMS posts
+                const text = await response.text();
+                const frontmatterMatch = text.match(/^---\s*\n(.*?)\n---\s*\n(.*)$/s);
+                
+                if (frontmatterMatch) {
+                  const [, frontmatter, content] = frontmatterMatch;
+                  
+                  // Parse YAML-like frontmatter
+                  const frontmatterObj: any = {};
+                  frontmatter.split('\n').forEach(line => {
+                    const [key, ...valueParts] = line.split(':');
+                    if (key && valueParts.length) {
+                      const value = valueParts.join(':').trim().replace(/^["']|["']$/g, '');
+                      frontmatterObj[key.trim()] = value;
+                    }
+                  });
+                  
+                  post = {
+                    id: filename.replace('.md', ''),
+                    title_en: frontmatterObj.title_en || 'Untitled',
+                    title_es: frontmatterObj.title_es || 'Sin título',
+                    excerpt_en: frontmatterObj.excerpt_en || '',
+                    excerpt_es: frontmatterObj.excerpt_es || '',
+                    body_en: frontmatterObj.body_en || content,
+                    body_es: frontmatterObj.body_es || content,
+                    author_en: frontmatterObj.author_en || 'Unknown',
+                    author_es: frontmatterObj.author_es || 'Desconocido',
+                    date: frontmatterObj.date || new Date().toISOString(),
+                    category_en: frontmatterObj.category_en || 'General',
+                    category_es: frontmatterObj.category_es || 'General',
+                    image: frontmatterObj.image || '/images/farm1-min.jpg',
+                    published: frontmatterObj.published === 'true' || frontmatterObj.published === true
+                  };
+                }
+              }
+              
+              if (post && post.published !== false) {
+                loadedPosts.push(post);
+              }
+            }
+          } catch (err) {
+            console.warn(`Failed to load ${filename}:`, err);
+          }
+        }
+        
+        // Sort by date (newest first)
+        loadedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        
+        setPosts(loadedPosts);
         setError(null);
       } catch (err) {
         console.error('Error loading blog posts:', err);

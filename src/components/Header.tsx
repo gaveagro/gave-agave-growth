@@ -58,9 +58,6 @@ const Header = () => {
             <a href="#home" className="text-foreground hover:text-primary transition-colors">
               {currentNav.home}
             </a>
-            <a href="#impact" className="text-foreground hover:text-primary transition-colors">
-              {currentNav.impact}
-            </a>
             <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors">
               {currentNav.howItWorks}
             </a>
@@ -111,9 +108,6 @@ const Header = () => {
             <div className="px-2 pt-2 pb-3 space-y-1">
               <a href="#home" className="block px-3 py-2 text-foreground hover:text-primary">
                 {currentNav.home}
-              </a>
-              <a href="#impact" className="block px-3 py-2 text-foreground hover:text-primary">
-                {currentNav.impact}
               </a>
               <a href="#how-it-works" className="block px-3 py-2 text-foreground hover:text-primary">
                 {currentNav.howItWorks}

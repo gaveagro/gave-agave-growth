@@ -85,7 +85,7 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">{currentContent.resourcesTitle}</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="/blog" className="text-primary-foreground/80 hover:text-primary-foreground">{currentContent.blog}</a></li>
-              <li><a href="/contact" className="text-primary-foreground/80 hover:text-primary-foreground">{currentContent.contact}</a></li>
+              
             </ul>
           </div>
         </div>
