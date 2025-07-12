@@ -150,15 +150,17 @@ const LeadCapture = () => {
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">{currentContent.investmentAmount}</label>
-              <Input
-                name="investmentAmount"
-                type="number"
-                min="1000"
-                step="1000"
-                placeholder="$10,000"
-                value={formData.investmentAmount}
-                onChange={(e) => handleInputChange('investmentAmount', e.target.value)}
-              />
+              <Select name="investmentAmount" value={formData.investmentAmount} onValueChange={(value) => handleInputChange('investmentAmount', value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder={language === 'EN' ? 'Select amount' : 'Selecciona monto'} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="200-plants">{language === 'EN' ? '200 plants' : '200 plantas'}</SelectItem>
+                  <SelectItem value="1-hectare">{language === 'EN' ? '1 hectare' : '1 hectárea'}</SelectItem>
+                  <SelectItem value="custom">{language === 'EN' ? 'Custom' : 'A la medida'}</SelectItem>
+                </SelectContent>
+              </Select>
+              <input type="hidden" name="investmentAmount" value={formData.investmentAmount} />
             </div>
           </div>
 

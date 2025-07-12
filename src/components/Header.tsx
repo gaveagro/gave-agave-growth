@@ -55,16 +55,16 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-foreground hover:text-primary transition-colors">
+            <a href="/#home" className="text-foreground hover:text-primary transition-colors">
               {currentNav.home}
             </a>
-            <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors">
+            <a href="/#how-it-works" className="text-foreground hover:text-primary transition-colors">
               {currentNav.howItWorks}
             </a>
-            <a href="#blog" className="text-foreground hover:text-primary transition-colors">
+            <a href="/#blog" className="text-foreground hover:text-primary transition-colors">
               {currentNav.blog}
             </a>
-            <a href="#faq" className="text-foreground hover:text-primary transition-colors">
+            <a href="/#faq" className="text-foreground hover:text-primary transition-colors">
               {currentNav.faq}
             </a>
             <a href="https://dashboard.gaveagro.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
@@ -106,16 +106,16 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden border-t border-border">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="#home" className="block px-3 py-2 text-foreground hover:text-primary">
+              <a href="/#home" className="block px-3 py-2 text-foreground hover:text-primary">
                 {currentNav.home}
               </a>
-              <a href="#how-it-works" className="block px-3 py-2 text-foreground hover:text-primary">
+              <a href="/#how-it-works" className="block px-3 py-2 text-foreground hover:text-primary">
                 {currentNav.howItWorks}
               </a>
-              <a href="#blog" className="block px-3 py-2 text-foreground hover:text-primary">
+              <a href="/#blog" className="block px-3 py-2 text-foreground hover:text-primary">
                 {currentNav.blog}
               </a>
-              <a href="#faq" className="block px-3 py-2 text-foreground hover:text-primary">
+              <a href="/#faq" className="block px-3 py-2 text-foreground hover:text-primary">
                 {currentNav.faq}
               </a>
               <a href="https://dashboard.gaveagro.com" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 text-foreground hover:text-primary">
