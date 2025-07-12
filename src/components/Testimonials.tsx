@@ -36,48 +36,48 @@ const Testimonials = () => {
   const testimonials = {
     EN: [
       {
-        name: "María González",
-        role: "Regenerative Investor",
-        location: "Mexico City, MX",
-        quote: "Seeing degraded land transform into thriving ecosystems while generating returns has been incredible. The soil health improvements are visible and measurable.",
-        avatar: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=60&h=60&fit=crop&crop=face"
-      },
-      {
-        name: "David Chen",
-        role: "ESG Portfolio Manager",
-        location: "Sydney, AU", 
-        quote: "Gavé's regenerative approach delivers both carbon sequestration and biodiversity benefits. It's rare to find investments that truly restore ecosystems.",
-        avatar: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=60&h=60&fit=crop&crop=face"
-      },
-      {
-        name: "Ana Rodriguez",
+        name: "Sarah Mitchell",
         role: "Impact Investor",
-        location: "Barcelona, ES",
-        quote: "The combination of soil restoration and profitable agave cultivation creates lasting value. You can see the land healing over time.",
-        avatar: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=60&h=60&fit=crop&crop=face"
+        location: "San Francisco, CA",
+        quote: "Regenerative agriculture represents the future of sustainable investing. The ability to restore ecosystems while generating meaningful returns is exactly what our portfolio needs to create lasting impact.",
+        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b169?w=60&h=60&fit=crop&crop=face"
+      },
+      {
+        name: "Michael Thompson",
+        role: "ESG Portfolio Manager",
+        location: "London, UK", 
+        quote: "What sets Gavé apart is their quantifiable approach to soil health and carbon sequestration. We can track real environmental metrics alongside financial returns - that's the kind of transparency ESG investing demands.",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face"
+      },
+      {
+        name: "Elena Vasquez",
+        role: "Regenerative Investment Advisor",
+        location: "Mexico City, MX",
+        quote: "Investing in land restoration through agave cultivation addresses multiple sustainability challenges simultaneously. It's a scalable model that proves profitable agriculture and environmental healing can coexist.",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face"
       }
     ],
     ES: [
       {
-        name: "María González", 
-        role: "Inversionista Regenerativa",
-        location: "Ciudad de México, MX",
-        quote: "Ver tierras degradadas transformarse en ecosistemas prósperos mientras generan retornos ha sido increíble. Las mejoras en la salud del suelo son visibles y medibles.",
-        avatar: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=60&h=60&fit=crop&crop=face"
-      },
-      {
-        name: "David Chen",
-        role: "Gerente de Portafolio ESG", 
-        location: "Sídney, AU",
-        quote: "El enfoque regenerativo de Gavé entrega tanto captura de carbono como beneficios de biodiversidad. Es raro encontrar inversiones que realmente restauren ecosistemas.",
-        avatar: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=60&h=60&fit=crop&crop=face"
-      },
-      {
-        name: "Ana Rodríguez",
+        name: "Sarah Mitchell", 
         role: "Inversionista de Impacto",
-        location: "Barcelona, ES", 
-        quote: "La combinación de restauración del suelo y cultivo rentable de agave crea valor duradero. Puedes ver la tierra sanando con el tiempo.",
-        avatar: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=60&h=60&fit=crop&crop=face"
+        location: "San Francisco, CA",
+        quote: "La agricultura regenerativa representa el futuro de la inversión sostenible. La capacidad de restaurar ecosistemas mientras se generan retornos significativos es exactamente lo que nuestro portafolio necesita para crear impacto duradero.",
+        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b169?w=60&h=60&fit=crop&crop=face"
+      },
+      {
+        name: "Michael Thompson",
+        role: "Gerente de Portafolio ESG", 
+        location: "Londres, Reino Unido",
+        quote: "Lo que distingue a Gavé es su enfoque cuantificable hacia la salud del suelo y la captura de carbono. Podemos rastrear métricas ambientales reales junto con retornos financieros - esa es la transparencia que la inversión ESG demanda.",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face"
+      },
+      {
+        name: "Elena Vásquez",
+        role: "Asesora en Inversión Regenerativa",
+        location: "Ciudad de México, MX", 
+        quote: "Invertir en restauración de tierras a través del cultivo de agave aborda múltiples desafíos de sostenibilidad simultáneamente. Es un modelo escalable que demuestra que la agricultura rentable y la sanación ambiental pueden coexistir.",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face"
       }
     ]
   };

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import InvestmentModal from '@/components/InvestmentModal';
 import { useBlogPosts } from '@/hooks/useContent';
 
 const BlogPost = () => {
@@ -136,6 +137,26 @@ const BlogPost = () => {
                     {paragraph}
                   </p>
                 ))}
+              </div>
+            </div>
+
+            {/* CTA Section */}
+            <div className="mt-16 p-8 bg-gave-green/10 rounded-lg border border-gave-green/20">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-gave-green">
+                  {language === 'EN' ? 'Ready to Start Your Regenerative Investment?' : '¿Listo para Comenzar tu Inversión Regenerativa?'}
+                </h3>
+                <p className="text-lg mb-6 text-muted-foreground">
+                  {language === 'EN' 
+                    ? 'Join investors creating environmental impact while earning sustainable returns through regenerative agave cultivation.'
+                    : 'Únete a inversionistas creando impacto ambiental mientras obtienen retornos sostenibles a través del cultivo regenerativo de agave.'
+                  }
+                </p>
+                <InvestmentModal>
+                  <Button size="lg" className="bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900 font-semibold">
+                    {language === 'EN' ? 'Get Started' : 'Comenzar'}
+                  </Button>
+                </InvestmentModal>
               </div>
             </div>
           </div>

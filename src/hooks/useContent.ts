@@ -53,61 +53,74 @@ export const useBlogPosts = () => {
     const loadBlogPosts = async () => {
       try {
         setLoading(true);
-        const blogDir = '/content/blog/';
-        
-        // Try to load posts from Netlify CMS created files
-        const postFiles = [
-          '2025-07-09-map-author_es-prueba-body_en-prueba-excerpt_en-prueba-category_en-prueba-body_es-prueba-excerpt_es-prueba-published-true-date-wed-jul-09-2025-06-45-00-gmt-0600-hora-estándar-central-category_es-pruebta-1.md',
-          '2025-07-09-map-author_es-prueba-body_en-prueba-excerpt_en-prueba-category_en-prueba-body_es-prueba-excerpt_es-prueba-published-true-date-wed-jul-09-2025-06-45-00-gmt-0600-hora-estándar-central-category_es-pruebta.md'
-        ];
-        
         const loadedPosts = [];
         
-        for (const filename of postFiles) {
+        // Load the sample post from JSON
+        try {
+          const response = await fetch('/content/blog/sample-post.json');
+          if (response.ok) {
+            const post = await response.json();
+            if (post.published !== false) {
+              loadedPosts.push({
+                id: 'sample-post',
+                ...post
+              });
+            }
+          }
+        } catch (err) {
+          console.warn('Failed to load sample post:', err);
+        }
+
+        // Try to load any .md files created by Netlify CMS
+        const possibleMdFiles = [
+          '2025-07-11-map-author_es-gavé-agrotecnología-body_en-🇲🇽-méxico-n-nfew-plants-are-as-deeply-intertwined-with-a-countrys-history-as-agave-is-with-mexico-as-the-center-of-origin-of-the-agavaceae-family-mexico-is-home-to-223-of-the-world.md'
+        ];
+        
+        for (const filename of possibleMdFiles) {
           try {
-            const response = await fetch(`${blogDir}${filename}`);
+            const response = await fetch(`/content/blog/${filename}`);
             if (response.ok) {
-              let post;
+              const text = await response.text();
+              const frontmatterMatch = text.match(/^---\s*\n(.*?)\n---\s*\n(.*)$/s);
               
-              if (filename.endsWith('.md')) {
-                // Parse markdown frontmatter for Netlify CMS posts
-                const text = await response.text();
-                const frontmatterMatch = text.match(/^---\s*\n(.*?)\n---\s*\n(.*)$/s);
+              if (frontmatterMatch) {
+                const [, frontmatter, content] = frontmatterMatch;
                 
-                if (frontmatterMatch) {
-                  const [, frontmatter, content] = frontmatterMatch;
-                  
-                  // Parse YAML-like frontmatter
-                  const frontmatterObj: any = {};
-                  frontmatter.split('\n').forEach(line => {
-                    const [key, ...valueParts] = line.split(':');
-                    if (key && valueParts.length) {
-                      const value = valueParts.join(':').trim().replace(/^["']|["']$/g, '');
-                      frontmatterObj[key.trim()] = value;
+                // Parse YAML-like frontmatter
+                const frontmatterObj: any = {};
+                frontmatter.split('\n').forEach(line => {
+                  const [key, ...valueParts] = line.split(':');
+                  if (key && valueParts.length) {
+                    let value = valueParts.join(':').trim();
+                    // Remove quotes if present
+                    if ((value.startsWith('"') && value.endsWith('"')) || 
+                        (value.startsWith("'") && value.endsWith("'"))) {
+                      value = value.slice(1, -1);
                     }
-                  });
-                  
-                  post = {
-                    id: filename.replace('.md', ''),
-                    title_en: frontmatterObj.title_en || 'Untitled',
-                    title_es: frontmatterObj.title_es || 'Sin título',
-                    excerpt_en: frontmatterObj.excerpt_en || '',
-                    excerpt_es: frontmatterObj.excerpt_es || '',
-                    body_en: frontmatterObj.body_en || content,
-                    body_es: frontmatterObj.body_es || content,
-                    author_en: frontmatterObj.author_en || 'Unknown',
-                    author_es: frontmatterObj.author_es || 'Desconocido',
-                    date: frontmatterObj.date || new Date().toISOString(),
-                    category_en: frontmatterObj.category_en || 'General',
-                    category_es: frontmatterObj.category_es || 'General',
-                    image: frontmatterObj.image || '/images/farm1-min.jpg',
-                    published: frontmatterObj.published === 'true' || frontmatterObj.published === true
-                  };
+                    frontmatterObj[key.trim()] = value;
+                  }
+                });
+                
+                const post = {
+                  id: filename.replace('.md', ''),
+                  title_en: frontmatterObj.title_en || frontmatterObj.title || 'Untitled',
+                  title_es: frontmatterObj.title_es || frontmatterObj.title || 'Sin título',
+                  excerpt_en: frontmatterObj.excerpt_en || frontmatterObj.excerpt || '',
+                  excerpt_es: frontmatterObj.excerpt_es || frontmatterObj.excerpt || '',
+                  body_en: frontmatterObj.body_en || content,
+                  body_es: frontmatterObj.body_es || content,
+                  author_en: frontmatterObj.author_en || frontmatterObj.author || 'Gavé Team',
+                  author_es: frontmatterObj.author_es || frontmatterObj.author || 'Equipo Gavé',
+                  date: frontmatterObj.date || new Date().toISOString(),
+                  category_en: frontmatterObj.category_en || frontmatterObj.category || 'Agriculture',
+                  category_es: frontmatterObj.category_es || frontmatterObj.category || 'Agricultura',
+                  image: frontmatterObj.image || frontmatterObj.featured_image || '/images/farm1-min.jpg',
+                  published: frontmatterObj.published !== false && frontmatterObj.published !== 'false'
+                };
+                
+                if (post.published) {
+                  loadedPosts.push(post);
                 }
-              }
-              
-              if (post && post.published !== false) {
-                loadedPosts.push(post);
               }
             }
           } catch (err) {

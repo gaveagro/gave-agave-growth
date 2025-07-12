@@ -1,15 +1,11 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
 import { ArrowDown } from 'lucide-react';
 import { useContent } from '@/hooks/useContent';
-import NetlifyForm from './NetlifyForm';
+import InvestmentModal from './InvestmentModal';
 
 const Hero = () => {
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [language, setLanguage] = useState('EN');
   const { content: heroContent, loading } = useContent('hero');
 
@@ -56,9 +52,6 @@ const Hero = () => {
 
   const backgroundImage = heroContent?.backgroundImage || "/lovable-uploads/d70723cf-3b9d-404d-9b70-864768a8de4f.png";
 
-  const handleFormSubmit = () => {
-    setIsSubmitted(true);
-  };
 
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
@@ -94,42 +87,17 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Lead Capture Form - Enhanced visibility */}
-            <Card className="p-8 bg-white/95 backdrop-blur-sm border-white/30 max-w-xl mx-auto shadow-2xl">
-              <h3 className="text-2xl font-semibold mb-6 text-gray-900">
-                {currentContent.formTitle}
-              </h3>
-              {!isSubmitted ? (
-                <NetlifyForm formName="hero-lead-capture" className="space-y-4" onSubmit={handleFormSubmit}>
-                  <div className="flex flex-col gap-4">
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder={currentContent.emailPlaceholder}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-600 text-lg py-3"
-                    />
-                    <Button 
-                      type="submit" 
-                      size="lg"
-                      className="bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900 font-semibold py-3 text-lg shadow-lg"
-                    >
-                      {currentContent.getStarted}
-                    </Button>
-                  </div>
-                  <p className="text-sm text-gray-700">
-                    {currentContent.joinText}
-                  </p>
-                </NetlifyForm>
-              ) : (
-                <div className="text-center py-4">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">{currentContent.thankYou}</h4>
-                  <p className="text-gray-700">{currentContent.thankYouText}</p>
-                </div>
-              )}
-            </Card>
+            {/* Get Started Button */}
+            <div className="flex justify-center">
+              <InvestmentModal>
+                <Button 
+                  size="lg"
+                  className="bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900 font-semibold py-4 px-12 text-xl shadow-2xl"
+                >
+                  {currentContent.getStarted}
+                </Button>
+              </InvestmentModal>
+            </div>
           </div>
 
           {/* Scroll Indicator */}
