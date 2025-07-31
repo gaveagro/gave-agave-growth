@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import NetlifyForm from './NetlifyForm';
+import { enviarNotificacionRegistro } from '@/lib/notifications'; // ← Importar función
 
 const LeadCapture = () => {
   const [language, setLanguage] = useState(() => {
@@ -19,6 +20,7 @@ const LeadCapture = () => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // ← Nuevo estado
 
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {
@@ -49,6 +51,7 @@ const LeadCapture = () => {
       espadinModel: 'Espadín (5-6 years)',
       salmianaModel: 'Salmiana (7-9 years)',
       submitButton: 'Submit Investment Interest',
+      submittingButton: 'Sending...', // ← Nuevo
       thankYou: 'Thank You!',
       thankYouMessage: 'We\'ve received your investment interest. Our team will contact you within 24 hours with personalized recommendations.',
       namePlaceholder: 'Enter your full name',
@@ -69,6 +72,7 @@ const LeadCapture = () => {
       espadinModel: 'Espadín (5-6 años)',
       salmianaModel: 'Salmiana (7-9 años)',
       submitButton: 'Enviar Interés de Inversión',
+      submittingButton: 'Enviando...', // ← Nuevo
       thankYou: '¡Gracias!',
       thankYouMessage: 'Hemos recibido tu interés de inversión. Nuestro equipo se pondrá en contacto contigo en 24 horas con recomendaciones personalizadas.',
       namePlaceholder: 'Ingresa tu nombre completo',
@@ -80,9 +84,30 @@ const LeadCapture = () => {
 
   const currentContent = content[language as keyof typeof content];
 
-  const handleFormSubmit = () => {
-    console.log('Lead captured:', formData);
-    setIsSubmitted(true);
+  // ← FUNCIÓN ACTUALIZADA
+  const handleFormSubmit = async () => {
+    setIsSubmitting(true);
+    
+    try {
+      console.log('📝 Lead captured:', formData);
+      
+      // Enviar notificación por email
+      const resultado = await enviarNotificacionRegistro(formData);
+      
+      if (resultado.success) {
+        console.log('✅ Notification sent successfully');
+      } else {
+        console.warn('⚠️ Form submitted but notification failed:', resultado.error);
+      }
+      
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('❌ Error in form submission:', error);
+      // Aún así mostrar mensaje de éxito al usuario
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -122,6 +147,7 @@ const LeadCapture = () => {
                 placeholder={currentContent.namePlaceholder}
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
+                disabled={isSubmitting} // ← Deshabilitar durante envío
               />
             </div>
             <div>
@@ -133,6 +159,7 @@ const LeadCapture = () => {
                 placeholder={currentContent.emailPlaceholder}
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
+                disabled={isSubmitting} // ← Deshabilitar durante envío
               />
             </div>
           </div>
@@ -146,11 +173,17 @@ const LeadCapture = () => {
                 placeholder={currentContent.phonePlaceholder}
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
+                disabled={isSubmitting} // ← Deshabilitar durante envío
               />
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">{currentContent.investmentAmount}</label>
-              <Select name="investmentAmount" value={formData.investmentAmount} onValueChange={(value) => handleInputChange('investmentAmount', value)}>
+              <Select 
+                name="investmentAmount" 
+                value={formData.investmentAmount} 
+                onValueChange={(value) => handleInputChange('investmentAmount', value)}
+                disabled={isSubmitting} // ← Deshabilitar durante envío
+              >
                 <SelectTrigger>
                   <SelectValue placeholder={language === 'EN' ? 'Select amount' : 'Selecciona monto'} />
                 </SelectTrigger>
@@ -166,7 +199,12 @@ const LeadCapture = () => {
 
           <div>
             <label className="block text-sm font-medium mb-2">{currentContent.investmentModel}</label>
-            <Select name="investmentModel" value={formData.investmentModel} onValueChange={(value) => handleInputChange('investmentModel', value)}>
+            <Select 
+              name="investmentModel" 
+              value={formData.investmentModel} 
+              onValueChange={(value) => handleInputChange('investmentModel', value)}
+              disabled={isSubmitting} // ← Deshabilitar durante envío
+            >
               <SelectTrigger>
                 <SelectValue placeholder={currentContent.selectModel} />
               </SelectTrigger>
@@ -186,11 +224,17 @@ const LeadCapture = () => {
               value={formData.message}
               onChange={(e) => handleInputChange('message', e.target.value)}
               className="min-h-[100px]"
+              disabled={isSubmitting} // ← Deshabilitar durante envío
             />
           </div>
 
-          <Button type="submit" className="w-full bg-primary hover:bg-primary/90" size="lg">
-            {currentContent.submitButton}
+          <Button 
+            type="submit" 
+            className="w-full bg-primary hover:bg-primary/90" 
+            size="lg"
+            disabled={isSubmitting} // ← Deshabilitar durante envío
+          >
+            {isSubmitting ? currentContent.submittingButton : currentContent.submitButton}
           </Button>
         </NetlifyForm>
       </CardContent>
