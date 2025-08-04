@@ -67,7 +67,7 @@ const handler = async (req: Request): Promise<Response> => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'notificaciones@gaveagro.com',
+            from: 'notificaciones@send.gaveagro.com',
             to: ['hola@gaveagro.com'],
             subject: `🌱 Nueva solicitud de inversión - ${formData.name}`,
             html: `
