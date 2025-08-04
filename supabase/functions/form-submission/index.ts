@@ -56,8 +56,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('Form submission stored successfully:', data);
 
-    // Send notification email using Resend (if API key is available)
-    const resendApiKey = Deno.env.get('RESEND_API_KEY');
+    // Send notification email using Resend
+    const resendApiKey = 're_ULJGu2xe_ALaiCuQRhydGiyoxvh2LJiSJ';
     if (resendApiKey) {
       try {
         const emailResponse = await fetch('https://api.resend.com/emails', {
@@ -67,19 +67,79 @@ const handler = async (req: Request): Promise<Response> => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'notifications@gaveagro.com',
+            from: 'notificaciones@gaveagro.com',
             to: ['hola@gaveagro.com'],
-            subject: `Nueva solicitud de inversión - ${formData.name}`,
+            subject: `🌱 Nueva solicitud de inversión - ${formData.name}`,
             html: `
-              <h2>Nueva solicitud de inversión recibida</h2>
-              <p><strong>Nombre:</strong> ${formData.name}</p>
-              <p><strong>Email:</strong> ${formData.email}</p>
-              <p><strong>Teléfono:</strong> ${formData.phone || 'No proporcionado'}</p>
-              <p><strong>Monto de inversión:</strong> ${formData.investmentAmount || 'No especificado'}</p>
-              <p><strong>Modelo de inversión:</strong> ${formData.investmentModel || 'No especificado'}</p>
-              <p><strong>Mensaje:</strong> ${formData.message || 'Sin mensaje adicional'}</p>
-              <p><strong>Tipo de formulario:</strong> ${formData.formType}</p>
-              <p><strong>Fecha:</strong> ${new Date().toLocaleString('es-MX')}</p>
+              <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8fdf9;">
+                <div style="background: linear-gradient(135deg, #22c55e, #16a34a); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+                  <h1 style="color: white; margin: 0; font-size: 28px;">🌱 GaveAgro</h1>
+                  <p style="color: #dcfce7; margin: 10px 0 0 0; font-size: 16px;">Nueva solicitud de inversión</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                  <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #22c55e;">
+                    <h2 style="color: #166534; margin: 0 0 15px 0; font-size: 20px;">Información del prospecto:</h2>
+                    
+                    <div style="margin: 12px 0;">
+                      <strong style="color: #374151;">👤 Nombre:</strong> 
+                      <span style="color: #1f2937;">${formData.name}</span>
+                    </div>
+                    
+                    <div style="margin: 12px 0;">
+                      <strong style="color: #374151;">📧 Email:</strong> 
+                      <span style="color: #1f2937;">${formData.email}</span>
+                    </div>
+                    
+                    <div style="margin: 12px 0;">
+                      <strong style="color: #374151;">📱 Teléfono:</strong> 
+                      <span style="color: #1f2937;">${formData.phone || 'No proporcionado'}</span>
+                    </div>
+                    
+                    <div style="margin: 12px 0;">
+                      <strong style="color: #374151;">💰 Monto de inversión:</strong> 
+                      <span style="color: #1f2937;">${formData.investmentAmount || 'No especificado'}</span>
+                    </div>
+                    
+                    <div style="margin: 12px 0;">
+                      <strong style="color: #374151;">🌱 Modelo de inversión:</strong> 
+                      <span style="color: #1f2937;">${formData.investmentModel || 'No especificado'}</span>
+                    </div>
+                    
+                    <div style="margin: 12px 0;">
+                      <strong style="color: #374151;">💬 Mensaje:</strong> 
+                      <div style="color: #1f2937; margin-top: 8px; padding: 10px; background: #f9fafb; border-radius: 4px;">
+                        ${formData.message || 'Sin mensaje adicional'}
+                      </div>
+                    </div>
+                    
+                    <div style="margin: 12px 0;">
+                      <strong style="color: #374151;">⏰ Fecha:</strong> 
+                      <span style="color: #1f2937;">${new Date().toLocaleString('es-MX', {
+                        timeZone: 'America/Mexico_City',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}</span>
+                    </div>
+                  </div>
+                  
+                  <div style="margin-top: 20px; padding: 15px; background: #eff6ff; border-radius: 8px; text-align: center;">
+                    <p style="margin: 0; color: #1e40af; font-size: 14px;">
+                      📊 Revisa todos los registros en tu panel de administración de Supabase
+                    </p>
+                  </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px; padding: 20px;">
+                  <p style="color: #6b7280; font-size: 12px; margin: 0;">
+                    Este mensaje fue enviado automáticamente desde GaveAgro.com<br>
+                    Powered by Resend ⚡
+                  </p>
+                </div>
+              </div>
             `,
           }),
         });

@@ -84,26 +84,36 @@ const LeadCapture = () => {
 
   const currentContent = content[language as keyof typeof content];
 
-  // ← FUNCIÓN ACTUALIZADA
   const handleFormSubmit = async () => {
     setIsSubmitting(true);
     
     try {
       console.log('📝 Lead captured:', formData);
       
-      // Enviar notificación por email
-      const resultado = await enviarNotificacionRegistro(formData);
+      // Call Supabase edge function for form submission and email notification
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        'https://rwgfcwirvscdyhvqtgtn.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3Z2Zjd2lydnNjZHlodnF0Z3RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU3NzMxNjAsImV4cCI6MjA1MTM0OTE2MH0.QEa-3G8yg_AE1Ym_CYO6KrHI8U10mWmnw2C0EL0x9nM'
+      );
       
-      if (resultado.success) {
-        console.log('✅ Notification sent successfully');
+      const { data, error } = await supabase.functions.invoke('form-submission', {
+        body: {
+          ...formData,
+          formType: 'investment-lead-capture'
+        }
+      });
+      
+      if (error) {
+        console.error('Error submitting form:', error);
       } else {
-        console.warn('⚠️ Form submitted but notification failed:', resultado.error);
+        console.log('✅ Form submitted successfully:', data);
       }
       
       setIsSubmitted(true);
     } catch (error) {
       console.error('❌ Error in form submission:', error);
-      // Aún así mostrar mensaje de éxito al usuario
+      // Still show success message to user
       setIsSubmitted(true);
     } finally {
       setIsSubmitting(false);
