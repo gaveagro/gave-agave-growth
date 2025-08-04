@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import InvestmentModal from './InvestmentModal';
 
 const HowItWorks = () => {
-  const [language, setLanguage] = useState('EN');
+  const [language, setLanguage] = useState('ES');
 
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {

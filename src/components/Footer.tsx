@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const Footer = () => {
-  const [language, setLanguage] = useState('EN');
+  const [language, setLanguage] = useState('ES');
 
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {
@@ -28,7 +28,7 @@ const Footer = () => {
   const currentContent = content[language as keyof typeof content];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-white text-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-2xl mx-auto text-center">
           {/* Company Info */}
@@ -41,7 +41,7 @@ const Footer = () => {
               />
               <span className="ml-2 text-xl font-bold">Gavé</span>
             </div>
-            <p className="text-primary-foreground/80 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed">
               {currentContent.description}
             </p>
             <div className="space-y-2 text-sm">
@@ -51,13 +51,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 mt-12 pt-8">
+        <div className="border-t border-gray-200 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-primary-foreground/80 text-sm">
+            <p className="text-gray-600 text-sm">
               {currentContent.copyright}
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="/privacy" className="text-primary-foreground/80 hover:text-primary-foreground text-sm">{currentContent.privacy}</a>
+              <a href="/privacy" className="text-gray-600 hover:text-gray-800 text-sm">{currentContent.privacy}</a>
             </div>
           </div>
         </div>

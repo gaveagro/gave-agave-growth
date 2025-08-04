@@ -11,7 +11,7 @@ interface InvestmentModalProps {
 const InvestmentModal = ({ children }: InvestmentModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'EN';
+    return (window as any).currentLanguage || 'ES';
   });
 
   useEffect(() => {

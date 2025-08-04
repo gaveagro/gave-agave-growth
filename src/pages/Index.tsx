@@ -19,10 +19,10 @@ const Index = () => {
       <Hero />
       <TrustedPartners />
       <HowSustainableAgave />
+      <InvestmentSimulator />
       <ImpactSection />
       <OurFarms />
       <MonitoringPlatform />
-      <InvestmentSimulator />
       <Testimonials />
       <Blog />
       <FAQ />

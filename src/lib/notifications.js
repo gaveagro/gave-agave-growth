@@ -1,12 +1,12 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
+const resend = new Resend('re_ULJGu2xe_ALaiCuQRhydGiyoxvh2LJiSJ');
 
 export const enviarNotificacionRegistro = async (userData) => {
   try {
     const { data, error } = await resend.emails.send({
-      from: 'notificaciones@send.gaveagro.com',
-      to: [import.meta.env.VITE_NOTIFICATION_EMAIL || 'tu-correo@ejemplo.com'],
+      from: 'notificaciones@gaveagro.com',
+      to: ['hola@gaveagro.com'],
       subject: '🌱 Nuevo registro en GaveAgro.com',
       html: `
         <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8fdf9;">

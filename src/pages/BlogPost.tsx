@@ -13,7 +13,7 @@ const BlogPost = () => {
   const navigate = useNavigate();
   const { posts, loading } = useBlogPosts();
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'EN';
+    return (window as any).currentLanguage || 'ES';
   });
 
   useEffect(() => {

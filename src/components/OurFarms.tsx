@@ -6,7 +6,7 @@ import InvestmentModal from './InvestmentModal';
 
 const OurFarms = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'EN';
+    return (window as any).currentLanguage || 'ES';
   });
 
   useEffect(() => {

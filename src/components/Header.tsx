@@ -6,10 +6,10 @@ import InvestmentModal from './InvestmentModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState('EN');
+  const [language, setLanguage] = useState('ES'); // Default to Spanish
 
   const toggleLanguage = () => {
-    const newLanguage = language === 'EN' ? 'ES' : 'EN';
+    const newLanguage = language === 'ES' ? 'EN' : 'ES';
     setLanguage(newLanguage);
     // Store globally for other components
     (window as any).currentLanguage = newLanguage;

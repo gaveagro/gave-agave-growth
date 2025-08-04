@@ -8,7 +8,7 @@ import Blog from '@/components/Blog';
 
 const BlogPage = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'EN';
+    return (window as any).currentLanguage || 'ES';
   });
 
   useEffect(() => {

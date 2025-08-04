@@ -6,7 +6,7 @@ import { useContent } from '@/hooks/useContent';
 import InvestmentModal from './InvestmentModal';
 
 const Hero = () => {
-  const [language, setLanguage] = useState('EN');
+  const [language, setLanguage] = useState('ES');
   const { content: heroContent, loading } = useContent('hero');
 
   useEffect(() => {

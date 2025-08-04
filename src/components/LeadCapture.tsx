@@ -9,7 +9,7 @@ import { enviarNotificacionRegistro } from '@/lib/notifications'; // ← Importa
 
 const LeadCapture = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'EN';
+    return (window as any).currentLanguage || 'ES';
   });
   const [formData, setFormData] = useState({
     name: '',
@@ -188,8 +188,8 @@ const LeadCapture = () => {
                   <SelectValue placeholder={language === 'EN' ? 'Select amount' : 'Selecciona monto'} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="200-plants">{language === 'EN' ? '200 plants' : '200 plantas'}</SelectItem>
-                  <SelectItem value="1-hectare">{language === 'EN' ? '1 hectare' : '1 hectárea'}</SelectItem>
+                  <SelectItem value="200-plants">{language === 'EN' ? '200 plants: $2,500 USD' : '200 plantas: $50,000 MXN'}</SelectItem>
+                  <SelectItem value="1-hectare">{language === 'EN' ? '1 hectare: $31,250 USD' : '1 hectárea: $625,000 MXN'}</SelectItem>
                   <SelectItem value="custom">{language === 'EN' ? 'Custom' : 'A la medida'}</SelectItem>
                 </SelectContent>
               </Select>
