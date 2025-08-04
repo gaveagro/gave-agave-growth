@@ -65,7 +65,7 @@ const LeadCapture = () => {
       name: 'Nombre Completo',
       email: 'Dirección de Correo',
       phone: 'Número de Teléfono',
-      investmentAmount: 'Monto de Inversión (USD)',
+      investmentAmount: 'Monto de Inversión (MXN)',
       investmentModel: 'Modelo Preferido',
       message: 'Mensaje Adicional',
       selectModel: 'Selecciona un modelo',
