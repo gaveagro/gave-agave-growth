@@ -57,7 +57,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log('Form submission stored successfully:', data);
 
     // Send notification email using Resend
-    const resendApiKey = 're_ULJGu2xe_ALaiCuQRhydGiyoxvh2LJiSJ';
+    const resendApiKey = Deno.env.get('RESEND_API_KEY');
     if (resendApiKey) {
       try {
         const emailResponse = await fetch('https://api.resend.com/emails', {
