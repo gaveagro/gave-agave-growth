@@ -5,7 +5,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import NetlifyForm from './NetlifyForm';
-import { enviarNotificacionRegistro } from '@/lib/notifications'; // ← Importar función
+import { enviarNotificacionRegistro } from '@/lib/notifications';
+
+// Función auxiliar para calcular el valor de la inversión
+const getInvestmentValue = (amount: string, language: string) => {
+  switch (amount) {
+    case '200-plants': return language === 'EN' ? 2500 : 50000;
+    case '1-hectare': return language === 'EN' ? 31250 : 625000;
+    default: return 0;
+  }
+};
 
 const LeadCapture = () => {
   const [language, setLanguage] = useState(() => {
@@ -20,7 +29,7 @@ const LeadCapture = () => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false); // ← Nuevo estado
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {
@@ -51,7 +60,7 @@ const LeadCapture = () => {
       espadinModel: 'Espadín (5-6 years)',
       salmianaModel: 'Salmiana (7-9 years)',
       submitButton: 'Submit Investment Interest',
-      submittingButton: 'Sending...', // ← Nuevo
+      submittingButton: 'Sending...',
       thankYou: 'Thank You!',
       thankYouMessage: 'We\'ve received your investment interest. Our team will contact you within 24 hours with personalized recommendations.',
       namePlaceholder: 'Enter your full name',
@@ -72,7 +81,7 @@ const LeadCapture = () => {
       espadinModel: 'Espadín (5-6 años)',
       salmianaModel: 'Salmiana (7-9 años)',
       submitButton: 'Enviar Interés de Inversión',
-      submittingButton: 'Enviando...', // ← Nuevo
+      submittingButton: 'Enviando...',
       thankYou: '¡Gracias!',
       thankYouMessage: 'Hemos recibido tu interés de inversión. Nuestro equipo se pondrá en contacto contigo en 24 horas con recomendaciones personalizadas.',
       namePlaceholder: 'Ingresa tu nombre completo',
@@ -90,18 +99,20 @@ const LeadCapture = () => {
     try {
       console.log('📝 Lead captured:', formData);
 
-      // 1. Trackear evento de "Lead" en Meta Pixel (¡NUEVO!)
-    if (window.fbq) {
-      window.fbq('track', 'Lead', {
-        content_name: 'Investment Lead Capture',
-        content_category: 'Form Submission',
-        value: getInvestmentValue(formData.investmentAmount), // Función auxiliar
-        currency: language === 'EN' ? 'USD' : 'MXN',
-        investment_model: formData.investmentModel
-      });
-    }
-      
-      // Call Supabase edge function for form submission and email notification
+      // Trackear evento en Meta Pixel
+      if (typeof window.fbq !== 'undefined') {
+        window.fbq('track', 'Lead', {
+          content_name: 'Investment Lead Capture',
+          content_category: 'Form Submission',
+          value: getInvestmentValue(formData.investmentAmount, language),
+          currency: language === 'EN' ? 'USD' : 'MXN',
+          investment_model: formData.investmentModel,
+          email: formData.email, // Opcional para remarketing
+          phone: formData.phone  // Opcional para remarketing
+        });
+      }
+
+      // Lógica de Supabase
       const { createClient } = await import('@supabase/supabase-js');
       const supabase = createClient(
         'https://rwgfcwirvscdyhvqtgtn.supabase.co',
@@ -124,7 +135,6 @@ const LeadCapture = () => {
       setIsSubmitted(true);
     } catch (error) {
       console.error('❌ Error in form submission:', error);
-      // Still show success message to user
       setIsSubmitted(true);
     } finally {
       setIsSubmitting(false);
@@ -168,7 +178,7 @@ const LeadCapture = () => {
                 placeholder={currentContent.namePlaceholder}
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
-                disabled={isSubmitting} // ← Deshabilitar durante envío
+                disabled={isSubmitting}
               />
             </div>
             <div>
@@ -180,7 +190,7 @@ const LeadCapture = () => {
                 placeholder={currentContent.emailPlaceholder}
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
-                disabled={isSubmitting} // ← Deshabilitar durante envío
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -194,7 +204,7 @@ const LeadCapture = () => {
                 placeholder={currentContent.phonePlaceholder}
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
-                disabled={isSubmitting} // ← Deshabilitar durante envío
+                disabled={isSubmitting}
               />
             </div>
             <div>
@@ -203,7 +213,7 @@ const LeadCapture = () => {
                 name="investmentAmount" 
                 value={formData.investmentAmount} 
                 onValueChange={(value) => handleInputChange('investmentAmount', value)}
-                disabled={isSubmitting} // ← Deshabilitar durante envío
+                disabled={isSubmitting}
               >
                 <SelectTrigger>
                   <SelectValue placeholder={language === 'EN' ? 'Select amount' : 'Selecciona monto'} />
@@ -224,7 +234,7 @@ const LeadCapture = () => {
               name="investmentModel" 
               value={formData.investmentModel} 
               onValueChange={(value) => handleInputChange('investmentModel', value)}
-              disabled={isSubmitting} // ← Deshabilitar durante envío
+              disabled={isSubmitting}
             >
               <SelectTrigger>
                 <SelectValue placeholder={currentContent.selectModel} />
@@ -245,7 +255,7 @@ const LeadCapture = () => {
               value={formData.message}
               onChange={(e) => handleInputChange('message', e.target.value)}
               className="min-h-[100px]"
-              disabled={isSubmitting} // ← Deshabilitar durante envío
+              disabled={isSubmitting}
             />
           </div>
 
@@ -253,7 +263,7 @@ const LeadCapture = () => {
             type="submit" 
             className="w-full bg-primary hover:bg-primary/90" 
             size="lg"
-            disabled={isSubmitting} // ← Deshabilitar durante envío
+            disabled={isSubmitting}
           >
             {isSubmitting ? currentContent.submittingButton : currentContent.submitButton}
           </Button>
