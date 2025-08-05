@@ -89,6 +89,17 @@ const LeadCapture = () => {
     
     try {
       console.log('📝 Lead captured:', formData);
+
+      // 1. Trackear evento de "Lead" en Meta Pixel (¡NUEVO!)
+    if (window.fbq) {
+      window.fbq('track', 'Lead', {
+        content_name: 'Investment Lead Capture',
+        content_category: 'Form Submission',
+        value: getInvestmentValue(formData.investmentAmount), // Función auxiliar
+        currency: language === 'EN' ? 'USD' : 'MXN',
+        investment_model: formData.investmentModel
+      });
+    }
       
       // Call Supabase edge function for form submission and email notification
       const { createClient } = await import('@supabase/supabase-js');
