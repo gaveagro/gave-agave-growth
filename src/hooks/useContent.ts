@@ -86,54 +86,63 @@ export const useBlogPosts = () => {
               if (frontmatterMatch) {
                 const [, frontmatter, content] = frontmatterMatch;
                 
-                // Parse YAML-like frontmatter (handle multi-line values)
+                // Parse YAML-like frontmatter (handle multi-line values properly)
                 const frontmatterObj: any = {};
                 const lines = frontmatter.split('\n');
                 let currentKey = '';
                 let currentValue = '';
                 let inMultiLine = false;
                 
-                lines.forEach(line => {
+                for (let i = 0; i < lines.length; i++) {
+                  const line = lines[i];
+                  
                   if (line.includes(':') && !inMultiLine) {
-                    // Finish previous multi-line value if any
+                    // Save previous multi-line value if exists
                     if (currentKey && currentValue) {
                       frontmatterObj[currentKey] = currentValue.trim();
+                      currentKey = '';
+                      currentValue = '';
                     }
                     
-                    const [key, ...valueParts] = line.split(':');
-                    currentKey = key.trim();
-                    let value = valueParts.join(':').trim();
+                    const colonIndex = line.indexOf(':');
+                    const key = line.substring(0, colonIndex).trim();
+                    let value = line.substring(colonIndex + 1).trim();
                     
-                    // Check if this is start of multi-line value
+                    // Check if this starts a multi-line value
                     if (value === '>-' || value === '|-' || value === '>') {
                       inMultiLine = true;
+                      currentKey = key;
                       currentValue = '';
                     } else {
-                      // Single line value
+                      // Single line value - remove quotes if present
                       if ((value.startsWith('"') && value.endsWith('"')) || 
                           (value.startsWith("'") && value.endsWith("'"))) {
                         value = value.slice(1, -1);
                       }
-                      frontmatterObj[currentKey] = value;
+                      frontmatterObj[key] = value;
+                    }
+                  } else if (inMultiLine) {
+                    // We're in a multi-line value
+                    if (line.trim() === '' && i < lines.length - 1) {
+                      // Empty line in multi-line content
+                      if (currentValue) currentValue += '\n\n';
+                    } else if (line.trim() !== '') {
+                      // Non-empty line - add to current value
+                      if (currentValue) currentValue += '\n\n';
+                      currentValue += line.trim();
+                    }
+                    
+                    // Check if we're at the end or next line starts a new key
+                    if (i === lines.length - 1 || (i < lines.length - 1 && lines[i + 1].includes(':') && !lines[i + 1].startsWith(' '))) {
+                      // End of multi-line value
+                      if (currentKey && currentValue) {
+                        frontmatterObj[currentKey] = currentValue.trim();
+                      }
+                      inMultiLine = false;
                       currentKey = '';
                       currentValue = '';
                     }
-                  } else if (inMultiLine && line.trim()) {
-                    // Continue multi-line value
-                    if (currentValue) currentValue += '\n\n';
-                    currentValue += line.trim();
-                  } else if (inMultiLine && !line.trim() && currentKey) {
-                    // End of multi-line value
-                    frontmatterObj[currentKey] = currentValue.trim();
-                    inMultiLine = false;
-                    currentKey = '';
-                    currentValue = '';
                   }
-                });
-                
-                // Handle last multi-line value
-                if (currentKey && currentValue) {
-                  frontmatterObj[currentKey] = currentValue.trim();
                 }
                 
                 const post = {

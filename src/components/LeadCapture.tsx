@@ -310,7 +310,7 @@ const LeadCapture = () => {
           <div className="flex justify-center">
             <ReCAPTCHA
               ref={recaptchaRef}
-              sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // Test key - replace with your real key
+              sitekey="6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft"
               onChange={(token) => setRecaptchaToken(token)}
               onExpired={() => setRecaptchaToken(null)}
             />
