@@ -6,11 +6,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import NetlifyForm from './NetlifyForm';
 import { createClient } from '@supabase/supabase-js';
-import ReCAPTCHA from 'react-google-recaptcha';
 
-// Configuración de Supabase (con fallback por si las variables de entorno no están definidas)
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://rwgfcwirvscdyhvqtgtn.supabase.co';
-const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3Z2Zjd2lydnNjZHlodnF0Z3RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU3NzMxNjAsImV4cCI6MjA1MTM0OTE2MH0.QEa-3G8yg_AE1Ym_CYO6KrHI8U10mWmnw2C0EL0x9nM';
+// Configuración de Supabase
+const SUPABASE_URL = 'https://ybhbceqthsfgsjccounm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InliaGJjZXF0aHNmZ3NqY2NvdW5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkyNDM2NzgsImV4cCI6MjA2NDgxOTY3OH0.e-mHzlSFVzx6dCgMwMY-ynFw0l9yrbXYXdr1n1Uoh_M';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Función auxiliar para calcular valores de inversión (USD/MXN)
@@ -34,9 +33,38 @@ const LeadCapture = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const pixelTracked = useRef(false); // Para evitar duplicados en el Pixel
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const pixelTracked = useRef(false);
+
+  // Load reCAPTCHA v3 script
+  useEffect(() => {
+    const loadRecaptcha = () => {
+      if (window.grecaptcha) return;
+      
+      const script = document.createElement('script');
+      script.src = 'https://www.google.com/recaptcha/api.js?render=6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    };
+
+    loadRecaptcha();
+  }, []);
+
+  // Generate reCAPTCHA token
+  const generateRecaptchaToken = async (): Promise<string | null> => {
+    if (!window.grecaptcha) {
+      console.error('reCAPTCHA not loaded');
+      return null;
+    }
+
+    try {
+      const token = await window.grecaptcha.execute('6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft', { action: 'form_submit' });
+      return token;
+    } catch (error) {
+      console.error('Error generating reCAPTCHA token:', error);
+      return null;
+    }
+  };
 
   // Efecto para manejar cambio de idioma
   useEffect(() => {
@@ -46,7 +74,6 @@ const LeadCapture = () => {
 
     window.addEventListener('languageChange', handleLanguageChange as EventListener);
     
-    // Verificar si hay un idioma predefinido
     const currentLang = (window as any).currentLanguage;
     if (currentLang && currentLang !== language) {
       setLanguage(currentLang);
@@ -111,20 +138,15 @@ const LeadCapture = () => {
     // Evitar envíos duplicados
     if (isSubmitting) return;
     
-    // Verificar reCAPTCHA
-    if (!recaptchaToken) {
-      alert(language === 'EN' ? 'Please complete the reCAPTCHA' : 'Por favor completa el reCAPTCHA');
-      return;
-    }
-    
     setIsSubmitting(true);
     pixelTracked.current = false;
 
     try {
-      // 1. Verificar conexión con Supabase
-      const isConnected = await testConnection(SUPABASE_URL);
-      if (!isConnected) {
-        throw new Error('No se pudo conectar con Supabase');
+      // 1. Generate reCAPTCHA token
+      const token = await generateRecaptchaToken();
+      if (!token) {
+        alert(language === 'EN' ? 'reCAPTCHA validation failed. Please try again.' : 'Error de validación reCAPTCHA. Inténtalo de nuevo.');
+        return;
       }
 
       // 2. Enviar datos a Supabase
@@ -132,13 +154,13 @@ const LeadCapture = () => {
         body: {
           ...formData,
           formType: 'investment-lead-capture',
-          recaptchaToken
+          recaptchaToken: token
         }
       });
 
       if (error) throw error;
 
-      // 3. Disparar evento de Meta Pixel (solo si no se ha enviado antes)
+      // 3. Disparar evento de Meta Pixel
       if (!pixelTracked.current && typeof window.fbq === 'function') {
         window.fbq('track', 'Lead', {
           content_name: 'Formulario de Inversión',
@@ -146,20 +168,16 @@ const LeadCapture = () => {
           value: calculateInvestmentValue(formData.investmentAmount, language === 'EN'),
           currency: language === 'EN' ? 'USD' : 'MXN',
           investment_model: formData.investmentModel,
-          email: formData.email, // Para remarketing (opcional)
-          phone: formData.phone  // Para remarketing (opcional)
+          email: formData.email,
+          phone: formData.phone
         });
         pixelTracked.current = true;
       }
 
       setIsSubmitted(true);
-      // Reset reCAPTCHA
-      recaptchaRef.current?.reset();
-      setRecaptchaToken(null);
     } catch (error) {
       console.error('❌ Error al enviar el formulario:', error);
       
-      // Opcional: Trackear evento fallido
       if (typeof window.fbq === 'function') {
         window.fbq('track', 'LeadError', {
           description: 'Error en envío de formulario'
@@ -167,22 +185,6 @@ const LeadCapture = () => {
       }
     } finally {
       setIsSubmitting(false);
-      // Reset reCAPTCHA en caso de error también
-      if (!isSubmitted) {
-        recaptchaRef.current?.reset();
-        setRecaptchaToken(null);
-      }
-    }
-  };
-
-  // Función para probar conexión con Supabase
-  const testConnection = async (url: string): Promise<boolean> => {
-    try {
-      const response = await fetch(url, { method: 'HEAD' });
-      return response.ok;
-    } catch (error) {
-      console.error('Error de conexión:', error);
-      return false;
     }
   };
 
@@ -306,21 +308,11 @@ const LeadCapture = () => {
             />
           </div>
 
-          {/* reCAPTCHA */}
-          <div className="flex justify-center">
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey="6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft"
-              onChange={(token) => setRecaptchaToken(token)}
-              onExpired={() => setRecaptchaToken(null)}
-            />
-          </div>
-
           <Button 
             type="submit" 
             className="w-full bg-primary hover:bg-primary/90" 
             size="lg"
-            disabled={isSubmitting || !recaptchaToken}
+            disabled={isSubmitting}
           >
             {isSubmitting ? currentContent.submittingButton : currentContent.submitButton}
           </Button>
