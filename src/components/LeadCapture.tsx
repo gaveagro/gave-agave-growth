@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import NetlifyForm from './NetlifyForm';
 import { createClient } from '@supabase/supabase-js';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 // Configuración de Supabase (con fallback por si las variables de entorno no están definidas)
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://rwgfcwirvscdyhvqtgtn.supabase.co';
@@ -33,7 +34,9 @@ const LeadCapture = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const pixelTracked = useRef(false); // Para evitar duplicados en el Pixel
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   // Efecto para manejar cambio de idioma
   useEffect(() => {
@@ -102,11 +105,18 @@ const LeadCapture = () => {
 
   const currentContent = content[language];
 
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleFormSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
     
     // Evitar envíos duplicados
     if (isSubmitting) return;
+    
+    // Verificar reCAPTCHA
+    if (!recaptchaToken) {
+      alert(language === 'EN' ? 'Please complete the reCAPTCHA' : 'Por favor completa el reCAPTCHA');
+      return;
+    }
+    
     setIsSubmitting(true);
     pixelTracked.current = false;
 
@@ -121,7 +131,8 @@ const LeadCapture = () => {
       const { error } = await supabase.functions.invoke('form-submission', {
         body: {
           ...formData,
-          formType: 'investment-lead-capture'
+          formType: 'investment-lead-capture',
+          recaptchaToken
         }
       });
 
@@ -142,6 +153,9 @@ const LeadCapture = () => {
       }
 
       setIsSubmitted(true);
+      // Reset reCAPTCHA
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
     } catch (error) {
       console.error('❌ Error al enviar el formulario:', error);
       
@@ -153,6 +167,11 @@ const LeadCapture = () => {
       }
     } finally {
       setIsSubmitting(false);
+      // Reset reCAPTCHA en caso de error también
+      if (!isSubmitted) {
+        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
+      }
     }
   };
 
@@ -196,7 +215,7 @@ const LeadCapture = () => {
         <p className="text-center text-muted-foreground">{currentContent.subtitle}</p>
       </CardHeader>
       <CardContent>
-        <NetlifyForm formName="investment-lead-capture" onSubmit={handleFormSubmit} className="space-y-6">
+        <NetlifyForm formName="investment-lead-capture" onSubmit={() => handleFormSubmit()} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-2">{currentContent.name}</label>
@@ -287,11 +306,21 @@ const LeadCapture = () => {
             />
           </div>
 
+          {/* reCAPTCHA */}
+          <div className="flex justify-center">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // Test key - replace with your real key
+              onChange={(token) => setRecaptchaToken(token)}
+              onExpired={() => setRecaptchaToken(null)}
+            />
+          </div>
+
           <Button 
             type="submit" 
             className="w-full bg-primary hover:bg-primary/90" 
             size="lg"
-            disabled={isSubmitting}
+            disabled={isSubmitting || !recaptchaToken}
           >
             {isSubmitting ? currentContent.submittingButton : currentContent.submitButton}
           </Button>

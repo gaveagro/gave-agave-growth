@@ -86,20 +86,55 @@ export const useBlogPosts = () => {
               if (frontmatterMatch) {
                 const [, frontmatter, content] = frontmatterMatch;
                 
-                // Parse YAML-like frontmatter
+                // Parse YAML-like frontmatter (handle multi-line values)
                 const frontmatterObj: any = {};
-                frontmatter.split('\n').forEach(line => {
-                  const [key, ...valueParts] = line.split(':');
-                  if (key && valueParts.length) {
-                    let value = valueParts.join(':').trim();
-                    // Remove quotes if present
-                    if ((value.startsWith('"') && value.endsWith('"')) || 
-                        (value.startsWith("'") && value.endsWith("'"))) {
-                      value = value.slice(1, -1);
+                const lines = frontmatter.split('\n');
+                let currentKey = '';
+                let currentValue = '';
+                let inMultiLine = false;
+                
+                lines.forEach(line => {
+                  if (line.includes(':') && !inMultiLine) {
+                    // Finish previous multi-line value if any
+                    if (currentKey && currentValue) {
+                      frontmatterObj[currentKey] = currentValue.trim();
                     }
-                    frontmatterObj[key.trim()] = value;
+                    
+                    const [key, ...valueParts] = line.split(':');
+                    currentKey = key.trim();
+                    let value = valueParts.join(':').trim();
+                    
+                    // Check if this is start of multi-line value
+                    if (value === '>-' || value === '|-' || value === '>') {
+                      inMultiLine = true;
+                      currentValue = '';
+                    } else {
+                      // Single line value
+                      if ((value.startsWith('"') && value.endsWith('"')) || 
+                          (value.startsWith("'") && value.endsWith("'"))) {
+                        value = value.slice(1, -1);
+                      }
+                      frontmatterObj[currentKey] = value;
+                      currentKey = '';
+                      currentValue = '';
+                    }
+                  } else if (inMultiLine && line.trim()) {
+                    // Continue multi-line value
+                    if (currentValue) currentValue += '\n\n';
+                    currentValue += line.trim();
+                  } else if (inMultiLine && !line.trim() && currentKey) {
+                    // End of multi-line value
+                    frontmatterObj[currentKey] = currentValue.trim();
+                    inMultiLine = false;
+                    currentKey = '';
+                    currentValue = '';
                   }
                 });
+                
+                // Handle last multi-line value
+                if (currentKey && currentValue) {
+                  frontmatterObj[currentKey] = currentValue.trim();
+                }
                 
                 const post = {
                   id: filename.replace('.md', ''),
@@ -107,8 +142,8 @@ export const useBlogPosts = () => {
                   title_es: frontmatterObj.title_es || frontmatterObj.title || 'Sin título',
                   excerpt_en: frontmatterObj.excerpt_en || frontmatterObj.excerpt || '',
                   excerpt_es: frontmatterObj.excerpt_es || frontmatterObj.excerpt || '',
-                  body_en: frontmatterObj.body_en || content,
-                  body_es: frontmatterObj.body_es || content,
+                  body_en: frontmatterObj.body_en || content || 'Content not available',
+                  body_es: frontmatterObj.body_es || content || 'Contenido no disponible',
                   author_en: frontmatterObj.author_en || frontmatterObj.author || 'Gavé Team',
                   author_es: frontmatterObj.author_es || frontmatterObj.author || 'Equipo Gavé',
                   date: frontmatterObj.date || new Date().toISOString(),
