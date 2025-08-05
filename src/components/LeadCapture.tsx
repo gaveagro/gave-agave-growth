@@ -7,11 +7,11 @@ import { Textarea } from '@/components/ui/textarea';
 import NetlifyForm from './NetlifyForm';
 import { enviarNotificacionRegistro } from '@/lib/notifications';
 
-// Función auxiliar para calcular el valor de la inversión
-const getInvestmentValue = (amount: string, language: string) => {
+// Función auxiliar para calcular valores (fuera del componente)
+const calculateInvestmentValue = (amount: string, isEnglish: boolean): number => {
   switch (amount) {
-    case '200-plants': return language === 'EN' ? 2500 : 50000;
-    case '1-hectare': return language === 'EN' ? 31250 : 625000;
+    case '200-plants': return isEnglish ? 2500 : 50000;
+    case '1-hectare': return isEnglish ? 31250 : 625000;
     default: return 0;
   }
 };
@@ -62,7 +62,7 @@ const LeadCapture = () => {
       submitButton: 'Submit Investment Interest',
       submittingButton: 'Sending...',
       thankYou: 'Thank You!',
-      thankYouMessage: 'We\'ve received your investment interest. Our team will contact you within 24 hours with personalized recommendations.',
+      thankYouMessage: 'We\'ve received your investment interest. Our team will contact you with personalized recommendations.',
       namePlaceholder: 'Enter your full name',
       emailPlaceholder: 'Enter your email address',
       phonePlaceholder: 'Enter your phone number',
@@ -83,7 +83,7 @@ const LeadCapture = () => {
       submitButton: 'Enviar Interés de Inversión',
       submittingButton: 'Enviando...',
       thankYou: '¡Gracias!',
-      thankYouMessage: 'Hemos recibido tu interés de inversión. Nuestro equipo se pondrá en contacto contigo en 24 horas con recomendaciones personalizadas.',
+      thankYouMessage: 'Hemos recibido tu interés de inversión. Nuestro equipo se pondrá en contacto contigo en breve con recomendaciones personalizadas.',
       namePlaceholder: 'Ingresa tu nombre completo',
       emailPlaceholder: 'Ingresa tu dirección de correo',
       phonePlaceholder: 'Ingresa tu número de teléfono',
@@ -94,21 +94,22 @@ const LeadCapture = () => {
   const currentContent = content[language as keyof typeof content];
 
   const handleFormSubmit = async () => {
+    if (isSubmitting) return;
     setIsSubmitting(true);
     
     try {
       console.log('📝 Lead captured:', formData);
 
       // Trackear evento en Meta Pixel
-      if (typeof window.fbq !== 'undefined') {
+      if (typeof window.fbq === 'function') {
         window.fbq('track', 'Lead', {
-          content_name: 'Investment Lead Capture',
-          content_category: 'Form Submission',
-          value: getInvestmentValue(formData.investmentAmount, language),
+          content_name: 'Investment Form Submit',
+          content_category: 'Lead Generation',
+          value: calculateInvestmentValue(formData.investmentAmount, language === 'EN'),
           currency: language === 'EN' ? 'USD' : 'MXN',
           investment_model: formData.investmentModel,
-          email: formData.email, // Opcional para remarketing
-          phone: formData.phone  // Opcional para remarketing
+          email: formData.email,
+          phone: formData.phone
         });
       }
 
@@ -119,23 +120,15 @@ const LeadCapture = () => {
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3Z2Zjd2lydnNjZHlodnF0Z3RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU3NzMxNjAsImV4cCI6MjA1MTM0OTE2MH0.QEa-3G8yg_AE1Ym_CYO6KrHI8U10mWmnw2C0EL0x9nM'
       );
       
-      const { data, error } = await supabase.functions.invoke('form-submission', {
-        body: {
-          ...formData,
-          formType: 'investment-lead-capture'
-        }
+      const { error } = await supabase.functions.invoke('form-submission', {
+        body: { ...formData, formType: 'investment-lead-capture' }
       });
       
-      if (error) {
-        console.error('Error submitting form:', error);
-      } else {
-        console.log('✅ Form submitted successfully:', data);
-      }
+      if (error) throw error;
       
       setIsSubmitted(true);
     } catch (error) {
-      console.error('❌ Error in form submission:', error);
-      setIsSubmitted(true);
+      console.error('❌ Error:', error);
     } finally {
       setIsSubmitting(false);
     }
