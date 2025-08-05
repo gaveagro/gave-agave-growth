@@ -1,10 +1,14 @@
-
 [build]
   publish = "dist"
   command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
+
+# Configuración para funciones (crucial para Supabase)
+[functions]
+  node_bundler = "esbuild"
+  directory = "supabase/functions"  # Ajusta según tu estructura
 
 # Redirects para el CMS
 [[redirects]]
@@ -17,7 +21,13 @@
   to = "/index.html"
   status = 200
 
-# Headers para archivos de contenido
+# Headers optimizados
+[[headers]]
+  for = "/functions/*"  # ¡Nuevo! Para Supabase
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "no-cache"
+
 [[headers]]
   for = "/content/*"
   [headers.values]
