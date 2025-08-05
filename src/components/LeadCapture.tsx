@@ -1,13 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import NetlifyForm from './NetlifyForm';
-import { enviarNotificacionRegistro } from '@/lib/notifications';
+import { createClient } from '@supabase/supabase-js';
 
-// Función auxiliar para calcular valores (fuera del componente)
+// Configuración de Supabase (con fallback por si las variables de entorno no están definidas)
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://rwgfcwirvscdyhvqtgtn.supabase.co';
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3Z2Zjd2lydnNjZHlodnF0Z3RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU3NzMxNjAsImV4cCI6MjA1MTM0OTE2MH0.QEa-3G8yg_AE1Ym_CYO6KrHI8U10mWmnw2C0EL0x9nM';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// Función auxiliar para calcular valores de inversión (USD/MXN)
 const calculateInvestmentValue = (amount: string, isEnglish: boolean): number => {
   switch (amount) {
     case '200-plants': return isEnglish ? 2500 : 50000;
@@ -17,9 +22,7 @@ const calculateInvestmentValue = (amount: string, isEnglish: boolean): number =>
 };
 
 const LeadCapture = () => {
-  const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
-  });
+  const [language, setLanguage] = useState<'EN' | 'ES'>(() => (window as any).currentLanguage || 'ES');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,7 +33,9 @@ const LeadCapture = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const pixelTracked = useRef(false); // Para evitar duplicados en el Pixel
 
+  // Efecto para manejar cambio de idioma
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {
       setLanguage(event.detail);
@@ -38,14 +43,18 @@ const LeadCapture = () => {
 
     window.addEventListener('languageChange', handleLanguageChange as EventListener);
     
+    // Verificar si hay un idioma predefinido
     const currentLang = (window as any).currentLanguage;
     if (currentLang && currentLang !== language) {
       setLanguage(currentLang);
     }
 
-    return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange as EventListener);
+    };
   }, [language]);
 
+  // Contenido multiidioma
   const content = {
     EN: {
       title: 'Start Your Agave Investment',
@@ -62,7 +71,7 @@ const LeadCapture = () => {
       submitButton: 'Submit Investment Interest',
       submittingButton: 'Sending...',
       thankYou: 'Thank You!',
-      thankYouMessage: 'We\'ve received your investment interest. Our team will contact you with personalized recommendations.',
+      thankYouMessage: 'We\'ve received your investment interest. Our team will contact you within 24 hours with personalized recommendations.',
       namePlaceholder: 'Enter your full name',
       emailPlaceholder: 'Enter your email address',
       phonePlaceholder: 'Enter your phone number',
@@ -83,7 +92,7 @@ const LeadCapture = () => {
       submitButton: 'Enviar Interés de Inversión',
       submittingButton: 'Enviando...',
       thankYou: '¡Gracias!',
-      thankYouMessage: 'Hemos recibido tu interés de inversión. Nuestro equipo se pondrá en contacto contigo en breve con recomendaciones personalizadas.',
+      thankYouMessage: 'Hemos recibido tu interés de inversión. Nuestro equipo se pondrá en contacto contigo en 24 horas con recomendaciones personalizadas.',
       namePlaceholder: 'Ingresa tu nombre completo',
       emailPlaceholder: 'Ingresa tu dirección de correo',
       phonePlaceholder: 'Ingresa tu número de teléfono',
@@ -91,46 +100,70 @@ const LeadCapture = () => {
     }
   };
 
-  const currentContent = content[language as keyof typeof content];
+  const currentContent = content[language];
 
-  const handleFormSubmit = async () => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Evitar envíos duplicados
     if (isSubmitting) return;
     setIsSubmitting(true);
-    
-    try {
-      console.log('📝 Lead captured:', formData);
+    pixelTracked.current = false;
 
-      // Trackear evento en Meta Pixel
-      if (typeof window.fbq === 'function') {
+    try {
+      // 1. Verificar conexión con Supabase
+      const isConnected = await testConnection(SUPABASE_URL);
+      if (!isConnected) {
+        throw new Error('No se pudo conectar con Supabase');
+      }
+
+      // 2. Enviar datos a Supabase
+      const { error } = await supabase.functions.invoke('form-submission', {
+        body: {
+          ...formData,
+          formType: 'investment-lead-capture'
+        }
+      });
+
+      if (error) throw error;
+
+      // 3. Disparar evento de Meta Pixel (solo si no se ha enviado antes)
+      if (!pixelTracked.current && typeof window.fbq === 'function') {
         window.fbq('track', 'Lead', {
-          content_name: 'Investment Form Submit',
+          content_name: 'Formulario de Inversión',
           content_category: 'Lead Generation',
           value: calculateInvestmentValue(formData.investmentAmount, language === 'EN'),
           currency: language === 'EN' ? 'USD' : 'MXN',
           investment_model: formData.investmentModel,
-          email: formData.email,
-          phone: formData.phone
+          email: formData.email, // Para remarketing (opcional)
+          phone: formData.phone  // Para remarketing (opcional)
         });
+        pixelTracked.current = true;
       }
 
-      // Lógica de Supabase
-      const { createClient } = await import('@supabase/supabase-js');
-      const supabase = createClient(
-        'https://rwgfcwirvscdyhvqtgtn.supabase.co',
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3Z2Zjd2lydnNjZHlodnF0Z3RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU3NzMxNjAsImV4cCI6MjA1MTM0OTE2MH0.QEa-3G8yg_AE1Ym_CYO6KrHI8U10mWmnw2C0EL0x9nM'
-      );
-      
-      const { error } = await supabase.functions.invoke('form-submission', {
-        body: { ...formData, formType: 'investment-lead-capture' }
-      });
-      
-      if (error) throw error;
-      
       setIsSubmitted(true);
     } catch (error) {
-      console.error('❌ Error:', error);
+      console.error('❌ Error al enviar el formulario:', error);
+      
+      // Opcional: Trackear evento fallido
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'LeadError', {
+          description: 'Error en envío de formulario'
+        });
+      }
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  // Función para probar conexión con Supabase
+  const testConnection = async (url: string): Promise<boolean> => {
+    try {
+      const response = await fetch(url, { method: 'HEAD' });
+      return response.ok;
+    } catch (error) {
+      console.error('Error de conexión:', error);
+      return false;
     }
   };
 
@@ -138,6 +171,7 @@ const LeadCapture = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  // Vista después de enviar
   if (isSubmitted) {
     return (
       <Card className="max-w-md mx-auto">
@@ -154,6 +188,7 @@ const LeadCapture = () => {
     );
   }
 
+  // Vista principal del formulario
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
