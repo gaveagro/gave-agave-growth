@@ -150,30 +150,20 @@ const MonitoringPlatform = () => {
             <Card className="overflow-hidden">
               <div className="aspect-video">
                 <img 
-                  src="/lovable-uploads/cc3ee809-ce5a-4adc-9cd1-9916917ce870.png" 
-                  alt={language === 'EN' ? 'Dashboard Overview' : 'Vista General del Dashboard'}
+                  src="/lovable-uploads/fe15181b-f2c2-4404-85c2-21b2f7b26543.png" 
+                  alt={language === 'EN' ? 'Investment portfolio dashboard showing plants, investment, CO2 sequestration and harvest timeline' : 'Panel de portafolio de inversión mostrando plantas, inversión, captura de CO2 y cronograma de cosecha'}
                   className="w-full h-full object-cover"
                 />
               </div>
             </Card>
 
-            {/* Investment Details and Plot Information */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* Farm monitoring and Investment Details */}
+            <div className="grid grid-cols-1 gap-4">
               <Card className="overflow-hidden">
-                <div className="aspect-square">
+                <div className="aspect-video">
                   <img 
-                    src="/lovable-uploads/60acd259-0231-4725-a03f-71f79b79b881.png" 
-                    alt={language === 'EN' ? 'Investment Details' : 'Detalles de Inversión'}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </Card>
-              
-              <Card className="overflow-hidden">
-                <div className="aspect-square">
-                  <img 
-                    src="/lovable-uploads/d2be563c-1ae7-4cc7-b016-07e945f25ea9.png" 
-                    alt={language === 'EN' ? 'Plot Information' : 'Información de Parcelas'}
+                    src="/lovable-uploads/131f6fc1-3336-44d4-99d8-fccd3aa7f6b2.png" 
+                    alt={language === 'EN' ? 'Farm monitoring dashboard showing location, area, and established plants with recent photos' : 'Panel de monitoreo de parcela mostrando ubicación, área y plantas establecidas con fotos recientes'}
                     className="w-full h-full object-cover"
                   />
                 </div>
