@@ -1,0 +1,76 @@
+{
+  "es": {
+    "title": "Mercados Diversificados del Agave",
+    "subtitle": "Múltiples industrias demandan agave maduro, creando oportunidades de mercado estables y diversificadas",
+    "description": "El agave no solo alimenta la industria de destilados. Su versatilidad abre puertas a sectores en crecimiento como biocombustibles, prebióticos y materiales sostenibles.",
+    "markets": [
+      {
+        "title": "Prebióticos",
+        "description": "Suplementos nutricionales con alto valor agregado",
+        "icon": "🧬"
+      },
+      {
+        "title": "Tequila & Mezcal",
+        "description": "Industria tradicional con demanda global creciente", 
+        "icon": "🥃"
+      },
+      {
+        "title": "Bioplásticos",
+        "description": "Materiales sostenibles para empaques ecológicos",
+        "icon": "♻️"
+      },
+      {
+        "title": "Biocombustibles",
+        "description": "Energía renovable con crecimiento acelerado",
+        "icon": "⚡"
+      },
+      {
+        "title": "Textiles",
+        "description": "Fibras naturales para la industria de la moda",
+        "icon": "🧵"
+      },
+      {
+        "title": "Forraje para Ganado",
+        "description": "Alimentación nutritiva para el sector ganadero",
+        "icon": "🐄"
+      }
+    ]
+  },
+  "en": {
+    "title": "Diversified Agave Markets",
+    "subtitle": "Multiple industries demand mature agave, creating stable and diversified market opportunities",
+    "description": "Agave doesn't just fuel the spirits industry. Its versatility opens doors to growing sectors like biofuels, prebiotics, and sustainable materials.",
+    "markets": [
+      {
+        "title": "Prebiotics", 
+        "description": "High-value nutritional supplements",
+        "icon": "🧬"
+      },
+      {
+        "title": "Tequila & Mezcal",
+        "description": "Traditional industry with growing global demand",
+        "icon": "🥃"
+      },
+      {
+        "title": "Bioplastics",
+        "description": "Sustainable materials for eco-friendly packaging",
+        "icon": "♻️"
+      },
+      {
+        "title": "Biofuels",
+        "description": "Renewable energy with accelerated growth",
+        "icon": "⚡"
+      },
+      {
+        "title": "Textile",
+        "description": "Natural fibers for the fashion industry",
+        "icon": "🧵"
+      },
+      {
+        "title": "Livestock Feed",
+        "description": "Nutritious feed for the livestock sector",
+        "icon": "🐄"
+      }
+    ]
+  }
+}

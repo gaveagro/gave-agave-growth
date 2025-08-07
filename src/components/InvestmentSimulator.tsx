@@ -113,7 +113,11 @@ const InvestmentSimulator = () => {
   };
 
   const getMaturationYears = () => {
-    return species[selectedSpecies as keyof typeof species].maturationYears;
+    const totalMaturationYears = species[selectedSpecies as keyof typeof species].maturationYears;
+    const currentYear = new Date().getFullYear();
+    const yearsAlreadyGrown = currentYear - plantYear;
+    const remainingYears = Math.max(0, totalMaturationYears - yearsAlreadyGrown);
+    return remainingYears;
   };
 
   // CO2 Sequestration calculation - CORRECTED to be per year over maturation period

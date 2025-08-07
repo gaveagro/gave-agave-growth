@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import TrustedPartners from '@/components/TrustedPartners';
 import HowSustainableAgave from '@/components/HowSustainableAgave';
 import ImpactSection from '@/components/ImpactSection';
+import AgaveMarket from '@/components/AgaveMarket';
 import OurFarms from '@/components/OurFarms';
 import MonitoringPlatform from '@/components/MonitoringPlatform';
 import InvestmentSimulator from '@/components/InvestmentSimulator';
@@ -21,6 +22,7 @@ const Index = () => {
       <HowSustainableAgave />
       <InvestmentSimulator />
       <ImpactSection />
+      <AgaveMarket />
       <OurFarms />
       <MonitoringPlatform />
       <Testimonials />
