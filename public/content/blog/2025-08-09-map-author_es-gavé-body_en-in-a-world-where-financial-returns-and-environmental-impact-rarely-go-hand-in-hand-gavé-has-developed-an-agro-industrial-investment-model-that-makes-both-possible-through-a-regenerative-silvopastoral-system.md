@@ -259,5 +259,5 @@ date: 2025-08-08T19:21:00.000-06:00
 category_en: Regenerative Agriculture
 category_es: Agricultura Regenerativa
 image: /images/agricultura-regenerativa-regenerative-agriculture-gavé-agro.jpeg
-published: false
+published: true
 ---
