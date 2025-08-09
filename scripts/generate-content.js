@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const path = require('path');
 
@@ -29,5 +28,23 @@ contentFiles.forEach(filename => {
     console.log(`Created placeholder: ${filename}`);
   }
 });
+
+// Generate blog manifest from public/content/blog
+try {
+  const publicBlogDir = path.join(__dirname, '../public/content/blog');
+  if (!fs.existsSync(publicBlogDir)) {
+    fs.mkdirSync(publicBlogDir, { recursive: true });
+  }
+  const files = fs
+    .readdirSync(publicBlogDir)
+    .filter((f) => f.toLowerCase().endsWith('.md'))
+    .sort();
+
+  const manifestPath = path.join(publicBlogDir, 'index.json');
+  fs.writeFileSync(manifestPath, JSON.stringify(files, null, 2));
+  console.log(`Blog manifest generated with ${files.length} posts at: ${manifestPath}`);
+} catch (e) {
+  console.warn('Failed to generate blog manifest:', e);
+}
 
 console.log('Content structure initialized!');

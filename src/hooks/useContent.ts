@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 
 interface ContentData {
@@ -53,9 +52,9 @@ export const useBlogPosts = () => {
     const loadBlogPosts = async () => {
       try {
         setLoading(true);
-        const loadedPosts = [];
+        const loadedPosts: any[] = [];
         
-        // Load the sample post from JSON
+        // Load the sample post from JSON (optional)
         try {
           const response = await fetch('/content/blog/sample-post.json');
           if (response.ok) {
@@ -71,14 +70,33 @@ export const useBlogPosts = () => {
           console.warn('Failed to load sample post:', err);
         }
 
-        // Try to load any .md files created by Netlify CMS
-        const possibleMdFiles = [
-          '2025-07-11-map-author_es-gavé-agrotecnología-body_en-🇲🇽-méxico-n-nfew-plants-are-as-deeply-intertwined-with-a-countrys-history-as-agave-is-with-mexico-as-the-center-of-origin-of-the-agavaceae-family-mexico-is-home-to-223-of-the-world.md'
-        ];
+        // Load any .md files created by Netlify CMS via a manifest generated at build time
+        let mdFiles: string[] = [];
+        try {
+          const idxRes = await fetch('/content/blog/index.json', { cache: 'no-cache' });
+          if (idxRes.ok) {
+            const list = await idxRes.json();
+            if (Array.isArray(list)) {
+              mdFiles = list.filter((name: string) => name.endsWith('.md'));
+            } else if (list && Array.isArray(list.files)) {
+              mdFiles = list.files.filter((name: string) => name.endsWith('.md'));
+            }
+          }
+        } catch (e) {
+          console.warn('Blog manifest not available, falling back to static list');
+        }
+
+        // Fallback to known filenames if manifest is missing
+        if (mdFiles.length === 0) {
+          mdFiles = [
+            '2025-07-11-map-author_es-gavé-agrotecnología-body_en-🇲🇽-méxico-n-nfew-plants-are-as-deeply-intertwined-with-a-countrys-history-as-agave-is-with-mexico-as-the-center-of-origin-of-the-agavaceae-family-mexico-is-home-to-223-of-the-world.md'
+          ];
+        }
         
-        for (const filename of possibleMdFiles) {
+        for (const filename of mdFiles) {
           try {
-            const response = await fetch(`/content/blog/${filename}`);
+            const encoded = encodeURIComponent(filename);
+            const response = await fetch(`/content/blog/${encoded}`);
             if (response.ok) {
               const text = await response.text();
               const frontmatterMatch = text.match(/^---\s*\n(.*?)\n---\s*\n(.*)$/s);
@@ -109,7 +127,7 @@ export const useBlogPosts = () => {
                     let value = line.substring(colonIndex + 1).trim();
                     
                     // Check if this starts a multi-line value
-                    if (value === '>-' || value === '|-' || value === '>') {
+                    if (value === '>- ' || value === '|-' || value === '>' || value === '>-') {
                       inMultiLine = true;
                       currentKey = key;
                       currentValue = '';
