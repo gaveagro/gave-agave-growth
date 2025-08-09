@@ -7,6 +7,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import InvestmentModal from '@/components/InvestmentModal';
 import { useBlogPosts } from '@/hooks/useContent';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -140,73 +142,50 @@ const BlogPost = () => {
             </div>
 
             {/* Article Content */}
-            <div className="prose prose-lg max-w-none">
-              <div className="text-lg leading-relaxed space-y-6">
-                {(language === 'EN' ? post.body_en : post.body_es)
-                  .split('\n\n')
-                  .filter(paragraph => paragraph.trim())
-                  .map((paragraph, index) => {
-                    // Handle headers
-                    if (paragraph.startsWith('## ')) {
-                      return (
-                        <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-foreground">
-                          {paragraph.replace('## ', '')}
-                        </h2>
-                      );
-                    }
-                    if (paragraph.startsWith('# ')) {
-                      return (
-                        <h1 key={index} className="text-3xl font-bold mt-8 mb-4 text-foreground">
-                          {paragraph.replace('# ', '')}
-                        </h1>
-                      );
-                    }
-                    // Handle tables (basic table rendering)
-                    if (paragraph.includes('|')) {
-                      const lines = paragraph.split('\n').filter(line => line.trim());
-                      if (lines.length > 2) {
-                        return (
-                          <div key={index} className="overflow-x-auto my-6">
-                            <table className="min-w-full border-collapse border border-border">
-                              <thead>
-                                <tr className="bg-muted">
-                                  {lines[0].split('|').filter(cell => cell.trim()).map((header, i) => (
-                                    <th key={i} className="border border-border px-4 py-2 font-semibold text-left">
-                                      {header.trim()}
-                                    </th>
-                                  ))}
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {lines.slice(2).map((row, rowIndex) => (
-                                  <tr key={rowIndex}>
-                                    {row.split('|').filter(cell => cell.trim()).map((cell, cellIndex) => (
-                                      <td key={cellIndex} className="border border-border px-4 py-2">
-                                        {cell.trim().replace(/\*\*(.*?)\*\*/g, '$1')}
-                                      </td>
-                                    ))}
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
-                        );
-                      }
-                    }
-                    // Handle bold text and links
-                    const processedText = paragraph
-                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                      .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>');
-                    
-                    return (
-                      <div 
-                        key={index} 
-                        className="text-foreground leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: processedText }}
-                      />
-                    );
-                  })}
-              </div>
+            <div className="max-w-none">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  h1: ({ node, ...props }) => (
+                    <h1 className="text-3xl md:text-4xl font-bold mt-8 mb-4 text-foreground" {...props} />
+                  ),
+                  h2: ({ node, ...props }) => (
+                    <h2 className="text-2xl md:text-3xl font-bold mt-8 mb-4 text-foreground" {...props} />
+                  ),
+                  h3: ({ node, ...props }) => (
+                    <h3 className="text-xl md:text-2xl font-semibold mt-6 mb-3 text-foreground" {...props} />
+                  ),
+                  p: ({ node, ...props }) => (
+                    <p className="text-foreground leading-relaxed mb-4" {...props} />
+                  ),
+                  ul: ({ node, ...props }) => (
+                    <ul className="list-disc pl-6 mb-4 text-foreground" {...props} />
+                  ),
+                  ol: ({ node, ...props }) => (
+                    <ol className="list-decimal pl-6 mb-4 text-foreground" {...props} />
+                  ),
+                  li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+                  a: ({ node, ...props }) => (
+                    <a className="text-primary hover:underline" target="_blank" rel="noopener noreferrer" {...props} />
+                  ),
+                  strong: ({ node, ...props }) => (
+                    <strong className="font-semibold text-foreground" {...props} />
+                  ),
+                  table: ({ node, ...props }) => (
+                    <div className="overflow-x-auto my-6">
+                      <table className="min-w-full border-collapse border border-border" {...props} />
+                    </div>
+                  ),
+                  th: ({ node, ...props }) => (
+                    <th className="border border-border px-4 py-2 font-semibold text-left bg-muted" {...props} />
+                  ),
+                  td: ({ node, ...props }) => (
+                    <td className="border border-border px-4 py-2" {...props} />
+                  ),
+                }}
+              >
+                {language === 'EN' ? post.body_en : post.body_es}
+              </ReactMarkdown>
             </div>
 
             {/* CTA Section */}
