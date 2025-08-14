@@ -41,7 +41,7 @@ const LeadCapture = () => {
       if (window.grecaptcha) return;
       
       const script = document.createElement('script');
-      script.src = 'https://www.google.com/recaptcha/api.js?render=6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft';
+      script.src = 'https://www.google.com/recaptcha/enterprise.js?render=6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft';
       script.async = true;
       script.defer = true;
       document.head.appendChild(script);
@@ -58,7 +58,7 @@ const LeadCapture = () => {
     }
 
     try {
-      const token = await window.grecaptcha.execute('6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft', { action: 'form_submit' });
+      const token = await window.grecaptcha.enterprise.execute('6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft', { action: 'form_submit' });
       return token;
     } catch (error) {
       console.error('Error generating reCAPTCHA token:', error);
