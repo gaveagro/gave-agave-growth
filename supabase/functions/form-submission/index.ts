@@ -7,6 +7,57 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+async function verifyRecaptcha(token: string): Promise<{ success: boolean; score?: number; action?: string; error?: string }> {
+  const googleApiKey = Deno.env.get('GOOGLE_API_KEY');
+  
+  if (!googleApiKey) {
+    console.error('Google API key not configured');
+    return { success: false, error: 'Google API key not configured' };
+  }
+
+  try {
+    const response = await fetch(`https://recaptchaenterprise.googleapis.com/v1/projects/gaveagro-agrotecnologia/assessments?key=${googleApiKey}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        event: {
+          token: token,
+          siteKey: '6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft',
+          expectedAction: 'form_submit'
+        }
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('reCAPTCHA Enterprise API error:', response.status, errorText);
+      return { success: false, error: `API error: ${response.status}` };
+    }
+
+    const data = await response.json();
+    console.log('reCAPTCHA verification result:', data);
+
+    const score = data.riskAnalysis?.score || 0;
+    const action = data.tokenProperties?.action;
+    const isValid = data.tokenProperties?.valid;
+
+    // Verificar que el token es válido y tiene un score aceptable (0.5 o mayor)
+    const success = isValid && score >= 0.5 && action === 'form_submit';
+
+    return {
+      success,
+      score,
+      action,
+      error: !success ? `Invalid token or low score: ${score}` : undefined
+    };
+  } catch (error) {
+    console.error('Error verifying reCAPTCHA:', error);
+    return { success: false, error: error.message };
+  }
+}
+
 interface FormSubmission {
   name: string;
   email: string;
@@ -15,6 +66,7 @@ interface FormSubmission {
   investmentModel?: string;
   message?: string;
   formType: string;
+  recaptchaToken?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -28,6 +80,32 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const formData = await req.json();
     console.log('Received form data:', formData);
+
+    // Verificar reCAPTCHA Enterprise token
+    if (formData.recaptchaToken) {
+      const recaptchaResult = await verifyRecaptcha(formData.recaptchaToken);
+      
+      if (!recaptchaResult.success) {
+        console.error('reCAPTCHA verification failed:', recaptchaResult.error);
+        return new Response(
+          JSON.stringify({ 
+            error: 'Verification failed. Please try again.',
+            details: recaptchaResult.error
+          }),
+          {
+            status: 400,
+            headers: {
+              'Content-Type': 'application/json',
+              ...corsHeaders,
+            },
+          }
+        );
+      }
+      
+      console.log('reCAPTCHA verification successful. Score:', recaptchaResult.score);
+    } else {
+      console.warn('No reCAPTCHA token provided');
+    }
 
     // Initialize Supabase client
     const supabase = createClient(
