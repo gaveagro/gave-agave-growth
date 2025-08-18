@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import NetlifyForm from './NetlifyForm';
 import { createClient } from '@supabase/supabase-js';
+import { trackFormSubmission, trackCTAClick } from '@/lib/analytics';
 
 // Configuración de Supabase
 const SUPABASE_URL = 'https://ybhbceqthsfgsjccounm.supabase.co';
@@ -160,7 +161,11 @@ const LeadCapture = () => {
 
       if (error) throw error;
 
-      // 3. Disparar evento de Meta Pixel
+      // 3. Track form submission in Google Analytics
+      trackFormSubmission('investment-lead-capture', true);
+      trackCTAClick('investment_form_submit', 'lead-capture-section');
+
+      // 4. Disparar evento de Meta Pixel
       if (!pixelTracked.current && typeof window.fbq === 'function') {
         window.fbq('track', 'Lead', {
           content_name: 'Formulario de Inversión',
@@ -177,6 +182,9 @@ const LeadCapture = () => {
       setIsSubmitted(true);
     } catch (error) {
       console.error('❌ Error al enviar el formulario:', error);
+      
+      // Track failed form submission
+      trackFormSubmission('investment-lead-capture', false);
       
       if (typeof window.fbq === 'function') {
         window.fbq('track', 'LeadError', {
