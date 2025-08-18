@@ -31,7 +31,7 @@ export const initGA = (measurementId: string) => {
 // Track page views
 export const trackPageView = (path: string, title?: string) => {
   if (typeof window.gtag === 'function') {
-    window.gtag('config', 'G-XXXXXXXXXX', {
+    window.gtag('config', 'G-G6JX7M9JHJ', {
       page_path: path,
       page_title: title || document.title,
       page_location: window.location.href
