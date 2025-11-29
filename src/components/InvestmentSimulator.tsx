@@ -10,9 +10,8 @@ const InvestmentSimulator = () => {
     return (window as any).currentLanguage || 'ES';
   });
 
-  const [plantYear, setPlantYear] = useState(2024);
+  const [plantYear, setPlantYear] = useState(2025);
   const [investmentAmount, setInvestmentAmount] = useState(50000);
-  const [weightPerPlant, setWeightPerPlant] = useState([50]);
   const [pricePerKg, setPricePerKg] = useState([12]);
   const [selectedSpecies, setSelectedSpecies] = useState('espadín');
   
@@ -96,12 +95,12 @@ const InvestmentSimulator = () => {
     'espadín': {
       name: 'Espadín',
       maturationYears: 5,
-      normalWeightRange: '30-70 kg'
+      weightPerPlant: 60
     },
     'salmiana': {
       name: 'Salmiana', 
       maturationYears: 7,
-      normalWeightRange: '40-120 kg'
+      weightPerPlant: 90
     }
   };
 
@@ -114,8 +113,16 @@ const InvestmentSimulator = () => {
 
   const getMaturationYears = () => {
     const totalMaturationYears = species[selectedSpecies as keyof typeof species].maturationYears;
-    const currentYear = new Date().getFullYear();
-    const yearsAlreadyGrown = currentYear - plantYear;
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth(); // 0-11 (enero=0, mayo=4)
+    
+    // Si es mayo (mes 4) o después, usamos el año actual como referencia
+    // Si es antes de mayo, usamos el año anterior
+    const referenceYear = currentMonth >= 4 ? currentYear : currentYear - 1;
+    
+    // Calculamos cuántos años han pasado desde la plantación hasta mayo del año de referencia
+    const yearsAlreadyGrown = referenceYear - plantYear;
     const remainingYears = Math.max(0, totalMaturationYears - yearsAlreadyGrown);
     return remainingYears;
   };
@@ -134,7 +141,8 @@ const InvestmentSimulator = () => {
   const plantPrice = getPlantPrice(plantYear);
   const plantsCount = Math.floor(investmentAmount / plantPrice);
   const maturationYears = getMaturationYears();
-  const totalWeight = plantsCount * weightPerPlant[0];
+  const weightPerPlant = species[selectedSpecies as keyof typeof species].weightPerPlant;
+  const totalWeight = plantsCount * weightPerPlant;
   const grossRevenue = totalWeight * pricePerKg[0];
   const profit = grossRevenue - investmentAmount;
   const gaveShare = profit * 0.35;
@@ -174,11 +182,11 @@ const InvestmentSimulator = () => {
                     onChange={(e) => setSelectedSpecies(e.target.value)}
                     className="w-full p-2 border border-input rounded-md bg-background"
                   >
-                    <option value="espadín">Espadín (5 {currentContent.years})</option>
-                    <option value="salmiana">Salmiana (7 {currentContent.years})</option>
+                    <option value="espadín">Espadín (5 {currentContent.years}) - 60 kg</option>
+                    <option value="salmiana">Salmiana (7 {currentContent.years}) - 90 kg</option>
                   </select>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {language === 'EN' ? 'Normal weight range:' : 'Rango normal de peso:'} {species[selectedSpecies as keyof typeof species].normalWeightRange}
+                    {language === 'EN' ? 'Weight per plant at harvest:' : 'Peso por planta a la cosecha:'} {species[selectedSpecies as keyof typeof species].weightPerPlant} kg
                   </p>
                 </div>
 
@@ -210,24 +218,6 @@ const InvestmentSimulator = () => {
                   <p className="text-xs text-muted-foreground mt-1">
                     {language === 'EN' ? 'Minimum: $50,000 MXN' : 'Mínimo: $50,000 MXN'}
                   </p>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    {currentContent.weightLabel}: {weightPerPlant[0]} kg
-                  </label>
-                  <Slider
-                    value={weightPerPlant}
-                    onValueChange={setWeightPerPlant}
-                    max={selectedSpecies === 'salmiana' ? 120 : 70}
-                    min={selectedSpecies === 'salmiana' ? 40 : 30}
-                    step={5}
-                    className="w-full"
-                  />
-                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                    <span>{selectedSpecies === 'salmiana' ? '40' : '30'} kg</span>
-                    <span>{selectedSpecies === 'salmiana' ? '120' : '70'} kg</span>
-                  </div>
                 </div>
 
                 <div>
