@@ -16,12 +16,14 @@ const Footer = () => {
     EN: {
       description: 'Technology-driven sustainable agave investment delivering profitable returns while regenerating land and supporting communities.',
       copyright: '© 2025 Gavé. All rights reserved.',
-      privacy: 'Privacy Policy'
+      privacy: 'Privacy Policy',
+      innovation: 'Innovation'
     },
     ES: {
       description: 'Inversión sustentable en agave impulsada por tecnología que entrega retornos rentables mientras regenera tierras y apoya comunidades.',
       copyright: '© 2025 Gavé. Todos los derechos reservados.',
-      privacy: 'Política de Privacidad'
+      privacy: 'Política de Privacidad',
+      innovation: 'Innovación'
     }
   };
 
@@ -57,6 +59,7 @@ const Footer = () => {
               {currentContent.copyright}
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="#innovation" className="text-gray-600 hover:text-gray-800 text-sm">{currentContent.innovation}</a>
               <a href="/privacy" className="text-gray-600 hover:text-gray-800 text-sm">{currentContent.privacy}</a>
             </div>
           </div>
