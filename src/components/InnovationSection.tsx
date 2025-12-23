@@ -29,21 +29,18 @@ const InnovationSection = () => {
         {
           icon: Dna,
           title: 'Agave Genetics & Micropropagation',
-          status: 'In development',
           description: 'We research in-vitro propagation techniques and genetic selection to preserve native varieties, improve climate resilience, and establish traceability from seed to harvest.',
           focus: ['biodiversity', 'climate adaptation', 'molecular traceability']
         },
         {
           icon: Fuel,
           title: 'Sustainable Aviation Fuel (SAF)',
-          status: 'In exploration',
           description: "We explore agave's potential as a feedstock for SAF. Its ability to grow in arid zones without competing with food crops positions it as a promising alternative for aviation decarbonization.",
           focus: ['arid lands', 'non-food competing', 'integrated value chain']
         },
         {
           icon: TreeDeciduous,
           title: 'Carbon Credits & Environmental Metrics',
-          status: 'In validation',
           description: 'We develop measurement, reporting, and verification (MRV) methodologies to quantify the environmental impact of our regenerative systems. This includes carbon sequestration, soil restoration, and biodiversity.',
           focus: ['integrated MRV', 'silvopastoral systems', 'impact certification']
         }
@@ -61,21 +58,18 @@ const InnovationSection = () => {
         {
           icon: Dna,
           title: 'Genética y Micropropagación de Agave',
-          status: 'En desarrollo',
           description: 'Investigamos técnicas de propagación in-vitro y selección genética para preservar variedades nativas, mejorar resiliencia climática y establecer trazabilidad desde la semilla hasta la cosecha.',
           focus: ['biodiversidad', 'adaptación climática', 'trazabilidad molecular']
         },
         {
           icon: Fuel,
           title: 'Combustible Sostenible de Aviación (SAF)',
-          status: 'En exploración',
           description: 'Exploramos el potencial del agave como materia prima para SAF. Su capacidad de crecer en zonas áridas sin competir con cultivos alimentarios lo posiciona como una alternativa prometedora para la descarbonización del transporte aéreo.',
           focus: ['zonas áridas', 'no compite con alimentos', 'cadena de valor integrada']
         },
         {
           icon: TreeDeciduous,
           title: 'Créditos de Carbono y Métricas Ambientales',
-          status: 'En validación',
           description: 'Desarrollamos metodologías de medición, reporte y verificación (MRV) para cuantificar el impacto ambiental de nuestros sistemas regenerativos. Esto incluye captura de carbono, restauración de suelo y biodiversidad.',
           focus: ['MRV integrado', 'sistemas agrosilvopastoriles', 'certificación de impacto']
         }
@@ -121,14 +115,11 @@ const InnovationSection = () => {
             return (
               <Card key={index} className="border border-border/50 bg-background shadow-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  {/* Icon and Status */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="p-3 rounded-lg bg-primary/10">
+                  {/* Icon */}
+                  <div className="mb-4">
+                    <div className="p-3 rounded-lg bg-primary/10 inline-block">
                       <IconComponent className="w-6 h-6 text-primary" />
                     </div>
-                    <span className="text-xs font-medium px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                      {line.status}
-                    </span>
                   </div>
 
                   {/* Title */}
