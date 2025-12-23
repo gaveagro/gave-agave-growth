@@ -8,6 +8,7 @@ import AgaveMarket from '@/components/AgaveMarket';
 import OurFarms from '@/components/OurFarms';
 import MonitoringPlatform from '@/components/MonitoringPlatform';
 import InvestmentSimulator from '@/components/InvestmentSimulator';
+import InnovationSection from '@/components/InnovationSection';
 import Testimonials from '@/components/Testimonials';
 import Blog from '@/components/Blog';
 import FAQ from '@/components/FAQ';
@@ -25,6 +26,7 @@ const Index = () => {
       <AgaveMarket />
       <OurFarms />
       <MonitoringPlatform />
+      <InnovationSection />
       <Testimonials />
       <Blog />
       <FAQ />
