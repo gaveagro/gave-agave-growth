@@ -1,60 +1,64 @@
 
 
-## Plan: Actualización del Simulador de Inversión
+## Plan: Actualizar Tiempo de Maduración Dinámico
+
+### Situación Actual
+
+La función `getMaturationYears()` (líneas 117-131) calcula los años restantes usando mayo como punto de referencia anual. Esto causa que los cálculos no coincidan exactamente con los valores esperados.
 
 ### Cambios Requeridos
 
-#### 1. Actualizar años de planta disponibles
-- **Eliminar**: 2021, 2022, 2023
-- **Mantener**: 2024, 2025
-- **Añadir**: 2026
+Simplificar la función `getMaturationYears()` para calcular directamente la diferencia entre el año actual (2026) y el año de plantación, restándola del tiempo total de maduración:
 
-#### 2. Actualizar precios por año de planta
-| Año | Precio (MXN) |
-|-----|--------------|
-| 2026 | $250 |
-| 2025 | $300 |
-| 2024 | $350 |
+| Año de Planta | Tiempo Total | Años Transcurridos | Tiempo Restante |
+|---------------|--------------|-------------------|-----------------|
+| 2026 | 5.5 años | 0 | 5.5 años |
+| 2025 | 5.5 años | 1 | 4.5 años |
+| 2024 | 5.5 años | 2 | 3.5 años |
 
-#### 3. Actualizar tiempo de maduración de Espadín
-- **Antes**: 5 años
-- **Después**: 5.5 años
+### Archivo a Modificar
 
-El tiempo de maduración de Salmiana permanece en 7 años.
+**`src/components/InvestmentSimulator.tsx`**
 
-#### 4. Actualizar cálculos de ROI
-El ROI anual se calculará usando 5.5 años para Espadín en lugar de 5 años.
+#### Cambio en la función `getMaturationYears()` (líneas 117-131)
 
-### Archivos a Modificar
+Reemplazar la lógica actual con una versión simplificada:
 
-**`src/components/InvestmentSimulator.tsx`**:
-
-1. **Línea 97**: Cambiar `maturationYears: 5` a `maturationYears: 5.5` en el objeto `species.espadín`
-
-2. **Líneas 107-112**: Reemplazar la función `getPlantPrice` con una nueva lógica que use los precios específicos:
 ```tsx
-const getPlantPrice = (year: number) => {
-  const prices: { [key: number]: number } = {
-    2024: 350,
-    2025: 300,
-    2026: 250
-  };
-  return prices[year] || 250;
+const getMaturationYears = () => {
+  const totalMaturationYears = species[selectedSpecies as keyof typeof species].maturationYears;
+  const currentYear = new Date().getFullYear(); // 2026
+  
+  // Calcular años transcurridos desde la plantación
+  const yearsElapsed = currentYear - plantYear;
+  
+  // Restar del tiempo total de maduración
+  const remainingYears = Math.max(0, totalMaturationYears - yearsElapsed);
+  return remainingYears;
 };
 ```
 
-3. **Líneas 185-186**: Actualizar el texto del selector de especies para mostrar "5.5 años" en lugar de "5 años"
+### Resultado Esperado
 
-4. **Líneas 200-205**: Reemplazar las opciones del selector de año de planta:
+Con esta lógica y la fecha actual (febrero 2026):
+
+**Para Espadín (5.5 años de maduración total):**
+- Plantas 2026: 5.5 - 0 = **5.5 años restantes**
+- Plantas 2025: 5.5 - 1 = **4.5 años restantes**
+- Plantas 2024: 5.5 - 2 = **3.5 años restantes**
+
+**Para Salmiana (7 años de maduración total):**
+- Plantas 2026: 7 - 0 = **7 años restantes**
+- Plantas 2025: 7 - 1 = **6 años restantes**
+- Plantas 2024: 7 - 2 = **5 años restantes**
+
+### Impacto en Cálculos Financieros
+
+Los cálculos de ROI anual se ajustarán automáticamente porque ya usan `maturationYears` en la fórmula:
+
 ```tsx
-<option value={2024}>2024 - $350 MXN</option>
-<option value={2025}>2025 - $300 MXN</option>
-<option value={2026}>2026 - $250 MXN</option>
+const annualROI = totalROI / maturationYears;
 ```
 
-### Detalles Técnicos
-
-- El campo `maturationYears` cambiará de `number` entero a `number` decimal (5.5)
-- Los cálculos de ROI ya usan `maturationYears` directamente, por lo que se actualizarán automáticamente
-- El cálculo dinámico de años restantes (`getMaturationYears`) seguirá funcionando correctamente con el nuevo valor base de 5.5 años
+Esto significa que plantas más antiguas (2024) mostrarán un ROI anual más alto debido al menor tiempo restante hasta la cosecha.
 
