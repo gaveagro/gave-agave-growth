@@ -10,7 +10,7 @@ const InvestmentSimulator = () => {
     return (window as any).currentLanguage || 'ES';
   });
 
-  const [plantYear, setPlantYear] = useState(2025);
+  const [plantYear, setPlantYear] = useState(2026);
   const [investmentAmount, setInvestmentAmount] = useState(50000);
   const [pricePerKg, setPricePerKg] = useState([12]);
   const [selectedSpecies, setSelectedSpecies] = useState('espadín');
