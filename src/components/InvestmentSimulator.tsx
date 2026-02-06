@@ -94,7 +94,7 @@ const InvestmentSimulator = () => {
   const species = {
     'espadín': {
       name: 'Espadín',
-      maturationYears: 5,
+      maturationYears: 5.5,
       weightPerPlant: 60
     },
     'salmiana': {
@@ -106,9 +106,12 @@ const InvestmentSimulator = () => {
 
   // Pricing logic
   const getPlantPrice = (year: number) => {
-    const basePrice = 250;
-    const yearDiff = 2025 - year;
-    return basePrice + (yearDiff * 50);
+    const prices: { [key: number]: number } = {
+      2024: 350,
+      2025: 300,
+      2026: 250
+    };
+    return prices[year] || 250;
   };
 
   const getMaturationYears = () => {
@@ -182,7 +185,7 @@ const InvestmentSimulator = () => {
                     onChange={(e) => setSelectedSpecies(e.target.value)}
                     className="w-full p-2 border border-input rounded-md bg-background"
                   >
-                    <option value="espadín">Espadín (5 {currentContent.years}) - 60 kg</option>
+                    <option value="espadín">Espadín (5.5 {currentContent.years}) - 60 kg</option>
                     <option value="salmiana">Salmiana (7 {currentContent.years}) - 90 kg</option>
                   </select>
                   <p className="text-xs text-muted-foreground mt-1">
@@ -197,11 +200,9 @@ const InvestmentSimulator = () => {
                     onChange={(e) => setPlantYear(Number(e.target.value))}
                     className="w-full p-2 border border-input rounded-md bg-background"
                   >
-                    <option value={2021}>2021 - $450 MXN</option>
-                    <option value={2022}>2022 - $400 MXN</option>
-                    <option value={2023}>2023 - $350 MXN</option>
-                    <option value={2024}>2024 - $300 MXN</option>
-                    <option value={2025}>2025 - $250 MXN</option>
+                    <option value={2024}>2024 - $350 MXN</option>
+                    <option value={2025}>2025 - $300 MXN</option>
+                    <option value={2026}>2026 - $250 MXN</option>
                   </select>
                 </div>
 
