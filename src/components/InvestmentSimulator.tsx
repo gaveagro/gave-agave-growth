@@ -116,17 +116,13 @@ const InvestmentSimulator = () => {
 
   const getMaturationYears = () => {
     const totalMaturationYears = species[selectedSpecies as keyof typeof species].maturationYears;
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth(); // 0-11 (enero=0, mayo=4)
+    const currentYear = new Date().getFullYear();
     
-    // Si es mayo (mes 4) o después, usamos el año actual como referencia
-    // Si es antes de mayo, usamos el año anterior
-    const referenceYear = currentMonth >= 4 ? currentYear : currentYear - 1;
+    // Calcular años transcurridos desde la plantación
+    const yearsElapsed = currentYear - plantYear;
     
-    // Calculamos cuántos años han pasado desde la plantación hasta mayo del año de referencia
-    const yearsAlreadyGrown = referenceYear - plantYear;
-    const remainingYears = Math.max(0, totalMaturationYears - yearsAlreadyGrown);
+    // Restar del tiempo total de maduración
+    const remainingYears = Math.max(0, totalMaturationYears - yearsElapsed);
     return remainingYears;
   };
 
