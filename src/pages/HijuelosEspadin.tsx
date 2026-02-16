@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HijuelosHero from '@/components/hijuelos/HijuelosHero';
@@ -9,6 +10,37 @@ import HijuelosContacto from '@/components/hijuelos/HijuelosContacto';
 import Footer from '@/components/Footer';
 
 const HijuelosEspadin = () => {
+  useEffect(() => {
+    const ogTags: Record<string, string> = {
+      'og:title': 'Hijuelos de Agave Espadín — Gavé Agrotecnología',
+      'og:description': 'Hijuelos de Agave Espadín certificados desde la Huasteca Potosina. Asesoría técnica, logística y registro ante el CRM incluidos. Cotiza hoy.',
+      'og:image': 'https://gave-agave-growth.lovable.app/images/especies-de-agave-para-mezcal-gavé.jpg',
+      'og:url': 'https://gave-agave-growth.lovable.app/hijuelos-espadin',
+      'og:type': 'website',
+    };
+
+    const existingTags: HTMLMetaElement[] = [];
+
+    Object.entries(ogTags).forEach(([property, content]) => {
+      let meta = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('property', property);
+        document.head.appendChild(meta);
+        existingTags.push(meta);
+      }
+      meta.setAttribute('content', content);
+    });
+
+    const prevTitle = document.title;
+    document.title = 'Hijuelos de Agave Espadín — Gavé Agrotecnología';
+
+    return () => {
+      document.title = prevTitle;
+      existingTags.forEach(tag => tag.remove());
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Simplified header */}
