@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
 import { createClient } from '@supabase/supabase-js';
 import { trackFormSubmission } from '@/lib/analytics';
 
@@ -160,18 +160,12 @@ const HijuelosContacto = () => {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">Región / Municipio</label>
-                  <Select value={formData.region} onValueChange={v => handleChange('region', v)} disabled={isSubmitting}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecciona tu región" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="huasteca-potosina">Huasteca Potosina</SelectItem>
-                      <SelectItem value="tamaulipas">Tamaulipas (DO Mezcal)</SelectItem>
-                      <SelectItem value="aguascalientes">Aguascalientes</SelectItem>
-                      <SelectItem value="guanajuato">Guanajuato</SelectItem>
-                      <SelectItem value="otra">Otra región</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Input
+                    placeholder="Ej. Tamasopo, S.L.P."
+                    value={formData.region}
+                    onChange={e => handleChange('region', e.target.value)}
+                    disabled={isSubmitting}
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Plantas estimadas</label>
