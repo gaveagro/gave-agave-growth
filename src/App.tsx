@@ -10,6 +10,7 @@ import BlogPost from "./pages/BlogPost";
 import AdminPanel from "./pages/AdminPanel";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
+import HijuelosEspadin from "./pages/HijuelosEspadin";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const AppWithAnalytics = () => {
       <Route path="/blog/:id" element={<BlogPost />} />
       <Route path="/admin" element={<AdminPanel />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/hijuelos-espadin" element={<HijuelosEspadin />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
