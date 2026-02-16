@@ -1,80 +1,53 @@
 
 
-## Plan: Landing Page de Venta de Hijuelos de Agave Espadin
+## Plan: Mejoras a la Landing Page de Hijuelos Espadin
 
-### Resumen
+### 1. Eliminar texto "Gave" del header
 
-Crear una nueva pagina `/hijuelos-espadin` como landing page independiente para campanas de venta de plantas de hijuelos de agave espadin, dirigida a productores y propietarios de tierra en regiones aptas para el cultivo.
+**Archivo**: `src/pages/HijuelosEspadin.tsx`
 
-### Estructura de la Landing Page
+Eliminar el `<span className="font-bold">Gave</span>` del header, dejando solo el logotipo.
 
-La pagina tendra las siguientes secciones:
+### 2. Mejorar visibilidad del boton "Simular Rentabilidad" en el hero
 
-1. **Hero** - Titulo llamativo con imagen de fondo de agave, CTA principal de contacto
-2. **Propuesta de valor** - Beneficios clave del cultivo de espadin (sin riego, adaptado a la region, alta rentabilidad)
-3. **Regiones objetivo** - Huasteca Potosina, municipios de Tamaulipas con DO mezcal, Aguascalientes, Guanajuato
-4. **Precios y volumenes** - Tabla de precios segun talla y volumen ($25-$45 por hijuelo)
-5. **Diseno de plantacion** - Densidad recomendada: 2,400 plantas/hectarea
-6. **Simulador de rentabilidad del productor** - Herramienta interactiva donde el productor simula:
-   - Numero de plantas a establecer
-   - Peso por planta a cosecha (default 60 kg)
-   - Precio por kg de venta ($6-$18)
-   - Costo de cultivo por planta ($200-$250)
-   - Tiempo de maduracion (5-6 anos)
-   - Calculo de inversion total, ingresos brutos, costos totales y ganancia neta
-7. **Servicios incluidos** - Asesoria tecnica, acompanamiento, guia de registro ante consejos reguladores
-8. **Posible compra de cosecha** - Mencion de la posibilidad de comprar la cosecha dependiendo del volumen
-9. **Formulario de contacto / CTA** - Formulario para que el productor solicite informacion o cotizacion
+**Archivo**: `src/components/hijuelos/HijuelosHero.tsx`
 
-### Archivos a Crear
+Cambiar el estilo del boton outline para que sea visualmente distinguible del fondo oscuro. Se usara un fondo blanco semi-transparente con texto blanco y borde blanco visible, en lugar del outline transparente actual.
 
-1. **`src/pages/HijuelosEspadin.tsx`** - Pagina principal de la landing
-2. **`src/components/hijuelos/HijuelosHero.tsx`** - Seccion hero
-3. **`src/components/hijuelos/HijuelosBeneficios.tsx`** - Beneficios y regiones
-4. **`src/components/hijuelos/HijuelosPrecios.tsx`** - Tabla de precios
-5. **`src/components/hijuelos/HijuelosSimulador.tsx`** - Simulador de rentabilidad
-6. **`src/components/hijuelos/HijuelosServicios.tsx`** - Servicios y acompanamiento
-7. **`src/components/hijuelos/HijuelosContacto.tsx`** - Formulario de contacto
+### 3. Actualizar contenido sobre Denominacion de Origen
 
-### Archivos a Modificar
+**Archivo**: `src/components/hijuelos/HijuelosBeneficios.tsx`
 
-1. **`src/App.tsx`** - Agregar ruta `/hijuelos-espadin`
+Reescribir la seccion de regiones y el card de Denominacion de Origen para reflejar correctamente que:
+- Las plantas estan en parcelas de la Huasteca Potosina
+- Los estados vecinos con DO de mezcal son candidatos ideales por cercania y logistica
+- El factor clave es el clima: humedad adecuada y ausencia historica de heladas
+- No es exclusivo de esos estados, pero les resulta mas conveniente comprar espadin de la Huasteca que de Oaxaca
 
-### Detalles Tecnicos
+### 4. Agregar imagenes reales de agave
 
-#### Simulador de Rentabilidad (componente principal)
+Copiar las 7 imagenes subidas al proyecto y distribuirlas en las secciones de la landing:
 
-Parametros de entrada:
-- **Numero de plantas**: slider o input numerico (default: 2,400 - una hectarea)
-- **Peso por planta a cosecha**: slider (rango 40-80 kg, default 60 kg)
-- **Precio por kg**: slider (rango $6-$18, default $12)
-- **Costo de cultivo por planta**: slider (rango $200-$250, default $225)
-- **Tiempo de maduracion**: selector (5, 5.5, 6 anos)
+- **Hero**: Usar la imagen de la plantacion con trabajadores (`Copia_de_DSC_0477_3_-min.JPG`) como fondo o imagen destacada
+- **Beneficios**: Usar la imagen panoramica de plantacion (`Espadin1.jpg`)
+- **Precios/Producto**: Usar las fotos de hijuelos individuales (`IMG_4597.JPG`, `IMG_4598.JPG`, `IMG_4601.JPG`) en una galeria o carrusel
+- **Servicios**: Usar la imagen de carga de hijuelos (`2138b49e...jpg`)
+- **Hero o seccion visual**: Usar la foto de raices (`IMG_4599.JPG`) y la plantacion (`Espadin.jpg`)
 
-Calculos:
-```
-Inversion en hijuelos = numPlantas * precioHijuelo (basado en volumen)
-Costo total de cultivo = numPlantas * costoPorPlanta
-Inversion total = inversionHijuelos + costoCultivo
-Ingreso bruto = numPlantas * pesoPlanta * precioPorKg
-Ganancia neta = ingresoBruto - inversionTotal
-ROI total = (ganancia / inversionTotal) * 100
-ROI anual = ROI total / anosMaduracion
-```
+### Archivos a modificar
 
-#### Formulario de Contacto
+| Archivo | Cambio |
+|---------|--------|
+| `src/pages/HijuelosEspadin.tsx` | Eliminar texto "Gave" del header |
+| `src/components/hijuelos/HijuelosHero.tsx` | Mejorar boton "Simular Rentabilidad", agregar imagen de fondo |
+| `src/components/hijuelos/HijuelosBeneficios.tsx` | Actualizar texto de DO y regiones, agregar imagen |
+| `src/components/hijuelos/HijuelosPrecios.tsx` | Agregar galeria de fotos de hijuelos |
+| `src/components/hijuelos/HijuelosServicios.tsx` | Agregar imagen de operaciones |
 
-Enviara datos via la misma edge function `form-submission` existente en Supabase, con un `formType` distinto (`hijuelos-espadin-lead`). Campos: nombre, telefono, email, municipio/region, numero estimado de plantas, mensaje.
+### Detalles tecnicos
 
-#### Diseno Visual
-
-- Reutiliza los colores del brand de Gave (verde, amarillo, arena)
-- Header simplificado con logo y link de regreso a la pagina principal
-- Footer reutilizado del componente existente
-- Solo en espanol (es una campana local en Mexico)
-- Responsive para movil (los productores probablemente veran esto desde su celular)
-
-#### Precios del Hijuelo segun Volumen (para el simulador)
-
-Se manejara un rango de $25-$45 por hijuelo. El simulador usara un precio promedio que el productor puede ajustar, o una tabla escalonada simplificada.
+- Las imagenes se copiaran a `src/assets/hijuelos/` y se importaran como modulos ES6
+- Se optimizara el layout para mostrar las imagenes de forma responsive
+- El boton "Simular Rentabilidad" usara clases como `bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30` para mayor contraste
+- El contenido de regiones se reestructurara para enfatizar la ventaja logistica de comprar desde la Huasteca
 
