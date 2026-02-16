@@ -1,64 +1,80 @@
 
 
-## Plan: Actualizar Tiempo de Maduración Dinámico
+## Plan: Landing Page de Venta de Hijuelos de Agave Espadin
 
-### Situación Actual
+### Resumen
 
-La función `getMaturationYears()` (líneas 117-131) calcula los años restantes usando mayo como punto de referencia anual. Esto causa que los cálculos no coincidan exactamente con los valores esperados.
+Crear una nueva pagina `/hijuelos-espadin` como landing page independiente para campanas de venta de plantas de hijuelos de agave espadin, dirigida a productores y propietarios de tierra en regiones aptas para el cultivo.
 
-### Cambios Requeridos
+### Estructura de la Landing Page
 
-Simplificar la función `getMaturationYears()` para calcular directamente la diferencia entre el año actual (2026) y el año de plantación, restándola del tiempo total de maduración:
+La pagina tendra las siguientes secciones:
 
-| Año de Planta | Tiempo Total | Años Transcurridos | Tiempo Restante |
-|---------------|--------------|-------------------|-----------------|
-| 2026 | 5.5 años | 0 | 5.5 años |
-| 2025 | 5.5 años | 1 | 4.5 años |
-| 2024 | 5.5 años | 2 | 3.5 años |
+1. **Hero** - Titulo llamativo con imagen de fondo de agave, CTA principal de contacto
+2. **Propuesta de valor** - Beneficios clave del cultivo de espadin (sin riego, adaptado a la region, alta rentabilidad)
+3. **Regiones objetivo** - Huasteca Potosina, municipios de Tamaulipas con DO mezcal, Aguascalientes, Guanajuato
+4. **Precios y volumenes** - Tabla de precios segun talla y volumen ($25-$45 por hijuelo)
+5. **Diseno de plantacion** - Densidad recomendada: 2,400 plantas/hectarea
+6. **Simulador de rentabilidad del productor** - Herramienta interactiva donde el productor simula:
+   - Numero de plantas a establecer
+   - Peso por planta a cosecha (default 60 kg)
+   - Precio por kg de venta ($6-$18)
+   - Costo de cultivo por planta ($200-$250)
+   - Tiempo de maduracion (5-6 anos)
+   - Calculo de inversion total, ingresos brutos, costos totales y ganancia neta
+7. **Servicios incluidos** - Asesoria tecnica, acompanamiento, guia de registro ante consejos reguladores
+8. **Posible compra de cosecha** - Mencion de la posibilidad de comprar la cosecha dependiendo del volumen
+9. **Formulario de contacto / CTA** - Formulario para que el productor solicite informacion o cotizacion
 
-### Archivo a Modificar
+### Archivos a Crear
 
-**`src/components/InvestmentSimulator.tsx`**
+1. **`src/pages/HijuelosEspadin.tsx`** - Pagina principal de la landing
+2. **`src/components/hijuelos/HijuelosHero.tsx`** - Seccion hero
+3. **`src/components/hijuelos/HijuelosBeneficios.tsx`** - Beneficios y regiones
+4. **`src/components/hijuelos/HijuelosPrecios.tsx`** - Tabla de precios
+5. **`src/components/hijuelos/HijuelosSimulador.tsx`** - Simulador de rentabilidad
+6. **`src/components/hijuelos/HijuelosServicios.tsx`** - Servicios y acompanamiento
+7. **`src/components/hijuelos/HijuelosContacto.tsx`** - Formulario de contacto
 
-#### Cambio en la función `getMaturationYears()` (líneas 117-131)
+### Archivos a Modificar
 
-Reemplazar la lógica actual con una versión simplificada:
+1. **`src/App.tsx`** - Agregar ruta `/hijuelos-espadin`
 
-```tsx
-const getMaturationYears = () => {
-  const totalMaturationYears = species[selectedSpecies as keyof typeof species].maturationYears;
-  const currentYear = new Date().getFullYear(); // 2026
-  
-  // Calcular años transcurridos desde la plantación
-  const yearsElapsed = currentYear - plantYear;
-  
-  // Restar del tiempo total de maduración
-  const remainingYears = Math.max(0, totalMaturationYears - yearsElapsed);
-  return remainingYears;
-};
+### Detalles Tecnicos
+
+#### Simulador de Rentabilidad (componente principal)
+
+Parametros de entrada:
+- **Numero de plantas**: slider o input numerico (default: 2,400 - una hectarea)
+- **Peso por planta a cosecha**: slider (rango 40-80 kg, default 60 kg)
+- **Precio por kg**: slider (rango $6-$18, default $12)
+- **Costo de cultivo por planta**: slider (rango $200-$250, default $225)
+- **Tiempo de maduracion**: selector (5, 5.5, 6 anos)
+
+Calculos:
+```
+Inversion en hijuelos = numPlantas * precioHijuelo (basado en volumen)
+Costo total de cultivo = numPlantas * costoPorPlanta
+Inversion total = inversionHijuelos + costoCultivo
+Ingreso bruto = numPlantas * pesoPlanta * precioPorKg
+Ganancia neta = ingresoBruto - inversionTotal
+ROI total = (ganancia / inversionTotal) * 100
+ROI anual = ROI total / anosMaduracion
 ```
 
-### Resultado Esperado
+#### Formulario de Contacto
 
-Con esta lógica y la fecha actual (febrero 2026):
+Enviara datos via la misma edge function `form-submission` existente en Supabase, con un `formType` distinto (`hijuelos-espadin-lead`). Campos: nombre, telefono, email, municipio/region, numero estimado de plantas, mensaje.
 
-**Para Espadín (5.5 años de maduración total):**
-- Plantas 2026: 5.5 - 0 = **5.5 años restantes**
-- Plantas 2025: 5.5 - 1 = **4.5 años restantes**
-- Plantas 2024: 5.5 - 2 = **3.5 años restantes**
+#### Diseno Visual
 
-**Para Salmiana (7 años de maduración total):**
-- Plantas 2026: 7 - 0 = **7 años restantes**
-- Plantas 2025: 7 - 1 = **6 años restantes**
-- Plantas 2024: 7 - 2 = **5 años restantes**
+- Reutiliza los colores del brand de Gave (verde, amarillo, arena)
+- Header simplificado con logo y link de regreso a la pagina principal
+- Footer reutilizado del componente existente
+- Solo en espanol (es una campana local en Mexico)
+- Responsive para movil (los productores probablemente veran esto desde su celular)
 
-### Impacto en Cálculos Financieros
+#### Precios del Hijuelo segun Volumen (para el simulador)
 
-Los cálculos de ROI anual se ajustarán automáticamente porque ya usan `maturationYears` en la fórmula:
-
-```tsx
-const annualROI = totalROI / maturationYears;
-```
-
-Esto significa que plantas más antiguas (2024) mostrarán un ROI anual más alto debido al menor tiempo restante hasta la cosecha.
+Se manejara un rango de $25-$45 por hijuelo. El simulador usara un precio promedio que el productor puede ajustar, o una tabla escalonada simplificada.
 
