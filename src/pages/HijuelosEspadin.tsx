@@ -22,7 +22,7 @@ const HijuelosEspadin = () => {
                 alt="Gavé"
                 className="w-10 h-10 object-contain"
               />
-              <span className="font-bold">Gavé</span>
+              
             </Link>
             <a
               href="#contacto"

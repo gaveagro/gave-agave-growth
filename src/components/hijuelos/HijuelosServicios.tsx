@@ -1,4 +1,5 @@
 import { Sprout, PhoneCall, FileCheck, Handshake } from 'lucide-react';
+import cargaImg from '@/assets/hijuelos/carga-hijuelos.jpg';
 
 const servicios = [
   {
@@ -36,18 +37,23 @@ const HijuelosServicios = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {servicios.map((s, i) => (
-            <div key={i} className="flex gap-5">
-              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                <s.icon className="w-7 h-7 text-primary" />
+        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
+          <div className="space-y-8">
+            {servicios.map((s, i) => (
+              <div key={i} className="flex gap-5">
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <s.icon className="w-7 h-7 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{s.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{s.description}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{s.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{s.description}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="rounded-2xl overflow-hidden shadow-lg">
+            <img src={cargaImg} alt="Carga y transporte de hijuelos de agave espadín" className="w-full h-96 object-cover" />
+          </div>
         </div>
       </div>
     </section>
