@@ -1,5 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
+import hijuelo1 from '@/assets/hijuelos/hijuelo-1.jpg';
+import hijuelo2 from '@/assets/hijuelos/hijuelo-2.jpg';
+import hijuelo3 from '@/assets/hijuelos/hijuelo-3.jpg';
+import hijueloRaices from '@/assets/hijuelos/hijuelo-raices.jpg';
 
 const precios = [
   {
@@ -24,6 +28,8 @@ const precios = [
     destacado: false,
   },
 ];
+
+const galeria = [hijuelo1, hijuelo2, hijueloRaices, hijuelo3];
 
 const HijuelosPrecios = () => {
   return (
@@ -59,6 +65,15 @@ const HijuelosPrecios = () => {
                 </div>
               </CardContent>
             </Card>
+          ))}
+        </div>
+
+        {/* Galería de hijuelos */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+          {galeria.map((img, i) => (
+            <div key={i} className="rounded-xl overflow-hidden shadow-md aspect-square">
+              <img src={img} alt={`Hijuelo de agave espadín ${i + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+            </div>
           ))}
         </div>
 

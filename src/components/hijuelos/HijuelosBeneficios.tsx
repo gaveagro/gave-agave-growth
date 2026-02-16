@@ -1,5 +1,6 @@
 import { Droplets, Sun, MapPin, TrendingUp, Leaf, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import espadinPanoramica from '@/assets/hijuelos/espadin-panoramica.jpg';
 
 const beneficios = [
   {
@@ -10,7 +11,7 @@ const beneficios = [
   {
     icon: Sun,
     title: 'Adaptado al Clima',
-    description: 'Especie probada en la Huasteca Potosina y regiones cálidas sin riesgo de heladas.'
+    description: 'Especie probada en la Huasteca Potosina y regiones cálidas con humedad adecuada y sin riesgo histórico de heladas.'
   },
   {
     icon: TrendingUp,
@@ -19,26 +20,26 @@ const beneficios = [
   },
   {
     icon: MapPin,
-    title: 'Denominación de Origen',
-    description: 'Regiones elegibles para producción de mezcal con DO: Tamaulipas, San Luis Potosí, Aguascalientes, Guanajuato.'
+    title: 'Ventaja Logística',
+    description: 'Nuestras parcelas están en la Huasteca Potosina, lo que ofrece cercanía y menor costo de flete frente a proveedores de Oaxaca.'
   },
   {
     icon: Leaf,
     title: 'Bajo Mantenimiento',
-    description: 'Costo de cultivo integral de $200-$250 por planta durante todo el ciclo productivo.'
+    description: 'Costo de cultivo integral de $200-$250 por planta durante todo el ciclo productivo de 5-6 años.'
   },
   {
     icon: Shield,
     title: 'Acompañamiento Técnico',
-    description: 'Asesoría en establecimiento, monitoreo durante el ciclo y guía para registro ante consejos reguladores.'
+    description: 'Asesoría en establecimiento, monitoreo durante el ciclo y guía para registro ante consejos reguladores de mezcal.'
   }
 ];
 
 const regiones = [
-  { nombre: 'Huasteca Potosina', detalle: 'Clima ideal, tradición agavera' },
-  { nombre: 'Tamaulipas (DO Mezcal)', detalle: 'Municipios con Denominación de Origen' },
-  { nombre: 'Aguascalientes', detalle: 'Condiciones agroclimáticas aptas' },
-  { nombre: 'Guanajuato', detalle: 'Zonas libres de heladas' },
+  { nombre: 'Huasteca Potosina', detalle: 'Origen de nuestras plantas, clima ideal y tradición agavera' },
+  { nombre: 'Tamaulipas (DO Mezcal)', detalle: 'Municipios vecinos con Denominación de Origen, excelente logística' },
+  { nombre: 'Aguascalientes', detalle: 'Zonas con condiciones agroclimáticas aptas y sin heladas' },
+  { nombre: 'Guanajuato', detalle: 'Regiones cálidas con humedad adecuada para espadín' },
 ];
 
 const HijuelosBeneficios = () => {
@@ -55,29 +56,36 @@ const HijuelosBeneficios = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {beneficios.map((b, i) => (
-            <Card key={i} className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6 flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <b.icon className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">{b.title}</h3>
-                  <p className="text-muted-foreground text-sm">{b.description}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="grid lg:grid-cols-2 gap-12 mb-20 items-center">
+          <div className="grid sm:grid-cols-2 gap-6">
+            {beneficios.map((b, i) => (
+              <Card key={i} className="border-none shadow-md hover:shadow-lg transition-shadow">
+                <CardContent className="p-5 flex gap-3">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <b.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1 text-sm">{b.title}</h3>
+                    <p className="text-muted-foreground text-xs">{b.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="rounded-2xl overflow-hidden shadow-lg">
+            <img src={espadinPanoramica} alt="Plantación panorámica de agave espadín en la Huasteca Potosina" className="w-full h-80 object-cover" />
+          </div>
         </div>
 
         {/* Regiones */}
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Regiones Objetivo
+            Regiones Ideales por Cercanía
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Dirigido a productores y propietarios de tierra en zonas aptas para el cultivo de agave espadín (sin heladas).
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Nuestras plantas se encuentran en parcelas de la Huasteca Potosina. Los estados vecinos con Denominación de Origen de Mezcal 
+            son los candidatos ideales por cercanía logística y condiciones agroclimáticas: humedad adecuada y ausencia histórica de heladas. 
+            Comprarnos resulta más conveniente que traer espadín desde Oaxaca.
           </p>
         </div>
 
