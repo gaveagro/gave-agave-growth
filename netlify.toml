@@ -16,6 +16,12 @@
   to = "/admin/index.html"
   status = 200
 
+# Landing de hijuelos con OG tags estáticos (para WhatsApp/redes)
+[[redirects]]
+  from = "/hijuelos-espadin"
+  to = "/hijuelos-espadin.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
