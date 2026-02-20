@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "node scripts/generate-content.js && npm run build"
+  command = "node scripts/generate-content.js && npm run build && node scripts/inject-og-tags.js"
 
 [build.environment]
   NODE_VERSION = "18"
