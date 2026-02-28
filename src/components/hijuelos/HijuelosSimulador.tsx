@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { TrendingUp, DollarSign, BarChart3, Clock } from 'lucide-react';
+import { TrendingUp, DollarSign, BarChart3, Clock, Info } from 'lucide-react';
 
 const HijuelosSimulador = () => {
   const [numPlantas, setNumPlantas] = useState(2400);
-  const [pesoPlanta, setPesoPlanta] = useState(60);
   const [precioPorKg, setPrecioPorKg] = useState(12);
-  const [costoCultivo, setCostoCultivo] = useState(225);
-  const [precioHijuelo, setPrecioHijuelo] = useState(35);
-  const [anosMaduracion, setAnosMaduracion] = useState('5.5');
 
-  const anos = parseFloat(anosMaduracion);
+  const precioHijuelo = 25;
+  const pesoPlanta = 60;
+  const costoCultivo = 180;
+  const anos = 5.5;
+
   const inversionHijuelos = numPlantas * precioHijuelo;
   const costoTotalCultivo = numPlantas * costoCultivo;
   const inversionTotal = inversionHijuelos + costoTotalCultivo;
@@ -33,7 +32,7 @@ const HijuelosSimulador = () => {
             Simulador de Rentabilidad
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Calcula tu inversión y retorno estimado como productor de agave espadín. Ajusta los parámetros según tu plan.
+            Calcula tu inversión y retorno estimado como productor de agave espadín. Ajusta el número de plantas y el precio de venta.
           </p>
         </div>
 
@@ -44,7 +43,7 @@ const HijuelosSimulador = () => {
               <CardTitle className="text-lg">Parámetros de tu Plantación</CardTitle>
             </CardHeader>
             <CardContent className="space-y-8">
-              {/* Num plantas */}
+              {/* Num plantas - slider */}
               <div>
                 <div className="flex justify-between mb-2">
                   <label className="text-sm font-medium text-foreground">Número de plantas</label>
@@ -64,43 +63,7 @@ const HijuelosSimulador = () => {
                 </div>
               </div>
 
-              {/* Precio hijuelo */}
-              <div>
-                <div className="flex justify-between mb-2">
-                  <label className="text-sm font-medium text-foreground">Precio por hijuelo</label>
-                  <span className="text-sm font-semibold text-primary">{formatMXN(precioHijuelo)}</span>
-                </div>
-                <Slider
-                  value={[precioHijuelo]}
-                  onValueChange={([v]) => setPrecioHijuelo(v)}
-                  min={25}
-                  max={45}
-                  step={1}
-                />
-                <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                  <span>$25</span><span>$45</span>
-                </div>
-              </div>
-
-              {/* Peso planta */}
-              <div>
-                <div className="flex justify-between mb-2">
-                  <label className="text-sm font-medium text-foreground">Peso por piña a cosecha</label>
-                  <span className="text-sm font-semibold text-primary">{pesoPlanta} kg</span>
-                </div>
-                <Slider
-                  value={[pesoPlanta]}
-                  onValueChange={([v]) => setPesoPlanta(v)}
-                  min={40}
-                  max={80}
-                  step={5}
-                />
-                <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                  <span>40 kg</span><span>80 kg</span>
-                </div>
-              </div>
-
-              {/* Precio por kg */}
+              {/* Precio por kg - slider */}
               <div>
                 <div className="flex justify-between mb-2">
                   <label className="text-sm font-medium text-foreground">Precio de venta por kg</label>
@@ -118,37 +81,33 @@ const HijuelosSimulador = () => {
                 </div>
               </div>
 
-              {/* Costo cultivo */}
-              <div>
-                <div className="flex justify-between mb-2">
-                  <label className="text-sm font-medium text-foreground">Costo de cultivo por planta</label>
-                  <span className="text-sm font-semibold text-primary">{formatMXN(costoCultivo)}</span>
+              {/* Fixed params display */}
+              <div className="bg-secondary rounded-xl p-4 space-y-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <Info className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm font-medium text-foreground">Valores fijos del modelo</span>
                 </div>
-                <Slider
-                  value={[costoCultivo]}
-                  onValueChange={([v]) => setCostoCultivo(v)}
-                  min={200}
-                  max={250}
-                  step={5}
-                />
-                <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                  <span>$200</span><span>$250</span>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <span className="text-muted-foreground">Precio por hijuelo</span>
+                    <p className="font-semibold text-foreground">{formatMXN(precioHijuelo)}</p>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Peso por piña</span>
+                    <p className="font-semibold text-foreground">{pesoPlanta} kg</p>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Costo de cultivo/planta</span>
+                    <p className="font-semibold text-foreground">{formatMXN(costoCultivo)}</p>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Maduración</span>
+                    <p className="font-semibold text-foreground">{anos} años</p>
+                  </div>
                 </div>
-              </div>
-
-              {/* Años maduración */}
-              <div>
-                <label className="text-sm font-medium text-foreground block mb-2">Tiempo de maduración</label>
-                <Select value={anosMaduracion} onValueChange={setAnosMaduracion}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="5">5 años</SelectItem>
-                    <SelectItem value="5.5">5.5 años</SelectItem>
-                    <SelectItem value="6">6 años</SelectItem>
-                  </SelectContent>
-                </Select>
+                <p className="text-xs text-muted-foreground mt-2">
+                  * El precio del hijuelo corresponde a talla pequeña ($25). Disponemos de otras tallas con precios desde $25 hasta $45 MXN.
+                </p>
               </div>
             </CardContent>
           </Card>
