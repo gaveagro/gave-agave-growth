@@ -9,9 +9,12 @@ import { useContentManager } from '@/hooks/useContentManager';
 import { toast } from 'sonner';
 import VisualEditor from '@/components/admin/VisualEditor';
 import BackupManager from '@/components/admin/BackupManager';
+import { supabase } from '@/integrations/supabase/client';
 
 const AdminPanel = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [activeTab, setActiveTab] = useState('hero');
   const { content: heroContent } = useContent('hero');
@@ -55,6 +58,24 @@ const AdminPanel = () => {
     contact_email: '',
     phone: ''
   });
+
+  // Check existing session on mount
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsAuthenticated(!!session);
+      setIsLoading(false);
+    };
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAuthenticated(!!session);
+      setIsLoading(false);
+    });
+
+    checkSession();
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   // Cargar datos del contenido existente
   useEffect(() => {
@@ -107,13 +128,26 @@ const AdminPanel = () => {
     }
   }, [siteSettings]);
 
-  const handleLogin = () => {
-    if (password === 'admin123') {
-      setIsAuthenticated(true);
-      toast.success('🎉 ¡Bienvenido al Panel de Administración Visual!');
-    } else {
-      toast.error('❌ Contraseña incorrecta');
+  const handleLogin = async () => {
+    setIsLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      toast.error('❌ Credenciales incorrectas');
+      setIsLoading(false);
+      return;
     }
+
+    toast.success('🎉 ¡Bienvenido al Panel de Administración Visual!');
+    setIsLoading(false);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setIsAuthenticated(false);
   };
 
   const handleSaveHero = async (data: any) => {
@@ -130,6 +164,14 @@ const AdminPanel = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Cargando...</p>
+      </div>
+    );
+  }
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gave-yellow/10 to-green-50 flex items-center justify-center">
@@ -144,7 +186,18 @@ const AdminPanel = () => {
           
           <div className="space-y-4">
             <div>
-              <Label htmlFor="password">Contraseña de Administrador</Label>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@gaveagro.com"
+                className="mt-2"
+              />
+            </div>
+            <div>
+              <Label htmlFor="password">Contraseña</Label>
               <Input
                 id="password"
                 type="password"
@@ -156,15 +209,13 @@ const AdminPanel = () => {
               />
             </div>
             
-            <Button onClick={handleLogin} className="w-full bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900">
-              🚀 Acceder al Constructor Visual
+            <Button 
+              onClick={handleLogin} 
+              disabled={isLoading}
+              className="w-full bg-gave-yellow hover:bg-gave-yellow/90 text-gray-900"
+            >
+              {isLoading ? 'Verificando...' : '🚀 Acceder al Constructor Visual'}
             </Button>
-            
-            <div className="text-center p-3 bg-amber-50 rounded-lg">
-              <p className="text-sm text-amber-700 font-medium">
-                🔑 Contraseña temporal: <code className="bg-amber-100 px-2 py-1 rounded">admin123</code>
-              </p>
-            </div>
           </div>
         </Card>
       </div>
@@ -187,7 +238,7 @@ const AdminPanel = () => {
             </div>
             <Button
               variant="outline"
-              onClick={() => setIsAuthenticated(false)}
+              onClick={handleLogout}
               className="text-red-600 hover:text-red-700"
             >
               🚪 Cerrar Sesión
