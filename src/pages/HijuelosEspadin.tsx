@@ -69,8 +69,8 @@ const HijuelosEspadin = () => {
       <main className="pt-16">
         <HijuelosHero />
         <HijuelosBeneficios />
-        <HijuelosPrecios />
         <HijuelosSimulador />
+        <HijuelosPrecios />
         <HijuelosServicios />
         <HijuelosContacto />
       </main>
