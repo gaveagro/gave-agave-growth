@@ -1,13 +1,11 @@
 
 import { useState } from 'react';
-import { toast } from 'sonner';
-import { supabase } from '@/integrations/supabase/client';
 
 interface NetlifyFormProps {
   formName: string;
   children: React.ReactNode;
   className?: string;
-  onSubmit?: () => void;
+  onSubmit?: () => Promise<void> | void;
 }
 
 export const NetlifyForm: React.FC<NetlifyFormProps> = ({ 
@@ -26,7 +24,7 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({
     const formData = new FormData(form);
 
     // Anti-bot protection: check honeypot field
-    const honeypotValue = formData.get('bot-field');
+    const honeypotValue = formData.get('bot-field') || formData.get('website');
     if (honeypotValue) {
       console.log('Bot detected, blocking submission');
       setIsSubmitting(false);
@@ -36,44 +34,16 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({
     // Additional anti-bot: time-based protection
     const formStartTime = formData.get('form-start-time');
     const currentTime = Date.now();
-    if (formStartTime && (currentTime - parseInt(formStartTime as string)) < 3000) {
+    if (formStartTime && (currentTime - parseInt(formStartTime as string, 10)) < 3000) {
       console.log('Form submitted too quickly, blocking submission');
       setIsSubmitting(false);
       return;
     }
 
     try {
-      // Convert FormData to a regular object
-      const submitData = {
-        name: formData.get('name') as string,
-        email: formData.get('email') as string,
-        phone: formData.get('phone') as string,
-        investmentAmount: formData.get('investmentAmount') as string,
-        investmentModel: formData.get('investmentModel') as string,
-        message: formData.get('message') as string,
-        formType: formName
-      };
-
-      console.log('Submitting form data:', submitData);
-
-      // Call the Supabase edge function
-      const { data, error } = await supabase.functions.invoke('form-submission', {
-        body: submitData,
-      });
-
-      if (error) {
-        console.error('Edge function error:', error);
-        throw error;
-      }
-
-      console.log('Form submission response:', data);
-      toast.success('¡Mensaje enviado exitosamente!');
-      form.reset();
-      onSubmit?.();
-
+      await onSubmit?.();
     } catch (error) {
-      console.error('Form submission error:', error);
-      toast.error('Error al enviar el mensaje. Por favor intenta de nuevo.');
+      console.error(`Form submission error for ${formName}:`, error);
     } finally {
       setIsSubmitting(false);
     }
