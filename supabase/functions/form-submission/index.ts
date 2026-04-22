@@ -97,25 +97,31 @@ const handler = async (req: Request): Promise<Response> => {
     const formData = parseResult.data;
     console.log('Validated form submission for:', formData.email);
 
-    // Verificar reCAPTCHA Enterprise token
-    if (formData.recaptchaToken) {
-      const recaptchaResult = await verifyRecaptcha(formData.recaptchaToken);
-      
-      if (!recaptchaResult.success) {
-        console.error('reCAPTCHA verification failed:', recaptchaResult.error);
-        return new Response(
-          JSON.stringify({ error: 'Verification failed. Please try again.' }),
-          {
-            status: 400,
-            headers: { 'Content-Type': 'application/json', ...corsHeaders },
-          }
-        );
-      }
-      
-      console.log('reCAPTCHA verification successful. Score:', recaptchaResult.score);
-    } else {
-      console.warn('No reCAPTCHA token provided');
+    // Verificar reCAPTCHA Enterprise token (REQUERIDO)
+    if (!formData.recaptchaToken) {
+      console.warn('Submission rejected: no reCAPTCHA token provided');
+      return new Response(
+        JSON.stringify({ error: 'Verification required. Please try again.' }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        }
+      );
     }
+
+    const recaptchaResult = await verifyRecaptcha(formData.recaptchaToken);
+    if (!recaptchaResult.success) {
+      console.error('reCAPTCHA verification failed:', recaptchaResult.error);
+      return new Response(
+        JSON.stringify({ error: 'Verification failed. Please try again.' }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        }
+      );
+    }
+
+    console.log('reCAPTCHA verification successful. Score:', recaptchaResult.score);
 
     // Initialize Supabase client
     const supabase = createClient(
