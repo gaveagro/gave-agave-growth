@@ -1,0 +1,12 @@
+# Gavé Agrotecnología
+
+> Regenerative agave investment platform. We manage tech-driven, sustainable agave cultivation in Mexico, delivering financial returns to investors while restoring degraded land and supporting rural communities.
+
+Gavé operates managed agave farms (Espadín and Salmiana) on agrosilvopastoral systems. Investors acquire plants; we handle planting, monitoring, harvest, and sales to mezcal/tequila distilleries, sweetener and prebiotic markets. Cycles run 5–9 years with projected 9–19% IRR. We also sell certified Espadín hijuelos for growers in Mexico's Mezcal Denomination of Origin regions.
+
+## Pages
+
+- [Home](/): Investment overview, simulator, FAQ, impact metrics.
+- [Blog](/blog): Articles on agave, regenerative agriculture, and investment.
+- [Hijuelos Espadín](/hijuelos-espadin): Buy certified Agave Espadín plantlets with technical advisory.
+- [Privacy Policy](/privacy): Aviso de Privacidad (Spanish).
