@@ -54,15 +54,15 @@ const HijuelosHero = () => {
           <div className="grid grid-cols-3 gap-6 max-w-lg mx-auto pt-8">
             <div className="text-center">
               <p className="text-3xl font-bold text-gave-yellow">$25-$45</p>
-              <p className="text-white/70 text-sm">Por hijuelo</p>
+              <p className="text-white/90 text-sm">Por hijuelo</p>
             </div>
             <div className="text-center">
               <p className="text-3xl font-bold text-gave-yellow">0</p>
-              <p className="text-white/70 text-sm">Riego requerido</p>
+              <p className="text-white/90 text-sm">Riego requerido</p>
             </div>
             <div className="text-center">
               <p className="text-3xl font-bold text-gave-yellow">5-6</p>
-              <p className="text-white/70 text-sm">Años a cosecha</p>
+              <p className="text-white/90 text-sm">Años a cosecha</p>
             </div>
           </div>
         </div>
