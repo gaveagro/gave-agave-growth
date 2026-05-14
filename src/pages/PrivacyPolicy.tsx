@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SEO from '@/components/SEO';
 
 const PrivacyPolicy = () => {
   const [language, setLanguage] = useState(() => {
@@ -38,6 +39,11 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Aviso de Privacidad — Gavé Agrotecnología"
+        description="Aviso de privacidad de Gavé Agrotecnología: cómo recabamos, tratamos y protegemos tus datos personales conforme a la normatividad mexicana."
+        canonical="https://gaveagro.com/privacy"
+      />
       {/* Header */}
       <header className="border-b border-border py-4">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

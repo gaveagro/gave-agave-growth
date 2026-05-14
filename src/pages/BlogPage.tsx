@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Blog from '@/components/Blog';
+import SEO from '@/components/SEO';
 
 const BlogPage = () => {
   const [language, setLanguage] = useState(() => {
@@ -39,6 +40,11 @@ const BlogPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Blog — Gavé Agrotecnología"
+        description="Artículos sobre agave, agricultura regenerativa, mercado del mezcal y oportunidades de inversión sustentable en México."
+        canonical="https://gaveagro.com/blog"
+      />
       <Header />
       
       <div className="pt-20">

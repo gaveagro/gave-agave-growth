@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HijuelosHero from '@/components/hijuelos/HijuelosHero';
@@ -8,41 +7,35 @@ import HijuelosSimulador from '@/components/hijuelos/HijuelosSimulador';
 import HijuelosServicios from '@/components/hijuelos/HijuelosServicios';
 import HijuelosContacto from '@/components/hijuelos/HijuelosContacto';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 const HijuelosEspadin = () => {
-  useEffect(() => {
-    const ogTags: Record<string, string> = {
-      'og:title': 'Hijuelos de Agave Espadín — Gavé Agrotecnología',
-      'og:description': 'Hijuelos de Agave Espadín certificados desde la Huasteca Potosina. Asesoría técnica, logística y registro ante el CRM incluidos. Cotiza hoy.',
-      'og:image': 'https://gave-agave-growth.lovable.app/images/especies-de-agave-para-mezcal-gavé.jpg',
-      'og:url': 'https://gave-agave-growth.lovable.app/hijuelos-espadin',
-      'og:type': 'website',
-    };
-
-    const existingTags: HTMLMetaElement[] = [];
-
-    Object.entries(ogTags).forEach(([property, content]) => {
-      let meta = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
-      if (!meta) {
-        meta = document.createElement('meta');
-        meta.setAttribute('property', property);
-        document.head.appendChild(meta);
-        existingTags.push(meta);
-      }
-      meta.setAttribute('content', content);
-    });
-
-    const prevTitle = document.title;
-    document.title = 'Hijuelos de Agave Espadín — Gavé Agrotecnología';
-
-    return () => {
-      document.title = prevTitle;
-      existingTags.forEach(tag => tag.remove());
-    };
-  }, []);
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Hijuelos de Agave Espadín',
+    description: 'Hijuelos certificados de Agave Espadín desde la Huasteca Potosina, con asesoría técnica, logística y registro ante el CRM.',
+    image: 'https://gaveagro.com/images/especies-de-agave-para-mezcal-gavé.jpg',
+    brand: { '@type': 'Brand', name: 'Gavé Agrotecnología' },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'MXN',
+      lowPrice: '25',
+      highPrice: '45',
+      availability: 'https://schema.org/InStock',
+      url: 'https://gaveagro.com/hijuelos-espadin',
+    },
+  };
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Hijuelos de Agave Espadín — Gavé Agrotecnología"
+        description="Hijuelos de Agave Espadín certificados desde la Huasteca Potosina. Asesoría técnica, logística y registro ante el CRM incluidos. Cotiza hoy."
+        canonical="https://gaveagro.com/hijuelos-espadin"
+        ogImage="https://gaveagro.com/images/especies-de-agave-para-mezcal-gavé.jpg"
+        jsonLd={productJsonLd}
+      />
       {/* Simplified header */}
       <header className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
