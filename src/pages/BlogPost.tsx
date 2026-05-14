@@ -9,6 +9,7 @@ import InvestmentModal from '@/components/InvestmentModal';
 import { useBlogPosts } from '@/hooks/useContent';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import SEO from '@/components/SEO';
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -76,8 +77,30 @@ const BlogPost = () => {
 
   const currentContent = content[language as keyof typeof content];
 
+  const seoTitle = (language === 'EN' ? post.title_en : post.title_es) || 'Artículo';
+  const seoDesc = (language === 'EN' ? post.excerpt_en : post.excerpt_es) || '';
+  const canonical = `https://gaveagro.com/blog/${id}`;
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: seoTitle,
+    description: seoDesc,
+    image: post.image ? `https://gaveagro.com${post.image}` : undefined,
+    author: { '@type': 'Person', name: language === 'EN' ? post.author_en : post.author_es },
+    datePublished: post.date,
+    mainEntityOfPage: canonical,
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={`${seoTitle} — Blog Gavé`}
+        description={seoDesc.slice(0, 160)}
+        canonical={canonical}
+        ogType="article"
+        ogImage={post.image ? `https://gaveagro.com${post.image}` : undefined}
+        jsonLd={articleJsonLd}
+      />
       <Header />
       
       <article className="pt-20">
