@@ -11,7 +11,7 @@ const HijuelosHero = () => {
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Plantación de agave espadín" className="w-full h-full object-cover" />
+        <img src={heroImg} alt="Plantación de agave espadín" width={1920} height={1080} fetchPriority="high" decoding="async" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
       </div>
 
