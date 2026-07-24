@@ -6,14 +6,13 @@ import { TrendingUp, DollarSign, BarChart3, Clock, Info, FlaskConical, Droplet }
 const HijuelosSimulador = () => {
   const [numPlantas, setNumPlantas] = useState(2400);
   const [precioPorKg, setPrecioPorKg] = useState(12);
-  const [alturaPromedio, setAlturaPromedio] = useState(25);
 
   const pesoPlanta = 60; // kg
   const costoCultivo = 110; // MXN/planta
   const anos = 5.5;
   const kgPorLitro = 8; // 8 kg de piña por litro de espadín
+  const precioHijuelo = 25; // MXN/planta (promedio talla estándar)
 
-  const precioHijuelo = alturaPromedio * 1; // $1 por cm
   const inversionHijuelos = numPlantas * precioHijuelo;
   const costoTotalCultivo = numPlantas * costoCultivo;
   const inversionTotal = inversionHijuelos + costoTotalCultivo;
@@ -70,25 +69,7 @@ const HijuelosSimulador = () => {
                 </div>
               </div>
 
-              {/* Altura promedio */}
-              <div>
-                <div className="flex justify-between mb-2">
-                  <label className="text-sm font-medium text-foreground">Altura promedio del hijuelo</label>
-                  <span className="text-sm font-semibold text-primary">
-                    {alturaPromedio} cm → {formatMXN(precioHijuelo)} c/u
-                  </span>
-                </div>
-                <Slider
-                  value={[alturaPromedio]}
-                  onValueChange={([v]) => setAlturaPromedio(v)}
-                  min={15}
-                  max={40}
-                  step={1}
-                />
-                <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                  <span>15 cm</span><span>40 cm</span>
-                </div>
-              </div>
+
 
               {/* Precio por kg */}
               <div>
@@ -250,6 +231,15 @@ const HijuelosSimulador = () => {
                       de {kgTotales.toLocaleString('es-MX')} kg de piña
                     </p>
                   </div>
+                </div>
+                <div className="bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-4 mb-3">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Precio de referencia a granel</p>
+                  <p className="text-lg font-bold text-foreground">
+                    $250 – $300 MXN <span className="text-sm font-normal text-muted-foreground">por litro de mezcal espadín</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Precio promedio de mercado del mezcal espadín a granel. Un rango útil para estimar el valor potencial de tu producción.
+                  </p>
                 </div>
                 <div className="flex items-start gap-2 text-xs text-muted-foreground bg-secondary rounded-lg p-3">
                   <Droplet className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
