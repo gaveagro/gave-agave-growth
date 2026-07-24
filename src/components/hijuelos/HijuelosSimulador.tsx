@@ -230,7 +230,15 @@ const HijuelosSimulador = () => {
                     <p className="text-xs text-muted-foreground">
                       de {kgTotales.toLocaleString('es-MX')} kg de piña
                     </p>
-                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-4 mb-3">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Precio de referencia a granel</p>
+                  <p className="text-lg font-bold text-foreground">
+                    $250 – $300 MXN <span className="text-sm font-normal text-muted-foreground">por litro de mezcal espadín</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Precio promedio de mercado del mezcal espadín a granel. Un rango útil para estimar el valor potencial de tu producción.
+                  </p>
                 </div>
                 <div className="flex items-start gap-2 text-xs text-muted-foreground bg-secondary rounded-lg p-3">
                   <Droplet className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
