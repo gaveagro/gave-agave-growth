@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
 import { useContent } from '@/hooks/useContent';
 import InvestmentModal from './InvestmentModal';
+import heroAsset from '@/assets/homepage/homepage-hero.jpg.asset.json';
 
 const Hero = () => {
   const [language, setLanguage] = useState('ES');
@@ -50,7 +51,9 @@ const Hero = () => {
     defaultContent[language as keyof typeof defaultContent] : 
     heroContent[language.toLowerCase()] || defaultContent[language as keyof typeof defaultContent];
 
-  const backgroundImage = heroContent?.backgroundImage || "/lovable-uploads/d70723cf-3b9d-404d-9b70-864768a8de4f.png";
+  const backgroundImage = heroContent?.backgroundImage || heroAsset.url;
+
+
 
 
   return (

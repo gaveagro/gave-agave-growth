@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Leaf, Sprout, Droplets, Users, Quote } from 'lucide-react';
+import impactoAsset from '@/assets/homepage/impacto-parcela.jpg.asset.json';
 
 const ImpactSection = () => {
   const [language, setLanguage] = useState(() => {
@@ -94,8 +95,8 @@ const ImpactSection = () => {
           
           <div className="relative">
             <img 
-              src="/lovable-uploads/97c0e0e2-e0c1-4f24-bdc0-bc91513df0d4.png" 
-              alt="Climate Resilience - Agave Farm"
+              src={impactoAsset.url} 
+              alt="Parcela de agave en la Huasteca Potosina — resiliencia climática"
               className="w-full h-auto rounded-lg shadow-xl"
             />
           </div>

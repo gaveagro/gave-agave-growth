@@ -3,6 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MapPin, BarChart3 } from 'lucide-react';
 import InvestmentModal from './InvestmentModal';
+import tanchachinAsset from '@/assets/homepage/tanchachin-parcela.jpg.asset.json';
+import ebanoAsset from '@/assets/homepage/ebano-parcela.jpg.asset.json';
+import moctezumaAsset from '@/assets/homepage/moctezuma-silvopastoril.jpg.asset.json';
 
 const OurFarms = () => {
   const [language, setLanguage] = useState(() => {
@@ -52,7 +55,7 @@ const OurFarms = () => {
       nameEN: 'Tanchachin - Espadín',
       location: 'Aquismon, San Luis Potosí, México',
       species: ['Agave angustifolia Haw (Espadín)'],
-      image: '/lovable-uploads/6de61ebc-0cfe-453b-91d7-b052959dcdf0.png',
+      image: tanchachinAsset.url,
       established: '2021'
     },
     {
@@ -61,7 +64,7 @@ const OurFarms = () => {
       nameEN: 'Ébano - Espadín',
       location: 'Ébano, San Luis Potosí, México',
       species: ['Agave Angustifolia Haw (Espadín)'],
-      image: '/lovable-uploads/fd85781d-f73a-46c5-a5cd-2b189f1f44f4.png',
+      image: ebanoAsset.url,
       established: '2023'
     },
     {
@@ -70,7 +73,7 @@ const OurFarms = () => {
       nameEN: 'Moctezuma - Salmiana (agrosilvopastoral model)',
       location: 'Moctezuma, San Luis Potosí, México',
       species: ['Agave Salmiana ssp. crassispina (mixed with native grasses and mezquite trees)'],
-      image: '/lovable-uploads/3fb33fbb-048e-4438-adf3-0b9eb5f68ee1.png',
+      image: moctezumaAsset.url,
       established: '2022'
     }
   ];
