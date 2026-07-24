@@ -2,6 +2,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HijuelosHero from '@/components/hijuelos/HijuelosHero';
 import HijuelosBeneficios from '@/components/hijuelos/HijuelosBeneficios';
+import HijuelosGaleria from '@/components/hijuelos/HijuelosGaleria';
 import HijuelosPrecios from '@/components/hijuelos/HijuelosPrecios';
 import HijuelosSimulador from '@/components/hijuelos/HijuelosSimulador';
 import HijuelosServicios from '@/components/hijuelos/HijuelosServicios';
@@ -62,6 +63,7 @@ const HijuelosEspadin = () => {
       <main className="pt-16">
         <HijuelosHero />
         <HijuelosBeneficios />
+        <HijuelosGaleria />
         <HijuelosSimulador />
         <HijuelosPrecios />
         <HijuelosServicios />
