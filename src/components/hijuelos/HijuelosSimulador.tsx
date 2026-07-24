@@ -6,12 +6,12 @@ import { TrendingUp, DollarSign, BarChart3, Clock, Info, FlaskConical, Droplet }
 const HijuelosSimulador = () => {
   const [numPlantas, setNumPlantas] = useState(2400);
   const [precioPorKg, setPrecioPorKg] = useState(12);
-  const [alturaPromedio, setAlturaPromedio] = useState(25);
 
   const pesoPlanta = 60; // kg
   const costoCultivo = 110; // MXN/planta
   const anos = 5.5;
   const kgPorLitro = 8; // 8 kg de piña por litro de espadín
+  const precioHijuelo = 25; // MXN/planta (default)
 
   const precioHijuelo = alturaPromedio * 1; // $1 por cm
   const inversionHijuelos = numPlantas * precioHijuelo;
