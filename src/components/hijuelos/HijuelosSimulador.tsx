@@ -230,6 +230,7 @@ const HijuelosSimulador = () => {
                     <p className="text-xs text-muted-foreground">
                       de {kgTotales.toLocaleString('es-MX')} kg de piña
                     </p>
+                  </div>
                 </div>
                 <div className="bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-4 mb-3">
                   <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Precio de referencia a granel</p>
