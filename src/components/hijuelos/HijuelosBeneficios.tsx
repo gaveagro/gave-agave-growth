@@ -1,17 +1,27 @@
-import { Droplets, Sun, MapPin, TrendingUp, Leaf, Shield } from 'lucide-react';
+import { Droplets, Sun, MapPin, TrendingUp, Leaf, Shield, Mountain, Sprout } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import espadinPanoramica from '@/assets/hijuelos/espadin-panoramica.jpg';
 
 const beneficios = [
   {
     icon: Droplets,
-    title: 'Sin Riego',
-    description: 'Cultivo de temporal que no requiere sistemas de irrigación. Se adapta a las lluvias naturales de la región.'
+    title: 'Tolerante a la Sequía',
+    description: 'Cultivo de temporal, ideal para zonas afectadas por sequía y donde depender del riego ya no es viable.'
+  },
+  {
+    icon: Mountain,
+    title: 'Se Adapta a Suelos Pobres',
+    description: 'Prospera incluso en suelos cansados o pedregosos. Perfecta para descansar terrenos agotados por monocultivo (como la caña).'
+  },
+  {
+    icon: Sprout,
+    title: 'Regenera el Suelo',
+    description: 'Su sistema radicular y hojarasca ayudan a recuperar suelos degradados. El calcio es su principal nutriente, además de los macronutrientes.'
   },
   {
     icon: Sun,
-    title: 'Adaptado al Clima',
-    description: 'Especie probada en la Huasteca Potosina y regiones cálidas con humedad adecuada y sin riesgo histórico de heladas.'
+    title: 'Clima Ideal',
+    description: 'Especie probada en la Huasteca Potosina: humedad adecuada, calor y sin riesgo histórico de heladas.'
   },
   {
     icon: TrendingUp,
@@ -21,12 +31,12 @@ const beneficios = [
   {
     icon: MapPin,
     title: 'Ventaja Logística',
-    description: 'Nuestras parcelas están en la Huasteca Potosina, lo que ofrece cercanía y menor costo de flete frente a proveedores de Oaxaca.'
+    description: 'Nuestras parcelas están en la Huasteca Potosina: cercanía y menor costo de flete frente a proveedores de Oaxaca.'
   },
   {
     icon: Leaf,
     title: 'Bajo Mantenimiento',
-    description: 'Costo de cultivo integral de $200-$250 por planta durante todo el ciclo productivo de 5-6 años.'
+    description: 'Costo de cultivo integral de ~$110 por planta durante todo el ciclo productivo de 5-6 años.'
   },
   {
     icon: Shield,
@@ -37,9 +47,7 @@ const beneficios = [
 
 const regiones = [
   { nombre: 'Huasteca Potosina', detalle: 'Origen de nuestras plantas, clima ideal y tradición agavera' },
-  { nombre: 'Tamaulipas (DO Mezcal)', detalle: 'Municipios vecinos con Denominación de Origen, excelente logística' },
-  { nombre: 'Aguascalientes', detalle: 'Zonas con condiciones agroclimáticas aptas y sin heladas' },
-  { nombre: 'Guanajuato', detalle: 'Regiones cálidas con humedad adecuada para espadín' },
+  { nombre: 'Municipios de Tamaulipas con DO Mezcal', detalle: 'Vecinos con Denominación de Origen, clima ideal y excelente logística' },
 ];
 
 const HijuelosBeneficios = () => {
@@ -52,12 +60,12 @@ const HijuelosBeneficios = () => {
             ¿Por Qué Cultivar Agave Espadín?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Un cultivo resiliente, de bajo costo operativo y con un mercado en crecimiento constante.
+            Un cultivo resiliente que se adapta donde otros ya no rinden: suelos cansados, sequía y bajo mantenimiento.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 mb-20 items-center">
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-4">
             {beneficios.map((b, i) => (
               <Card key={i} className="border-none shadow-md hover:shadow-lg transition-shadow">
                 <CardContent className="p-5 flex gap-3">
@@ -66,35 +74,47 @@ const HijuelosBeneficios = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1 text-sm">{b.title}</h3>
-                    <p className="text-muted-foreground text-xs">{b.description}</p>
+                    <p className="text-muted-foreground text-xs leading-relaxed">{b.description}</p>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
           <div className="rounded-2xl overflow-hidden shadow-lg">
-            <img src={espadinPanoramica} alt="Plantación panorámica de agave espadín en la Huasteca Potosina" className="w-full h-80 object-cover" />
+            <img src={espadinPanoramica} alt="Plantación panorámica de agave espadín en la Huasteca Potosina" className="w-full h-96 object-cover" />
           </div>
+        </div>
+
+        {/* Highlight: para productores huastecos */}
+        <div className="max-w-4xl mx-auto mb-16 bg-background rounded-2xl p-8 border-l-4 border-primary shadow-sm">
+          <h3 className="text-xl font-bold text-foreground mb-3">
+            Una alternativa real para tierras cansadas por la caña
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            En la Huasteca Potosina, muchos productores han sufrido la degradación del suelo por años de monocultivo
+            de caña y la creciente escasez de agua. El agave espadín ofrece una alternativa de bajo insumo, tolerante
+            a sequía y capaz de prosperar en suelos pobres o pedregosos, lo que lo convierte en un excelente cultivo
+            de rotación para regenerar la tierra mientras genera ingresos.
+          </p>
         </div>
 
         {/* Regiones */}
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Regiones Ideales por Cercanía
+            Regiones Ideales
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Nuestras plantas se encuentran en parcelas de la Huasteca Potosina. Los estados vecinos con Denominación de Origen de Mezcal 
-            son los candidatos ideales por cercanía logística y condiciones agroclimáticas: humedad adecuada y ausencia histórica de heladas. 
-            Comprarnos resulta más conveniente que traer espadín desde Oaxaca.
+            Nuestras plantas se encuentran en la Huasteca Potosina. Estas son las regiones con el clima ideal para 
+            espadín (humedad adecuada, sin heladas) y con Denominación de Origen de Mezcal.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
           {regiones.map((r, i) => (
-            <div key={i} className="bg-background rounded-lg p-5 text-center shadow-sm border border-border">
+            <div key={i} className="bg-background rounded-lg p-6 text-center shadow-sm border border-border">
               <MapPin className="w-6 h-6 text-primary mx-auto mb-2" />
-              <h4 className="font-semibold text-foreground text-sm">{r.nombre}</h4>
-              <p className="text-muted-foreground text-xs mt-1">{r.detalle}</p>
+              <h4 className="font-semibold text-foreground">{r.nombre}</h4>
+              <p className="text-muted-foreground text-sm mt-1">{r.detalle}</p>
             </div>
           ))}
         </div>

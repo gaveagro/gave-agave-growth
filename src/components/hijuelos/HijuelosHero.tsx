@@ -53,7 +53,7 @@ const HijuelosHero = () => {
 
           <div className="grid grid-cols-3 gap-6 max-w-lg mx-auto pt-8">
             <div className="text-center">
-              <p className="text-3xl font-bold text-gave-yellow">$25-$45</p>
+              <p className="text-3xl font-bold text-gave-yellow">$1/cm</p>
               <p className="text-white/90 text-sm">Por hijuelo</p>
             </div>
             <div className="text-center">
