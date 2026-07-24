@@ -11,9 +11,8 @@ const HijuelosSimulador = () => {
   const costoCultivo = 110; // MXN/planta
   const anos = 5.5;
   const kgPorLitro = 8; // 8 kg de piña por litro de espadín
-  const precioHijuelo = 25; // MXN/planta (default)
+  const precioHijuelo = 25; // MXN/planta (promedio talla estándar)
 
-  const precioHijuelo = alturaPromedio * 1; // $1 por cm
   const inversionHijuelos = numPlantas * precioHijuelo;
   const costoTotalCultivo = numPlantas * costoCultivo;
   const inversionTotal = inversionHijuelos + costoTotalCultivo;
@@ -70,25 +69,7 @@ const HijuelosSimulador = () => {
                 </div>
               </div>
 
-              {/* Altura promedio */}
-              <div>
-                <div className="flex justify-between mb-2">
-                  <label className="text-sm font-medium text-foreground">Altura promedio del hijuelo</label>
-                  <span className="text-sm font-semibold text-primary">
-                    {alturaPromedio} cm → {formatMXN(precioHijuelo)} c/u
-                  </span>
-                </div>
-                <Slider
-                  value={[alturaPromedio]}
-                  onValueChange={([v]) => setAlturaPromedio(v)}
-                  min={15}
-                  max={40}
-                  step={1}
-                />
-                <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                  <span>15 cm</span><span>40 cm</span>
-                </div>
-              </div>
+
 
               {/* Precio por kg */}
               <div>
