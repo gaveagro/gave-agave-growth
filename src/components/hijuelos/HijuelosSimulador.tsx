@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
-import { TrendingUp, DollarSign, BarChart3, Clock, Info } from 'lucide-react';
+import { TrendingUp, DollarSign, BarChart3, Clock, Info, FlaskConical, Droplet } from 'lucide-react';
 
 const HijuelosSimulador = () => {
   const [numPlantas, setNumPlantas] = useState(2400);
   const [precioPorKg, setPrecioPorKg] = useState(12);
+  const [alturaPromedio, setAlturaPromedio] = useState(25);
 
-  const precioHijuelo = 25;
-  const pesoPlanta = 60;
-  const costoCultivo = 180;
+  const pesoPlanta = 60; // kg
+  const costoCultivo = 110; // MXN/planta
   const anos = 5.5;
+  const kgPorLitro = 8; // 8 kg de piña por litro de espadín
 
+  const precioHijuelo = alturaPromedio * 1; // $1 por cm
   const inversionHijuelos = numPlantas * precioHijuelo;
   const costoTotalCultivo = numPlantas * costoCultivo;
   const inversionTotal = inversionHijuelos + costoTotalCultivo;
@@ -20,6 +22,11 @@ const HijuelosSimulador = () => {
   const roiTotal = inversionTotal > 0 ? (gananciaNeta / inversionTotal) * 100 : 0;
   const roiAnual = anos > 0 ? roiTotal / anos : 0;
   const hectareas = numPlantas / 2400;
+
+  // Producción de mezcal
+  const kgTotales = numPlantas * pesoPlanta;
+  const litrosTotales = kgTotales / kgPorLitro;
+  const litrosPorPlanta = pesoPlanta / kgPorLitro;
 
   const formatMXN = (n: number) =>
     new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(n);
@@ -32,7 +39,7 @@ const HijuelosSimulador = () => {
             Simulador de Rentabilidad
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Calcula tu inversión y retorno estimado como productor de agave espadín. Ajusta el número de plantas y el precio de venta.
+            Calcula tu inversión y retorno estimado como productor de agave espadín. Ajusta los parámetros según tu proyecto.
           </p>
         </div>
 
@@ -43,7 +50,7 @@ const HijuelosSimulador = () => {
               <CardTitle className="text-lg">Parámetros de tu Plantación</CardTitle>
             </CardHeader>
             <CardContent className="space-y-8">
-              {/* Num plantas - slider */}
+              {/* Num plantas */}
               <div>
                 <div className="flex justify-between mb-2">
                   <label className="text-sm font-medium text-foreground">Número de plantas</label>
@@ -63,10 +70,32 @@ const HijuelosSimulador = () => {
                 </div>
               </div>
 
-              {/* Precio por kg - slider */}
+              {/* Altura promedio */}
               <div>
                 <div className="flex justify-between mb-2">
-                  <label className="text-sm font-medium text-foreground">Precio de venta por kg</label>
+                  <label className="text-sm font-medium text-foreground">Altura promedio del hijuelo</label>
+                  <span className="text-sm font-semibold text-primary">
+                    {alturaPromedio} cm → {formatMXN(precioHijuelo)} c/u
+                  </span>
+                </div>
+                <Slider
+                  value={[alturaPromedio]}
+                  onValueChange={([v]) => setAlturaPromedio(v)}
+                  min={15}
+                  max={40}
+                  step={1}
+                />
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                  <span>15 cm</span><span>40 cm</span>
+                </div>
+              </div>
+
+              {/* Precio por kg */}
+              <div>
+                <div className="flex justify-between mb-2">
+                  <label className="text-sm font-medium text-foreground">
+                    Precio de venta por kg al momento de vender tu cosecha
+                  </label>
                   <span className="text-sm font-semibold text-primary">{formatMXN(precioPorKg)}</span>
                 </div>
                 <Slider
@@ -81,7 +110,7 @@ const HijuelosSimulador = () => {
                 </div>
               </div>
 
-              {/* Fixed params display */}
+              {/* Fixed params */}
               <div className="bg-secondary rounded-xl p-4 space-y-3">
                 <div className="flex items-center gap-2 mb-1">
                   <Info className="w-4 h-4 text-muted-foreground" />
@@ -89,8 +118,8 @@ const HijuelosSimulador = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
-                    <span className="text-muted-foreground">Precio por hijuelo</span>
-                    <p className="font-semibold text-foreground">{formatMXN(precioHijuelo)}</p>
+                    <span className="text-muted-foreground">Precio del hijuelo</span>
+                    <p className="font-semibold text-foreground">$1 MXN / cm</p>
                   </div>
                   <div>
                     <span className="text-muted-foreground">Peso por piña</span>
@@ -105,9 +134,6 @@ const HijuelosSimulador = () => {
                     <p className="font-semibold text-foreground">{anos} años</p>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">
-                  * El precio del hijuelo corresponde a talla pequeña ($25). Disponemos de otras tallas con precios desde $25 hasta $45 MXN.
-                </p>
               </div>
             </CardContent>
           </Card>
@@ -189,6 +215,52 @@ const HijuelosSimulador = () => {
               * Los cálculos son estimaciones. Los resultados reales pueden variar según condiciones de mercado, clima y manejo agronómico.
             </p>
           </div>
+        </div>
+
+        {/* Producción de mezcal */}
+        <div className="max-w-6xl mx-auto mt-12">
+          <Card className="border-primary/20 overflow-hidden">
+            <div className="grid md:grid-cols-3">
+              <div className="bg-gradient-to-br from-primary to-primary/80 p-8 text-primary-foreground flex flex-col justify-center">
+                <FlaskConical className="w-10 h-10 text-gave-yellow mb-3" />
+                <h3 className="text-2xl font-bold mb-2">Potencial de Mezcal</h3>
+                <p className="text-primary-foreground/80 text-sm">
+                  Estimación de litros de espadín que se pueden obtener de tu cosecha en su punto máximo de maduración
+                  (grados Brix suficientes).
+                </p>
+              </div>
+              <div className="md:col-span-2 p-8 bg-background">
+                <div className="grid sm:grid-cols-3 gap-6 mb-6">
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Regla</p>
+                    <p className="text-2xl font-bold text-foreground">8 kg</p>
+                    <p className="text-xs text-muted-foreground">de piña = 1 L mezcal</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Por planta</p>
+                    <p className="text-2xl font-bold text-primary">{litrosPorPlanta.toFixed(1)} L</p>
+                    <p className="text-xs text-muted-foreground">(piña de {pesoPlanta} kg)</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Total del proyecto</p>
+                    <p className="text-2xl font-bold text-primary">
+                      {litrosTotales.toLocaleString('es-MX', { maximumFractionDigits: 0 })} L
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      de {kgTotales.toLocaleString('es-MX')} kg de piña
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2 text-xs text-muted-foreground bg-secondary rounded-lg p-3">
+                  <Droplet className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <span>
+                    Rendimiento estimado con piñas en su punto óptimo de maduración y grados Brix adecuados. 
+                    Variaciones dependen del proceso de cocción, fermentación y destilación.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
     </section>
