@@ -1,53 +1,56 @@
-
 import Header from '@/components/Header';
-import Hero from '@/components/Hero';
-import TrustedPartners from '@/components/TrustedPartners';
-import HowSustainableAgave from '@/components/HowSustainableAgave';
-import ImpactSection from '@/components/ImpactSection';
-import AgaveMarket from '@/components/AgaveMarket';
-import OurFarms from '@/components/OurFarms';
-import MonitoringPlatform from '@/components/MonitoringPlatform';
-import InvestmentSimulator from '@/components/InvestmentSimulator';
-import InnovationSection from '@/components/InnovationSection';
-import Testimonials from '@/components/Testimonials';
-import Blog from '@/components/Blog';
-import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
-import faqData from '../../public/content/faq.json';
+import HomeHero from '@/components/home/HomeHero';
+import MetricsBar from '@/components/home/MetricsBar';
+import ModelSection from '@/components/home/ModelSection';
+import EvidenceSection from '@/components/home/EvidenceSection';
+import FourDoors from '@/components/home/FourDoors';
+import Portfolio from '@/components/home/Portfolio';
+import FaqSection from '@/components/home/FaqSection';
+import FinalCTA from '@/components/home/FinalCTA';
+import InnovationSection from '@/components/InnovationSection';
+import Blog from '@/components/Blog';
 
 const Index = () => {
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: (faqData as any).es.faqs.map((f: any) => ({
-      '@type': 'Question',
-      name: f.question,
-      acceptedAnswer: { '@type': 'Answer', text: f.answer },
-    })),
-  };
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Gavé Agrotecnología',
+      url: 'https://gaveagro.com/',
+      email: 'hola@gaveagro.com',
+      description:
+        'Sistemas agroforestales y agrosilvopastoriles con agave para regenerar tierras áridas: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo satelital.',
+      areaServed: 'MX',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Gavé',
+      url: 'https://gaveagro.com/',
+    },
+  ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <SEO
-        title="Gavé Agro — Inversión Regenerativa en Agave"
-        description="Invierte en cultivo regenerativo de agave en México. Retornos proyectados 9–19% TIR, monitoreo satelital y restauración de ecosistemas."
+        title="Gavé — Regeneración de tierras áridas con agave"
+        description="Sistemas agroforestales y agrosilvopastoriles con agave: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo satelital para bonos e inversión de impacto."
         canonical="https://gaveagro.com/"
-        jsonLd={faqJsonLd}
+        jsonLd={jsonLd}
       />
       <Header />
-      <Hero />
-      <TrustedPartners />
-      <HowSustainableAgave />
-      <InvestmentSimulator />
-      <ImpactSection />
-      <AgaveMarket />
-      <OurFarms />
-      <MonitoringPlatform />
+      <HomeHero />
+      <MetricsBar />
+      <ModelSection />
+      <EvidenceSection />
+      <FourDoors />
+      <Portfolio />
       <InnovationSection />
-      <Testimonials />
       <Blog />
-      <FAQ />
+      <FaqSection />
+      <FinalCTA />
       <Footer />
     </div>
   );
