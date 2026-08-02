@@ -33,7 +33,7 @@ const SolutionPage = ({ seo, image, eyebrow, title, lead, stats, blocks, childre
 
       <section className="relative flex min-h-[72vh] items-end overflow-hidden bg-ink-deep pt-24">
         <div className="absolute inset-0">
-          <img src={image} alt={title} className="h-full w-full object-cover" fetchPriority="high" decoding="async" />
+          <img src={image} alt={title} className="h-full w-full object-cover" decoding="async" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-deep via-ink-deep/75 to-ink-deep/25" />
         </div>
         <div className="container relative z-10 mx-auto pb-16 pt-24">
