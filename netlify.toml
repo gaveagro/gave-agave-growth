@@ -10,6 +10,13 @@
   node_bundler = "esbuild"
   directory = "supabase/functions"  # Ajusta según tu estructura
 
+# Assets alojados en la CDN de Lovable (deben ir ANTES del catch-all SPA)
+[[redirects]]
+  from = "/__l5e/*"
+  to = "https://gave-agave-growth.lovable.app/__l5e/:splat"
+  status = 200
+  force = true
+
 # Redirects para el CMS
 [[redirects]]
   from = "/admin/*"
