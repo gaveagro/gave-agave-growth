@@ -11,6 +11,11 @@ import AdminPanel from "./pages/AdminPanel";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import HijuelosEspadin from "./pages/HijuelosEspadin";
+import InversionImpacto from "./pages/InversionImpacto";
+import BonosCarbono from "./pages/BonosCarbono";
+import Vivero from "./pages/Vivero";
+import Compensa from "./pages/Compensa";
+import Crowdgrowing from "./pages/Crowdgrowing";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +24,11 @@ const AppWithAnalytics = () => {
   return (
     <Routes>
       <Route path="/" element={<Index />} />
+      <Route path="/inversion-de-impacto" element={<InversionImpacto />} />
+      <Route path="/bonos-de-carbono" element={<BonosCarbono />} />
+      <Route path="/vivero" element={<Vivero />} />
+      <Route path="/compensa" element={<Compensa />} />
+      <Route path="/crowdgrowing" element={<Crowdgrowing />} />
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/blog/:id" element={<BlogPost />} />
       <Route path="/admin" element={<AdminPanel />} />
@@ -28,6 +38,7 @@ const AppWithAnalytics = () => {
     </Routes>
   );
 };
+
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
