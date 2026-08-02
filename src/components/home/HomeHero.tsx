@@ -43,7 +43,6 @@ const HomeHero = () => {
               : 'Plantación de agave regenerando tierras áridas en San Luis Potosí'
           }
           className="h-full w-full object-cover"
-          fetchPriority="high"
           decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-deep via-ink-deep/70 to-ink-deep/30" />
