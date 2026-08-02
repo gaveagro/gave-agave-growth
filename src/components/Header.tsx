@@ -1,142 +1,111 @@
-
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Globe } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 import InvestmentModal from './InvestmentModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState('ES'); // Default to Spanish
+  const language = useLanguage();
+  const { pathname } = useLocation();
 
   const toggleLanguage = () => {
     const newLanguage = language === 'ES' ? 'EN' : 'ES';
-    setLanguage(newLanguage);
-    // Store globally for other components
     (window as any).currentLanguage = newLanguage;
-    // Dispatch custom event to notify other components
     window.dispatchEvent(new CustomEvent('languageChange', { detail: newLanguage }));
   };
 
-  const navItems = {
-    EN: {
-      home: 'Home',
-      impact: 'Impact',
-      howItWorks: 'How it Works',
-      blog: 'Blog',
-      faq: 'FAQ',
-      dashboard: 'Dashboard',
-      startInvesting: 'Start Investing'
-    },
-    ES: {
-      home: 'Inicio',
-      impact: 'Impacto',
-      howItWorks: 'Cómo Funciona',
-      blog: 'Blog',
-      faq: 'FAQ',
-      dashboard: 'Dashboard',
-      startInvesting: 'Comenzar a Invertir'
+  const nav =
+    language === 'EN'
+      ? [
+          { label: 'The model', to: '/#modelo' },
+          { label: 'Impact investment', to: '/inversion-de-impacto' },
+          { label: 'Carbon credits', to: '/bonos-de-carbono' },
+          { label: 'Nursery', to: '/vivero' },
+          { label: 'Offset', to: '/compensa' },
+          { label: 'Blog', to: '/blog' },
+        ]
+      : [
+          { label: 'El modelo', to: '/#modelo' },
+          { label: 'Inversión de impacto', to: '/inversion-de-impacto' },
+          { label: 'Bonos de carbono', to: '/bonos-de-carbono' },
+          { label: 'Vivero', to: '/vivero' },
+          { label: 'Compensa', to: '/compensa' },
+          { label: 'Blog', to: '/blog' },
+        ];
+
+  const cta = language === 'EN' ? 'Talk to us' : 'Agendar llamada';
+
+  const renderLink = (item: { label: string; to: string }, mobile = false) => {
+    const isHash = item.to.includes('#');
+    const cls = mobile
+      ? 'block px-1 py-3 text-base text-foreground/80 hover:text-foreground border-b border-border/60'
+      : 'text-sm text-foreground/70 hover:text-foreground transition-colors';
+    const active = !isHash && pathname === item.to;
+    if (isHash) {
+      return (
+        <a key={item.to} href={item.to} className={cls} onClick={() => setIsMenuOpen(false)}>
+          {item.label}
+        </a>
+      );
     }
+    return (
+      <Link
+        key={item.to}
+        to={item.to}
+        className={`${cls} ${active ? 'text-foreground font-medium' : ''}`}
+        onClick={() => setIsMenuOpen(false)}
+      >
+        {item.label}
+      </Link>
+    );
   };
 
-  const currentNav = navItems[language as keyof typeof navItems];
-
   return (
-    <header className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo - Made larger and more prominent */}
-          <div className="flex items-center">
-            <img 
-              src="/lovable-uploads/4c7e4344-7b1e-4dac-8922-7356da9646e3.png" 
+    <header className="fixed top-0 z-50 w-full border-b border-border/70 bg-background/85 backdrop-blur-md">
+      <div className="container mx-auto">
+        <div className="flex h-16 items-center justify-between gap-6 md:h-20">
+          <Link to="/" className="flex items-center" aria-label="Gavé">
+            <img
+              src="/lovable-uploads/4c7e4344-7b1e-4dac-8922-7356da9646e3.png"
               alt="Gavé"
-              className="w-14 h-14 object-contain"
+              className="h-11 w-11 object-contain md:h-12 md:w-12"
             />
-          </div>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="/#home" className="text-foreground hover:text-primary transition-colors">
-              {currentNav.home}
-            </a>
-            <a href="/#how-it-works" className="text-foreground hover:text-primary transition-colors">
-              {currentNav.howItWorks}
-            </a>
-            <a href="/#blog" className="text-foreground hover:text-primary transition-colors">
-              {currentNav.blog}
-            </a>
-            <a href="/#faq" className="text-foreground hover:text-primary transition-colors">
-              {currentNav.faq}
-            </a>
-            <a href="https://dashboard.gaveagro.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
-              {currentNav.dashboard}
-            </a>
-          </nav>
+          <nav className="hidden items-center gap-6 lg:flex">{nav.map((i) => renderLink(i))}</nav>
 
-          {/* Language Toggle & CTA */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={toggleLanguage}
-              className="flex items-center space-x-1"
-            >
-              <Globe className="w-4 h-4" />
-              <span>{language}</span>
+          <div className="hidden items-center gap-2 lg:flex">
+            <Button variant="ghost" size="sm" onClick={toggleLanguage} className="gap-1.5">
+              <Globe className="h-4 w-4" />
+              <span className="text-xs font-medium">{language}</span>
             </Button>
             <InvestmentModal>
-              <Button className="bg-primary hover:bg-primary/90">
-                {currentNav.startInvesting}
+              <Button size="sm" className="rounded-none px-5">
+                {cta}
               </Button>
             </InvestmentModal>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <div className="flex items-center gap-1 lg:hidden">
+            <Button variant="ghost" size="sm" onClick={toggleLanguage} className="gap-1.5">
+              <Globe className="h-4 w-4" />
+              <span className="text-xs font-medium">{language}</span>
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Menu">
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-border">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="/#home" className="block px-3 py-2 text-foreground hover:text-primary">
-                {currentNav.home}
-              </a>
-              <a href="/#how-it-works" className="block px-3 py-2 text-foreground hover:text-primary">
-                {currentNav.howItWorks}
-              </a>
-              <a href="/#blog" className="block px-3 py-2 text-foreground hover:text-primary">
-                {currentNav.blog}
-              </a>
-              <a href="/#faq" className="block px-3 py-2 text-foreground hover:text-primary">
-                {currentNav.faq}
-              </a>
-              <a href="https://dashboard.gaveagro.com" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 text-foreground hover:text-primary">
-                {currentNav.dashboard}
-              </a>
-              <div className="flex items-center justify-between px-3 py-2">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={toggleLanguage}
-                  className="flex items-center space-x-1"
-                >
-                  <Globe className="w-4 h-4" />
-                  <span>{language}</span>
-                </Button>
-                <InvestmentModal>
-                  <Button size="sm" className="bg-primary hover:bg-primary/90">
-                    {currentNav.startInvesting}
-                  </Button>
-                </InvestmentModal>
-              </div>
+          <div className="border-t border-border py-4 lg:hidden">
+            {nav.map((i) => renderLink(i, true))}
+            <div className="pt-4">
+              <InvestmentModal>
+                <Button className="w-full rounded-none">{cta}</Button>
+              </InvestmentModal>
             </div>
           </div>
         )}
