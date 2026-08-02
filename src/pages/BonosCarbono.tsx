@@ -31,13 +31,13 @@ const BonosCarbono = () => {
               { value: '8,000+', label: 'target ha per project' },
               { value: '5', label: 'stages to issuance' },
               { value: 'MRV', label: 'satellite + field sampling' },
-              { value: '%', label: 'Gavé works on commission' },
+              { value: 'Fee', label: 'commission over credits issued' },
             ]
           : [
               { value: '+8,000', label: 'ha objetivo por proyecto' },
               { value: '5', label: 'etapas hasta la emisión' },
               { value: 'MRV', label: 'satelital + muestreo en campo' },
-              { value: '%', label: 'Gavé trabaja por comisión' },
+              { value: 'Comisión', label: 'sobre los bonos emitidos' },
             ]
       }
       blocks={
