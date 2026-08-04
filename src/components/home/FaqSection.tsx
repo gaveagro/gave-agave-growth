@@ -13,7 +13,7 @@ const groupsES: Group[] = [
     items: [
       {
         q: '¿Qué se financia exactamente?',
-        a: 'Sistemas agroforestales y agrosilvopastoriles en tierras áridas y degradadas: establecimiento de agave, obras de cosecha de agua, integración de ganadería regenerativa con pastoreo planificado y la capa de monitoreo satelital y de campo. El activo no es una plantación aislada, es un rancho con un plan de manejo y un sistema de medición.',
+        a: 'Sistemas agroforestales y agrosilvopastoriles en tierras áridas y degradadas: establecimiento de agave, obras de cosecha de agua, integración de ganadería regenerativa con pastoreo planificado y la capa de monitoreo y de campo. El activo no es una plantación aislada, es un rancho con un plan de manejo y un sistema de medición.',
       },
       {
         q: '¿Cómo se estructura el retorno?',
@@ -21,7 +21,7 @@ const groupsES: Group[] = [
       },
       {
         q: '¿Qué evidencia de impacto entregan?',
-        a: 'Línea base de suelo y cobertura, monitoreo satelital con calendario fijo, muestreo de carbono en campo y reportes periódicos. Todo queda como registro auditable, pensado desde el inicio para pasar validación y verificación de terceros.',
+        a: 'Línea base de suelo y cobertura, monitoreo, muestreo de carbono en campo y reportes periódicos. Todo queda como registro auditable, pensado desde el inicio para pasar validación y verificación de terceros.',
       },
       {
         q: '¿Trabajan con fondos, ONGs y gobiernos fuera de México?',
