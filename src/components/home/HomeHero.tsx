@@ -16,7 +16,7 @@ const HomeHero = () => {
           title: 'We regenerate arid land,',
           titleAccent: 'and make it measurable.',
           body:
-            'Gavé designs agave-based agroforestry and silvopastoral systems: carbon capture, regenerative livestock, water harvesting and satellite monitoring — built so the outcome can be verified and certified.',
+            'Gavé designs agave-based agroforestry and silvopastoral systems: carbon capture, regenerative livestock, water harvesting and monitoring — built so the outcome can be verified and certified.',
           primary: 'See the model',
           secondary: 'Invest or certify your ranch',
           scroll: 'Scroll',
@@ -26,7 +26,7 @@ const HomeHero = () => {
           title: 'Regeneramos tierras áridas,',
           titleAccent: 'y lo hacemos medible.',
           body:
-            'Gavé diseña sistemas agroforestales y agrosilvopastoriles basados en agave: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo satelital — construidos para que el resultado se pueda verificar y certificar.',
+            'Gavé diseña sistemas agroforestales y agrosilvopastoriles basados en agave: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo — construidos para que el resultado se pueda verificar y certificar.',
           primary: 'Ver el modelo',
           secondary: 'Invertir o certificar tu rancho',
           scroll: 'Desliza',

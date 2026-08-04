@@ -21,7 +21,7 @@ const Index = () => {
       url: 'https://gaveagro.com/',
       email: 'hola@gaveagro.com',
       description:
-        'Sistemas agroforestales y agrosilvopastoriles con agave para regenerar tierras áridas: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo satelital.',
+        'Sistemas agroforestales y agrosilvopastoriles con agave para regenerar tierras áridas: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo.',
       areaServed: 'MX',
     },
     {
@@ -36,7 +36,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="Gavé — Regeneración de tierras áridas con agave"
-        description="Sistemas agroforestales y agrosilvopastoriles con agave: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo satelital para bonos e inversión de impacto."
+        description="Sistemas agroforestales y agrosilvopastoriles con agave: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo para bonos e inversión de impacto."
         canonical="https://gaveagro.com/"
         jsonLd={jsonLd}
       />

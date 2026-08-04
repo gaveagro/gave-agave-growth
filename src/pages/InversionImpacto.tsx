@@ -50,7 +50,7 @@ const InversionImpacto = () => {
                   'Agave establishment and field operations',
                   'Water harvesting works: keylines, ditches, gabions, ponds',
                   'Herd integration and planned grazing infrastructure',
-                  'Baseline, satellite monitoring and MRV layer',
+                  'Baseline, monitoring and MRV layer',
                 ],
               },
               {
@@ -82,7 +82,7 @@ const InversionImpacto = () => {
                   'Establecimiento de agave y operación de campo',
                   'Obras de cosecha de agua: keylines, zanjas, gaviones, bordos',
                   'Integración del hato e infraestructura de pastoreo planificado',
-                  'Línea base, monitoreo satelital y capa de MRV',
+                  'Línea base, monitoreo y capa de MRV',
                 ],
               },
               {
