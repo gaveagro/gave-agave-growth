@@ -10,12 +10,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 
 const RECAPTCHA_SITE_KEY = '6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft';
 
-declare global {
-  interface Window {
-    grecaptcha?: any;
-  }
-}
-
 const ContactForm = () => {
   const language = useLanguage();
   const en = language === 'EN';
@@ -32,7 +26,7 @@ const ContactForm = () => {
   });
 
   useEffect(() => {
-    if (typeof window === 'undefined' || window.grecaptcha) return;
+    if (typeof window === 'undefined' || (window as any).grecaptcha) return;
     const script = document.createElement('script');
     script.src = `https://www.google.com/recaptcha/enterprise.js?render=${RECAPTCHA_SITE_KEY}`;
     script.async = true;
@@ -41,8 +35,9 @@ const ContactForm = () => {
 
   const getToken = async (): Promise<string | null> => {
     try {
-      if (!window.grecaptcha?.enterprise) return null;
-      return await window.grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, { action: 'contact_submit' });
+      const g = (window as any).grecaptcha;
+      if (!g?.enterprise) return null;
+      return await g.enterprise.execute(RECAPTCHA_SITE_KEY, { action: 'contact_submit' });
     } catch {
       return null;
     }
