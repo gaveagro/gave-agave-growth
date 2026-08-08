@@ -6,7 +6,7 @@ import MetricsBar from '@/components/home/MetricsBar';
 import ModelSection from '@/components/home/ModelSection';
 import EvidenceSection from '@/components/home/EvidenceSection';
 import FourDoors from '@/components/home/FourDoors';
-import Portfolio from '@/components/home/Portfolio';
+import SocialImpact from '@/components/home/SocialImpact';
 import FaqSection from '@/components/home/FaqSection';
 import FinalCTA from '@/components/home/FinalCTA';
 import InnovationSection from '@/components/InnovationSection';
@@ -60,7 +60,7 @@ const Index = () => {
       <ModelSection />
       <EvidenceSection />
       <FourDoors />
-      <Portfolio />
+      <SocialImpact />
       <InnovationSection />
       <Blog />
       <FaqSection />

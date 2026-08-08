@@ -14,8 +14,8 @@ const Vivero = () => {
       seo={{
         title: en ? 'Agave nursery: Espadín and Salmiana plants | Gavé' : 'Vivero de agave: planta Espadín y Salmiana | Gavé',
         description: en
-          ? 'Field-ready agave plants at volume. Espadín pups at $1 MXN per centimetre of height, and Salmiana for arid-land reforestation.'
-          : 'Planta de agave lista para campo, en volumen. Hijuelos de Espadín a $1 MXN por centímetro de altura y Salmiana para reforestación de zonas áridas.',
+          ? 'Field-ready agave plants at volume: Espadín for mezcal supply and Salmiana for arid-land reforestation. Quote by lot.'
+          : 'Planta de agave lista para campo, en volumen: Espadín para abasto mezcalero y Salmiana para reforestación de zonas áridas. Cotización por lote.',
         canonical: 'https://gaveagro.com/vivero',
         jsonLd: [
           {
@@ -60,16 +60,16 @@ const Vivero = () => {
       stats={
         en
           ? [
-              { value: '$1/cm', label: 'per centimetre of Espadín pup height' },
+              { value: '2', label: 'species: Espadín and Salmiana' },
               { value: '0', label: 'irrigation required' },
               { value: '20–30 cm', label: 'typical plant size per order' },
-              { value: 'Ca', label: 'calcium, its main nutrient' },
+              { value: 'Lot', label: 'quote tailored to your volume' },
             ]
           : [
-              { value: '$1/cm', label: 'por centímetro de altura del hijuelo Espadín' },
+              { value: '2', label: 'especies: Espadín y Salmiana' },
               { value: '0', label: 'riego requerido' },
               { value: '20–30 cm', label: 'tamaño típico de planta por pedido' },
-              { value: 'Ca', label: 'calcio, su nutriente principal' },
+              { value: 'Lote', label: 'cotización a la medida de tu volumen' },
             ]
       }
       blocks={
@@ -84,12 +84,12 @@ const Vivero = () => {
                 body: 'Angustifolia Haw pups adapted to the Huasteca Potosina and the Denomination of Origin municipalities of Tamaulipas — the regions whose climate genuinely fits this species.',
               },
               {
-                title: 'Simple pricing',
-                body: 'Espadín pups are priced at $1 MXN per centimetre of plant height. Orders typically carry plants between 20 and 30 cm, and we average the lot to set the price per plant. No hidden tables.',
+                title: 'Quote by lot',
+                body: 'We quote per lot, based on species, plant size and volume. Orders typically carry plants between 20 and 30 cm. Tell us how many plants you need and where they are going and we come back with a price.',
               },
               {
                 title: 'Soil: the argument that matters',
-                body: 'Agave adapts to poor and stony soils, and its main nutrient is calcium beyond the macronutrients — limestone ground is an advantage. It is a real way to rest land exhausted by decades of monoculture such as sugarcane, while it regenerates.',
+                body: 'Agave adapts to poor and stony soils where other crops give up, so rocky ground stops being a problem. It is a real way to rest land exhausted by decades of monoculture such as sugarcane, while it regenerates.',
               },
               {
                 title: 'Beyond the plant',
@@ -110,12 +110,12 @@ const Vivero = () => {
                 body: 'Hijuelos de Angustifolia Haw adaptados a la Huasteca Potosina y a los municipios con Denominación de Origen de Tamaulipas, las regiones cuyo clima realmente corresponde a esta especie.',
               },
               {
-                title: 'Precio simple',
-                body: 'Los hijuelos de Espadín se cotizan a $1 MXN por centímetro de altura de la planta. Los pedidos normalmente traen plantas de 20 a 30 cm y promediamos el lote para fijar el precio por planta. Sin tablas escondidas.',
+                title: 'Cotización por lote',
+                body: 'Cotizamos por lote, según especie, talla de planta y volumen. Los pedidos normalmente traen plantas de 20 a 30 cm. Dinos cuántas plantas necesitas y a dónde van, y te regresamos un precio.',
               },
               {
                 title: 'El suelo: el argumento que importa',
-                body: 'El agave se adapta a suelos pobres y pedregosos, y su nutriente principal es el calcio además de los macronutrientes: el terreno calizo es una ventaja. Es una forma real de descansar tierras cansadas por décadas de monocultivo como la caña, mientras se regeneran.',
+                body: 'El agave se adapta a suelos pobres y pedregosos donde otros cultivos se rinden, así que el terreno rocoso deja de ser un problema. Es una forma real de descansar tierras cansadas por décadas de monocultivo como la caña, mientras se regeneran.',
               },
               {
                 title: 'Más allá de la planta',

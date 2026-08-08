@@ -115,7 +115,7 @@ const BlogPost = () => {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="container mx-auto px-4 text-center text-white">
               <div className="mb-4">
-                <span className="bg-gave-blue px-3 py-1 rounded-full text-sm">
+                <span className="bg-accent px-3 py-1 text-sm text-accent-foreground">
                   {language === 'EN' ? post.category_en : post.category_es}
                 </span>
               </div>
@@ -135,8 +135,8 @@ const BlogPost = () => {
             {/* Back Button */}
             <Button 
               variant="ghost" 
-              onClick={() => navigate('/')}
-              className="mb-8 text-gave-blue hover:text-gave-blue/80"
+              onClick={() => navigate('/blog')}
+              className="mb-8 text-ink hover:text-ink/80"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               {currentContent.backToBlog}
@@ -212,9 +212,9 @@ const BlogPost = () => {
             </div>
 
             {/* CTA Section */}
-            <div className="mt-16 p-8 bg-gave-green/10 rounded-lg border border-gave-green/20">
+            <div className="mt-16 border border-border bg-paper-deep p-8">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4 text-gave-green">
+                <h3 className="font-display text-2xl mb-4 text-ink">
                   {language === 'EN' ? 'Ready to Start Your Regenerative Investment?' : '¿Listo para Comenzar tu Inversión Regenerativa?'}
                 </h3>
                 <p className="text-lg mb-6 text-muted-foreground">

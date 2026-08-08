@@ -10,6 +10,7 @@ const Footer = () => {
           description:
             'Regenerative agroforestry and silvopastoral systems built on agave. Restoring arid land in Mexico, with measurable climate outcomes.',
           copyright: '© 2026 Gavé. All rights reserved.',
+          tajacu: 'Part of Grupo Tajacú.',
           privacy: 'Privacy Policy',
           colWork: 'What we do',
           colCompany: 'Company',
@@ -21,6 +22,7 @@ const Footer = () => {
             { label: 'Crowdgrowing', to: '/crowdgrowing' },
           ],
           company: [
+            { label: 'Contact', to: '/contacto' },
             { label: 'Blog', to: '/blog' },
             { label: 'FAQ', to: '/#faq' },
             { label: 'Dashboard', to: 'https://dashboard.gaveagro.com' },
@@ -30,6 +32,7 @@ const Footer = () => {
           description:
             'Sistemas agroforestales y agrosilvopastoriles regenerativos basados en agave. Restauramos tierras áridas en México con resultados climáticos medibles.',
           copyright: '© 2026 Gavé. Todos los derechos reservados.',
+          tajacu: 'Parte de Grupo Tajacú.',
           privacy: 'Política de Privacidad',
           colWork: 'Qué hacemos',
           colCompany: 'Compañía',
@@ -41,6 +44,7 @@ const Footer = () => {
             { label: 'Crowdgrowing', to: '/crowdgrowing' },
           ],
           company: [
+            { label: 'Contacto', to: '/contacto' },
             { label: 'Blog', to: '/blog' },
             { label: 'Preguntas frecuentes', to: '/#faq' },
             { label: 'Dashboard', to: 'https://dashboard.gaveagro.com' },
@@ -91,7 +95,9 @@ const Footer = () => {
         </div>
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 md:flex-row md:items-center">
-          <p className="text-sm text-muted-foreground">{c.copyright}</p>
+          <p className="text-sm text-muted-foreground">
+            {c.copyright} <span className="text-muted-foreground/70">{c.tajacu}</span>
+          </p>
           <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
             {c.privacy}
           </Link>

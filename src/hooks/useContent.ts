@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { load as yamlLoad } from 'js-yaml';
 
 interface ContentData {
   [key: string]: any;
@@ -43,167 +44,104 @@ export const useContent = (contentFile: string) => {
   return { content, loading, error };
 };
 
+const slugify = (filename: string) =>
+  filename
+    .replace(/\.md$/, '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase()
+    .slice(0, 90);
+
+const normalizePost = (filename: string, raw: string) => {
+  const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+  if (!match) return null;
+
+  const [, frontmatter, body] = match;
+  let data: any = {};
+  try {
+    data = (yamlLoad(frontmatter) as any) || {};
+  } catch (err) {
+    console.warn(`Invalid frontmatter in ${filename}:`, err);
+    return null;
+  }
+
+  const published = data.published !== false && data.published !== 'false';
+  if (!published) return null;
+
+  return {
+    id: slugify(filename),
+    file: filename,
+    title_en: data.title_en || data.title || 'Untitled',
+    title_es: data.title_es || data.title || 'Sin título',
+    excerpt_en: data.excerpt_en || data.excerpt || '',
+    excerpt_es: data.excerpt_es || data.excerpt || '',
+    body_en: data.body_en || body || '',
+    body_es: data.body_es || body || '',
+    author_en: data.author_en || data.author || 'Gavé Team',
+    author_es: data.author_es || data.author || 'Equipo Gavé',
+    date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
+    category_en: data.category_en || data.category || 'Regenerative agriculture',
+    category_es: data.category_es || data.category || 'Agricultura regenerativa',
+    image: data.image || data.featured_image || '/images/farm1-min.jpg',
+    published: true,
+  };
+};
+
 export const useBlogPosts = () => {
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
+
     const loadBlogPosts = async () => {
       try {
         setLoading(true);
-        const loadedPosts: any[] = [];
-        
-        // Load the sample post from JSON (optional)
-        try {
-          const response = await fetch('/content/blog/sample-post.json');
-          if (response.ok) {
-            const post = await response.json();
-            if (post.published !== false) {
-              loadedPosts.push({
-                id: 'sample-post',
-                ...post
-              });
-            }
-          }
-        } catch (err) {
-          console.warn('Failed to load sample post:', err);
-        }
 
-        // Load any .md files created by Netlify CMS via a manifest generated at build time
         let mdFiles: string[] = [];
-        try {
-          const idxRes = await fetch('/content/blog/index.json', { cache: 'no-cache' });
-          if (idxRes.ok) {
-            const list = await idxRes.json();
-            if (Array.isArray(list)) {
-              mdFiles = list.filter((name: string) => name.endsWith('.md'));
-            } else if (list && Array.isArray(list.files)) {
-              mdFiles = list.files.filter((name: string) => name.endsWith('.md'));
-            }
-          }
-        } catch (e) {
-          console.warn('Blog manifest not available, falling back to static list');
+        const idxRes = await fetch('/content/blog/index.json', { cache: 'no-cache' });
+        if (idxRes.ok) {
+          const list = await idxRes.json();
+          const arr = Array.isArray(list) ? list : Array.isArray(list?.files) ? list.files : [];
+          mdFiles = arr.filter((name: string) => typeof name === 'string' && name.endsWith('.md'));
         }
 
-        // Fallback to known filenames if manifest is missing
-        if (mdFiles.length === 0) {
-          mdFiles = [
-            '2025-07-11-map-author_es-gavé-agrotecnología-body_en-🇲🇽-méxico-n-nfew-plants-are-as-deeply-intertwined-with-a-countrys-history-as-agave-is-with-mexico-as-the-center-of-origin-of-the-agavaceae-family-mexico-is-home-to-223-of-the-world.md'
-          ];
-        }
-        
-        for (const filename of mdFiles) {
-          try {
-            const encoded = encodeURIComponent(filename);
-            const response = await fetch(`/content/blog/${encoded}`);
-            if (response.ok) {
-              const text = await response.text();
-              const frontmatterMatch = text.match(/^---\s*\n(.*?)\n---\s*\n(.*)$/s);
-              
-              if (frontmatterMatch) {
-                const [, frontmatter, content] = frontmatterMatch;
-                
-                // Parse YAML-like frontmatter (handle multi-line values properly)
-                const frontmatterObj: any = {};
-                const lines = frontmatter.split('\n');
-                let currentKey = '';
-                let currentValue = '';
-                let inMultiLine = false;
-                
-                for (let i = 0; i < lines.length; i++) {
-                  const line = lines[i];
-                  
-                  if (line.includes(':') && !inMultiLine) {
-                    // Save previous multi-line value if exists
-                    if (currentKey && currentValue) {
-                      frontmatterObj[currentKey] = currentValue.trim();
-                      currentKey = '';
-                      currentValue = '';
-                    }
-                    
-                    const colonIndex = line.indexOf(':');
-                    const key = line.substring(0, colonIndex).trim();
-                    let value = line.substring(colonIndex + 1).trim();
-                    
-                    // Check if this starts a multi-line value
-                    if (value === '>- ' || value === '|-' || value === '>' || value === '>-') {
-                      inMultiLine = true;
-                      currentKey = key;
-                      currentValue = '';
-                    } else {
-                      // Single line value - remove quotes if present
-                      if ((value.startsWith('"') && value.endsWith('"')) || 
-                          (value.startsWith("'") && value.endsWith("'"))) {
-                        value = value.slice(1, -1);
-                      }
-                      frontmatterObj[key] = value;
-                    }
-                  } else if (inMultiLine) {
-                    // We're in a multi-line value
-                    if (line.trim() === '' && i < lines.length - 1) {
-                      // Empty line in multi-line content
-                      if (currentValue) currentValue += '\n\n';
-                    } else if (line.trim() !== '') {
-                      // Non-empty line - add to current value
-                      if (currentValue) currentValue += '\n\n';
-                      currentValue += line.trim();
-                    }
-                    
-                    // Check if we're at the end or next line starts a new key
-                    if (i === lines.length - 1 || (i < lines.length - 1 && lines[i + 1].includes(':') && !lines[i + 1].startsWith(' '))) {
-                      // End of multi-line value
-                      if (currentKey && currentValue) {
-                        frontmatterObj[currentKey] = currentValue.trim();
-                      }
-                      inMultiLine = false;
-                      currentKey = '';
-                      currentValue = '';
-                    }
-                  }
-                }
-                
-                const post = {
-                  id: filename.replace('.md', ''),
-                  title_en: frontmatterObj.title_en || frontmatterObj.title || 'Untitled',
-                  title_es: frontmatterObj.title_es || frontmatterObj.title || 'Sin título',
-                  excerpt_en: frontmatterObj.excerpt_en || frontmatterObj.excerpt || '',
-                  excerpt_es: frontmatterObj.excerpt_es || frontmatterObj.excerpt || '',
-                  body_en: frontmatterObj.body_en || content || 'Content not available',
-                  body_es: frontmatterObj.body_es || content || 'Contenido no disponible',
-                  author_en: frontmatterObj.author_en || frontmatterObj.author || 'Gavé Team',
-                  author_es: frontmatterObj.author_es || frontmatterObj.author || 'Equipo Gavé',
-                  date: frontmatterObj.date || new Date().toISOString(),
-                  category_en: frontmatterObj.category_en || frontmatterObj.category || 'Agriculture',
-                  category_es: frontmatterObj.category_es || frontmatterObj.category || 'Agricultura',
-                  image: frontmatterObj.image || frontmatterObj.featured_image || '/images/farm1-min.jpg',
-                  published: frontmatterObj.published !== false && frontmatterObj.published !== 'false'
-                };
-                
-                if (post.published) {
-                  loadedPosts.push(post);
-                }
-              }
+        const results = await Promise.all(
+          mdFiles.map(async (filename) => {
+            try {
+              const res = await fetch(`/content/blog/${encodeURIComponent(filename)}`);
+              if (!res.ok) return null;
+              const text = await res.text();
+              return normalizePost(filename, text);
+            } catch (err) {
+              console.warn(`Failed to load ${filename}:`, err);
+              return null;
             }
-          } catch (err) {
-            console.warn(`Failed to load ${filename}:`, err);
-          }
-        }
-        
-        // Sort by date (newest first)
+          })
+        );
+
+        const loadedPosts = results.filter(Boolean) as any[];
         loadedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        
-        setPosts(loadedPosts);
-        setError(null);
+
+        if (!cancelled) {
+          setPosts(loadedPosts);
+          setError(null);
+        }
       } catch (err) {
         console.error('Error loading blog posts:', err);
-        setError(err instanceof Error ? err.message : 'Unknown error');
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
     loadBlogPosts();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return { posts, loading, error };
