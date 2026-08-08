@@ -14,6 +14,15 @@ const Compensa = () => {
           ? 'Companies and individuals can sponsor restored hectares in arid Mexico, with photo, satellite and impact reporting on the exact land they funded.'
           : 'Empresas y personas pueden apadrinar hectáreas restauradas en zonas áridas de México, con reporte fotográfico, satelital y de impacto de la tierra que financiaron.',
         canonical: 'https://gaveagro.com/compensa',
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'Compensa y patrocina hectáreas en restauración',
+          serviceType: 'Patrocinio de hectáreas restauradas con reporte de impacto verificable',
+          provider: { '@type': 'Organization', name: 'Gavé Agrotecnología', url: 'https://gaveagro.com/' },
+          areaServed: 'Zonas áridas y semiáridas',
+          url: 'https://gaveagro.com/compensa',
+        },
       }}
       image={hero.url}
       eyebrow={en ? 'Companies · Teams · Individuals' : 'Empresas · Equipos · Personas'}

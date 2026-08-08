@@ -16,6 +16,15 @@ const InversionImpacto = () => {
           ? 'Fund agave-based agroforestry and silvopastoral systems in arid Mexico: carbon capture, regenerative livestock, water harvesting and satellite MRV.'
           : 'Financia sistemas agroforestales y agrosilvopastoriles con agave en zonas áridas de México: captura de carbono, ganadería regenerativa, cosecha de agua y MRV satelital.',
         canonical: 'https://gaveagro.com/inversion-de-impacto',
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'Inversión de impacto en sistemas agroforestales con agave',
+          serviceType: 'Estructuración de proyectos agroforestales y agrosilvopastoriles para inversión de impacto',
+          provider: { '@type': 'Organization', name: 'Gavé Agrotecnología', url: 'https://gaveagro.com/' },
+          areaServed: 'Zonas áridas y semiáridas',
+          url: 'https://gaveagro.com/inversion-de-impacto',
+        },
       }}
       image={hero.url}
       eyebrow={en ? 'Funds · NGOs · Governments · Corporates' : 'Fondos · ONGs · Gobiernos · Empresas'}

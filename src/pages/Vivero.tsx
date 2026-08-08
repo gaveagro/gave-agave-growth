@@ -17,6 +17,37 @@ const Vivero = () => {
           ? 'Field-ready agave plants at volume. Espadín pups at $1 MXN per centimetre of height, and Salmiana for arid-land reforestation.'
           : 'Planta de agave lista para campo, en volumen. Hijuelos de Espadín a $1 MXN por centímetro de altura y Salmiana para reforestación de zonas áridas.',
         canonical: 'https://gaveagro.com/vivero',
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Vivero de agave Espadín y Salmiana',
+            serviceType: 'Producción y venta de planta de agave para campo y reforestación',
+            provider: { '@type': 'Organization', name: 'Gavé Agrotecnología', url: 'https://gaveagro.com/' },
+            areaServed: 'Zonas áridas y semiáridas',
+            url: 'https://gaveagro.com/vivero',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: 'Hijuelos de Agave Espadín (Angustifolia Haw)',
+            description:
+              'Hijuelos de Agave Espadín para abasto mezcalero en regiones con Denominación de Origen. Tamaño típico de 20 a 30 cm.',
+            category: 'Planta de agave',
+            brand: { '@type': 'Brand', name: 'Gavé Agrotecnología' },
+            url: 'https://gaveagro.com/hijuelos-espadin',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: 'Planta de Agave Salmiana',
+            description:
+              'Agave Salmiana para reforestación y regeneración de zonas áridas: alta tolerancia a sequía y heladas, sin riego.',
+            category: 'Planta de agave',
+            brand: { '@type': 'Brand', name: 'Gavé Agrotecnología' },
+            url: 'https://gaveagro.com/vivero',
+          },
+        ],
       }}
       image={hero.url}
       eyebrow={en ? 'Producers · Reforestation programmes' : 'Productores · Programas de reforestación'}
