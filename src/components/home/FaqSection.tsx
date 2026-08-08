@@ -34,8 +34,8 @@ export const groupsES: Group[] = [
     label: 'Bonos de carbono',
     items: [
       {
-        q: 'Tengo un rancho de más de 8,000 ha en zona árida, ¿aplica?',
-        a: 'Es justo el perfil que buscamos. Superficie grande en zona árida o semiárida, con historial de sobrepastoreo o degradación, es donde el potencial de captura adicional es mayor y donde la línea base juega a favor del proyecto.',
+        q: 'Tengo un rancho en zona árida, ¿aplica? ¿Cuál es la superficie mínima?',
+        a: 'No manejamos un mínimo rígido de hectáreas: evaluamos cada rancho caso por caso. El perfil que buscamos es zona árida o semiárida con historial de sobrepastoreo o degradación y tenencia clara, sin importar el estado ni el país, porque ahí el potencial de captura adicional es mayor y la línea base juega a favor del proyecto.',
       },
       {
         q: '¿Qué pone Gavé y qué pone el dueño del rancho?',
@@ -121,8 +121,8 @@ const groupsEN: Group[] = [
     label: 'Carbon credits',
     items: [
       {
-        q: 'I own a ranch over 8,000 ha in an arid zone. Does it qualify?',
-        a: 'That is exactly the profile we look for. Large arid or semi-arid surface with a history of overgrazing or degradation is where additional capture potential is highest and where the baseline works in the project’s favour.',
+        q: 'I own a ranch in an arid zone. Does it qualify? Is there a minimum size?',
+        a: 'There is no rigid hectare minimum — we assess each ranch case by case. The profile we look for is arid or semi-arid land with a history of overgrazing or degradation and clear tenure, in any state or country, because that is where additional capture potential is highest and where the baseline works in the project’s favour.',
       },
       {
         q: 'What does Gavé bring and what does the owner bring?',

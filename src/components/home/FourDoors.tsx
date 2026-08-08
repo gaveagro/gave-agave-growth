@@ -22,7 +22,7 @@ const FourDoors = () => {
             {
               icon: Mountain,
               to: '/bonos-de-carbono',
-              tag: 'Ranch owners 8,000+ ha',
+              tag: 'Ranch owners · arid zones',
               title: 'Carbon credit certification',
               body: 'We take arid-land ranches through MRV, methodology and certification so they can issue carbon and regenerative-livestock credits.',
             },
@@ -57,7 +57,7 @@ const FourDoors = () => {
             {
               icon: Mountain,
               to: '/bonos-de-carbono',
-              tag: 'Ranchos de +8,000 ha',
+              tag: 'Ranchos en zonas áridas',
               title: 'Certificación de bonos de carbono',
               body: 'Llevamos ranchos en zonas áridas por el MRV, la metodología y la certificación para emitir bonos de carbono y de ganadería regenerativa.',
             },

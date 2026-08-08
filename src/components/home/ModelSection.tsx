@@ -19,24 +19,24 @@ const ModelSection = () => {
           {
             icon: Leaf,
             key: 'agave',
-            name: 'Agave as infrastructure',
-            claim: 'A crop that holds the soil while everything else recovers.',
+            name: 'Agave and dryland species',
+            claim: 'A multi-species cover that holds the soil while everything else recovers.',
             body:
-              'Agave grows where other crops fail: poor, stony, drought-stressed soils. Its main nutrient is calcium beyond the macronutrients, so limestone and rocky ground is an advantage, not a limitation. Rows act as living terraces that stop erosion and let exhausted land rest.',
+              'Agave is the backbone — it grows where other crops fail, on poor, stony, drought-stressed soils, and its rows act as living terraces that stop erosion. Around it we establish mezquite (Prosopis spp.), nopal rastrero (Opuntia spp.), costilla de vaca (Atriplex canescens) and leucaena (Leucaena leucocephala), each doing a different job: nitrogen, shade, ground cover and browse.',
             stats: [
               ['0', 'irrigation required'],
-              ['5–6 yr', 'Espadín cycle'],
-              ['7–9 yr', 'Salmiana cycle'],
+              ['5+', 'species per hectare'],
+              ['5–9 yr', 'agave cycle by species'],
             ],
             image: impacto.url,
           },
           {
             icon: Beef,
             key: 'livestock',
-            name: 'Regenerative livestock',
+            name: 'Regenerative & rational livestock',
             claim: 'Animals as a soil tool, not as pressure on the land.',
             body:
-              'Planned grazing between agave rows: short, high-density rotations with long rest. Manure and hoof action rebuild organic matter and infiltration, while the herd produces revenue during the years the agave is still maturing.',
+              'Rational grazing (Voisin) between the rows: short, high-density rotations with long rest periods. Manure and hoof action rebuild organic matter and infiltration, Agave Salmiana leaves go back to the herd as fodder and silage, and the animals produce revenue during the years the agave is still maturing.',
             stats: [
               ['+OM', 'organic matter in topsoil'],
               ['Yearly', 'cash flow before harvest'],
@@ -77,24 +77,24 @@ const ModelSection = () => {
           {
             icon: Leaf,
             key: 'agave',
-            name: 'El agave como infraestructura',
-            claim: 'Un cultivo que sostiene el suelo mientras todo lo demás se recupera.',
+            name: 'Agave y especies de zona árida',
+            claim: 'Una cobertura multiespecie que sostiene el suelo mientras todo lo demás se recupera.',
             body:
-              'El agave crece donde otros cultivos fracasan: suelos pobres, pedregosos y con estrés hídrico. Su principal nutriente es el calcio además de los macronutrientes, por lo que los terrenos calizos y pedregosos son una ventaja, no una limitante. Las hileras funcionan como terrazas vivas que frenan la erosión y permiten descansar tierras cansadas.',
+              'El agave es la columna vertebral: crece donde otros cultivos fracasan, en suelos pobres, pedregosos y con estrés hídrico, y sus hileras funcionan como terrazas vivas que frenan la erosión. Alrededor establecemos mezquite (Prosopis spp.), nopal rastrero (Opuntia spp.), costilla de vaca (Atriplex canescens) y leucaena (Leucaena leucocephala), cada una con una función distinta: nitrógeno, sombra, cobertura de suelo y ramoneo.',
             stats: [
               ['0', 'riego requerido'],
-              ['5–6 años', 'ciclo Espadín'],
-              ['7–9 años', 'ciclo Salmiana'],
+              ['5+', 'especies por hectárea'],
+              ['5–9 años', 'ciclo del agave según especie'],
             ],
             image: impacto.url,
           },
           {
             icon: Beef,
             key: 'livestock',
-            name: 'Ganadería regenerativa',
+            name: 'Ganadería regenerativa y racional',
             claim: 'El ganado como herramienta de suelo, no como presión sobre la tierra.',
             body:
-              'Pastoreo planificado entre hileras de agave: rotaciones cortas de alta densidad con descansos largos. El estiércol y el pisoteo reconstruyen materia orgánica e infiltración, mientras el hato genera ingresos durante los años en que el agave todavía madura.',
+              'Ganadería racional (pastoreo racional Voisin) entre las hileras: rotaciones cortas de alta densidad con descansos largos. El estiércol y el pisoteo reconstruyen materia orgánica e infiltración, las hojas de agave Salmiana regresan al hato como forraje y ensilado, y los animales generan ingresos durante los años en que el agave todavía madura.',
             stats: [
               ['+MO', 'materia orgánica en la capa fértil'],
               ['Anual', 'flujo antes de la cosecha'],

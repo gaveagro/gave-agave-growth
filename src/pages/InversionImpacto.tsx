@@ -56,9 +56,9 @@ const InversionImpacto = () => {
                 title: 'What the capital buys',
                 body: 'Capital goes into establishing the productive and ecological infrastructure of a hectare, not into speculation on a single commodity.',
                 bullets: [
-                  'Agave establishment and field operations',
+                  'Establishment of agave and companion dryland species — mezquite (Prosopis spp.), nopal rastrero (Opuntia spp.), costilla de vaca (Atriplex canescens), leucaena (Leucaena leucocephala)',
                   'Water harvesting works: keylines, ditches, gabions, ponds',
-                  'Herd integration and planned grazing infrastructure',
+                  'Herd integration and rational grazing (Voisin) infrastructure',
                   'Baseline, monitoring and MRV layer',
                 ],
               },
@@ -72,7 +72,7 @@ const InversionImpacto = () => {
               },
               {
                 title: 'Where we operate',
-                body: 'Arid and semi-arid land in San Luis Potosí and the Huasteca Potosina, with expansion routes into Tamaulipas. Land where conventional agriculture has already failed is exactly where restoration additionality is highest.',
+                body: 'Any arid or semi-arid land where the system fits — we are not limited to one state or one country. Current operations run in San Luis Potosí and the Huasteca Potosina, with expansion into Tamaulipas and other dryland regions. Land where conventional agriculture has already failed is exactly where restoration additionality is highest.',
               },
               {
                 title: 'Ticket and structure',
@@ -88,9 +88,9 @@ const InversionImpacto = () => {
                 title: 'Qué compra el capital',
                 body: 'El capital se destina a establecer la infraestructura productiva y ecológica de una hectárea, no a especular con un solo commodity.',
                 bullets: [
-                  'Establecimiento de agave y operación de campo',
+                  'Establecimiento de agave y especies acompañantes de zona árida: mezquite (Prosopis spp.), nopal rastrero (Opuntia spp.), costilla de vaca (Atriplex canescens), leucaena (Leucaena leucocephala)',
                   'Obras de cosecha de agua: keylines, zanjas, gaviones, bordos',
-                  'Integración del hato e infraestructura de pastoreo planificado',
+                  'Integración del hato e infraestructura de ganadería racional (pastoreo Voisin)',
                   'Línea base, monitoreo y capa de MRV',
                 ],
               },
@@ -104,7 +104,7 @@ const InversionImpacto = () => {
               },
               {
                 title: 'Dónde operamos',
-                body: 'Tierras áridas y semiáridas en San Luis Potosí y la Huasteca Potosina, con rutas de expansión hacia Tamaulipas. La tierra donde la agricultura convencional ya fracasó es justo donde la adicionalidad de la restauración es mayor.',
+                body: 'Cualquier zona árida o semiárida donde el sistema tenga sentido: no nos limitamos a un estado ni a un país. Hoy operamos en San Luis Potosí y la Huasteca Potosina, con expansión hacia Tamaulipas y otras regiones de tierras secas. La tierra donde la agricultura convencional ya fracasó es justo donde la adicionalidad de la restauración es mayor.',
               },
               {
                 title: 'Ticket y estructura',
