@@ -9,10 +9,3 @@ const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiO
 // import { supabase } from "@/integrations/supabase/client";
 
 export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-/**
- * Lazily loads the Supabase client so it stays out of the initial/prerender bundle.
- */
-export const getSupabase = async () => {
-  const mod = await import('./client');
-  return mod.supabase;
-};
