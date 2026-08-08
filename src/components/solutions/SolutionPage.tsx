@@ -13,7 +13,7 @@ export interface SolutionBlock {
 }
 
 interface SolutionPageProps {
-  seo: { title: string; description: string; canonical: string; jsonLd?: object };
+  seo: { title: string; description: string; canonical: string; jsonLd?: Record<string, any> | Record<string, any>[] };
   image: string;
   eyebrow: string;
   title: string;
