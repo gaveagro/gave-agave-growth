@@ -36,6 +36,12 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      // Node-safe build of this transitive markdown dep (its browser build
+      // touches `document` at module scope and breaks prerendering).
+      "decode-named-character-reference": path.resolve(
+        __dirname,
+        "./node_modules/decode-named-character-reference/index.js"
+      ),
     },
   },
 }));
