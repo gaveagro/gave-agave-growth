@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "node scripts/generate-content.js && npm run build && node scripts/inject-og-tags.js"
+  command = "node scripts/generate-content.js && npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
@@ -21,12 +21,6 @@
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
-  status = 200
-
-# Landing de hijuelos con OG tags estáticos (para WhatsApp/redes)
-[[redirects]]
-  from = "/hijuelos-espadin"
-  to = "/hijuelos-espadin.html"
   status = 200
 
 [[redirects]]
