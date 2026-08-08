@@ -11,6 +11,7 @@ const ROUTES = [
   "/vivero",
   "/compensa",
   "/crowdgrowing",
+  "/contacto",
   "/hijuelos-espadin",
   "/blog",
   "/privacy",

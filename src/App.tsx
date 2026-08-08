@@ -16,6 +16,7 @@ import BonosCarbono from "./pages/BonosCarbono";
 import Vivero from "./pages/Vivero";
 import Compensa from "./pages/Compensa";
 import Crowdgrowing from "./pages/Crowdgrowing";
+import Contacto from "./pages/Contacto";
 
 // Admin is loaded on demand so Supabase stays out of the public/prerendered bundle.
 const AdminPanel = lazy(() => import("./pages/AdminPanel"));
@@ -32,6 +33,7 @@ const AppWithAnalytics = () => {
       <Route path="/vivero" element={<Vivero />} />
       <Route path="/compensa" element={<Compensa />} />
       <Route path="/crowdgrowing" element={<Crowdgrowing />} />
+      <Route path="/contacto" element={<Contacto />} />
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/blog/:id" element={<BlogPost />} />
       <Route
