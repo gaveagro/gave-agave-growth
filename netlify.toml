@@ -3,7 +3,7 @@
   command = "node scripts/generate-content.js && npm run build"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 # Configuración para funciones (crucial para Supabase)
 [functions]
