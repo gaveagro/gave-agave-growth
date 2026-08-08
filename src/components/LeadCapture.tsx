@@ -5,13 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import NetlifyForm from './NetlifyForm';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabase } from '@/integrations/supabase/lazy';
 import { trackFormSubmission, trackCTAClick } from '@/lib/analytics';
 
-// Configuración de Supabase
-const SUPABASE_URL = 'https://ybhbceqthsfgsjccounm.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InliaGJjZXF0aHNmZ3NqY2NvdW5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkyNDM2NzgsImV4cCI6MjA2NDgxOTY3OH0.e-mHzlSFVzx6dCgMwMY-ynFw0l9yrbXYXdr1n1Uoh_M';
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Función auxiliar para calcular valores de inversión (USD/MXN)
 const calculateInvestmentValue = (amount: string, isEnglish: boolean): number => {
@@ -151,7 +147,7 @@ const LeadCapture = () => {
       }
 
       // 2. Enviar datos a Supabase
-      const { error } = await supabase.functions.invoke('form-submission', {
+      const { error } = await (await getSupabase()).functions.invoke('form-submission', {
         body: {
           ...formData,
           formType: 'investment-lead-capture',
