@@ -6,7 +6,7 @@ import InvestmentModal from '@/components/InvestmentModal';
 
 type Group = { id: string; label: string; items: { q: string; a: string }[] };
 
-const groupsES: Group[] = [
+export const groupsES: Group[] = [
   {
     id: 'impacto',
     label: 'Inversión de impacto',
