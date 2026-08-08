@@ -95,7 +95,9 @@ const Footer = () => {
         </div>
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 md:flex-row md:items-center">
-          <p className="text-sm text-muted-foreground">{c.copyright}</p>
+          <p className="text-sm text-muted-foreground">
+            {c.copyright} <span className="text-muted-foreground/70">{c.tajacu}</span>
+          </p>
           <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
             {c.privacy}
           </Link>
