@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import yaml from 'js-yaml';
+import { load as yamlLoad } from 'js-yaml';
 
 interface ContentData {
   [key: string]: any;
@@ -61,7 +61,7 @@ const normalizePost = (filename: string, raw: string) => {
   const [, frontmatter, body] = match;
   let data: any = {};
   try {
-    data = (yaml.load(frontmatter) as any) || {};
+    data = (yamlLoad(frontmatter) as any) || {};
   } catch (err) {
     console.warn(`Invalid frontmatter in ${filename}:`, err);
     return null;
