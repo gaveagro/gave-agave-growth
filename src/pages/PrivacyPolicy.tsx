@@ -6,7 +6,7 @@ import SEO from '@/components/SEO';
 
 const PrivacyPolicy = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
+    return (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES';
   });
 
   useEffect(() => {

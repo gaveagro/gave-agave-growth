@@ -23,7 +23,7 @@ const calculateInvestmentValue = (amount: string, isEnglish: boolean): number =>
 };
 
 const LeadCapture = () => {
-  const [language, setLanguage] = useState<'EN' | 'ES'>(() => (window as any).currentLanguage || 'ES');
+  const [language, setLanguage] = useState<'EN' | 'ES'>(() => (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES');
   const [formData, setFormData] = useState({
     name: '',
     email: '',

@@ -6,7 +6,7 @@ import { Monitor, Satellite, Thermometer, BarChart3, Camera, MapPin } from 'luci
 
 const MonitoringPlatform = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
+    return (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES';
   });
 
   useEffect(() => {

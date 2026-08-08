@@ -9,7 +9,7 @@ import SEO from '@/components/SEO';
 
 const BlogPage = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
+    return (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES';
   });
 
   useEffect(() => {

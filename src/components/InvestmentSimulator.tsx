@@ -7,7 +7,7 @@ import { Calculator, TrendingUp, DollarSign, Leaf } from 'lucide-react';
 
 const InvestmentSimulator = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
+    return (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES';
   });
 
   const [plantYear, setPlantYear] = useState(2026);
