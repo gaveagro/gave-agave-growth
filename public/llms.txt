@@ -1,12 +1,22 @@
 # Gavé Agrotecnología
 
-> Regenerative agave investment platform. We manage tech-driven, sustainable agave cultivation in Mexico, delivering financial returns to investors while restoring degraded land and supporting rural communities.
+> Climate-first agrotechnology company regenerating arid and semi-arid land through agave-based agroforestry and silvopastoral systems, with measurable, certifiable outcomes for investors, ranch owners, NGOs and governments.
 
-Gavé operates managed agave farms (Espadín and Salmiana) on agrosilvopastoral systems. Investors acquire plants; we handle planting, monitoring, harvest, and sales to mezcal/tequila distilleries, sweetener and prebiotic markets. Cycles run 5–9 years with projected 9–19% IRR. We also sell certified Espadín hijuelos for growers in Mexico's Mezcal Denomination of Origin regions.
+Gavé designs and operates regenerative land systems built on agave and companion dryland species. The work combines carbon capture, regenerative and rational livestock grazing, water harvesting and a field + monitoring layer (MRV) designed from day one for third-party validation and verification. Business lines: impact investment in agroforestry projects, carbon-credit certification for arid-land ranches (Gavé works on commission over the credits generated), an agave nursery supplying Espadín and Salmiana plants, offsetting and sponsorship programmes, and the original crowdgrowing model. Operations are based in San Luis Potosí, Mexico, and the model applies to arid and semi-arid land generally.
 
 ## Pages
 
-- [Home](/): Investment overview, simulator, FAQ, impact metrics.
-- [Blog](/blog): Articles on agave, regenerative agriculture, and investment.
-- [Hijuelos Espadín](/hijuelos-espadin): Buy certified Agave Espadín plantlets with technical advisory.
+- [Home](/): Climate-first overview of the Gavé model — the four-layer system (agave, livestock, water, monitoring), impact metrics, evidence and MRV workflow, operating parcels and an audience-segmented FAQ.
+- [Impact investment](/inversion-de-impacto): For funds, NGOs, governments and corporates. How Gavé structures agroforestry and silvopastoral projects on arid Mexican land, how returns combine agave biomass, livestock income and environmental credits, and what impact evidence is delivered.
+- [Carbon credits for ranches](/bonos-de-carbono): For arid-land ranch owners. Baseline, management change, MRV and accompaniment through methodology and certification so a ranch can issue carbon and regenerative-livestock credits. Gavé is paid a commission on the credits generated.
+- [Nursery — Espadín & Salmiana](/vivero): Field-ready agave plants at volume. Agave Salmiana for arid-land reforestation programmes; Agave Espadín (Angustifolia Haw) for mezcal supply in Denomination of Origin regions. Rainfed, drought tolerant, suited to poor and stony soils.
+- [Offset & sponsorship](/compensa): For companies, teams and individuals who want to offset their footprint by sponsoring hectares under restoration, with coordinates, photographs, satellite series and an annual impact report on the exact parcel funded.
+- [Crowdgrowing](/crowdgrowing): The original Gavé model — individuals acquire agave plants that Gavé establishes and manages, follow them on the monitoring platform and share harvest revenue. Includes a profitability simulator and an honest note on the current low point of the agave price cycle.
+- [Hijuelos Espadín](/hijuelos-espadin): Dedicated landing page for buying certified Espadín pups for the Huasteca Potosina and Denomination of Origin municipalities of Tamaulipas. Pricing at $1 MXN per centimetre of plant height, profitability simulator, mezcal yield calculator and quote request.
+- [Blog](/blog): Articles on agave, regenerative agriculture, arid-land restoration and impact investment, in Spanish and English.
 - [Privacy Policy](/privacy): Aviso de Privacidad (Spanish).
+
+## Contact
+
+- Email: hola@gaveagro.com
+- Location: San Luis Potosí, Mexico

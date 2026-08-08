@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-import { supabase } from '@/integrations/supabase/client';
+import { getSupabase } from '@/integrations/supabase/lazy';
 import { trackFormSubmission } from '@/lib/analytics';
 
 const HijuelosContacto = () => {
@@ -50,7 +50,7 @@ const HijuelosContacto = () => {
         return;
       }
 
-      const { error } = await supabase.functions.invoke('form-submission', {
+      const { error } = await (await getSupabase()).functions.invoke('form-submission', {
         body: {
           name: formData.name,
           email: formData.email,

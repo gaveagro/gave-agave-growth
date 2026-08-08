@@ -10,7 +10,7 @@ import { useBlogPosts } from '@/hooks/useContent';
 const Blog = () => {
   const navigate = useNavigate();
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
+    return (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES';
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');

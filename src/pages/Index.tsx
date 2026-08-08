@@ -11,8 +11,21 @@ import FaqSection from '@/components/home/FaqSection';
 import FinalCTA from '@/components/home/FinalCTA';
 import InnovationSection from '@/components/InnovationSection';
 import Blog from '@/components/Blog';
+import { groupsES } from '@/components/home/FaqSection';
 
 const Index = () => {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: groupsES.flatMap((g) =>
+      g.items.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      }))
+    ),
+  };
+
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -30,6 +43,7 @@ const Index = () => {
       name: 'Gavé',
       url: 'https://gaveagro.com/',
     },
+    faqSchema,
   ];
 
   return (

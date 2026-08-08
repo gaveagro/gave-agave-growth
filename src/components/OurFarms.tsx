@@ -9,7 +9,7 @@ import moctezumaAsset from '@/assets/homepage/moctezuma-silvopastoril.jpg.asset.
 
 const OurFarms = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
+    return (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES';
   });
 
   useEffect(() => {

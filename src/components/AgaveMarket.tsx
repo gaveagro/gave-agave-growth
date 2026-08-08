@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 const AgaveMarket = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
+    return (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES';
   });
   const [content, setContent] = useState<any>(null);
 

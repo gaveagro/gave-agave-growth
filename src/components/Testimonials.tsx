@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 const Testimonials = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
+    return (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES';
   });
 
   useEffect(() => {

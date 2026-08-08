@@ -5,7 +5,7 @@ import impactoAsset from '@/assets/homepage/impacto-parcela.jpg.asset.json';
 
 const ImpactSection = () => {
   const [language, setLanguage] = useState(() => {
-    return (window as any).currentLanguage || 'ES';
+    return (typeof window !== 'undefined' && (window as any).currentLanguage) || 'ES';
   });
 
   useEffect(() => {

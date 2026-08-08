@@ -16,6 +16,15 @@ const BonosCarbono = () => {
           ? 'Gavé takes arid-land ranches of 8,000+ ha through baseline, MRV, methodology and certification to issue carbon and regenerative-livestock credits.'
           : 'Gavé lleva ranchos de +8,000 ha en zonas áridas por línea base, MRV, metodología y certificación para emitir bonos de carbono y de ganadería regenerativa.',
         canonical: 'https://gaveagro.com/bonos-de-carbono',
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'Certificación de bonos de carbono para ranchos',
+          serviceType: 'Línea base, MRV, metodología y acompañamiento a certificación de bonos ambientales',
+          provider: { '@type': 'Organization', name: 'Gavé Agrotecnología', url: 'https://gaveagro.com/' },
+          areaServed: 'Zonas áridas y semiáridas',
+          url: 'https://gaveagro.com/bonos-de-carbono',
+        },
       }}
       image={hero.url}
       eyebrow={en ? 'Ranch owners · 8,000+ ha · Arid zones' : 'Dueños de rancho · +8,000 ha · Zonas áridas'}

@@ -16,7 +16,7 @@ const HijuelosEspadin = () => {
     '@type': 'Product',
     name: 'Hijuelos de Agave Espadín',
     description: 'Hijuelos certificados de Agave Espadín desde la Huasteca Potosina, con asesoría técnica, logística y registro ante el CRM.',
-    image: 'https://gaveagro.com/images/especies-de-agave-para-mezcal-gavé.jpg',
+    image: 'https://gaveagro.com/images/especies-de-agave-para-mezcal-gav%C3%A9.jpg',
     brand: { '@type': 'Brand', name: 'Gavé Agrotecnología' },
     offers: {
       '@type': 'AggregateOffer',
@@ -34,7 +34,7 @@ const HijuelosEspadin = () => {
         title="Hijuelos de Agave Espadín — Gavé Agrotecnología"
         description="Hijuelos de Agave Espadín certificados desde la Huasteca Potosina. Asesoría técnica, logística y registro ante el CRM incluidos. Cotiza hoy."
         canonical="https://gaveagro.com/hijuelos-espadin"
-        ogImage="https://gaveagro.com/images/especies-de-agave-para-mezcal-gavé.jpg"
+        ogImage="https://gaveagro.com/images/especies-de-agave-para-mezcal-gav%C3%A9.jpg"
         jsonLd={productJsonLd}
       />
       {/* Simplified header */}

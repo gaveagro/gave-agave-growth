@@ -24,6 +24,15 @@ const Crowdgrowing = () => {
             : 'Adquiere plantas de agave establecidas por Gavé en San Luis Potosí, síguelas por satélite y participa del ingreso de la cosecha.'
         }
         canonical="https://gaveagro.com/crowdgrowing"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'Crowdgrowing de agave',
+          serviceType: 'Adquisición y manejo de plantas de agave por cuenta de inversionistas individuales',
+          provider: { '@type': 'Organization', name: 'Gavé Agrotecnología', url: 'https://gaveagro.com/' },
+          areaServed: 'San Luis Potosí, México',
+          url: 'https://gaveagro.com/crowdgrowing',
+        }}
       />
       <Header />
 

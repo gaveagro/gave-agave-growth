@@ -1,13 +1,13 @@
 
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import Index from "./pages/Index";
 import BlogPage from "./pages/BlogPage";
 import BlogPost from "./pages/BlogPost";
-import AdminPanel from "./pages/AdminPanel";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import HijuelosEspadin from "./pages/HijuelosEspadin";
@@ -16,6 +16,9 @@ import BonosCarbono from "./pages/BonosCarbono";
 import Vivero from "./pages/Vivero";
 import Compensa from "./pages/Compensa";
 import Crowdgrowing from "./pages/Crowdgrowing";
+
+// Admin is loaded on demand so Supabase stays out of the public/prerendered bundle.
+const AdminPanel = lazy(() => import("./pages/AdminPanel"));
 
 const queryClient = new QueryClient();
 
@@ -31,7 +34,14 @@ const AppWithAnalytics = () => {
       <Route path="/crowdgrowing" element={<Crowdgrowing />} />
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/blog/:id" element={<BlogPost />} />
-      <Route path="/admin" element={<AdminPanel />} />
+      <Route
+        path="/admin"
+        element={
+          <Suspense fallback={null}>
+            <AdminPanel />
+          </Suspense>
+        }
+      />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/hijuelos-espadin" element={<HijuelosEspadin />} />
       <Route path="*" element={<NotFound />} />
@@ -44,9 +54,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
-      <BrowserRouter>
-        <AppWithAnalytics />
-      </BrowserRouter>
+      <AppWithAnalytics />
     </TooltipProvider>
   </QueryClientProvider>
 );
