@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Leaf, Sprout, Droplets, Users, Quote } from 'lucide-react';
-import impactoAsset from '@/assets/homepage/impacto-parcela.jpg.asset.json';
+import impactoAsset from '@/assets/homepage/bosque-arido.jpg.asset.json';
 
 const ImpactSection = () => {
   const [language, setLanguage] = useState(() => {

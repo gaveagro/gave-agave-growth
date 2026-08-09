@@ -1,5 +1,5 @@
 import SolutionPage from '@/components/solutions/SolutionPage';
-import MezcalROI from '@/components/solutions/MezcalROI';
+import InvestmentSimulator from '@/components/InvestmentSimulator';
 import Portfolio from '@/components/home/Portfolio';
 import { useLanguage } from '@/hooks/useLanguage';
 import hero from '@/assets/homepage/ebano-parcela.jpg.asset.json';
@@ -110,7 +110,7 @@ const Compensa = () => {
             ]
       }
     >
-      <MezcalROI />
+      <InvestmentSimulator />
       <Portfolio />
     </SolutionPage>
   );

@@ -1,6 +1,6 @@
 import { Reveal } from '@/components/motion/Reveal';
 import { useLanguage } from '@/hooks/useLanguage';
-import cuadrilla from '@/assets/hijuelos/plantacion-trabajadores.jpg';
+import comunidad from '@/assets/homepage/comunidad-socios.jpg.asset.json';
 
 const SocialImpact = () => {
   const language = useLanguage();
@@ -9,51 +9,51 @@ const SocialImpact = () => {
   const c = en
     ? {
         eyebrow: 'Social impact',
-        title: 'Regeneration is also a payroll',
-        body: 'Arid land does not empty out because of drought alone — it empties out because there is no work. Every hectare we plant is paid days of work in the communities around the parcel, most of them Tének families from the Huasteca Potosina.',
+        title: 'The communities are partners, not labour',
+        body: 'Arid land does not empty out because of drought alone — it empties out when the people who live there have no stake in what happens to it. We work with the communities that inhabit each region as partners in the project: they contribute land, knowledge and work, and they participate in the economic, technical and cultural value the parcel generates.',
         points: [
           {
-            k: 'Rural employment',
-            v: 'Planting, terracing, maintenance and harvest are done by local crews, hired in the same municipalities where the parcels are.',
+            k: 'Economic participation',
+            v: 'Communities take part in the value of the parcel over the whole cycle — not a one-off wage, but sustained income from establishment, maintenance, grazing and harvest.',
           },
           {
-            k: 'Tének communities',
-            v: 'We work with Tének families of the Huasteca Potosina, combining their knowledge of the land with agronomic and monitoring support.',
+            k: 'Technical transfer',
+            v: 'Agronomic training, monitoring and nursery management stay in the region, so the capability outlives any single project.',
           },
           {
-            k: 'Work that stays',
-            v: 'An agave cycle lasts years, so the work is not one planting season: it is maintenance, grazing and harvest sustained over time.',
+            k: 'Cultural continuity',
+            v: 'Local knowledge of the land, the agave and its uses is built into the design of the system instead of being replaced by it.',
           },
           {
-            k: 'Value kept nearby',
-            v: 'Where volume allows it, the piña is processed in the region instead of leaving as raw tonnage.',
+            k: 'Tének case study',
+            v: 'Our most developed case today is with Tének communities of the Huasteca Potosina, and the same partnership model travels to every region where we work.',
           },
         ],
-        alt: 'Local crew planting agave in the Huasteca Potosina',
+        alt: 'Gavé technicians and community members reviewing an agave parcel together',
       }
     : {
         eyebrow: 'Impacto social',
-        title: 'Regenerar también es una nómina',
-        body: 'La tierra árida no se vacía solo por la sequía — se vacía porque no hay trabajo. Cada hectárea que plantamos son jornales pagados en las comunidades alrededor de la parcela, en su mayoría familias Tének de la Huasteca Potosina.',
+        title: 'Las comunidades son socias, no mano de obra',
+        body: 'La tierra árida no se vacía solo por la sequía — se vacía cuando quienes la habitan no tienen parte en lo que ocurre con ella. Trabajamos con las comunidades de cada región como socias del proyecto: aportan tierra, conocimiento y trabajo, y participan del valor económico, técnico y cultural que genera la parcela.',
         points: [
           {
-            k: 'Empleo rural',
-            v: 'La plantación, las terrazas, el mantenimiento y la cosecha los hacen cuadrillas locales, contratadas en los mismos municipios donde están las parcelas.',
+            k: 'Participación económica',
+            v: 'Las comunidades participan del valor de la parcela durante todo el ciclo: no un jornal aislado, sino ingreso sostenido en establecimiento, mantenimiento, pastoreo y cosecha.',
           },
           {
-            k: 'Comunidades Tének',
-            v: 'Trabajamos con familias Tének de la Huasteca Potosina, combinando su conocimiento del terreno con acompañamiento agronómico y de monitoreo.',
+            k: 'Transferencia técnica',
+            v: 'La capacitación agronómica, el monitoreo y el manejo de vivero se quedan en la región, así la capacidad sobrevive a cualquier proyecto en particular.',
           },
           {
-            k: 'Trabajo que se queda',
-            v: 'Un ciclo de agave dura años, así que el trabajo no es una temporada de siembra: es mantenimiento, pastoreo y cosecha sostenidos en el tiempo.',
+            k: 'Continuidad cultural',
+            v: 'El conocimiento local del terreno, del agave y de sus usos se integra al diseño del sistema en lugar de ser sustituido por él.',
           },
           {
-            k: 'Valor que se queda cerca',
-            v: 'Donde el volumen lo permite, la piña se procesa en la región en lugar de salir como tonelaje en bruto.',
+            k: 'Caso Tének',
+            v: 'Nuestro caso más desarrollado hoy es con comunidades Tének de la Huasteca Potosina, y el mismo modelo de sociedad viaja a cada región donde trabajamos.',
           },
         ],
-        alt: 'Cuadrilla local plantando agave en la Huasteca Potosina',
+        alt: 'Técnicos de Gavé y miembros de la comunidad revisando juntos una parcela de agave',
       };
 
   return (
@@ -75,7 +75,7 @@ const SocialImpact = () => {
 
         <Reveal>
           <img
-            src={cuadrilla}
+            src={comunidad.url}
             alt={c.alt}
             loading="lazy"
             decoding="async"

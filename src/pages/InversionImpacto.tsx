@@ -1,6 +1,6 @@
 import SolutionPage from '@/components/solutions/SolutionPage';
 import { useLanguage } from '@/hooks/useLanguage';
-import hero from '@/assets/homepage/impacto-parcela.jpg.asset.json';
+import hero from '@/assets/homepage/bosque-arido.jpg.asset.json';
 
 const InversionImpacto = () => {
   const language = useLanguage();
