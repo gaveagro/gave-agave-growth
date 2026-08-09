@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Leaf, Beef, Droplets, Satellite } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
 import { useLanguage } from '@/hooks/useLanguage';
-import impacto from '@/assets/homepage/impacto-parcela.jpg.asset.json';
+import impacto from '@/assets/homepage/bosque-arido.jpg.asset.json';
 import moctezuma from '@/assets/homepage/moctezuma-silvopastoril.jpg.asset.json';
 import tanchachin from '@/assets/homepage/tanchachin-parcela.jpg.asset.json';
 import ebano from '@/assets/homepage/ebano-parcela.jpg.asset.json';
