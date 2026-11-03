@@ -37,7 +37,7 @@ const ContactForm = () => {
     try {
       const g = (window as any).grecaptcha;
       if (!g?.enterprise) return null;
-      return await g.enterprise.execute(RECAPTCHA_SITE_KEY, { action: 'contact_submit' });
+      return await g.enterprise.execute(RECAPTCHA_SITE_KEY, { action: 'form_submit' });
     } catch {
       return null;
     }
@@ -110,6 +110,7 @@ const ContactForm = () => {
           investmentModel: form.profile || null,
           message: form.message || null,
           formType: 'contact-general',
+          language,
           recaptchaToken: token,
         },
       });

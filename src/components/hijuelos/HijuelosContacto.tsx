@@ -18,6 +18,7 @@ const HijuelosContacto = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   // Load reCAPTCHA
   useEffect(() => {
@@ -42,13 +43,11 @@ const HijuelosContacto = () => {
     e.preventDefault();
     if (isSubmitting) return;
     setIsSubmitting(true);
+    setSubmitError(false);
 
     try {
+      // If reCAPTCHA fails the server still stores the lead, flagged for review.
       const token = await generateRecaptchaToken();
-      if (!token) {
-        alert('Error de validación reCAPTCHA. Inténtalo de nuevo.');
-        return;
-      }
 
       const { error } = await (await getSupabase()).functions.invoke('form-submission', {
         body: {
@@ -75,6 +74,7 @@ const HijuelosContacto = () => {
     } catch (err) {
       console.error('Error al enviar formulario:', err);
       trackFormSubmission('hijuelos-espadin-lead', false);
+      setSubmitError(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -94,7 +94,7 @@ const HijuelosContacto = () => {
                 <span className="text-primary text-2xl">✓</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">¡Gracias por tu interés!</h3>
-              <p className="text-muted-foreground">Nos pondremos en contacto contigo en las próximas 24 horas.</p>
+              <p className="text-muted-foreground">Te enviaremos tu cotización por correo en los próximos días.</p>
             </CardContent>
           </Card>
         </div>
@@ -194,6 +194,12 @@ const HijuelosContacto = () => {
               >
                 {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
               </Button>
+              {submitError && (
+                <p className="text-sm text-destructive text-center">
+                  No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos a{' '}
+                  <a href="mailto:hola@gaveagro.com" className="underline">hola@gaveagro.com</a>.
+                </p>
+              )}
             </form>
           </CardContent>
         </Card>

@@ -18,6 +18,7 @@ const FormSubmissionSchema = z.object({
   message: z.string().max(2000).optional().nullable(),
   formType: z.string().max(100).default('investment-lead-capture'),
   recaptchaToken: z.string().max(2000).optional().nullable(),
+  language: z.string().max(5).optional().nullable(),
 });
 
 async function verifyRecaptcha(token: string): Promise<{ success: boolean; score?: number; action?: string; error?: string }> {
@@ -56,7 +57,8 @@ async function verifyRecaptcha(token: string): Promise<{ success: boolean; score
     const action = data.tokenProperties?.action;
     const isValid = data.tokenProperties?.valid;
 
-    const success = isValid && score >= 0.5 && action === 'form_submit';
+    // 'contact_submit' was sent by older builds of the /contacto form; accept both.
+    const success = isValid && score >= 0.5 && (action === 'form_submit' || action === 'contact_submit');
 
     return {
       success,
@@ -97,31 +99,16 @@ const handler = async (req: Request): Promise<Response> => {
     const formData = parseResult.data;
     console.log('Validated form submission for:', formData.email);
 
-    // Verificar reCAPTCHA Enterprise token (REQUERIDO)
-    if (!formData.recaptchaToken) {
-      console.warn('Submission rejected: no reCAPTCHA token provided');
-      return new Response(
-        JSON.stringify({ error: 'Verification required. Please try again.' }),
-        {
-          status: 400,
-          headers: { 'Content-Type': 'application/json', ...corsHeaders },
-        }
-      );
+    // reCAPTCHA no bloquea: un lead real con bloqueador de anuncios o score bajo
+    // se guarda igual y se marca para revisión. Solo a los verificados se les
+    // envía respuesta automática.
+    const recaptchaResult = formData.recaptchaToken
+      ? await verifyRecaptcha(formData.recaptchaToken)
+      : { success: false, error: 'no token' };
+    const verified = recaptchaResult.success;
+    if (!verified) {
+      console.warn('reCAPTCHA not verified, storing flagged lead:', recaptchaResult.error);
     }
-
-    const recaptchaResult = await verifyRecaptcha(formData.recaptchaToken);
-    if (!recaptchaResult.success) {
-      console.error('reCAPTCHA verification failed:', recaptchaResult.error);
-      return new Response(
-        JSON.stringify({ error: 'Verification failed. Please try again.' }),
-        {
-          status: 400,
-          headers: { 'Content-Type': 'application/json', ...corsHeaders },
-        }
-      );
-    }
-
-    console.log('reCAPTCHA verification successful. Score:', recaptchaResult.score);
 
     // Initialize Supabase client
     const supabase = createClient(
@@ -129,8 +116,11 @@ const handler = async (req: Request): Promise<Response> => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    // Store the form submission in Supabase
-    const { data, error } = await supabase
+    const flagNote = verified
+      ? ''
+      : `\n\n[Revisar: reCAPTCHA no verificado (${recaptchaResult.error ?? 'sin detalle'})]`;
+
+    const { error } = await supabase
       .from('form_submissions')
       .insert([{
         name: formData.name,
@@ -138,7 +128,7 @@ const handler = async (req: Request): Promise<Response> => {
         phone: formData.phone,
         investment_amount: formData.investmentAmount,
         investment_model: formData.investmentModel,
-        message: formData.message,
+        message: (formData.message ?? '') + flagNote || null,
         form_type: formData.formType,
         created_at: new Date().toISOString()
       }]);
@@ -150,140 +140,140 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('Form submission stored successfully');
 
-    // Send notification email using Resend
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
     if (resendApiKey) {
-      try {
-        // Escape HTML in user-provided fields to prevent XSS in email
-        const escapeHtml = (str: string) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-
-        const safeName = escapeHtml(formData.name);
-        const safeEmail = escapeHtml(formData.email);
-        const safePhone = escapeHtml(formData.phone || 'No proporcionado');
-        const safeAmount = escapeHtml(formData.investmentAmount || 'No especificado');
-        const safeModel = escapeHtml(formData.investmentModel || 'No especificado');
-        const safeMessage = escapeHtml(formData.message || 'Sin mensaje adicional');
-
-        const emailResponse = await fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${resendApiKey}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            from: 'notificaciones@send.gaveagro.com',
-            to: ['hola@gaveagro.com'],
-            subject: `🌱 Nueva solicitud de inversión - ${safeName}`,
-            html: `
-              <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8fdf9;">
-                <div style="background: linear-gradient(135deg, #22c55e, #16a34a); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
-                  <h1 style="color: white; margin: 0; font-size: 28px;">🌱 GaveAgro</h1>
-                  <p style="color: #dcfce7; margin: 10px 0 0 0; font-size: 16px;">Nueva solicitud de inversión</p>
-                </div>
-                
-                <div style="background: white; padding: 30px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                  <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #22c55e;">
-                    <h2 style="color: #166534; margin: 0 0 15px 0; font-size: 20px;">Información del prospecto:</h2>
-                    
-                    <div style="margin: 12px 0;">
-                      <strong style="color: #374151;">👤 Nombre:</strong> 
-                      <span style="color: #1f2937;">${safeName}</span>
-                    </div>
-                    
-                    <div style="margin: 12px 0;">
-                      <strong style="color: #374151;">📧 Email:</strong> 
-                      <span style="color: #1f2937;">${safeEmail}</span>
-                    </div>
-                    
-                    <div style="margin: 12px 0;">
-                      <strong style="color: #374151;">📱 Teléfono:</strong> 
-                      <span style="color: #1f2937;">${safePhone}</span>
-                    </div>
-                    
-                    <div style="margin: 12px 0;">
-                      <strong style="color: #374151;">💰 Monto de inversión:</strong> 
-                      <span style="color: #1f2937;">${safeAmount}</span>
-                    </div>
-                    
-                    <div style="margin: 12px 0;">
-                      <strong style="color: #374151;">🌱 Modelo de inversión:</strong> 
-                      <span style="color: #1f2937;">${safeModel}</span>
-                    </div>
-                    
-                    <div style="margin: 12px 0;">
-                      <strong style="color: #374151;">💬 Mensaje:</strong> 
-                      <div style="color: #1f2937; margin-top: 8px; padding: 10px; background: #f9fafb; border-radius: 4px;">
-                        ${safeMessage}
-                      </div>
-                    </div>
-                    
-                    <div style="margin: 12px 0;">
-                      <strong style="color: #374151;">⏰ Fecha:</strong> 
-                      <span style="color: #1f2937;">${new Date().toLocaleString('es-MX', {
-                        timeZone: 'America/Mexico_City',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}</span>
-                    </div>
-                  </div>
-                  
-                  <div style="margin-top: 20px; padding: 15px; background: #eff6ff; border-radius: 8px; text-align: center;">
-                    <p style="margin: 0; color: #1e40af; font-size: 14px;">
-                      📊 Revisa todos los registros en tu panel de administración de Supabase
-                    </p>
-                  </div>
-                </div>
-                
-                <div style="text-align: center; margin-top: 20px; padding: 20px;">
-                  <p style="color: #6b7280; font-size: 12px; margin: 0;">
-                    Este mensaje fue enviado automáticamente desde GaveAgro.com<br>
-                    Powered by Resend ⚡
-                  </p>
-                </div>
-              </div>
-            `,
-          }),
-        });
-
-        if (!emailResponse.ok) {
-          console.error('Failed to send email:', await emailResponse.text());
-        } else {
-          console.log('Email notification sent successfully');
-        }
-      } catch (emailError) {
-        console.error('Error sending email notification:', emailError);
+      await sendNotification(resendApiKey, formData, verified);
+      if (verified) {
+        await sendAutoReply(resendApiKey, formData);
       }
     } else {
-      console.log('Resend API key not configured, skipping email notification');
+      console.log('Resend API key not configured, skipping emails');
     }
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
-        message: 'Form submitted successfully' 
-      }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json', ...corsHeaders },
-      }
+      JSON.stringify({ success: true, message: 'Form submitted successfully' }),
+      { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
     );
 
   } catch (error) {
     console.error('Error in form-submission function:', error);
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         error: 'Internal server error',
         message: 'An error occurred processing your request. Please try again later.'
       }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json', ...corsHeaders },
-      }
+      { status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
     );
   }
 };
+
+type LeadData = z.infer<typeof FormSubmissionSchema>;
+
+const NOTIFY_TO = ['hola@gaveagro.com', 'hectoreduardo@gaveagro.com'];
+const FROM = 'Gavé <notificaciones@send.gaveagro.com>';
+const REPLY_TO_GAVE = 'hola@gaveagro.com';
+
+const FORM_LABELS: Record<string, string> = {
+  'investment-lead-capture': 'Inversión en plantas',
+  'contact-general': 'Contacto general',
+  'hijuelos-espadin-lead': 'Hijuelos',
+};
+
+const formLabel = (formType: string) => FORM_LABELS[formType] ?? formType;
+
+const escapeHtml = (str: string) =>
+  str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+const row = (label: string, value?: string | null) =>
+  value
+    ? `<tr><td style="padding:6px 12px 6px 0;color:#6b7280;vertical-align:top;white-space:nowrap">${label}</td><td style="padding:6px 0;color:#111827">${escapeHtml(value).replace(/\n/g, '<br>')}</td></tr>`
+    : '';
+
+async function sendEmail(apiKey: string, payload: Record<string, unknown>) {
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) console.error('Resend error:', res.status, await res.text());
+  } catch (e) {
+    console.error('Error sending email:', e);
+  }
+}
+
+async function sendNotification(apiKey: string, f: LeadData, verified: boolean) {
+  const label = formLabel(f.formType);
+  const subject = `${verified ? '' : '[Revisar] '}Nuevo lead · ${label} · ${f.name}`;
+  const fecha = new Date().toLocaleString('es-MX', {
+    timeZone: 'America/Mexico_City', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit',
+  });
+  const phoneDigits = (f.phone ?? '').replace(/\D/g, '');
+  const waLink = phoneDigits.length >= 10
+    ? `https://wa.me/${phoneDigits.length === 10 ? '52' + phoneDigits : phoneDigits}`
+    : null;
+
+  const html = `
+    <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:600px;margin:0 auto;color:#111827">
+      <p style="margin:0 0 4px;color:#6b7280;font-size:13px">Formulario: <strong>${escapeHtml(label)}</strong> · ${fecha}</p>
+      <h2 style="margin:0 0 16px;font-size:20px">${escapeHtml(f.name)}</h2>
+      ${verified ? '' : '<p style="background:#fef3c7;padding:10px 12px;border-radius:6px;margin:0 0 16px">reCAPTCHA no verificó este envío. Puede ser spam o alguien con bloqueador de anuncios: revísalo antes de responder. No se le envió respuesta automática.</p>'}
+      <table style="border-collapse:collapse;font-size:15px">
+        ${row('Correo', f.email)}
+        ${row('Teléfono', f.phone)}
+        ${row('Perfil / modelo', f.investmentModel)}
+        ${row('Monto', f.investmentAmount)}
+        ${row('Mensaje', f.message)}
+      </table>
+      <p style="margin:20px 0 0;font-size:14px">
+        Responde a este correo para escribirle directo${waLink ? ` · <a href="${waLink}">Abrir WhatsApp</a>` : ''}
+      </p>
+    </div>`;
+
+  await sendEmail(apiKey, {
+    from: FROM,
+    to: NOTIFY_TO,
+    reply_to: f.email,
+    subject,
+    html,
+  });
+}
+
+const AUTO_REPLY: Record<string, { es: string; en: string }> = {
+  'investment-lead-capture': {
+    es: 'Recibimos tu interés en invertir en plantas de agave con Gavé. Te escribiremos en los próximos días para entender lo que buscas y compartirte el detalle del modelo, los riesgos y los tiempos.',
+    en: 'We received your interest in investing in agave plants with Gavé. We will write to you in the coming days to understand what you are looking for and share the details of the model, its risks and timelines.',
+  },
+  'hijuelos-espadin-lead': {
+    es: 'Recibimos tu solicitud de cotización de hijuelos. Te enviaremos disponibilidad, precio y tiempos de entrega para tu región en los próximos días.',
+    en: 'We received your request for an agave pup quote. We will send you availability, pricing and delivery times for your region in the coming days.',
+  },
+  'contact-general': {
+    es: 'Recibimos tu mensaje. Te responderemos en los próximos días.',
+    en: 'We received your message. We will get back to you in the coming days.',
+  },
+};
+
+async function sendAutoReply(apiKey: string, f: LeadData) {
+  const en = (f.language ?? '').toUpperCase() === 'EN';
+  const texts = AUTO_REPLY[f.formType] ?? AUTO_REPLY['contact-general'];
+  const firstName = escapeHtml(f.name.split(' ')[0] ?? '');
+  const body = en ? texts.en : texts.es;
+  const html = `
+    <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#111827;font-size:15px;line-height:1.6">
+      <p>${en ? 'Hi' : 'Hola'} ${firstName},</p>
+      <p>${body}</p>
+      <p>${en ? 'If you want to add anything, just reply to this email.' : 'Si quieres agregar algo, responde a este correo.'}</p>
+      <p>${en ? 'Best,' : 'Saludos,'}<br>Gavé · <a href="https://gaveagro.com">gaveagro.com</a></p>
+    </div>`;
+
+  await sendEmail(apiKey, {
+    from: FROM,
+    to: [f.email],
+    reply_to: REPLY_TO_GAVE,
+    subject: en ? 'We received your message · Gavé' : 'Recibimos tu mensaje · Gavé',
+    html,
+  });
+}
 
 serve(handler);
