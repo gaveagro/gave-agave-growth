@@ -12,5 +12,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /propuesta/
 
 Sitemap: https://gaveagro.com/sitemap.xml

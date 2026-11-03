@@ -1,0 +1,400 @@
+<meta charset="utf-8">
+<title>Cosecha 2027 · Tajacú</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Rubik:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: propuesta personal en una columna; portada oscura, bloques de lectura claros, escenarios editables al centro */
+:root{
+  --bg:#F4F2EC; --surface:#FBFAF6; --soft:#E3EAE6; --fg:#1F3A33; --muted:#4A5A54; --line:#D8DFDA;
+  --deep:#1F3A33; --deep-fg:#F4F2EC; --deep-muted:#C9D6D0; --gold:#D9A25F; --accent:#95591B;
+  --c-tercero:#8FA59C; --c-pina:#D9A25F; --c-acc:#C2CEC8; --c-gan:#1F3A33;
+  --f-display:"Cormorant Garamond",Georgia,serif; --f-body:"Rubik",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121A17; --surface:#18221E; --soft:#1E2B26; --fg:#E6ECE8; --muted:#A9B8B1; --line:#2C3A34;
+  --deep:#0E1513; --deep-fg:#F4F2EC; --deep-muted:#B5C4BD; --gold:#E2AE6E; --accent:#E2AE6E;
+  --c-tercero:#6F877E; --c-pina:#D9A25F; --c-acc:#53655E; --c-gan:#9FCBB9; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121A17; --surface:#18221E; --soft:#1E2B26; --fg:#E6ECE8; --muted:#A9B8B1; --line:#2C3A34;
+  --deep:#0E1513; --deep-fg:#F4F2EC; --deep-muted:#B5C4BD; --gold:#E2AE6E; --accent:#E2AE6E;
+  --c-tercero:#6F877E; --c-pina:#D9A25F; --c-acc:#53655E; --c-gan:#9FCBB9; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;font-weight:400}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:980px;margin:0 auto;display:grid;gap:22px}
+.hero{background:var(--deep);color:var(--deep-fg);padding-block:64px 56px}
+.hero .eyebrow{color:var(--gold)}
+.hero h1{font-family:var(--f-display);font-weight:600;font-size:clamp(48px,8vw,84px);line-height:1;margin:0}
+.hero p.lead{font-size:clamp(18px,2.4vw,22px);font-weight:300;color:var(--deep-muted);max-width:40ch;margin:0}
+.eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:500;margin:0}
+h2{font-family:var(--f-display);font-weight:600;font-size:clamp(30px,4.4vw,44px);line-height:1.1;margin:0;text-wrap:balance}
+h3{font-size:18px;font-weight:500;margin:0}
+p{margin:0;max-width:66ch}
+.muted{color:var(--muted)}
+section.block{padding-block:56px 8px;width:100%}
+.num{font-variant-numeric:tabular-nums}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:grid;gap:4px}
+.stat b{font-family:var(--f-display);font-size:44px;font-weight:600;line-height:1}
+.stat span{font-size:14px;color:var(--muted)}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;display:grid;gap:8px;align-content:start;min-width:0}
+.card.dark{background:var(--deep);border-color:var(--deep);color:var(--deep-fg)}
+.card.dark .muted{color:var(--deep-muted)}
+.card.soft{background:var(--soft);border-color:var(--soft)}
+.big{font-family:var(--f-display);font-size:56px;font-weight:600;line-height:1}
+.card.dark .big{color:var(--gold)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.steps .card h3{font-size:19px}
+.tag{font-size:13px;font-weight:500;color:var(--accent)}
+.feature{background:var(--deep);color:var(--deep-fg);border-radius:16px;padding:32px;display:grid;gap:18px}
+.feature .eyebrow{color:var(--gold)}
+.feature .hero-num{font-family:var(--f-display);font-size:clamp(56px,10vw,96px);font-weight:600;line-height:1;color:var(--gold)}
+.feature .row{display:flex;flex-wrap:wrap;gap:28px}
+.feature .row div{display:grid}
+.feature .row b{font-size:24px;font-weight:500}
+.feature .row span{font-size:14px;color:var(--deep-muted)}
+table{border-collapse:collapse;width:100%;font-size:15.5px}
+td{padding:9px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:12px}
+tr.tot td{font-weight:600;border-bottom:none;border-top:2px solid var(--fg)}
+.controls{background:var(--soft);border-radius:16px;padding:24px;display:grid;gap:18px}
+.ctl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:14px;font-weight:500}
+.ctl output{font-family:var(--f-display);font-size:30px;font-weight:600;line-height:1}
+.ctl small{font-size:12.5px;color:var(--muted)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.reset{justify-self:start;font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.bars{display:grid;gap:16px}
+.bar{display:grid;gap:6px}
+.bar .lab{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:15px}
+.bar .lab b{font-variant-numeric:tabular-nums}
+.track{display:flex;height:34px;border-radius:6px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.track div{height:100%;transition:width .35s ease}
+@media (prefers-reduced-motion:reduce){.track div{transition:none}}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));border-top:3px solid var(--fg)}
+.timeline div{padding:16px 16px 0 0;display:grid;gap:4px;align-content:start}
+.timeline b{color:var(--accent);font-weight:500;font-size:15px}
+.note{font-size:13px;color:var(--muted);max-width:80ch}
+.hero{position:relative;background:var(--deep) center/cover no-repeat;background-image:linear-gradient(180deg,rgba(14,21,19,.35),rgba(14,21,19,.85)),url(/propuesta/img/hero.jpg);padding-block:120px 64px}
+.photo{width:100%;border-radius:14px;display:block;object-fit:cover}
+.media{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;align-items:center}
+.save{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.save li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:15px}
+.save li b{display:block;font-weight:500}
+.eq{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
+.eq .op{align-self:center;font-family:var(--f-display);font-size:40px;color:var(--accent);text-align:center}
+.eq .box{border-radius:14px;padding:18px;display:grid;gap:4px;align-content:start;background:var(--surface);border:1px solid var(--line)}
+.eq .box b{font-family:var(--f-display);font-size:clamp(30px,4vw,42px);font-weight:600;line-height:1}
+.eq .box span{font-size:14px;color:var(--muted)}
+.eq .box.cash{background:var(--c-gan);border-color:var(--c-gan);color:var(--bg)} .eq .box.cash span{color:var(--bg);opacity:.85}
+.eq .box.acc{background:var(--c-acc);border-color:var(--c-acc)}
+.eq .box.tot{background:var(--deep);border-color:var(--deep);color:var(--deep-fg)} .eq .box.tot b{color:var(--gold)} .eq .box.tot span{color:var(--deep-muted)}
+@media (max-width:760px){.eq{grid-template-columns:1fr}.eq .op{font-size:28px;line-height:1}}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.chartbox svg{width:100%;height:auto;display:block}
+.chartbox text{font-family:var(--f-body);font-size:13px;fill:var(--muted)}
+@media (max-width:600px){.chartbox text{font-size:24px}}
+.closing{background:var(--deep);color:var(--deep-fg);padding-block:56px;margin-top:56px}
+.closing h2{color:var(--deep-fg)}
+.closing ol{margin:0;padding-left:22px;display:grid;gap:8px;max-width:60ch}
+.closing .muted{color:var(--deep-muted)}
+</style>
+
+
+<div id="estado" class="band" style="padding-block:120px;text-align:center"><p class="muted">Cargando tu propuesta…</p></div>
+<div id="pagina" hidden>
+<div class="band hero" role="img" aria-label="Agaves Espadín al atardecer"><div class="in">
+  <p class="eyebrow">Grupo Gavé · Tajacú · Propuesta confidencial</p>
+  <h1>Cosecha 2027</h1>
+  <p class="lead"><span data-f="nombre"></span>: qué pasa con tus agaves de <span data-f="year"></span> y cómo convertir parte de ellos en mezcal Tajacú.</p>
+</div></div>
+
+<div class="band"><div class="in">
+<section class="block in">
+  <p class="eyebrow">Tu plantación</p>
+  <h2>Tus agaves Espadín de <span data-f="year"></span> llegan a su cosecha en 2027</h2>
+  <div class="stats">
+    <div class="stat"><b class="num" id="sPl"></b><span>agaves Espadín plantados en <span data-f="year"></span></span></div>
+    <div class="stat"><b class="num" id="sKg"></b><span>de piña por planta en promedio; cada una puede pesar más o menos</span></div>
+    <div class="stat"><b class="num" id="sTon"></b><span>de piña esperadas en tu cosecha</span></div>
+  </div>
+  <p class="muted"><b>Esta propuesta es solo para tus plantas de <span data-f="year"></span>.</b> Si tienes plantas de otros años, revisamos su propuesta cuando lleguen a su cosecha.</p>
+  <p class="muted">Hoy la piña de Espadín se paga entre $4 y $6 por kilo. Te proponemos que una parte de tu cosecha se convierta en mezcal Tajacú, donde vale mucho más.</p>
+  <img class="photo" src="/propuesta/img/campo.jpg" alt="Revisión de agaves Espadín en la parcela" style="aspect-ratio:16/9">
+</section>
+
+<section class="block in">
+  <p class="eyebrow">La propuesta en una frase</p>
+  <h2>Dos destinos para tu cosecha</h2>
+  <div class="split">
+    <div class="card soft"><div class="big num" id="dPctT"></div><h3 id="dPlT"></h3><p class="muted">Jimada y puesta en parcela, al mejor comprador disponible. Se te liquida según tu contrato de <span data-f="year"></span>.</p></div>
+    <div class="card dark"><div class="big num" id="dPctS"></div><h3 id="dPlS"></h3><p class="muted" id="dBotS"></p></div>
+  </div>
+</section>
+
+<section class="block in">
+  <p class="eyebrow">Cómo funciona</p>
+  <h2>Un título de 100 acciones convierte <span id="hPlTit"></span> de tus plantas en <span id="hBotTit"></span> botellas</h2>
+  <div class="steps">
+    <div class="card"><span class="tag">Suscribes</span><h3>1 título = 100 acciones Serie L de Gavé Spirits</h3><p class="muted">$75,000 por título. Tus acciones son tuyas: te dan dividendo preferente y participación en el valor de la empresa.</p></div>
+    <div class="card"><span class="tag">Se produce</span><h3>Tu piña se vuelve Tajacú</h3><p class="muted">Tu aportación financia flete, maquila certificada a 42°, envasado y comercialización.</p></div>
+    <div class="card"><span class="tag">Cobras</span><h3>Por cada botella de tu lote que se vende</h3><p class="muted">Gavé Spirits te compra tu piña a $8/kg más una participación fija de $170 por cada botella de tu lote que se vende. Se liquida cada trimestre.</p></div>
+  </div>
+</section>
+
+<section class="block in">
+  <p class="eyebrow">Con marca Tajacú</p>
+  <div class="media">
+    <div style="display:grid;gap:16px">
+      <h2>Tu mezcal sale al mercado con una marca que ya existe</h2>
+      <p class="muted">Tu lote se envasa como Tajacú Espadín. No tienes que crear una marca ni hacer trámites: entra a un canal que ya está armado.</p>
+      <ul class="save">
+        <li><b>Marca registrada</b><span class="muted">Tajacú ya está en el mercado</span></li>
+        <li><b>Certificación</b><span class="muted">Denominación de origen y NOM del mezcal</span></li>
+        <li><b>Padrón y marbetes</b><span class="muted">Ante el SAT, para vender alcohol</span></li>
+        <li><b>Etiqueta y diseño</b><span class="muted">Botella, etiqueta y caja listas</span></li>
+        <li><b>Registro en EE.UU.</b><span class="muted">Importador y etiqueta aprobada</span></li>
+        <li><b>Distribución</b><span class="muted">Wholesalers en Texas y clientes en México</span></li>
+      </ul>
+    </div>
+    <img class="photo" src="/propuesta/img/botellas.jpg" alt="Botellas de Tajacú Espadín de 500 ml listas para salir" style="max-height:560px">
+  </div>
+</section>
+
+<section class="block in">
+  <p class="eyebrow">Lo que ganas</p>
+  <h2 id="vpH"></h2>
+  <div class="eq" id="vpEq"></div>
+  <p class="muted" id="vpNote"></p>
+  <div class="split">
+    <div class="card"><span class="tag">1 · Tu dinero regresa</span><h3 id="vp1"></h3><p class="muted">Cada trimestre cobras $170 por botella vendida de tu lote. El dividendo de 5% anual se acumula desde que suscribes.</p></div>
+    <div class="card"><span class="tag">2 · Las acciones son la ganancia</span><h3>Te quedas con acciones de una marca que entra a EE.UU.</h3><p class="muted">Gavé tiene el derecho de recomprártelas en cualquier momento a su valor de suscripción más los dividendos acumulados.</p></div>
+    <div class="card"><span class="tag">3 · Tu piña vale más</span><h3 id="vp3"></h3><p class="muted">Y sobre esa piña cobras los $170 por botella: el valor de la marca se queda contigo.</p></div>
+  </div>
+</section>
+
+<section class="block in">
+  <p class="eyebrow">Mes a mes</p>
+  <h2>Cómo se acumula lo que recibes por tus títulos</h2>
+  <div class="chartbox" id="cumChart" role="img"></div>
+  <div class="legend"><span><i style="background:var(--c-gan)"></i>Efectivo recibido (botellas + dividendo)</span><span><i style="background:var(--c-acc)"></i>Tus acciones, a valor de suscripción</span><span><i style="background:var(--accent)"></i>Lo que aportas</span></div>
+</section>
+
+<section class="block in">
+  <div class="feature">
+    <p class="eyebrow">Tu propuesta</p>
+    <h2 style="color:var(--deep-fg)">Te reservamos <span id="fTit"></span> títulos</h2>
+    <div class="hero-num num" id="fCap"></div>
+    <p id="fMax" style="color:var(--deep-muted)" hidden></p>
+    <div class="row">
+      <div><b class="num" id="fAcc"></b><span>Serie L de Gavé Spirits</span></div>
+      <div><b class="num" id="fPl"></b><span id="fPct"></span></div>
+      <div><b class="num" id="fBot"></b><span>de Tajacú Espadín de tu lote</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block in">
+  <p class="eyebrow">Escenarios</p>
+  <h2>Mueve los supuestos y mira cómo cambia</h2>
+  <div class="controls">
+    <div class="ctl-grid">
+      <div class="ctl"><label for="cTit">Títulos que suscribes</label><output id="oTit" for="cTit"></output><input id="cTit" type="range" min="1" step="1"><small>De 100 acciones, $75,000 cada uno</small></div>
+      <div class="ctl"><label for="cPT">Precio de la piña a tercero</label><output id="oPT" for="cPT"></output><input id="cPT" type="range" min="3" max="10" step="0.5"><small>Por kilo, para la piña que no va a Tajacú</small></div>
+      <div class="ctl"><label for="cVen">Ventas de Tajacú desde el año 2</label><output id="oVen" for="cVen"></output><input id="cVen" type="range" min="10000" max="40000" step="1000"><small>Botellas al año; el primer año, 750 al mes</small></div>
+      <div class="ctl"><label for="cKg">Piña por planta</label><output id="oKg" for="cKg"></output><input id="cKg" type="range" min="35" max="65" step="1"><small>Kilos en promedio; cada piña puede pesar más o menos</small></div>
+    </div>
+    <button class="reset" id="reset" type="button">Volver a la propuesta</button>
+  </div>
+</section>
+
+<section class="block in">
+  <p class="eyebrow">La operación completa</p>
+  <h2>Lo que invertiste, lo que inviertes y lo que recibes</h2>
+  <div class="split">
+    <div class="card"><h3>Inviertes</h3><table id="tInv"></table></div>
+    <div class="card"><h3>Recibes</h3><table id="tRec"></table></div>
+  </div>
+  <div class="card">
+    <div class="bars" id="bars"></div>
+    <div class="legend"><span><i style="background:var(--c-tercero)"></i>Piña a tercero</span><span><i style="background:var(--c-pina)"></i>Tu piña en Tajacú</span><span><i style="background:var(--c-gan)"></i>Participación por botella</span><span><i style="background:var(--c-acc)"></i>Tus acciones, a valor de suscripción</span></div>
+  </div>
+  <p class="note" id="noteOp"></p>
+</section>
+
+<section class="block in">
+  <p class="eyebrow">Cuándo cobras</p>
+  <h2 id="hCal"></h2>
+  <div class="timeline">
+    <div><b>Nov–dic 2026</b><span>Firmas la suscripción de tus títulos</span></div>
+    <div><b>2027</b><span>Cosecha. Cobras la piña vendida a tercero cuando paga el comprador</span></div>
+    <div><b id="tl3"></b><span>Primeras botellas a la venta y primer pago trimestral</span></div>
+    <div><b id="tl4"></b><span>Se termina de vender tu lote. Tus acciones siguen siendo tuyas</span></div>
+  </div>
+</section>
+
+<section class="block in">
+  <p class="eyebrow">Por qué ahora</p>
+  <h2>Tajacú entra a Estados Unidos con tu cosecha</h2>
+  <img class="photo" src="/propuesta/img/pinas.jpg" alt="Piñas de agave jimadas listas para el horno" style="aspect-ratio:16/8">
+  <div class="steps">
+    <div class="card"><div class="big">100</div><p class="muted">puntos de venta en Texas. Ya tenemos cartas de intención de dos wholesalers</p></div>
+    <div class="card"><div class="big">0%</div><p class="muted">de IEPS e IVA en exportación, y sin arancel bajo el T-MEC</p></div>
+    <div class="card"><div class="big">42°</div><p class="muted">Espadín de agave propio, certificado y con trazabilidad desde la parcela</p></div>
+  </div>
+</section>
+
+<section class="block in">
+  <p class="eyebrow">Tu inversión</p>
+  <h2>Cómo se cuida lo que aportas</h2>
+  <div class="split">
+    <div class="card"><h3>Acciones a tu nombre</h3><p class="muted">Tu aportación es capital de Gavé Spirits y queda en acciones Serie L con dividendo preferente de 5% anual. Se acumula desde la suscripción y se paga cuando Gavé Spirits reporta utilidades.</p></div>
+    <div class="card"><h3>Reporte trimestral</h3><p class="muted">Botellas vendidas de tu lote con folio de marbete, y tu pago dentro de 30 días.</p></div>
+    <div class="card"><h3>Liquidez de tus acciones</h3><p class="muted">Puedes venderlas a otros accionistas o en una ronda futura. Gavé tiene el derecho, no la obligación, de recomprarlas en cualquier momento a su valor de suscripción más los dividendos acumulados.</p></div>
+    <div class="card"><h3>Plazo máximo</h3><p class="muted">Lo que no se haya vendido de tu lote al plazo pactado se te paga a $170 por botella. Y en cualquier momento puedes pedir parte de tu pago en botellas de Tajacú, valuadas a $600 cada una (precio al público, con impuestos), que se te entregan de inmediato.</p></div>
+  </div>
+</section>
+</div></div>
+
+<div class="band closing"><div class="in">
+  <p class="eyebrow" style="color:var(--gold)">Siguientes pasos</p>
+  <h2>Tus títulos están reservados hasta el 31 de diciembre de 2026</h2>
+  <p class="muted">Tus plantas de <span data-f="year"></span> están por florecer. Cuando sale el quiote hay pocos meses para caparlas y jimarlas en su punto, y la jima, el palenque, las botellas y los marbetes se programan antes. Por eso esta oferta cierra el 31 de diciembre de 2026.</p>
+  <ol>
+    <li>Platicamos para resolver tus dudas.</li>
+    <li>Confirmas cuántos títulos suscribes.</li>
+    <li>Firmamos la suscripción y el contrato de tu lote.</li>
+  </ol>
+  <p><b>Héctor Eduardo Gloria Contreras</b><br><span class="muted">CEO, Grupo Gavé · hectoreduardo@gaveagro.com</span></p>
+  <p class="note" style="color:var(--deep-muted)">Cifras estimadas con supuestos de costos, precio de venta y ritmo de ventas al 3 de noviembre de 2026; no son una promesa de rendimiento ni una oferta pública de valores.</p>
+</div></div>
+
+
+</div>
+<script type="text/plain" id="app">
+const D=window.__D;
+const M={kg:50,pS:8,pT:5,jima:10,flete:63.5714,kgL:7,maquila:135,insumos:81.3333,comBot:64,marbete:50,net:516.852,a:0.65,pBot:170,accion:750,vel1:750,crec:0.25,arranque:6,roundBots:39065};
+const base={tit:D.tit,pT:M.pT,ven:20000,kg:M.kg};
+const S=Object.assign({},base);
+const $=id=>document.getElementById(id);
+const m=x=>"$"+Math.round(x).toLocaleString("es-MX");
+const n=(x,d=0)=>x.toLocaleString("es-MX",{minimumFractionDigits:d,maximumFractionDigits:d});
+function sales(k){const v=[];for(let t=0;t<k;t++){const y=Math.floor(t/12);v.push(y===0?M.vel1:S.ven/12*Math.pow(1+M.crec,Math.max(0,y-1)))}return v}
+function sellMonths(b){let c=0,t=0;const v=sales(600);while(c<b&&t<600){c+=v[t];t++}return t}
+function calc(){
+  const kg=S.kg, litros=kg/M.kgL, bots=litros*2;
+  const C=M.flete+litros*M.maquila+bots*(M.insumos+M.comBot)+M.marbete;
+  const plTit=M.accion*100/C;
+  const maxTit=Math.max(1,Math.floor(D.pl/plTit));
+  const tit=Math.min(S.tit,maxTit);
+  const plP=Math.min(D.pl,tit*plTit), resto=D.pl-plP;
+  const R=bots*M.net, marg=Math.max(0,R-C-kg*M.pS);
+  const pinaT=resto*(kg*S.pT-M.jima), pinaS=plP*(kg*M.pS-M.jima);
+  const tot=Math.max(0,pinaT+pinaS);
+  const invPina=Math.min(tot,D.pago)+Math.max(0,tot-D.pago)*M.a;
+  const sh=tot>0?pinaT/tot:0;
+  const recT=invPina*sh, recS=invPina*(1-sh), part=plP*bots*M.pBot;
+  const capNew=tit*M.accion*100, acc=tit*100;
+  const cash=recT+recS+part;
+  const roundBots=M.roundBots*(50/50); // la ronda completa se vende en paralelo
+  const meses=sellMonths(Math.max(roundBots,plP*bots));
+  return {bots,C,plTit,maxTit,tit,plP,resto,recT,recS,part,capNew,acc,cash,total:cash+capNew,meses,pctS:plP/D.pl};
+}
+function render(){
+  const r=calc();
+  $("oTit").textContent=n(r.tit); $("oPT").textContent="$"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg"; $("oVen").textContent=n(S.ven); $("oKg").textContent=n(S.kg)+" kg";
+  $("cTit").max=r.maxTit;
+  $("sPl").textContent=n(D.pl); $("sKg").textContent=n(S.kg)+" kg"; $("sTon").textContent=n(D.pl*S.kg/1000,0)+" t";
+  $("dPctT").textContent=n((1-r.pctS)*100,0)+"%"; $("dPlT").textContent=n(r.resto)+" plantas se venden como piña";
+  $("dPctS").textContent=n(r.pctS*100,0)+"%"; $("dPlS").textContent=n(r.plP)+" plantas se vuelven mezcal Tajacú";
+  $("dBotS").textContent="Unas "+n(r.plP*r.bots,0)+" botellas de 500 ml, financiadas con tus títulos de acciones.";
+  $("hPlTit").textContent=n(r.plTit,0); $("hBotTit").textContent=n(r.plTit*r.bots,0);
+  $("fTit").textContent=n(r.tit); $("fCap").textContent=m(r.capNew); $("fAcc").textContent=n(r.acc)+" acciones";
+  if(D.max){$("fMax").hidden=false;$("fMax").textContent="Te reservamos mínimo "+(D.tit===1?"1 título":n(D.tit)+" títulos")+". Con "+n(r.maxTit)+" títulos procesas toda tu cosecha.";}
+  $("fPl").textContent=n(r.plP)+" plantas"; $("fPct").textContent=n(r.pctS*100,0)+"% de tu cosecha"; $("fBot").textContent=n(r.plP*r.bots,0)+" botellas";
+  const rows=(id,a)=>$(id).innerHTML=a.map(x=>`<tr${x[2]?' class="tot"':''}><td>${x[0]}</td><td>${x[1]}</td></tr>`).join("");
+  rows("tInv",[["Plantas Espadín, "+D.year,m(D.pago)],[n(r.tit)+" títulos, hoy",m(r.capNew)],["Total invertido",m(D.pago+r.capNew),1]]);
+  rows("tRec",[["Piña vendida a tercero, a $"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg",m(r.recT)],["Tu piña en Tajacú, a $8/kg",m(r.recS)],["Participación de $170 por botella",m(r.part)],["Total en efectivo",m(r.cash),1],["Además conservas "+n(r.acc)+" acciones Serie L",m(r.capNew)],["Dividendo preferente de 5% anual sobre tus acciones, acumulable y pagadero de utilidades",m(r.capNew*0.05)+" al año"]]);
+  // comparación contra vender todo como piña
+  const totAll=Math.max(0,D.pl*(S.kg*S.pT-M.jima)), sellAll=Math.min(totAll,D.pago)+Math.max(0,totAll-D.pago)*M.a;
+  const W=Math.max(r.total,sellAll,D.pago+r.capNew), w=x=>Math.max(0,x)/W*100;
+  $("bars").innerHTML=
+   `<div class="bar"><div class="lab"><span>Vender toda tu cosecha como piña</span><b>${m(sellAll)}</b></div><div class="track"><div style="width:${w(sellAll)}%;background:var(--c-tercero)"></div></div></div>`+
+   `<div class="bar"><div class="lab"><span>Con tus ${n(r.tit)} títulos en Tajacú</span><b>${m(r.cash)} en efectivo + ${m(r.capNew)} en acciones</b></div><div class="track"><div style="width:${w(r.recT)}%;background:var(--c-tercero)"></div><div style="width:${w(r.recS)}%;background:var(--c-pina)"></div><div style="width:${w(r.part)}%;background:var(--c-gan)"></div><div style="width:${w(r.capNew)}%;background:var(--c-acc)"></div></div></div>`;
+  $("noteOp").textContent="Vendiendo todo como piña recibirías "+m(sellAll)+" en 2027. Con tus títulos recibes "+m(r.cash)+" en efectivo y conservas acciones por "+m(r.capNew)+" a valor de suscripción, con un dividendo preferente de "+m(r.capNew*0.05)+" al año que se acumula y se paga de las utilidades de Gavé Spirits: "+n(r.total/(D.pago+r.capNew),2)+" veces todo lo que has invertido. Estimaciones; el precio de la piña a tercero depende del comprador.";
+  // propuesta de valor
+  const divH=r.capNew*0.05*(M.arranque+r.meses)/12, cashT=r.part+divH, valT=cashT+r.capNew;
+  const yrs=(M.arranque+r.meses)/12, fixed=r.capNew*Math.pow(1.09,yrs);
+  $("vpH").textContent="Recuperas "+n(cashT/r.capNew*100,0)+"% en efectivo y además te quedas con las acciones";
+  const box=(c,v,t)=>`<div class="box ${c}"><b class="num">${v}</b><span>${t}</span></div>`;
+  $("vpEq").innerHTML=box("",m(r.capNew),"Aportas por "+n(r.tit)+" títulos")+'<div class="op">→</div>'+
+    box("cash",m(cashT),"Recibes en efectivo en ~"+n(M.arranque+r.meses)+" meses")+'<div class="op">+</div>'+
+    box("acc",m(r.capNew),"Conservas "+n(r.acc)+" acciones Serie L")+'<div class="op">=</div>'+
+    box("tot",n(valT/r.capNew,1)+"×","Valor total: "+m(valT));
+  $("vpNote").textContent="Como referencia: esos "+m(r.capNew)+" a 9% anual serían unos "+m(fixed)+" en el mismo plazo, sin acciones al final. Además cobras tu piña, que va aparte.";
+  $("vp1").textContent=n(cashT/r.capNew*100,0)+"% de lo que aportas regresa en efectivo";
+  $("vp3").textContent="Tu piña en Tajacú se paga a $8/kg, contra $"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg con un tercero";
+  // gráfica acumulada
+  {const k=r.meses, v=sales(k), tot=v.reduce((a,b)=>a+b,0)||1, T=M.arranque+k, dm=r.capNew*0.05/12;
+   const pts=[];let acc=0;for(let t=0;t<=T;t++){if(t>M.arranque&&t-M.arranque-1<k)acc+=r.part*v[t-M.arranque-1]/tot;pts.push(acc+dm*t)}
+   const W=900,H=330,L=64,Rr=16,Tp=16,B=40,top=Math.max(r.capNew*2,pts[T]+r.capNew)*1.05;
+   const x=t=>L+(W-L-Rr)*t/T, y=v=>Tp+(H-Tp-B)*(1-v/top);
+   const cashPath="M"+x(0)+","+y(0)+pts.map((p,t)=>"L"+x(t)+","+y(p)).join("")+"L"+x(T)+","+y(0)+"Z";
+   const accPath="M"+x(0)+","+y(pts[0])+pts.map((p,t)=>"L"+x(t)+","+y(p)).join("")+pts.slice().reverse().map((p,i)=>"L"+x(T-i)+","+y(p+r.capNew)).join("")+"Z";
+   let g="";for(let i=0;i<=4;i++){const val=top*i/4;g+=`<line x1="${L}" x2="${W-Rr}" y1="${y(val)}" y2="${y(val)}" stroke="var(--line)"/><text x="${L-8}" y="${y(val)+4}" text-anchor="end">${val>=1e6?"$"+n(val/1e6,1)+"M":"$"+n(val/1e3,0)+"k"}</text>`}
+   for(let t=0;t<=T;t+=6)g+=`<text x="${x(t)}" y="${H-14}" text-anchor="middle">${t===0?"Cosecha":"mes "+t}</text>`;
+   $("cumChart").setAttribute("aria-label","Efectivo acumulado hasta "+m(pts[T])+" más acciones por "+m(r.capNew)+", contra "+m(r.capNew)+" aportados");
+   $("cumChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}">${g}<path d="${accPath}" fill="var(--c-acc)" opacity=".9"/><path d="${cashPath}" fill="var(--c-gan)"/>
+   <line x1="${L}" x2="${W-Rr}" y1="${y(r.capNew)}" y2="${y(r.capNew)}" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="7 5"/>
+   <text x="${L+8}" y="${y(r.capNew)-8}" style="fill:var(--accent);font-weight:500">Aportas ${m(r.capNew)}</text>
+   <text x="${x(T)-6}" y="${y(pts[T]+r.capNew)-8}" text-anchor="end" style="fill:var(--fg);font-weight:500">Total ${m(pts[T]+r.capNew)}</text>
+   <text x="${x(T)-6}" y="${y(pts[T]/2)+4}" text-anchor="end" style="fill:var(--bg);font-weight:500">Efectivo ${m(pts[T])}</text></svg>`;}
+  $("hCal").textContent="Tu lote se termina de vender en unos "+n(r.meses)+" meses desde las primeras botellas";
+  $("tl3").textContent=M.arranque+" meses después"; $("tl4").textContent="~"+n(M.arranque+r.meses)+" meses después";
+}
+function setCtl(){$("cTit").value=S.tit;$("cPT").value=S.pT;$("cVen").value=S.ven;$("cKg").value=S.kg}
+[["cTit","tit"],["cPT","pT"],["cVen","ven"],["cKg","kg"]].forEach(([id,k])=>$(id).addEventListener("input",e=>{S[k]=parseFloat(e.target.value);render()}));
+$("reset").addEventListener("click",()=>{Object.assign(S,base);setCtl();render()});
+$("cTit").max=999; setCtl(); render(); setCtl();
+// seguimiento: supuestos que mueve el inversionista
+let tSup;["cTit","cPT","cVen","cKg"].forEach(id=>$(id).addEventListener("change",()=>{clearTimeout(tSup);tSup=setTimeout(()=>window.__log("supuesto",{tit:S.tit,pT:S.pT,ven:S.ven,kg:S.kg}),1200)}));
+$("reset").addEventListener("click",()=>window.__log("supuesto",{reset:true}));
+</script>
+<script>
+(function(){
+  var URL="https://ybhbceqthsfgsjccounm.supabase.co/rest/v1/rpc/";
+  var KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InliaGJjZXF0aHNmZ3NqY2NvdW5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkyNDM2NzgsImV4cCI6MjA2NDgxOTY3OH0.e-mHzlSFVzx6dCgMwMY-ynFw0l9yrbXYXdr1n1Uoh_M";
+  var H={"apikey":KEY,"Authorization":"Bearer "+KEY,"Content-Type":"application/json"};
+  var parts=location.pathname.split("/").filter(Boolean);
+  var token=(new URLSearchParams(location.search).get("t"))||(parts[0]==="propuesta"?parts[1]:"")||"";
+  var est=document.getElementById("estado");
+  function falla(){est.innerHTML='<p>Este link no es válido o ya no está vigente.</p><p class="muted">Escríbenos a hectoreduardo@gaveagro.com y te mandamos el tuyo.</p>'}
+  // ?preview=1 no registra visitas (para revisiones internas)
+  var registrar=!new URLSearchParams(location.search).has("preview");
+  window.__log=function(tipo,detalle,keep){if(!registrar||!token)return;try{fetch(URL+"log_propuesta_evento",{method:"POST",headers:H,keepalive:!!keep,body:JSON.stringify({p_token:token,p_tipo:tipo,p_detalle:detalle||null,p_ua:navigator.userAgent})})}catch(e){}};
+  if(!/^[a-f0-9]{32}$/.test(token)){falla();return}
+  fetch(URL+"get_propuesta",{method:"POST",headers:H,body:JSON.stringify({p_token:token})}).then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.nombre){falla();return}
+    if(d.lang==="en"){location.replace("/propuesta/en.html?t="+token+(registrar?"":"&preview=1"));return}
+    window.__D=d;
+    document.querySelectorAll('[data-f="nombre"]').forEach(function(e){e.textContent=d.nombre});
+    document.querySelectorAll('[data-f="year"]').forEach(function(e){e.textContent=d.year});
+    document.title="Cosecha 2027 · "+d.nombre;
+    est.remove();document.getElementById("pagina").hidden=false;
+    var sc=document.createElement("script");sc.textContent=document.getElementById("app").textContent;document.body.appendChild(sc);
+    window.__log("apertura",{ref:document.referrer||null});
+    var t0=Date.now(),acum=0;
+    document.addEventListener("visibilitychange",function(){
+      if(document.visibilityState==="hidden"){acum=Math.round((Date.now()-t0)/1000);if(acum>2)window.__log("tiempo",{segundos:acum},true)}
+      else t0=Date.now();
+    });
+  }).catch(falla);
+})();
+</script>
