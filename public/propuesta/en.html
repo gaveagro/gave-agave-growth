@@ -115,30 +115,25 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
 <div class="band hero" role="img" aria-label="Espadín agaves at sunset"><div class="in">
   <p class="eyebrow">Grupo Gavé · Tajacú · Confidential proposal</p>
   <h1>Harvest 2027</h1>
-  <p class="lead"><span data-f="nombre"></span>: what happens to your <span data-f="year"></span> agaves, and how to turn part of them into Tajacú mezcal.</p>
+  <p class="lead"><span data-f="nombre"></span>: your <span data-f="year"></span> agaves are sold as piña, as your contract says, and part of them can become Tajacú mezcal.</p>
 </div></div>
 
 <div class="band"><div class="in">
 <section class="block in">
-  <p class="eyebrow">Your plantation</p>
-  <h2>Your <span data-f="year"></span> Espadín agaves reach harvest in 2027</h2>
+  <p class="eyebrow">Your harvest</p>
+  <h2>Most of your harvest is sold as piña, as your contract says</h2>
+  <p class="muted">Your <span data-f="year"></span> Espadín agaves reach harvest in 2027. As always planned, they are harvested and sold as piña to third-party buyers, and you are paid according to your contract. What's new is that we propose turning part of it into Tajacú mezcal, where it is worth much more. All figures are in Mexican pesos (MXN).</p>
   <div class="stats">
     <div class="stat"><b class="num" id="sPl"></b><span>Espadín agaves planted in <span data-f="year"></span></span></div>
     <div class="stat"><b class="num" id="sKg"></b><span>of piña per plant on average; each one can weigh more or less</span></div>
     <div class="stat"><b class="num" id="sTon"></b><span>of piña expected from your harvest</span></div>
   </div>
-  <p class="muted"><b>This proposal covers only your <span data-f="year"></span> plants.</b> If you have plants from other years, we will review their proposal when they reach harvest.</p>
-  <p class="muted">Today Espadín piña sells for $4 to $6 MXN per kilo. We propose turning part of your harvest into Tajacú mezcal, where it is worth much more. All figures are in Mexican pesos (MXN).</p>
-  <img class="photo" src="/propuesta/img/campo.jpg" alt="Inspecting Espadín agaves in the field" style="aspect-ratio:16/9">
-</section>
-
-<section class="block in">
-  <p class="eyebrow">The proposal in one line</p>
-  <h2>Two destinations for your harvest</h2>
   <div class="split">
-    <div class="card soft"><div class="big num" id="dPctT"></div><h3 id="dPlT"></h3><p class="muted">Harvested and sold at the field to the best available buyer. You are paid according to your <span data-f="year"></span> contract.</p></div>
-    <div class="card dark"><div class="big num" id="dPctS"></div><h3 id="dPlS"></h3><p class="muted" id="dBotS"></p></div>
+    <div class="card soft"><span class="tag">1 · As your contract says</span><div class="big num" id="dPctT"></div><h3 id="dPlT"></h3><p><b class="num" id="dMonT" style="font-size:22px"></b> <span class="muted">for you in 2027, estimated</span></p><p class="muted">Harvested and sold at the field to the best available buyer. Today Espadín piña sells for $4 to $6 per kilo; here we use <span id="dPT"></span>. You are paid according to your <span data-f="year"></span> contract.</p></div>
+    <div class="card dark"><span class="tag" style="color:var(--gold)">2 · What's new</span><div class="big num" id="dPctS"></div><h3 id="dPlS"></h3><p class="muted" id="dBotS"></p></div>
   </div>
+  <p class="muted"><b>This proposal covers only your <span data-f="year"></span> plants.</b> If you have plants from other years, we will review their proposal when they reach harvest.</p>
+  <img class="photo" src="/propuesta/img/campo.jpg" alt="Inspecting Espadín agaves in the field" style="aspect-ratio:16/9">
 </section>
 
 <section class="block in">
@@ -171,7 +166,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
 </section>
 
 <section class="block in">
-  <p class="eyebrow">What you earn</p>
+  <p class="eyebrow">What you earn with your units</p>
   <h2 id="vpH"></h2>
   <div class="eq" id="vpEq"></div>
   <p class="muted" id="vpNote"></p>
@@ -313,7 +308,8 @@ function render(){
   $("oTit").textContent=n(r.tit); $("oPT").textContent="$"+S.pT.toLocaleString("en-US",{maximumFractionDigits:1})+"/kg"; $("oVen").textContent=n(S.ven); $("oKg").textContent=n(S.kg)+" kg";
   $("cTit").max=r.maxTit;
   $("sPl").textContent=n(D.pl); $("sKg").textContent=n(S.kg)+" kg"; $("sTon").textContent=n(D.pl*S.kg/1000,0)+" t";
-  $("dPctT").textContent=n((1-r.pctS)*100,0)+"%"; $("dPlT").textContent=n(r.resto)+" plants sold as piña";
+  $("dPctT").textContent=n((1-r.pctS)*100,0)+"%"; $("dPlT").textContent=n(r.resto)+" plants sold as piña to third parties";
+  $("dMonT").textContent=m(r.recT); $("dPT").textContent="$"+S.pT.toLocaleString("en-US",{maximumFractionDigits:1})+"/kg";
   $("dPctS").textContent=n(r.pctS*100,0)+"%"; $("dPlS").textContent=n(r.plP)+" plants become Tajacú mezcal";
   $("dBotS").textContent="About "+n(r.plP*r.bots,0)+" bottles of 500 ml, funded by your share units.";
   $("hPlTit").textContent=n(r.plTit,0); $("hBotTit").textContent=n(r.plTit*r.bots,0);
@@ -322,7 +318,7 @@ function render(){
   $("fPl").textContent=n(r.plP)+" plants"; $("fPct").textContent=n(r.pctS*100,0)+"% of your harvest"; $("fBot").textContent=n(r.plP*r.bots,0)+" bottles";
   const rows=(id,a)=>$(id).innerHTML=a.map(x=>`<tr${x[2]?' class="tot"':''}><td>${x[0]}</td><td>${x[1]}</td></tr>`).join("");
   rows("tInv",[["Espadín plants, "+D.year,m(D.pago)],[n(r.tit)+(r.tit===1?" unit, now":" units, now"),m(r.capNew)],["Total invested",m(D.pago+r.capNew),1]]);
-  rows("tRec",[["Piña sold to a third party, at $"+S.pT.toLocaleString("en-US",{maximumFractionDigits:1})+"/kg",m(r.recT)],["Your piña in Tajacú, at $8/kg",m(r.recS)],["$170 share per bottle",m(r.part)],["Total cash",m(r.cash),1],["Plus you keep "+n(r.acc)+" Series L shares",m(r.capNew)],["5% annual preferred dividend on your shares, accruing and paid from profits",m(r.capNew*0.05)+" a year"]]);
+  rows("tRec",[["Piña sold to third parties per your contract, at $"+S.pT.toLocaleString("en-US",{maximumFractionDigits:1})+"/kg",m(r.recT)],["Your piña in Tajacú, at $8/kg",m(r.recS)],["$170 share per bottle",m(r.part)],["Total cash",m(r.cash),1],["Plus you keep "+n(r.acc)+" Series L shares",m(r.capNew)],["5% annual preferred dividend on your shares, accruing and paid from profits",m(r.capNew*0.05)+" a year"]]);
   // comparación contra vender todo como piña
   const totAll=Math.max(0,D.pl*(S.kg*S.pT-M.jima)), sellAll=Math.min(totAll,D.pago)+Math.max(0,totAll-D.pago)*M.a;
   const W=Math.max(r.total,sellAll,D.pago+r.capNew), w=x=>Math.max(0,x)/W*100;
@@ -339,7 +335,7 @@ function render(){
     box("cash",m(cashT),"Cash you receive over ~"+n(M.arranque+r.meses)+" months")+'<div class="op">+</div>'+
     box("acc",m(r.capNew),"You keep "+n(r.acc)+" Series L shares")+'<div class="op">=</div>'+
     box("tot",n(valT/r.capNew,1)+"×","Total value: "+m(valT));
-  $("vpNote").textContent="For reference: that "+m(r.capNew)+" at 9% a year would be about "+m(fixed)+" over the same period, with no shares at the end. Your piña is paid on top of this.";
+  $("vpNote").textContent="For reference: that "+m(r.capNew)+" at 9% a year would be about "+m(fixed)+" over the same period, with no shares at the end. All of this comes on top of the "+m(r.recT)+" from the piña sold to third parties under your contract.";
   $("vp1").textContent=n(cashT/r.capNew*100,0)+"% of what you contribute comes back in cash";
   $("vp3").textContent="Your piña in Tajacú is paid at $8/kg, versus $"+S.pT.toLocaleString("en-US",{maximumFractionDigits:1})+"/kg from a third party";
   // gráfica acumulada
