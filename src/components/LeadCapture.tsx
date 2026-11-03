@@ -139,19 +139,16 @@ const LeadCapture = () => {
     pixelTracked.current = false;
 
     try {
-      // 1. Generate reCAPTCHA token
+      // 1. Generate reCAPTCHA token (if it fails, the server still stores the lead, flagged for review)
       const token = await generateRecaptchaToken();
-      if (!token) {
-        alert(language === 'EN' ? 'reCAPTCHA validation failed. Please try again.' : 'Error de validación reCAPTCHA. Inténtalo de nuevo.');
-        return;
-      }
 
       // 2. Enviar datos a Supabase
       const { error } = await (await getSupabase()).functions.invoke('form-submission', {
         body: {
           ...formData,
           formType: 'investment-lead-capture',
-          recaptchaToken: token
+          recaptchaToken: token,
+          language,
         }
       });
 

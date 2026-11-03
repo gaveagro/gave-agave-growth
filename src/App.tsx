@@ -17,6 +17,7 @@ import Vivero from "./pages/Vivero";
 import Compensa from "./pages/Compensa";
 import Crowdgrowing from "./pages/Crowdgrowing";
 import Contacto from "./pages/Contacto";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 // Admin is loaded on demand so Supabase stays out of the public/prerendered bundle.
 const AdminPanel = lazy(() => import("./pages/AdminPanel"));
@@ -57,6 +58,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <AppWithAnalytics />
+      <WhatsAppButton />
     </TooltipProvider>
   </QueryClientProvider>
 );

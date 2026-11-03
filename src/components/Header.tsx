@@ -23,6 +23,7 @@ const Header = () => {
           { label: 'Impact investment', to: '/inversion-de-impacto' },
           { label: 'Carbon credits', to: '/bonos-de-carbono' },
           { label: 'Nursery', to: '/vivero' },
+          { label: 'Agave pups', to: '/hijuelos-espadin' },
           { label: 'Offset', to: '/compensa' },
           { label: 'Blog', to: '/blog' },
         ]
@@ -31,6 +32,7 @@ const Header = () => {
           { label: 'Inversión de impacto', to: '/inversion-de-impacto' },
           { label: 'Bonos de carbono', to: '/bonos-de-carbono' },
           { label: 'Vivero', to: '/vivero' },
+          { label: 'Hijuelos', to: '/hijuelos-espadin' },
           { label: 'Compensa', to: '/compensa' },
           { label: 'Blog', to: '/blog' },
         ];
