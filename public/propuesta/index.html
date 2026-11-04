@@ -107,6 +107,10 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
 .closing h2{color:var(--deep-fg)}
 .closing ol{margin:0;padding-left:22px;display:grid;gap:8px;max-width:60ch}
 .closing .muted{color:var(--deep-muted)}
+.faq{display:grid;gap:10px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.faq summary{cursor:pointer;font-weight:500;font-size:16.5px;list-style-position:outside}
+.faq details p{margin-top:10px;color:var(--muted)}
 </style>
 
 
@@ -140,7 +144,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
   <p class="eyebrow">Cómo funciona</p>
   <h2>Un título de 100 acciones convierte <span id="hPlTit"></span> de tus plantas en <span id="hBotTit"></span> botellas</h2>
   <div class="steps">
-    <div class="card"><span class="tag">Suscribes</span><h3>1 título = 100 acciones Serie L de Gavé Spirits</h3><p class="muted">$75,000 por título. Tus acciones son tuyas: te dan dividendo preferente y participación en el valor de la empresa.</p></div>
+    <div class="card"><span class="tag">Suscribes</span><h3>1 título = 100 acciones Serie L de Gavé Spirits</h3><p class="muted">$75,000 por título, como aportación nueva: lo que invertiste en tus plantas sigue igual. Tus acciones son tuyas: te dan dividendo preferente y participación en el valor de la empresa.</p></div>
     <div class="card"><span class="tag">Se produce</span><h3>Tu piña se vuelve Tajacú</h3><p class="muted">Tu aportación financia flete, maquila certificada a 42°, envasado y comercialización.</p></div>
     <div class="card"><span class="tag">Cobras</span><h3>Por cada botella de tu lote que se vende</h3><p class="muted">Gavé Spirits te compra tu piña a $8/kg más una participación fija de $170 por cada botella de tu lote que se vende. Se liquida cada trimestre.</p></div>
   </div>
@@ -258,6 +262,19 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
     <div class="card"><h3>Plazo máximo</h3><p class="muted">Lo que no se haya vendido de tu lote al plazo pactado se te paga a $170 por botella. Y en cualquier momento puedes pedir parte de tu pago en botellas de Tajacú, valuadas a $600 cada una (precio al público, con impuestos), que se te entregan de inmediato.</p></div>
   </div>
 </section>
+<section class="block in">
+  <p class="eyebrow">Preguntas frecuentes</p>
+  <h2>Lo que más nos preguntan</h2>
+  <div class="faq">
+    <details><summary>¿Los títulos son parte de lo que ya invertí en mis plantas?</summary><p>No. Lo que invertiste en tus plantas sigue igual, según tu contrato. Cada título es una aportación nueva de $75,000 que financia convertir una parte de tu cosecha en mezcal. Puedes suscribir desde 1 título hasta los necesarios para toda tu cosecha.</p></details>
+    <details><summary>¿Desde cuándo son mías las acciones?</summary><p>Desde que suscribes y pagas tus títulos. El dividendo preferente de 5% anual se acumula desde ese mismo día.</p></details>
+    <details><summary>¿Puedo vender mis acciones? ¿Solo una parte?</summary><p>Sí, en cualquier momento y también una parte, al precio que acuerdes con el comprador. Como en toda sociedad, el consejo aprueba al nuevo accionista y Gavé y los demás accionistas tienen derecho de preferencia. Gavé Spirits es una SAPI, un tipo de sociedad pensado para facilitar la entrada y salida de accionistas.</p></details>
+    <details><summary>¿Gavé me tiene que recomprar las acciones?</summary><p>No. Gavé tiene el derecho, no la obligación, de recomprarlas a su valor de suscripción más los dividendos acumulados. El valor de suscripción no es un precio de venta garantizado.</p></details>
+    <details><summary>¿El dividendo se paga cada año?</summary><p>Se acumula cada año y se paga de las utilidades de Gavé Spirits. Si un año no hay utilidades suficientes, se sigue acumulando y se paga después.</p></details>
+    <details><summary>¿Qué pasa con mis acciones si fallezco?</summary><p>Son parte de tu patrimonio y pasan a tus herederos. Puedes nombrar a tus beneficiarios en el contrato.</p></details>
+    <details><summary>¿Los títulos sirven para cosechas futuras?</summary><p>Cada título financia una cosecha específica: el flete, la maquila, el envasado y la comercialización de ese lote. Tus acciones se quedan contigo, pero para una cosecha futura te haríamos una propuesta nueva.</p></details>
+  </div>
+</section>
 </div></div>
 
 <div class="band closing"><div class="in">
@@ -335,7 +352,7 @@ function render(){
   $("vpEq").innerHTML=box("",m(r.capNew),"Aportas por "+n(r.tit)+" títulos")+'<div class="op">→</div>'+
     box("cash",m(cashT),"Recibes en efectivo en ~"+n(M.arranque+r.meses)+" meses")+'<div class="op">+</div>'+
     box("acc",m(r.capNew),"Conservas "+n(r.acc)+" acciones Serie L")+'<div class="op">=</div>'+
-    box("tot",n(valT/r.capNew,1)+"×","Valor total: "+m(valT));
+    box("tot",n(valT/r.capNew,1)+"×","Valor total por lo que aportas en títulos: "+m(valT));
   $("vpNote").textContent="Como referencia: esos "+m(r.capNew)+" a 9% anual serían unos "+m(fixed)+" en el mismo plazo, sin acciones al final. Todo esto va además de los "+m(r.recT)+" de la piña que se vende a terceros según tu contrato.";
   $("vp1").textContent=n(cashT/r.capNew*100,0)+"% de lo que aportas regresa en efectivo";
   $("vp3").textContent="Tu piña en Tajacú se paga a $8/kg, contra $"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg con un tercero";

@@ -107,6 +107,10 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
 .closing h2{color:var(--deep-fg)}
 .closing ol{margin:0;padding-left:22px;display:grid;gap:8px;max-width:60ch}
 .closing .muted{color:var(--deep-muted)}
+.faq{display:grid;gap:10px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.faq summary{cursor:pointer;font-weight:500;font-size:16.5px;list-style-position:outside}
+.faq details p{margin-top:10px;color:var(--muted)}
 </style>
 
 
@@ -140,7 +144,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
   <p class="eyebrow">How it works</p>
   <h2>One unit of 100 shares turns <span id="hPlTit"></span> of your plants into <span id="hBotTit"></span> bottles</h2>
   <div class="steps">
-    <div class="card"><span class="tag">You subscribe</span><h3>1 unit = 100 Series L shares of Gavé Spirits</h3><p class="muted">$75,000 MXN per unit. The shares are yours: they carry a preferred dividend and a stake in the company's value.</p></div>
+    <div class="card"><span class="tag">You subscribe</span><h3>1 unit = 100 Series L shares of Gavé Spirits</h3><p class="muted">$75,000 MXN per unit, as a new contribution: what you invested in your plants stays the same. The shares are yours: they carry a preferred dividend and a stake in the company's value.</p></div>
     <div class="card"><span class="tag">We produce</span><h3>Your piña becomes Tajacú</h3><p class="muted">Your contribution funds freight, certified distilling at 42% ABV, bottling and sales.</p></div>
     <div class="card"><span class="tag">You get paid</span><h3>For every bottle of your lot that sells</h3><p class="muted">Gavé Spirits buys your piña at $8/kg plus a fixed $170 for every bottle of your lot that sells. Paid every quarter.</p></div>
   </div>
@@ -258,6 +262,19 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
     <div class="card"><h3>Maximum term</h3><p class="muted">Whatever has not sold from your lot by the agreed term is paid to you at $170 per bottle. And at any time you can ask for part of your payment in bottles of Tajacú, valued at $600 MXN each (retail price, taxes included), delivered right away.</p></div>
   </div>
 </section>
+<section class="block in">
+  <p class="eyebrow">Frequently asked questions</p>
+  <h2>What investors ask us most</h2>
+  <div class="faq">
+    <details><summary>Are the units part of what I already invested in my plants?</summary><p>No. What you invested in your plants stays the same, under your contract. Each unit is a new $75,000 MXN contribution that funds turning part of your harvest into mezcal. You can subscribe from 1 unit up to as many as your whole harvest needs.</p></details>
+    <details><summary>When do the shares become mine?</summary><p>From the day you subscribe and pay for your units. The 5% annual preferred dividend accrues from that same day.</p></details>
+    <details><summary>Can I sell my shares? Only part of them?</summary><p>Yes, at any time and also part of them, at whatever price you agree with the buyer. As in any company, the board approves new shareholders, and Gavé and the other shareholders have a right of first refusal. Gavé Spirits is a SAPI, a type of Mexican company designed to make it easy for shareholders to come in and out.</p></details>
+    <details><summary>Does Gavé have to buy my shares back?</summary><p>No. Gavé has the right, not the obligation, to buy them back at subscription value plus accrued dividends. Subscription value is not a guaranteed sale price.</p></details>
+    <details><summary>Is the dividend paid every year?</summary><p>It accrues every year and is paid out of Gavé Spirits' profits. If a year doesn't have enough profit, it keeps accruing and is paid later.</p></details>
+    <details><summary>What happens to my shares if I pass away?</summary><p>They are part of your estate and pass to your heirs. You can name your beneficiaries in the contract.</p></details>
+    <details><summary>Do the units cover future harvests?</summary><p>Each unit funds one specific harvest: freight, distilling, bottling and sales of that lot. Your shares stay with you, but for a future harvest we would make you a new proposal.</p></details>
+  </div>
+</section>
 </div></div>
 
 <div class="band closing"><div class="in">
@@ -334,7 +351,7 @@ function render(){
   $("vpEq").innerHTML=box("",m(r.capNew),"You contribute for "+(r.tit===1?"1 unit":n(r.tit)+" units"))+'<div class="op">→</div>'+
     box("cash",m(cashT),"Cash you receive over ~"+n(M.arranque+r.meses)+" months")+'<div class="op">+</div>'+
     box("acc",m(r.capNew),"You keep "+n(r.acc)+" Series L shares")+'<div class="op">=</div>'+
-    box("tot",n(valT/r.capNew,1)+"×","Total value: "+m(valT));
+    box("tot",n(valT/r.capNew,1)+"×","Total value on what you put into units: "+m(valT));
   $("vpNote").textContent="For reference: that "+m(r.capNew)+" at 9% a year would be about "+m(fixed)+" over the same period, with no shares at the end. All of this comes on top of the "+m(r.recT)+" from the piña sold to third parties under your contract.";
   $("vp1").textContent=n(cashT/r.capNew*100,0)+"% of what you contribute comes back in cash";
   $("vp3").textContent="Your piña in Tajacú is paid at $8/kg, versus $"+S.pT.toLocaleString("en-US",{maximumFractionDigits:1})+"/kg from a third party";
