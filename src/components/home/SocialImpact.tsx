@@ -57,7 +57,7 @@ const SocialImpact = () => {
       };
 
   return (
-    <section className="section-pad border-t border-border bg-paper-deep">
+    <section id="comunidades" className="section-pad scroll-mt-20 border-t border-border bg-paper-deep">
       <div className="container mx-auto grid gap-14 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <p className="eyebrow">{c.eyebrow}</p>

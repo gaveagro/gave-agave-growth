@@ -8,13 +8,15 @@ const Footer = () => {
     language === 'EN'
       ? {
           description:
-            'Regenerative agroforestry and silvopastoral systems built on agave. Restoring arid land in Mexico, with measurable climate outcomes.',
+            'Agave grown on regenerated land with partner communities in San Luis Potosí. Raw material for beverages, inulin and syrup, and the group behind Tajacú mezcal.',
           copyright: '© 2026 Gavé. All rights reserved.',
-          tajacu: 'Part of Grupo Tajacú.',
+          tajacu: 'Gavé is the group behind Tajacú.',
           privacy: 'Privacy Policy',
           colWork: 'What we do',
           colCompany: 'Company',
           links: [
+            { label: 'Agave raw material', to: '/#materia-prima' },
+            { label: 'Tajacú mezcal', to: 'https://www.tajacu.com' },
             { label: 'Services', to: '/servicios' },
             { label: 'Nursery — Espadín & Salmiana', to: '/vivero' },
             { label: 'Espadín pups', to: '/hijuelos-espadin' },
@@ -22,20 +24,21 @@ const Footer = () => {
           company: [
             { label: 'Contact', to: '/contacto' },
             { label: 'Blog', to: '/blog' },
-            { label: 'FAQ', to: '/#faq' },
             { label: 'Investors (crowdgrowing)', to: '/inversion-de-impacto' },
             { label: 'Investor dashboard', to: 'https://dashboard.gaveagro.com' },
           ],
         }
       : {
           description:
-            'Sistemas agroforestales y agrosilvopastoriles regenerativos basados en agave. Restauramos tierras áridas en México con resultados climáticos medibles.',
+            'Agave cultivado en tierras regeneradas con comunidades socias en San Luis Potosí. Materia prima para bebidas, inulina y jarabe, y el grupo detrás del mezcal Tajacú.',
           copyright: '© 2026 Gavé. Todos los derechos reservados.',
-          tajacu: 'Parte de Grupo Tajacú.',
+          tajacu: 'Gavé es el grupo detrás de Tajacú.',
           privacy: 'Política de Privacidad',
           colWork: 'Qué hacemos',
           colCompany: 'Compañía',
           links: [
+            { label: 'Materia prima de agave', to: '/#materia-prima' },
+            { label: 'Mezcal Tajacú', to: 'https://www.tajacu.com' },
             { label: 'Servicios', to: '/servicios' },
             { label: 'Vivero — Espadín y Salmiana', to: '/vivero' },
             { label: 'Hijuelos de espadín', to: '/hijuelos-espadin' },
@@ -43,7 +46,6 @@ const Footer = () => {
           company: [
             { label: 'Contacto', to: '/contacto' },
             { label: 'Blog', to: '/blog' },
-            { label: 'Preguntas frecuentes', to: '/#faq' },
             { label: 'Inversionistas (crowdgrowing)', to: '/inversion-de-impacto' },
             { label: 'Dashboard de inversionistas', to: 'https://dashboard.gaveagro.com' },
           ],

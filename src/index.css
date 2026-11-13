@@ -118,11 +118,11 @@
   }
 
   .display-xl {
-    @apply font-display text-4xl leading-[1.02] sm:text-5xl md:text-6xl lg:text-7xl font-medium;
+    @apply font-display text-4xl leading-[1.02] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold;
   }
 
   .display-lg {
-    @apply font-display text-3xl leading-[1.06] sm:text-4xl md:text-5xl font-medium;
+    @apply font-display text-3xl leading-[1.06] sm:text-4xl md:text-5xl font-extrabold;
   }
 
   .lead {
@@ -130,7 +130,7 @@
   }
 
   .stat-num {
-    @apply font-display text-4xl md:text-5xl font-medium tabular-nums;
+    @apply font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tabular-nums whitespace-nowrap;
   }
 }
 

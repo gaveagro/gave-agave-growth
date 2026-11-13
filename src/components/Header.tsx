@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
-import InvestmentModal from './InvestmentModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,21 +18,23 @@ const Header = () => {
   const nav =
     language === 'EN'
       ? [
-          { label: 'The model', to: '/#modelo' },
-          { label: 'Nursery', to: '/vivero' },
-          { label: 'Agave pups', to: '/hijuelos-espadin' },
+          { label: 'Our agave', to: '/#agave' },
+          { label: 'Communities', to: '/#comunidades' },
+          { label: 'Raw material', to: '/#materia-prima' },
+          { label: 'Tajacú', to: '/#tajacu' },
           { label: 'Services', to: '/servicios' },
           { label: 'Blog', to: '/blog' },
         ]
       : [
-          { label: 'El modelo', to: '/#modelo' },
-          { label: 'Vivero', to: '/vivero' },
-          { label: 'Hijuelos', to: '/hijuelos-espadin' },
+          { label: 'Nuestro agave', to: '/#agave' },
+          { label: 'Comunidades', to: '/#comunidades' },
+          { label: 'Materia prima', to: '/#materia-prima' },
+          { label: 'Tajacú', to: '/#tajacu' },
           { label: 'Servicios', to: '/servicios' },
           { label: 'Blog', to: '/blog' },
         ];
 
-  const cta = language === 'EN' ? 'Talk to us' : 'Agendar llamada';
+  const cta = language === 'EN' ? 'Contact' : 'Contacto';
 
   const renderLink = (item: { label: string; to: string }, mobile = false) => {
     const isHash = item.to.includes('#');
@@ -79,11 +80,9 @@ const Header = () => {
               <Globe className="h-4 w-4" />
               <span className="text-xs font-medium">{language}</span>
             </Button>
-            <InvestmentModal>
-              <Button size="sm" className="rounded-none px-5">
-                {cta}
-              </Button>
-            </InvestmentModal>
+            <Button asChild size="sm" className="rounded-none px-5">
+              <Link to="/contacto">{cta}</Link>
+            </Button>
           </div>
 
           <div className="flex items-center gap-1 lg:hidden">
@@ -101,9 +100,11 @@ const Header = () => {
           <div className="border-t border-border py-4 lg:hidden">
             {nav.map((i) => renderLink(i, true))}
             <div className="pt-4">
-              <InvestmentModal>
-                <Button className="w-full rounded-none">{cta}</Button>
-              </InvestmentModal>
+              <Button asChild className="w-full rounded-none">
+                <Link to="/contacto" onClick={() => setIsMenuOpen(false)}>
+                  {cta}
+                </Link>
+              </Button>
             </div>
           </div>
         )}
