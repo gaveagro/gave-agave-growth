@@ -15,7 +15,7 @@ const TajacuSection = () => {
         body2: 'We are looking for distributors, bars and restaurants in Mexico and the United States.',
         primary: 'Request a tasting',
         secondary: 'Visit tajacu.com',
-        alt: 'Tajacú mezcal served at a table',
+        alt: 'Tajacú mezcal and a cocktail at a bar',
       }
     : {
         eyebrow: 'Gavé Spirits · Tajacú',
@@ -24,15 +24,15 @@ const TajacuSection = () => {
         body2: 'Buscamos distribuidores, bares y restaurantes en México y Estados Unidos.',
         primary: 'Pide una cata',
         secondary: 'Visita tajacu.com',
-        alt: 'Mezcal Tajacú servido en mesa',
+        alt: 'Mezcal Tajacú y un coctel en barra',
       };
 
   return (
     <section id="tajacu" className="section-pad scroll-mt-20 bg-ink-deep text-paper">
       <div className="container mx-auto grid items-center gap-14 lg:grid-cols-2">
         <Reveal>
-          <div className="aspect-[4/5] overflow-hidden">
-            <img src="/images/home/mesa.jpg" alt={c.alt} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+          <div className="aspect-[4/3] overflow-hidden">
+            <img src="/images/home/tajacu-barra.jpg" alt={c.alt} loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </div>
         </Reveal>
         <Reveal delay={0.08}>

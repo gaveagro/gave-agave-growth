@@ -3,7 +3,6 @@ import { ArrowRight } from 'lucide-react';
 import SolutionPage from '@/components/solutions/SolutionPage';
 import { Reveal } from '@/components/motion/Reveal';
 import { useLanguage } from '@/hooks/useLanguage';
-import hero from '@/assets/homepage/moctezuma-silvopastoril.jpg.asset.json';
 
 const Servicios = () => {
   const en = useLanguage() === 'EN';
@@ -39,7 +38,7 @@ const Servicios = () => {
           url: 'https://gaveagro.com/servicios',
         },
       }}
-      image={hero.url}
+      image="/images/home/servicios.jpg"
       eyebrow={en ? 'Ranches · Producers · Programmes' : 'Ranchos · Productores · Programas'}
       title={en ? 'What we learned in the field, applied to your land' : 'Lo que aprendimos en campo, aplicado a tu tierra'}
       lead={

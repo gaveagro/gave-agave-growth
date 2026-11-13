@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '@/hooks/useLanguage';
-import heroAsset from '@/assets/homepage/homepage-hero.jpg.asset.json';
 
 const HomeHero = () => {
   const language = useLanguage();
@@ -36,7 +35,7 @@ const HomeHero = () => {
   return (
     <section id="home" className="relative flex min-h-[92vh] items-end overflow-hidden bg-ink-deep pt-24">
       <div className="absolute inset-0">
-        <img src={heroAsset.url} alt={c.alt} className="h-full w-full object-cover" decoding="async" />
+        <img src="/images/home/hero-huasteca.jpg" alt={c.alt} className="h-full w-full object-cover" decoding="async" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-deep via-ink-deep/70 to-ink-deep/30" />
       </div>
 

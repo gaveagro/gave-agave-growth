@@ -59,7 +59,7 @@ const RawMaterial = () => {
       <div className="container mx-auto grid gap-14 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
           <div className="aspect-[4/5] overflow-hidden bg-paper lg:sticky lg:top-28">
-            <img src="/images/home/pinas.jpg" alt={c.alt} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+            <img src="/images/home/pinas-jimadas.jpg" alt={c.alt} loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </div>
         </Reveal>
 

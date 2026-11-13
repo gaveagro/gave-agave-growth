@@ -1,7 +1,5 @@
 import { Reveal } from '@/components/motion/Reveal';
 import { useLanguage } from '@/hooks/useLanguage';
-import huasteca from '@/assets/homepage/tanchachin-parcela.jpg.asset.json';
-import altiplano from '@/assets/homepage/moctezuma-silvopastoril.jpg.asset.json';
 
 const OriginSection = () => {
   const en = useLanguage() === 'EN';
@@ -13,13 +11,13 @@ const OriginSection = () => {
         lead: 'Every piña we sell comes from land we leave better than we found it, farmed together with the families who live on it.',
         regions: [
           {
-            img: huasteca.url,
+            img: '/images/home/huasteca-cana.jpg',
             place: 'Huasteca Potosina · Espadín',
             title: 'From exhausted cane fields to agave.',
             body: 'These parcels grew sugarcane for decades without rotation, and the soil lost its structure. We plant Espadín alongside companion crops to bring the land back to life and make it productive again.',
           },
           {
-            img: altiplano.url,
+            img: '/images/home/altiplano.jpg',
             place: 'Altiplano potosino · Salmiana',
             title: 'Agave against the desert.',
             body: 'On the high plateau agave grows at lower density inside an agro-silvo-pastoral system: it reforests, holds the soil against erosion, feeds livestock and, once mature, goes to mezcal.',
@@ -37,13 +35,13 @@ const OriginSection = () => {
         lead: 'Cada piña que vendemos viene de tierra que dejamos mejor de lo que la encontramos, cultivada junto con las familias que viven en ella.',
         regions: [
           {
-            img: huasteca.url,
+            img: '/images/home/huasteca-cana.jpg',
             place: 'Huasteca Potosina · Espadín',
             title: 'De cañaverales agotados a campos de agave.',
             body: 'Estas parcelas fueron cañeras por décadas, sin rotación, y el suelo perdió estructura. Sembramos Espadín junto con cultivos acompañantes para devolverle vida a la tierra y hacerla producir otra vez.',
           },
           {
-            img: altiplano.url,
+            img: '/images/home/altiplano.jpg',
             place: 'Altiplano potosino · Salmiana',
             title: 'Agave contra el desierto.',
             body: 'En el altiplano el agave crece a menor densidad dentro de un manejo agrosilvopastoril: reforesta, sujeta el suelo contra la erosión, sirve de forraje para el ganado y, al madurar, se aprovecha para mezcal.',
