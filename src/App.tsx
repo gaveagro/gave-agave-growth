@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import Index from "./pages/Index";
 import BlogPage from "./pages/BlogPage";
@@ -12,9 +12,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import HijuelosEspadin from "./pages/HijuelosEspadin";
 import InversionImpacto from "./pages/InversionImpacto";
-import BonosCarbono from "./pages/BonosCarbono";
 import Vivero from "./pages/Vivero";
-import Compensa from "./pages/Compensa";
+import Servicios from "./pages/Servicios";
 import Crowdgrowing from "./pages/Crowdgrowing";
 import Contacto from "./pages/Contacto";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -30,9 +29,10 @@ const AppWithAnalytics = () => {
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/inversion-de-impacto" element={<InversionImpacto />} />
-      <Route path="/bonos-de-carbono" element={<BonosCarbono />} />
+      <Route path="/servicios" element={<Servicios />} />
+      <Route path="/bonos-de-carbono" element={<Navigate to="/servicios" replace />} />
       <Route path="/vivero" element={<Vivero />} />
-      <Route path="/compensa" element={<Compensa />} />
+      <Route path="/compensa" element={<Navigate to="/servicios" replace />} />
       <Route path="/crowdgrowing" element={<Crowdgrowing />} />
       <Route path="/contacto" element={<Contacto />} />
       <Route path="/blog" element={<BlogPage />} />

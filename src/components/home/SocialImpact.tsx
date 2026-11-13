@@ -1,6 +1,5 @@
 import { Reveal } from '@/components/motion/Reveal';
 import { useLanguage } from '@/hooks/useLanguage';
-import comunidad from '@/assets/homepage/comunidad-socios.jpg.asset.json';
 
 const SocialImpact = () => {
   const language = useLanguage();
@@ -29,7 +28,7 @@ const SocialImpact = () => {
             v: 'Our most developed case today is with Tének communities of the Huasteca Potosina, and the same partnership model travels to every region where we work.',
           },
         ],
-        alt: 'Gavé technicians and community members reviewing an agave parcel together',
+        alt: 'A community grower working an agave parcel',
       }
     : {
         eyebrow: 'Impacto social',
@@ -53,11 +52,11 @@ const SocialImpact = () => {
             v: 'Nuestro caso más desarrollado hoy es con comunidades Tének de la Huasteca Potosina, y el mismo modelo de sociedad viaja a cada región donde trabajamos.',
           },
         ],
-        alt: 'Técnicos de Gavé y miembros de la comunidad revisando juntos una parcela de agave',
+        alt: 'Productor de la comunidad trabajando una parcela de agave',
       };
 
   return (
-    <section className="section-pad border-t border-border bg-paper-deep">
+    <section id="comunidades" className="section-pad scroll-mt-20 border-t border-border bg-paper-deep">
       <div className="container mx-auto grid gap-14 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <p className="eyebrow">{c.eyebrow}</p>
@@ -75,7 +74,7 @@ const SocialImpact = () => {
 
         <Reveal>
           <img
-            src={comunidad.url}
+            src="/images/home/comunidad.jpg"
             alt={c.alt}
             loading="lazy"
             decoding="async"

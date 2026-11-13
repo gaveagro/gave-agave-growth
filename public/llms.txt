@@ -1,20 +1,18 @@
-# Gavé Agrotecnología
+# Gavé
 
-> Climate-first agrotechnology company regenerating arid and semi-arid land through agave-based agroforestry and silvopastoral systems, with measurable, certifiable outcomes for investors, ranch owners, NGOs and governments.
+> Gavé grows Espadín and Salmiana agave with 50 partner families across some 500 hectares of regenerated land in San Luis Potosí, Mexico. It supplies agave piña to beverage producers and to inulin and agave syrup buyers, and it is the group behind Tajacú mezcal.
 
-Gavé designs and operates regenerative land systems built on agave and companion dryland species. The work combines carbon capture, regenerative and rational livestock grazing, water harvesting and a field + monitoring layer (MRV) designed from day one for third-party validation and verification. Business lines: impact investment in agroforestry projects, carbon-credit certification for arid-land ranches (Gavé works on commission over the credits generated), an agave nursery supplying Espadín and Salmiana plants, offsetting and sponsorship programmes, and the original crowdgrowing model. Operations are based in San Luis Potosí, Mexico, and the model applies to arid and semi-arid land generally.
+How the agave is grown is the point. In the Huasteca Potosina, Espadín replaces sugarcane fields exhausted by decades of monoculture, planted with companion crops to rebuild the soil. On the Altiplano potosino, Salmiana grows at lower density inside an agro-silvo-pastoral system: it reforests, holds soil against erosion, feeds livestock and, at maturity, goes to mezcal. Local communities are partners across the whole cycle, not hired labour; the most developed case is with Tének communities of the Huasteca Potosina. Gavé also grows Sisal, Atrovirens, Cupreata, Potatorum and other species.
 
 ## Pages
 
-- [Home](/): Climate-first overview of the Gavé model — the four-layer system (agave, livestock, water, monitoring), impact metrics, evidence and MRV workflow, operating parcels and an audience-segmented FAQ.
-- [Impact investment](/inversion-de-impacto): For funds, NGOs, governments and corporates. How Gavé structures agroforestry and silvopastoral projects on arid Mexican land, how returns combine agave biomass, livestock income and environmental credits, and what impact evidence is delivered.
-- [Carbon credits for ranches](/bonos-de-carbono): For arid-land ranch owners. Baseline, management change, MRV and accompaniment through methodology and certification so a ranch can issue carbon and regenerative-livestock credits. Gavé is paid a commission on the credits generated.
-- [Nursery — Espadín & Salmiana](/vivero): Field-ready agave plants at volume. Agave Salmiana for arid-land reforestation programmes; Agave Espadín (Angustifolia Haw) for mezcal supply in Denomination of Origin regions. Rainfed, drought tolerant, suited to poor and stony soils.
-- [Offset & sponsorship](/compensa): For companies, teams and individuals who want to offset their footprint by sponsoring hectares under restoration, with coordinates, photographs, satellite series and an annual impact report on the exact parcel funded.
-- [Crowdgrowing](/crowdgrowing): The original Gavé model — individuals acquire agave plants that Gavé establishes and manages, follow them on the monitoring platform and share harvest revenue. Includes a profitability simulator and an honest note on the current low point of the agave price cycle.
-- [Hijuelos Espadín](/hijuelos-espadin): Dedicated landing page for buying certified Espadín pups for the Huasteca Potosina and Denomination of Origin municipalities of Tamaulipas. Pricing at $1 MXN per centimetre of plant height, profitability simulator, mezcal yield calculator and quote request.
-- [Blog](/blog): Articles on agave, regenerative agriculture, arid-land restoration and impact investment, in Spanish and English.
-- [Privacy Policy](/privacy): Aviso de Privacidad (Spanish).
+- [Home](/): How Gavé's agave is grown (Huasteca and Altiplano), partner communities, agave raw material for beverages, inulin and syrup (including forward purchase of lots), Tajacú mezcal, and who to contact for what.
+- [Services](/servicios): Regenerative agriculture and livestock advisory for ranch owners, agave plants by the lot, and reforestation programmes and tenders for companies, foundations and institutions.
+- [Nursery — Espadín & Salmiana](/vivero): Field-ready agave plants, quoted by lot.
+- [Espadín pups](/hijuelos-espadin): Espadín pups adapted to the Huasteca Potosina, quoted by lot.
+- [Blog](/blog): Field notes on agave, regenerative agriculture and arid-land restoration, in Spanish and English.
+- [Contact](/contacto): One form for buyers, distributors, ranch owners, programmes and partners.
+- [Tajacú](https://www.tajacu.com): Tajacú mezcal, the spirits brand of the Gavé group.
 
 ## Contact
 

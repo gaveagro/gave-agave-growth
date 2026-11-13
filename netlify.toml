@@ -23,6 +23,19 @@
   to = "/admin/index.html"
   status = 200
 
+# Páginas retiradas (rediseño 2026-11): carbono y Compensa -> Servicios
+[[redirects]]
+  from = "/bonos-de-carbono"
+  to = "/servicios"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/compensa"
+  to = "/servicios"
+  status = 301
+  force = true
+
 # Propuestas personales a inversionistas: /propuesta/<token>
 [[redirects]]
   from = "/propuesta/*"

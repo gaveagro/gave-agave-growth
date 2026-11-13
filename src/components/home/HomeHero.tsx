@@ -1,9 +1,7 @@
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '@/hooks/useLanguage';
-import heroAsset from '@/assets/homepage/homepage-hero.jpg.asset.json';
 
 const HomeHero = () => {
   const language = useLanguage();
@@ -12,39 +10,32 @@ const HomeHero = () => {
   const c =
     language === 'EN'
       ? {
-          eyebrow: 'Arid land · Mexico',
-          title: 'We regenerate arid land,',
-          titleAccent: 'and make it measurable.',
+          eyebrow: 'San Luis Potosí · Mexico',
+          title: 'Agave that regenerates the land,',
+          titleAccent: 'grown with the people who live on it.',
           body:
-            'Gavé designs agave-based agroforestry and silvopastoral systems: carbon capture, regenerative livestock, water harvesting and monitoring — built so the outcome can be verified and certified.',
-          primary: 'See the model',
-          secondary: 'Invest or certify your ranch',
+            'Gavé grows Espadín and Salmiana with 50 partner families across some 500 hectares of San Luis Potosí. We supply that agave to beverage, inulin and syrup producers, and we are the group behind Tajacú mezcal.',
+          primary: 'Quote our harvest',
+          secondary: 'Discover Tajacú',
           scroll: 'Scroll',
+          alt: 'Agave field in San Luis Potosí',
         }
       : {
-          eyebrow: 'Zonas áridas · México',
-          title: 'Regeneramos tierras áridas,',
-          titleAccent: 'y lo hacemos medible.',
+          eyebrow: 'San Luis Potosí · México',
+          title: 'Agave que regenera la tierra,',
+          titleAccent: 'cultivado con quienes la habitan.',
           body:
-            'Gavé diseña sistemas agroforestales y agrosilvopastoriles basados en agave: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo — construidos para que el resultado se pueda verificar y certificar.',
-          primary: 'Ver el modelo',
-          secondary: 'Invertir o certificar tu rancho',
+            'Gavé cultiva Espadín y Salmiana con 50 familias socias en cerca de 500 hectáreas de San Luis Potosí. Abastecemos ese agave a productores de bebidas, inulina y jarabe, y somos el grupo detrás del mezcal Tajacú.',
+          primary: 'Cotiza nuestra cosecha',
+          secondary: 'Conoce Tajacú',
           scroll: 'Desliza',
+          alt: 'Parcela de agave en San Luis Potosí',
         };
 
   return (
     <section id="home" className="relative flex min-h-[92vh] items-end overflow-hidden bg-ink-deep pt-24">
       <div className="absolute inset-0">
-        <img
-          src={heroAsset.url}
-          alt={
-            language === 'EN'
-              ? 'Agave plantation regenerating arid land in San Luis Potosí'
-              : 'Plantación de agave regenerando tierras áridas en San Luis Potosí'
-          }
-          className="h-full w-full object-cover"
-          decoding="async"
-        />
+        <img src="/images/home/hero-huasteca.jpg" alt={c.alt} className="h-full w-full object-cover" decoding="async" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-deep via-ink-deep/70 to-ink-deep/30" />
       </div>
 
@@ -69,7 +60,7 @@ const HomeHero = () => {
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="rounded-none bg-accent text-accent-foreground hover:bg-accent/90">
-              <a href="#modelo">
+              <a href="#materia-prima">
                 {c.primary}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
@@ -80,7 +71,7 @@ const HomeHero = () => {
               variant="outline"
               className="rounded-none border-paper/40 bg-transparent text-paper hover:bg-paper hover:text-ink"
             >
-              <Link to="/inversion-de-impacto">{c.secondary}</Link>
+              <a href="#tajacu">{c.secondary}</a>
             </Button>
           </div>
         </motion.div>
