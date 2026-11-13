@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				display: ['Space Grotesk', 'DM Sans', 'sans-serif'],
-				sans: ['DM Sans', 'system-ui', 'sans-serif'],
+				display: ['Archivo', 'Inter', 'sans-serif'],
+				sans: ['Inter', 'system-ui', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

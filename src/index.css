@@ -3,51 +3,51 @@
 @tailwind utilities;
 
 /* Gavé Design System — Editorial climate platform
-   Paper & Ink + Gavé green. All colors are HSL tokens. */
+   Piedra & Noche + Agave/Ámbar (Adriana 2026-11). All colors are HSL tokens. */
 
 @layer base {
   :root {
     /* Paper */
-    --background: 45 27% 95%;
-    --foreground: 148 39% 17%;
+    --background: 50 19% 94%;
+    --foreground: 169 21% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 148 39% 17%;
+    --card-foreground: 169 21% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 148 39% 17%;
+    --popover-foreground: 169 21% 10%;
 
     /* Ink green */
-    --primary: 148 39% 17%;
-    --primary-foreground: 45 27% 95%;
+    --primary: 171 33% 27%;
+    --primary-foreground: 50 19% 96%;
 
-    --secondary: 40 20% 89%;
-    --secondary-foreground: 148 39% 17%;
+    --secondary: 50 14% 88%;
+    --secondary-foreground: 169 21% 10%;
 
-    --muted: 40 20% 89%;
-    --muted-foreground: 148 12% 38%;
+    --muted: 50 14% 88%;
+    --muted-foreground: 169 10% 34%;
 
     /* Gavé yellow */
-    --accent: 45 96% 48%;
-    --accent-foreground: 148 39% 12%;
+    --accent: 34 68% 54%;
+    --accent-foreground: 169 21% 10%;
 
     --destructive: 0 72% 45%;
     --destructive-foreground: 45 27% 97%;
 
-    --border: 40 16% 84%;
-    --input: 40 16% 84%;
-    --ring: 148 39% 17%;
+    --border: 50 10% 83%;
+    --input: 50 10% 83%;
+    --ring: 171 33% 27%;
 
     --radius: 0.25rem;
 
     /* Brand scale */
-    --paper: 45 27% 95%;
-    --paper-deep: 40 20% 89%;
-    --ink: 148 39% 17%;
-    --ink-soft: 148 30% 26%;
-    --ink-deep: 150 45% 10%;
-    --gave-yellow-accent: 45 96% 48%;
-    --clay: 28 38% 55%;
+    --paper: 50 19% 94%;
+    --paper-deep: 50 14% 88%;
+    --ink: 169 21% 10%;
+    --ink-soft: 171 33% 27%;
+    --ink-deep: 169 24% 7%;
+    --gave-yellow-accent: 34 68% 54%;
+    --clay: 25 64% 33%;
 
     /* Legacy aliases kept for existing components */
     --gave-green-primary: 148 39% 17%;
@@ -92,13 +92,15 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6, .font-display {
-    font-family: 'Space Grotesk', 'DM Sans', sans-serif;
-    letter-spacing: -0.02em;
+    font-family: 'Archivo', 'Inter', sans-serif;
+    font-stretch: 125%;
+    font-weight: 800;
+    letter-spacing: -0.01em;
   }
 }
 
