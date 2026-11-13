@@ -8,10 +8,9 @@ const WHATSAPP_NUMBER = (import.meta.env.VITE_WHATSAPP_NUMBER || DEFAULT_WHATSAP
 const MESSAGES: Record<string, string> = {
   '/hijuelos-espadin': 'Hola, me interesa cotizar hijuelos de agave espadín.',
   '/vivero': 'Hola, me interesa cotizar planta de agave (espadín o salmiana).',
-  '/bonos-de-carbono': 'Hola, tengo un rancho y me interesa regenerarlo con Gavé.',
+  '/servicios': 'Hola, tengo un rancho y me interesa regenerarlo con Gavé.',
   '/inversion-de-impacto': 'Hola, me interesa invertir en plantas de agave con Gavé.',
   '/crowdgrowing': 'Hola, me interesa invertir en plantas de agave con Gavé.',
-  '/compensa': 'Hola, me interesa patrocinar hectáreas con Gavé.',
 };
 const DEFAULT_MESSAGE = 'Hola, vengo del sitio de Gavé y me gustaría más información.';
 

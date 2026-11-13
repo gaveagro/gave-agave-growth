@@ -20,20 +20,16 @@ const Header = () => {
     language === 'EN'
       ? [
           { label: 'The model', to: '/#modelo' },
-          { label: 'Impact investment', to: '/inversion-de-impacto' },
-          { label: 'Carbon credits', to: '/bonos-de-carbono' },
           { label: 'Nursery', to: '/vivero' },
           { label: 'Agave pups', to: '/hijuelos-espadin' },
-          { label: 'Offset', to: '/compensa' },
+          { label: 'Services', to: '/servicios' },
           { label: 'Blog', to: '/blog' },
         ]
       : [
           { label: 'El modelo', to: '/#modelo' },
-          { label: 'Inversión de impacto', to: '/inversion-de-impacto' },
-          { label: 'Bonos de carbono', to: '/bonos-de-carbono' },
           { label: 'Vivero', to: '/vivero' },
           { label: 'Hijuelos', to: '/hijuelos-espadin' },
-          { label: 'Compensa', to: '/compensa' },
+          { label: 'Servicios', to: '/servicios' },
           { label: 'Blog', to: '/blog' },
         ];
 

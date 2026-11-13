@@ -15,18 +15,16 @@ const Footer = () => {
           colWork: 'What we do',
           colCompany: 'Company',
           links: [
-            { label: 'Impact investment', to: '/inversion-de-impacto' },
-            { label: 'Carbon credits for ranches', to: '/bonos-de-carbono' },
+            { label: 'Services', to: '/servicios' },
             { label: 'Nursery — Espadín & Salmiana', to: '/vivero' },
             { label: 'Espadín pups', to: '/hijuelos-espadin' },
-            { label: 'Offset & sponsorship', to: '/compensa' },
-            { label: 'Crowdgrowing', to: '/crowdgrowing' },
           ],
           company: [
             { label: 'Contact', to: '/contacto' },
             { label: 'Blog', to: '/blog' },
             { label: 'FAQ', to: '/#faq' },
-            { label: 'Dashboard', to: 'https://dashboard.gaveagro.com' },
+            { label: 'Investors (crowdgrowing)', to: '/inversion-de-impacto' },
+            { label: 'Investor dashboard', to: 'https://dashboard.gaveagro.com' },
           ],
         }
       : {
@@ -38,18 +36,16 @@ const Footer = () => {
           colWork: 'Qué hacemos',
           colCompany: 'Compañía',
           links: [
-            { label: 'Inversión de impacto', to: '/inversion-de-impacto' },
-            { label: 'Bonos de carbono para ranchos', to: '/bonos-de-carbono' },
+            { label: 'Servicios', to: '/servicios' },
             { label: 'Vivero — Espadín y Salmiana', to: '/vivero' },
             { label: 'Hijuelos de espadín', to: '/hijuelos-espadin' },
-            { label: 'Compensa y patrocina', to: '/compensa' },
-            { label: 'Crowdgrowing', to: '/crowdgrowing' },
           ],
           company: [
             { label: 'Contacto', to: '/contacto' },
             { label: 'Blog', to: '/blog' },
             { label: 'Preguntas frecuentes', to: '/#faq' },
-            { label: 'Dashboard', to: 'https://dashboard.gaveagro.com' },
+            { label: 'Inversionistas (crowdgrowing)', to: '/inversion-de-impacto' },
+            { label: 'Dashboard de inversionistas', to: 'https://dashboard.gaveagro.com' },
           ],
         };
 
