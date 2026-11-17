@@ -20,8 +20,8 @@ const RawMaterial = () => {
           },
           {
             title: 'Inulin and agave syrup',
-            body: 'Agave piña is raw material for inulin and syrup. We are open to forward-purchase agreements that secure lots from future harvests.',
-            cta: 'Secure a lot',
+            body: 'Agave piña is raw material for inulin and syrup. Supply contracts: reserve volume from future harvests with agreed price and schedule.',
+            cta: 'Reserve volume',
             to: '/contacto?perfil=inulina',
           },
         ],
@@ -43,8 +43,8 @@ const RawMaterial = () => {
           },
           {
             title: 'Inulina y jarabe de agave',
-            body: 'La piña de agave es materia prima para inulina y jarabe. Estamos abiertos a acuerdos de compra anticipada que aseguren lotes de cosechas futuras.',
-            cta: 'Asegura un lote',
+            body: 'La piña de agave es materia prima para inulina y jarabe. Contratos de suministro: reserva volumen de cosechas futuras con precio y calendario acordados.',
+            cta: 'Reserva volumen',
             to: '/contacto?perfil=inulina',
           },
         ],

@@ -24,8 +24,6 @@ const Footer = () => {
             { label: 'Agave raw material', to: '/#materia-prima' },
             { label: 'Tajacú mezcal', to: 'https://www.tajacu.com' },
             { label: 'Services', to: '/servicios' },
-            { label: 'Nursery — Espadín & Salmiana', to: '/vivero' },
-            { label: 'Espadín pups', to: '/hijuelos-espadin' },
           ],
           company: [
             { label: 'Contact', to: '/contacto' },
@@ -46,8 +44,6 @@ const Footer = () => {
             { label: 'Materia prima de agave', to: '/#materia-prima' },
             { label: 'Mezcal Tajacú', to: 'https://www.tajacu.com' },
             { label: 'Servicios', to: '/servicios' },
-            { label: 'Vivero — Espadín y Salmiana', to: '/vivero' },
-            { label: 'Hijuelos de espadín', to: '/hijuelos-espadin' },
           ],
           company: [
             { label: 'Contacto', to: '/contacto' },

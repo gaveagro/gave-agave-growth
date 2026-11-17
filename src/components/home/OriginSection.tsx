@@ -6,7 +6,7 @@ const OriginSection = () => {
 
   const c = en
     ? {
-        eyebrow: 'How our agave was grown',
+        eyebrow: 'How we grow our agave',
         title: 'The value is in how it was grown.',
         lead: 'Every piña we sell comes from land we leave better than we found it, farmed together with the families who live on it.',
         regions: [
@@ -20,7 +20,7 @@ const OriginSection = () => {
             img: '/images/home/altiplano.jpg',
             place: 'Altiplano potosino · Salmiana',
             title: 'Agave against the desert.',
-            body: 'On the high plateau agave grows at lower density inside an agro-silvo-pastoral system: it reforests, holds the soil against erosion, feeds livestock and, once mature, goes to mezcal.',
+            body: 'On the high plateau agave grows at lower density alongside trees, grasses and livestock: it reforests, holds the soil against erosion, feeds livestock and, once mature, goes to mezcal.',
           },
         ],
         points: [
@@ -30,7 +30,7 @@ const OriginSection = () => {
         ],
       }
     : {
-        eyebrow: 'Cómo se cultivó nuestro agave',
+        eyebrow: 'Cómo cultivamos nuestro agave',
         title: 'El valor está en cómo se cultivó.',
         lead: 'Cada piña que vendemos viene de tierra que dejamos mejor de lo que la encontramos, cultivada junto con las familias que viven en ella.',
         regions: [
@@ -44,7 +44,7 @@ const OriginSection = () => {
             img: '/images/home/altiplano.jpg',
             place: 'Altiplano potosino · Salmiana',
             title: 'Agave contra el desierto.',
-            body: 'En el altiplano el agave crece a menor densidad dentro de un manejo agrosilvopastoril: reforesta, sujeta el suelo contra la erosión, sirve de forraje para el ganado y, al madurar, se aprovecha para mezcal.',
+            body: 'En el altiplano el agave crece a menor densidad junto con árboles, pastos y ganado: reforesta, sujeta el suelo contra la erosión, sirve de forraje para el ganado y, al madurar, se aprovecha para mezcal.',
           },
         ],
         points: [
