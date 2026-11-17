@@ -6,12 +6,12 @@ const OriginSection = () => {
 
   const c = en
     ? {
-        eyebrow: 'How our agave was grown',
+        eyebrow: 'How we grow our agave',
         title: 'The value is in how it was grown.',
         lead: 'Every piña we sell comes from land we leave better than we found it, farmed together with the families who live on it.',
         regions: [
           {
-            img: '/images/home/huasteca-cana.jpg',
+            img: '/images/home/huasteca-espadin.jpg',
             place: 'Huasteca Potosina · Espadín',
             title: 'From exhausted cane fields to agave.',
             body: 'These parcels grew sugarcane for decades without rotation, and the soil lost its structure. We plant Espadín alongside companion crops to bring the land back to life and make it productive again.',
@@ -20,7 +20,7 @@ const OriginSection = () => {
             img: '/images/home/altiplano.jpg',
             place: 'Altiplano potosino · Salmiana',
             title: 'Agave against the desert.',
-            body: 'On the high plateau agave grows at lower density inside an agro-silvo-pastoral system: it reforests, holds the soil against erosion, feeds livestock and, once mature, goes to mezcal.',
+            body: 'On the high plateau agave grows at lower density alongside trees, grasses and livestock: it reforests, holds the soil against erosion, feeds livestock and, once mature, goes to mezcal.',
           },
         ],
         points: [
@@ -30,12 +30,12 @@ const OriginSection = () => {
         ],
       }
     : {
-        eyebrow: 'Cómo se cultivó nuestro agave',
+        eyebrow: 'Cómo cultivamos nuestro agave',
         title: 'El valor está en cómo se cultivó.',
         lead: 'Cada piña que vendemos viene de tierra que dejamos mejor de lo que la encontramos, cultivada junto con las familias que viven en ella.',
         regions: [
           {
-            img: '/images/home/huasteca-cana.jpg',
+            img: '/images/home/huasteca-espadin.jpg',
             place: 'Huasteca Potosina · Espadín',
             title: 'De cañaverales agotados a campos de agave.',
             body: 'Estas parcelas fueron cañeras por décadas, sin rotación, y el suelo perdió estructura. Sembramos Espadín junto con cultivos acompañantes para devolverle vida a la tierra y hacerla producir otra vez.',
@@ -44,7 +44,7 @@ const OriginSection = () => {
             img: '/images/home/altiplano.jpg',
             place: 'Altiplano potosino · Salmiana',
             title: 'Agave contra el desierto.',
-            body: 'En el altiplano el agave crece a menor densidad dentro de un manejo agrosilvopastoril: reforesta, sujeta el suelo contra la erosión, sirve de forraje para el ganado y, al madurar, se aprovecha para mezcal.',
+            body: 'En el altiplano el agave crece a menor densidad junto con árboles, pastos y ganado: reforesta, sujeta el suelo contra la erosión, sirve de forraje para el ganado y, al madurar, se aprovecha para mezcal.',
           },
         ],
         points: [

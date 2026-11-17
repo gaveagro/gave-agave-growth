@@ -18,20 +18,18 @@ const Header = () => {
   const nav =
     language === 'EN'
       ? [
-          { label: 'Our agave', to: '/#agave' },
-          { label: 'Communities', to: '/#comunidades' },
           { label: 'Raw material', to: '/#materia-prima' },
           { label: 'Tajacú', to: '/#tajacu' },
+          { label: 'Our agave', to: '/#agave' },
+          { label: 'Communities', to: '/#comunidades' },
           { label: 'Services', to: '/servicios' },
-          { label: 'Blog', to: '/blog' },
         ]
       : [
-          { label: 'Nuestro agave', to: '/#agave' },
-          { label: 'Comunidades', to: '/#comunidades' },
           { label: 'Materia prima', to: '/#materia-prima' },
           { label: 'Tajacú', to: '/#tajacu' },
+          { label: 'Nuestro agave', to: '/#agave' },
+          { label: 'Comunidades', to: '/#comunidades' },
           { label: 'Servicios', to: '/servicios' },
-          { label: 'Blog', to: '/blog' },
         ];
 
   const cta = language === 'EN' ? 'Contact' : 'Contacto';

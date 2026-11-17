@@ -13,8 +13,6 @@ const HomeHero = () => {
           eyebrow: 'San Luis Potosí · Mexico',
           title: 'Agave that regenerates the land,',
           titleAccent: 'grown with the people who live on it.',
-          body:
-            'Gavé grows Espadín and Salmiana with 50 partner families across some 500 hectares of San Luis Potosí. We supply that agave to beverage, inulin and syrup producers, and we are the group behind Tajacú mezcal.',
           primary: 'Quote our harvest',
           secondary: 'Discover Tajacú',
           scroll: 'Scroll',
@@ -24,8 +22,6 @@ const HomeHero = () => {
           eyebrow: 'San Luis Potosí · México',
           title: 'Agave que regenera la tierra,',
           titleAccent: 'cultivado con quienes la habitan.',
-          body:
-            'Gavé cultiva Espadín y Salmiana con 50 familias socias en cerca de 500 hectáreas de San Luis Potosí. Abastecemos ese agave a productores de bebidas, inulina y jarabe, y somos el grupo detrás del mezcal Tajacú.',
           primary: 'Cotiza nuestra cosecha',
           secondary: 'Conoce Tajacú',
           scroll: 'Desliza',
@@ -55,8 +51,6 @@ const HomeHero = () => {
             {c.title}
             <span className="block text-accent">{c.titleAccent}</span>
           </h1>
-
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-paper/80 md:text-xl">{c.body}</p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="rounded-none bg-accent text-accent-foreground hover:bg-accent/90">
