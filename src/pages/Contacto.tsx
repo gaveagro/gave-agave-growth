@@ -13,14 +13,14 @@ const Contacto = () => {
     ? {
         eyebrow: 'Contact',
         title: 'Tell us what you need',
-        lead: 'Funds, NGOs, governments, companies, ranch owners and producers — one form for all of it. We read everything and answer with a concrete route, not a brochure.',
+        lead: 'Agave buyers, distributors, ranch owners, programmes and partners: one form for all of it. We read everything and answer with a concrete route.',
         channels: 'Direct channels',
         location: 'San Luis Potosí, México',
       }
     : {
         eyebrow: 'Contacto',
         title: 'Cuéntanos qué necesitas',
-        lead: 'Fondos, ONGs, gobiernos, empresas, dueños de rancho y productores — un solo formulario para todo. Leemos todo y respondemos con una ruta concreta, no con un folleto.',
+        lead: 'Compradores de agave, distribuidores, dueños de rancho, programas y socios: un solo formulario para todo. Leemos todo y respondemos con una ruta concreta.',
         channels: 'Canales directos',
         location: 'San Luis Potosí, México',
       };
@@ -28,11 +28,11 @@ const Contacto = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title={en ? 'Contact Gavé — arid land regeneration with agave' : 'Contacto Gavé — regeneración de tierras áridas con agave'}
+        title={en ? 'Contact Gavé — regenerative agave and Tajacú mezcal' : 'Contacto Gavé — agave regenerativo y mezcal Tajacú'}
         description={
           en
-            ? 'Write to Gavé about impact investment, carbon credits for ranches, agave plants or offsetting. We answer with a concrete route.'
-            : 'Escribe a Gavé sobre inversión de impacto, bonos de carbono para ranchos, planta de agave o compensación. Respondemos con una ruta concreta.'
+            ? 'Write to Gavé about agave piña for beverages, inulin or syrup, Tajacú mezcal, agave plants or regenerative projects. We answer with a concrete route.'
+            : 'Escribe a Gavé sobre piña de agave para bebidas, inulina o jarabe, mezcal Tajacú, planta de agave o proyectos regenerativos. Respondemos con una ruta concreta.'
         }
         canonical="https://gaveagro.com/contacto"
         jsonLd={{

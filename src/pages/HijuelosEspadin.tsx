@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import HijuelosHero from '@/components/hijuelos/HijuelosHero';
 import HijuelosBeneficios from '@/components/hijuelos/HijuelosBeneficios';
 import HijuelosGaleria from '@/components/hijuelos/HijuelosGaleria';
-import HijuelosPrecios from '@/components/hijuelos/HijuelosPrecios';
-import HijuelosSimulador from '@/components/hijuelos/HijuelosSimulador';
 import HijuelosServicios from '@/components/hijuelos/HijuelosServicios';
 import HijuelosContacto from '@/components/hijuelos/HijuelosContacto';
 import Footer from '@/components/Footer';
@@ -18,14 +16,6 @@ const HijuelosEspadin = () => {
     description: 'Hijuelos certificados de Agave Espadín desde la Huasteca Potosina, con asesoría técnica, logística y registro ante el CRM.',
     image: 'https://gaveagro.com/images/especies-de-agave-para-mezcal-gav%C3%A9.jpg',
     brand: { '@type': 'Brand', name: 'Gavé Agrotecnología' },
-    offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'MXN',
-      lowPrice: '25',
-      highPrice: '45',
-      availability: 'https://schema.org/InStock',
-      url: 'https://gaveagro.com/hijuelos-espadin',
-    },
   };
 
   return (
@@ -64,8 +54,6 @@ const HijuelosEspadin = () => {
         <HijuelosHero />
         <HijuelosBeneficios />
         <HijuelosGaleria />
-        <HijuelosSimulador />
-        <HijuelosPrecios />
         <HijuelosServicios />
         <HijuelosContacto />
       </main>

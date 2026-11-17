@@ -2,9 +2,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import HowSustainableAgave from '@/components/HowSustainableAgave';
-import InvestmentSimulator from '@/components/InvestmentSimulator';
 import MonitoringPlatform from '@/components/MonitoringPlatform';
-import AgaveMarket from '@/components/AgaveMarket';
 import Testimonials from '@/components/Testimonials';
 import FinalCTA from '@/components/home/FinalCTA';
 import { Reveal } from '@/components/motion/Reveal';
@@ -59,8 +57,6 @@ const Crowdgrowing = () => {
       </section>
 
       <HowSustainableAgave />
-      <InvestmentSimulator />
-      <AgaveMarket />
       <MonitoringPlatform />
       <Testimonials />
       <FinalCTA />

@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 
+// Crowdgrowing / investor links are hidden for now (Hector, 2026-11-17).
+// Set to true to show them again in the footer.
+const SHOW_INVESTOR_LINKS = false;
+const INVESTOR_PATHS = ['/inversion-de-impacto', 'https://dashboard.gaveagro.com'];
+const visible = (l: { to: string }) => SHOW_INVESTOR_LINKS || !INVESTOR_PATHS.includes(l.to);
+
 const Footer = () => {
   const language = useLanguage();
 
@@ -8,48 +14,46 @@ const Footer = () => {
     language === 'EN'
       ? {
           description:
-            'Regenerative agroforestry and silvopastoral systems built on agave. Restoring arid land in Mexico, with measurable climate outcomes.',
+            'Agave grown on regenerated land with partner communities in San Luis Potosí. Raw material for beverages, inulin and syrup, and the group behind Tajacú mezcal.',
           copyright: '© 2026 Gavé. All rights reserved.',
-          tajacu: 'Part of Grupo Tajacú.',
+          tajacu: 'Gavé is the group behind Tajacú.',
           privacy: 'Privacy Policy',
           colWork: 'What we do',
           colCompany: 'Company',
           links: [
-            { label: 'Impact investment', to: '/inversion-de-impacto' },
-            { label: 'Carbon credits for ranches', to: '/bonos-de-carbono' },
+            { label: 'Agave raw material', to: '/#materia-prima' },
+            { label: 'Tajacú mezcal', to: 'https://www.tajacu.com' },
+            { label: 'Services', to: '/servicios' },
             { label: 'Nursery — Espadín & Salmiana', to: '/vivero' },
             { label: 'Espadín pups', to: '/hijuelos-espadin' },
-            { label: 'Offset & sponsorship', to: '/compensa' },
-            { label: 'Crowdgrowing', to: '/crowdgrowing' },
           ],
           company: [
             { label: 'Contact', to: '/contacto' },
             { label: 'Blog', to: '/blog' },
-            { label: 'FAQ', to: '/#faq' },
-            { label: 'Dashboard', to: 'https://dashboard.gaveagro.com' },
+            { label: 'Investors (crowdgrowing)', to: '/inversion-de-impacto' },
+            { label: 'Investor dashboard', to: 'https://dashboard.gaveagro.com' },
           ],
         }
       : {
           description:
-            'Sistemas agroforestales y agrosilvopastoriles regenerativos basados en agave. Restauramos tierras áridas en México con resultados climáticos medibles.',
+            'Agave cultivado en tierras regeneradas con comunidades socias en San Luis Potosí. Materia prima para bebidas, inulina y jarabe, y el grupo detrás del mezcal Tajacú.',
           copyright: '© 2026 Gavé. Todos los derechos reservados.',
-          tajacu: 'Parte de Grupo Tajacú.',
+          tajacu: 'Gavé es el grupo detrás de Tajacú.',
           privacy: 'Política de Privacidad',
           colWork: 'Qué hacemos',
           colCompany: 'Compañía',
           links: [
-            { label: 'Inversión de impacto', to: '/inversion-de-impacto' },
-            { label: 'Bonos de carbono para ranchos', to: '/bonos-de-carbono' },
+            { label: 'Materia prima de agave', to: '/#materia-prima' },
+            { label: 'Mezcal Tajacú', to: 'https://www.tajacu.com' },
+            { label: 'Servicios', to: '/servicios' },
             { label: 'Vivero — Espadín y Salmiana', to: '/vivero' },
             { label: 'Hijuelos de espadín', to: '/hijuelos-espadin' },
-            { label: 'Compensa y patrocina', to: '/compensa' },
-            { label: 'Crowdgrowing', to: '/crowdgrowing' },
           ],
           company: [
             { label: 'Contacto', to: '/contacto' },
             { label: 'Blog', to: '/blog' },
-            { label: 'Preguntas frecuentes', to: '/#faq' },
-            { label: 'Dashboard', to: 'https://dashboard.gaveagro.com' },
+            { label: 'Inversionistas (crowdgrowing)', to: '/inversion-de-impacto' },
+            { label: 'Dashboard de inversionistas', to: 'https://dashboard.gaveagro.com' },
           ],
         };
 
@@ -87,12 +91,12 @@ const Footer = () => {
 
           <div className="flex flex-col gap-3">
             <p className="eyebrow">{c.colWork}</p>
-            {c.links.map(renderLink)}
+            {c.links.filter(visible).map(renderLink)}
           </div>
 
           <div className="flex flex-col gap-3">
             <p className="eyebrow">{c.colCompany}</p>
-            {c.company.map(renderLink)}
+            {c.company.filter(visible).map(renderLink)}
           </div>
         </div>
 

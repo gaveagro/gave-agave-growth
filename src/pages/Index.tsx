@@ -2,40 +2,29 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import HomeHero from '@/components/home/HomeHero';
-import MetricsBar from '@/components/home/MetricsBar';
-import ModelSection from '@/components/home/ModelSection';
-import EvidenceSection from '@/components/home/EvidenceSection';
-import FourDoors from '@/components/home/FourDoors';
+import FactsBar from '@/components/home/FactsBar';
+import OriginSection from '@/components/home/OriginSection';
 import SocialImpact from '@/components/home/SocialImpact';
-import FaqSection from '@/components/home/FaqSection';
+import RawMaterial from '@/components/home/RawMaterial';
+import TajacuSection from '@/components/home/TajacuSection';
+import WorkWithUs from '@/components/home/WorkWithUs';
 import FinalCTA from '@/components/home/FinalCTA';
-import InnovationSection from '@/components/InnovationSection';
 import Blog from '@/components/Blog';
-import { groupsES } from '@/components/home/FaqSection';
 
 const Index = () => {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: groupsES.flatMap((g) =>
-      g.items.map((item) => ({
-        '@type': 'Question',
-        name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a },
-      }))
-    ),
-  };
-
   const jsonLd = [
     {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'Gavé Agrotecnología',
+      name: 'Gavé',
+      legalName: 'Gavé Agrotecnología',
       url: 'https://gaveagro.com/',
       email: 'hola@gaveagro.com',
       description:
-        'Sistemas agroforestales y agrosilvopastoriles con agave para regenerar tierras áridas: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo.',
-      areaServed: 'MX',
+        'Gavé cultiva agave Espadín y Salmiana con 50 familias socias en cerca de 500 hectáreas regeneradas de San Luis Potosí, abastece piña a productores de bebidas, inulina y jarabe, y es el grupo detrás del mezcal Tajacú.',
+      areaServed: ['MX', 'US'],
+      brand: { '@type': 'Brand', name: 'Tajacú', url: 'https://www.tajacu.com' },
+      address: { '@type': 'PostalAddress', addressRegion: 'San Luis Potosí', addressCountry: 'MX' },
     },
     {
       '@context': 'https://schema.org',
@@ -43,27 +32,25 @@ const Index = () => {
       name: 'Gavé',
       url: 'https://gaveagro.com/',
     },
-    faqSchema,
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Gavé — Regeneración de tierras áridas con agave"
-        description="Sistemas agroforestales y agrosilvopastoriles con agave: captura de carbono, ganadería regenerativa, cosecha de agua y monitoreo para bonos e inversión de impacto."
+        title="Gavé — Agave regenerativo de San Luis Potosí y mezcal Tajacú"
+        description="Agave Espadín y Salmiana cultivado con 50 familias socias en tierras regeneradas de San Luis Potosí. Piña para bebidas, inulina y jarabe, y el grupo detrás del mezcal Tajacú."
         canonical="https://gaveagro.com/"
         jsonLd={jsonLd}
       />
       <Header />
       <HomeHero />
-      <MetricsBar />
-      <ModelSection />
-      <EvidenceSection />
-      <FourDoors />
+      <FactsBar />
+      <OriginSection />
       <SocialImpact />
-      <InnovationSection />
+      <RawMaterial />
+      <TajacuSection />
+      <WorkWithUs />
       <Blog />
-      <FaqSection />
       <FinalCTA />
       <Footer />
     </div>

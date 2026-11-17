@@ -25,8 +25,8 @@ const beneficios = [
   },
   {
     icon: TrendingUp,
-    title: 'Alta Rentabilidad',
-    description: 'Márgenes atractivos con precios de piña entre $6 y $18 por kg y pesos promedio de 60 kg por planta.'
+    title: 'Mercado Probado',
+    description: 'El Espadín es el agave más usado en mezcal, con demanda establecida y un ciclo de 5 a 6 años en la Huasteca.'
   },
   {
     icon: MapPin,
@@ -36,7 +36,7 @@ const beneficios = [
   {
     icon: Leaf,
     title: 'Bajo Mantenimiento',
-    description: 'Costo de cultivo integral de ~$110 por planta durante todo el ciclo productivo de 5-6 años.'
+    description: 'Especie rústica de temporal: sin riego y con labores de mantenimiento sencillas durante todo el ciclo.'
   },
   {
     icon: Shield,

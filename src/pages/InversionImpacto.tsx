@@ -59,12 +59,12 @@ const InversionImpacto = () => {
                   'Establishment of agave and companion dryland species — mezquite (Prosopis spp.), nopal rastrero (Opuntia spp.), costilla de vaca (Atriplex canescens), leucaena (Leucaena leucocephala)',
                   'Water harvesting works: keylines, ditches, gabions, ponds',
                   'Herd integration and rational grazing (Voisin) infrastructure',
-                  'Baseline, monitoring and MRV layer',
+                  'Baseline and field monitoring',
                 ],
               },
               {
-                title: 'Three revenue streams, one hectare',
-                body: 'Biomass at the end of the cycle, livestock revenue during the maturing years, and environmental credits once the project is certified. Diversification is what protects the return from agave price cycles.',
+                title: 'Two sources of value, one hectare',
+                body: 'Agave biomass at the end of the cycle and livestock income during the maturing years. That diversification reduces dependence on agave price cycles.',
               },
               {
                 title: 'Reporting your board can use',
@@ -91,12 +91,12 @@ const InversionImpacto = () => {
                   'Establecimiento de agave y especies acompañantes de zona árida: mezquite (Prosopis spp.), nopal rastrero (Opuntia spp.), costilla de vaca (Atriplex canescens), leucaena (Leucaena leucocephala)',
                   'Obras de cosecha de agua: keylines, zanjas, gaviones, bordos',
                   'Integración del hato e infraestructura de ganadería racional (pastoreo Voisin)',
-                  'Línea base, monitoreo y capa de MRV',
+                  'Línea base y monitoreo en campo',
                 ],
               },
               {
-                title: 'Tres fuentes de ingreso, una hectárea',
-                body: 'Biomasa al final del ciclo, ingresos ganaderos durante los años de maduración y bonos ambientales una vez certificado el proyecto. Esa diversificación es lo que protege el retorno frente a los ciclos de precio del agave.',
+                title: 'Dos fuentes de valor, una hectárea',
+                body: 'Biomasa de agave al final del ciclo e ingresos ganaderos durante los años de maduración. Esa diversificación reduce la dependencia de los ciclos de precio del agave.',
               },
               {
                 title: 'Reportes que tu comité puede usar',

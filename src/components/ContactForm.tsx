@@ -8,6 +8,16 @@ import { getSupabase } from '@/integrations/supabase/lazy';
 import { trackFormSubmission } from '@/lib/analytics';
 import { useLanguage } from '@/hooks/useLanguage';
 
+const PERFIL_INDEX: Record<string, number> = {
+  bebidas: 0,
+  inulina: 1,
+  tajacu: 2,
+  rancho: 3,
+  programa: 4,
+  socio: 5,
+  planta: 6,
+};
+
 const RECAPTCHA_SITE_KEY = '6LdJt5srAAAAAD7ZoZQ54TcJAeH_ZlgjK7Tg82ft';
 
 const ContactForm = () => {
@@ -51,17 +61,18 @@ const ContactForm = () => {
         profile: 'What describes you best?',
         profilePlaceholder: 'Choose one',
         profiles: [
-          'Impact fund / investor',
-          'NGO or foundation',
-          'Government / public programme',
-          'Company looking to offset',
+          'Beverage producer (agave piña)',
+          'Inulin or agave syrup',
+          'Distributor, bar or restaurant (Tajacú)',
           'Ranch or land owner',
-          'Agave producer / nursery buyer',
+          'Company, foundation or public programme',
+          'Strategic partner or investor',
+          'Agave plants / Espadín pups',
           'Press or academia',
           'Other',
         ],
         message: 'What do you need?',
-        messagePlaceholder: 'Tell us where you stand: land, budget, mandate, timeline…',
+        messagePlaceholder: 'Tell us what you are looking for: volumes, timing, market, land…',
         submit: 'Send message',
         sending: 'Sending…',
         thanks: 'Thank you.',
@@ -75,23 +86,33 @@ const ContactForm = () => {
         profile: '¿Qué te describe mejor?',
         profilePlaceholder: 'Elige una opción',
         profiles: [
-          'Fondo de impacto / inversionista',
-          'ONG o fundación',
-          'Gobierno / programa público',
-          'Empresa que busca compensar',
+          'Productor de bebidas (piña de agave)',
+          'Inulina o jarabe de agave',
+          'Distribuidor, bar o restaurante (Tajacú)',
           'Dueño de rancho o tierra',
-          'Productor de agave / comprador de vivero',
+          'Empresa, fundación o programa público',
+          'Socio o inversionista estratégico',
+          'Planta de agave / hijuelos de Espadín',
           'Prensa o academia',
           'Otro',
         ],
         message: '¿Qué necesitas?',
-        messagePlaceholder: 'Cuéntanos dónde estás: tierra, presupuesto, mandato, tiempos…',
+        messagePlaceholder: 'Cuéntanos qué buscas: volúmenes, tiempos, mercado, tierra…',
         submit: 'Enviar mensaje',
         sending: 'Enviando…',
         thanks: 'Gracias.',
         thanksBody: 'Recibimos tu mensaje y te responderemos al correo que nos dejaste.',
         error: 'No pudimos enviar tu mensaje. Inténtalo de nuevo o escríbenos a hola@gaveagro.com.',
       };
+
+  // Preselect the profile from ?perfil=<key> (links from the home page doors).
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const key = new URLSearchParams(window.location.search).get('perfil');
+    const idx = key ? PERFIL_INDEX[key] : undefined;
+    if (idx !== undefined) setForm((f) => (f.profile ? f : { ...f, profile: c.profiles[idx] }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language]);
 
   const handleSubmit = async () => {
     if (submitting.current) return;

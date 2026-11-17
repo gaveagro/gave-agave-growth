@@ -22,15 +22,15 @@ const HijuelosHero = () => {
           </span>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Invierte en{' '}
+            Hijuelos de{' '}
             <span className="text-gave-yellow">Agave Espadín</span>
             <br />
-            Cultivo de Alta Rentabilidad
+            para la Huasteca Potosina
           </h1>
 
           <p className="text-lg sm:text-xl text-white/85 max-w-2xl mx-auto leading-relaxed">
             Plantas de hijuelos adaptadas a la Huasteca Potosina y regiones con Denominación de Origen de Mezcal. 
-            Sin riego, alta resistencia y retorno probado.
+            De temporal, resistentes y de la especie más usada en mezcal.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -41,20 +41,12 @@ const HijuelosHero = () => {
             >
               Solicitar Cotización
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 text-lg px-8 py-6 font-semibold"
-            >
-              Simular Rentabilidad
-            </Button>
           </div>
 
           <div className="grid grid-cols-3 gap-6 max-w-lg mx-auto pt-8">
             <div className="text-center">
-              <p className="text-3xl font-bold text-gave-yellow">$1/cm</p>
-              <p className="text-white/90 text-sm">Por hijuelo</p>
+              <p className="text-3xl font-bold text-gave-yellow">20–30</p>
+              <p className="text-white/90 text-sm">cm de talla típica</p>
             </div>
             <div className="text-center">
               <p className="text-3xl font-bold text-gave-yellow">0</p>

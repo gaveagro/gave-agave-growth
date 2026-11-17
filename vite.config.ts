@@ -7,9 +7,8 @@ import { vitePrerenderPlugin } from "vite-prerender-plugin";
 const ROUTES = [
   "/",
   "/inversion-de-impacto",
-  "/bonos-de-carbono",
+  "/servicios",
   "/vivero",
-  "/compensa",
   "/crowdgrowing",
   "/contacto",
   "/hijuelos-espadin",
