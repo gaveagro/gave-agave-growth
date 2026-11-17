@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 
+// Crowdgrowing / investor links are hidden for now (Hector, 2026-11-17).
+// Set to true to show them again in the footer.
+const SHOW_INVESTOR_LINKS = false;
+const INVESTOR_PATHS = ['/inversion-de-impacto', 'https://dashboard.gaveagro.com'];
+const visible = (l: { to: string }) => SHOW_INVESTOR_LINKS || !INVESTOR_PATHS.includes(l.to);
+
 const Footer = () => {
   const language = useLanguage();
 
@@ -85,12 +91,12 @@ const Footer = () => {
 
           <div className="flex flex-col gap-3">
             <p className="eyebrow">{c.colWork}</p>
-            {c.links.map(renderLink)}
+            {c.links.filter(visible).map(renderLink)}
           </div>
 
           <div className="flex flex-col gap-3">
             <p className="eyebrow">{c.colCompany}</p>
-            {c.company.map(renderLink)}
+            {c.company.filter(visible).map(renderLink)}
           </div>
         </div>
 
