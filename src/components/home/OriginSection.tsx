@@ -11,7 +11,7 @@ const OriginSection = () => {
         lead: 'Every piña we sell comes from land we leave better than we found it, farmed together with the families who live on it.',
         regions: [
           {
-            img: '/images/home/huasteca-cana.jpg',
+            img: '/images/home/huasteca-espadin.jpg',
             place: 'Huasteca Potosina · Espadín',
             title: 'From exhausted cane fields to agave.',
             body: 'These parcels grew sugarcane for decades without rotation, and the soil lost its structure. We plant Espadín alongside companion crops to bring the land back to life and make it productive again.',
@@ -35,7 +35,7 @@ const OriginSection = () => {
         lead: 'Cada piña que vendemos viene de tierra que dejamos mejor de lo que la encontramos, cultivada junto con las familias que viven en ella.',
         regions: [
           {
-            img: '/images/home/huasteca-cana.jpg',
+            img: '/images/home/huasteca-espadin.jpg',
             place: 'Huasteca Potosina · Espadín',
             title: 'De cañaverales agotados a campos de agave.',
             body: 'Estas parcelas fueron cañeras por décadas, sin rotación, y el suelo perdió estructura. Sembramos Espadín junto con cultivos acompañantes para devolverle vida a la tierra y hacerla producir otra vez.',
