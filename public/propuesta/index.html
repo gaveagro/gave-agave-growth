@@ -133,7 +133,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
     <div class="stat"><b class="num" id="sTon"></b><span>de piña esperadas en tu cosecha</span></div>
   </div>
   <div class="split">
-    <div class="card soft"><span class="tag">1 · Como dice tu contrato</span><div class="big num" id="dPctT"></div><h3 id="dPlT"></h3><p><b class="num" id="dMonT" style="font-size:22px"></b> <span class="muted">para ti en 2027, estimado</span></p><p class="muted">Jimada y puesta en parcela, al mejor comprador disponible. Hoy la piña de Espadín se paga entre $4 y $6 por kilo; aquí usamos <span id="dPT"></span>. Se te liquida según tu contrato de <span data-f="year"></span>.</p></div>
+    <div class="card soft"><span class="tag">1 · Como dice tu contrato</span><div class="big num" id="dPctT"></div><h3 id="dPlT"></h3><p><b class="num" id="dMonT" style="font-size:22px"></b> <span class="muted">para ti en 2027, estimado</span></p><p class="muted" style="font-size:14px">Ya incluye el reparto de tu contrato: por cada planta primero recuperas lo que pagaste por ella, y la utilidad que deje su piña (ya descontada la jima) se reparte 65% para ti y 35% para Gavé.</p><p class="muted">Jimada y puesta en parcela, al mejor comprador disponible. Hoy la piña de Espadín se paga entre $4 y $6 por kilo; aquí usamos <span id="dPT"></span>. Se te liquida según tu contrato de <span data-f="year"></span>.</p></div>
     <div class="card dark"><span class="tag" style="color:var(--gold)">2 · Lo nuevo</span><div class="big num" id="dPctS"></div><h3 id="dPlS"></h3><p class="muted" id="dBotS"></p></div>
   </div>
   <p class="muted"><b>Esta propuesta es solo para tus plantas de <span data-f="year"></span>.</b> Si tienes plantas de otros años, revisamos su propuesta cuando lleguen a su cosecha.</p>
@@ -207,7 +207,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
   <h2>Mueve los supuestos y mira cómo cambia</h2>
   <div class="controls">
     <div class="ctl-grid">
-      <div class="ctl"><label for="cTit">Títulos que suscribes</label><output id="oTit" for="cTit"></output><input id="cTit" type="range" min="1" step="1"><small>De 100 acciones, $75,000 cada uno</small></div>
+      <div class="ctl"><label for="cTit">Títulos que suscribes</label><output id="oTit" for="cTit"></output><input id="cTit" type="range" min="1" step="0.1"><small>De 100 acciones, $75,000 cada uno</small></div>
       <div class="ctl"><label for="cPT">Precio de la piña a tercero</label><output id="oPT" for="cPT"></output><input id="cPT" type="range" min="3" max="10" step="0.5"><small>Por kilo, para la piña que no va a Tajacú</small></div>
       <div class="ctl"><label for="cVen">Ventas de Tajacú desde el año 2</label><output id="oVen" for="cVen"></output><input id="cVen" type="range" min="10000" max="40000" step="1000"><small>Botellas al año; el primer año, 750 al mes</small></div>
       <div class="ctl"><label for="cKg">Piña por planta</label><output id="oKg" for="cKg"></output><input id="cKg" type="range" min="35" max="65" step="1"><small>Kilos en promedio; cada piña puede pesar más o menos</small></div>
@@ -300,21 +300,20 @@ const S=Object.assign({},base);
 const $=id=>document.getElementById(id);
 const m=x=>"$"+Math.round(x).toLocaleString("es-MX");
 const n=(x,d=0)=>x.toLocaleString("es-MX",{minimumFractionDigits:d,maximumFractionDigits:d});
+const nt=x=>n(x,Math.abs(x-Math.round(x))>1e-9?1:0);
 function sales(k){const v=[];for(let t=0;t<k;t++){const y=Math.floor(t/12);v.push(y===0?M.vel1:S.ven/12*Math.pow(1+M.crec,Math.max(0,y-1)))}return v}
 function sellMonths(b){let c=0,t=0;const v=sales(600);while(c<b&&t<600){c+=v[t];t++}return t}
 function calc(){
   const kg=S.kg, litros=kg/M.kgL, bots=litros*2;
   const C=M.flete+litros*M.maquila+bots*(M.insumos+M.comBot)+M.marbete;
   const plTit=M.accion*100/C;
-  const maxTit=Math.max(1,Math.floor(D.pl/plTit));
+  const maxTit=Math.max(1,Math.ceil(D.pl/plTit*10-1e-6)/10);
   const tit=Math.min(S.tit,maxTit);
   const plP=Math.min(D.pl,tit*plTit), resto=D.pl-plP;
   const R=bots*M.net, marg=Math.max(0,R-C-kg*M.pS);
-  const pinaT=resto*(kg*S.pT-M.jima), pinaS=plP*(kg*M.pS-M.jima);
-  const tot=Math.max(0,pinaT+pinaS);
-  const invPina=Math.min(tot,D.pago)+Math.max(0,tot-D.pago)*M.a;
-  const sh=tot>0?pinaT/tot:0;
-  const recT=invPina*sh, recS=invPina*(1-sh), part=plP*bots*M.pBot;
+  // contrato por planta: recuperas lo pagado por la planta y la utilidad de su piña (ya sin jima) se reparte 65/35
+  const pp=D.pago/D.pl, f=v=>Math.max(0,Math.min(v,pp))+Math.max(0,v-pp)*M.a;
+  const recT=resto*f(kg*S.pT-M.jima), recS=plP*f(kg*M.pS-M.jima), part=plP*bots*M.pBot;
   const capNew=tit*M.accion*100, acc=tit*100;
   const cash=recT+recS+part;
   const roundBots=M.roundBots*(50/50); // la ronda completa se vende en paralelo
@@ -323,7 +322,7 @@ function calc(){
 }
 function render(){
   const r=calc();
-  $("oTit").textContent=n(r.tit); $("oPT").textContent="$"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg"; $("oVen").textContent=n(S.ven); $("oKg").textContent=n(S.kg)+" kg";
+  $("oTit").textContent=nt(r.tit); $("oPT").textContent="$"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg"; $("oVen").textContent=n(S.ven); $("oKg").textContent=n(S.kg)+" kg";
   $("cTit").max=r.maxTit;
   $("sPl").textContent=n(D.pl); $("sKg").textContent=n(S.kg)+" kg"; $("sTon").textContent=n(D.pl*S.kg/1000,0)+" t";
   $("dPctT").textContent=n((1-r.pctS)*100,0)+"%"; $("dPlT").textContent=n(r.resto)+" plantas se venden como piña a terceros";
@@ -331,25 +330,25 @@ function render(){
   $("dPctS").textContent=n(r.pctS*100,0)+"%"; $("dPlS").textContent=n(r.plP)+" plantas se vuelven mezcal Tajacú";
   $("dBotS").textContent="Unas "+n(r.plP*r.bots,0)+" botellas de 500 ml, financiadas con tus títulos de acciones.";
   $("hPlTit").textContent=n(r.plTit,0); $("hBotTit").textContent=n(r.plTit*r.bots,0);
-  $("fTit").textContent=n(r.tit); $("fCap").textContent=m(r.capNew); $("fAcc").textContent=n(r.acc)+" acciones";
+  $("fTit").textContent=nt(r.tit); $("fCap").textContent=m(r.capNew); $("fAcc").textContent=n(r.acc)+" acciones";
   {const tF=D.pl/r.plTit;$("fMax").hidden=false;$("fMax").textContent=(D.max?"Te reservamos mínimo "+(D.tit===1?"1 título":n(D.tit)+" títulos")+". ":"")+"Para procesar toda tu cosecha necesitarías "+n(tF,1)+" títulos: "+n(Math.round(tF*100))+" acciones, "+m(tF*M.accion*100)+".";}
   $("fPl").textContent=n(r.plP)+" plantas"; $("fPct").textContent=n(r.pctS*100,0)+"% de tu cosecha"; $("fBot").textContent=n(r.plP*r.bots,0)+" botellas";
   const rows=(id,a)=>$(id).innerHTML=a.map(x=>`<tr${x[2]?' class="tot"':''}><td>${x[0]}</td><td>${x[1]}</td></tr>`).join("");
-  rows("tInv",[["Plantas Espadín, "+D.year,m(D.pago)],[n(r.tit)+" títulos, hoy",m(r.capNew)],["Total invertido",m(D.pago+r.capNew),1]]);
+  rows("tInv",[["Plantas Espadín, "+D.year,m(D.pago)],[nt(r.tit)+" títulos, hoy",m(r.capNew)],["Total invertido",m(D.pago+r.capNew),1]]);
   rows("tRec",[["Piña vendida a terceros según tu contrato, a $"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg",m(r.recT)],["Tu piña en Tajacú, a $8/kg",m(r.recS)],["Participación de $170 por botella",m(r.part)],["Total en efectivo",m(r.cash),1],["Además conservas "+n(r.acc)+" acciones Serie L",m(r.capNew)],["Dividendo preferente de 5% anual sobre tus acciones, acumulable y pagadero de utilidades",m(r.capNew*0.05)+" al año"]]);
   // comparación contra vender todo como piña
   const totAll=Math.max(0,D.pl*(S.kg*S.pT-M.jima)), sellAll=Math.min(totAll,D.pago)+Math.max(0,totAll-D.pago)*M.a;
   const W=Math.max(r.total,sellAll,D.pago+r.capNew), w=x=>Math.max(0,x)/W*100;
   $("bars").innerHTML=
    `<div class="bar"><div class="lab"><span>Vender toda tu cosecha como piña</span><b>${m(sellAll)}</b></div><div class="track"><div style="width:${w(sellAll)}%;background:var(--c-tercero)"></div></div></div>`+
-   `<div class="bar"><div class="lab"><span>Con tus ${n(r.tit)} títulos en Tajacú</span><b>${m(r.cash)} en efectivo + ${m(r.capNew)} en acciones</b></div><div class="track"><div style="width:${w(r.recT)}%;background:var(--c-tercero)"></div><div style="width:${w(r.recS)}%;background:var(--c-pina)"></div><div style="width:${w(r.part)}%;background:var(--c-gan)"></div><div style="width:${w(r.capNew)}%;background:var(--c-acc)"></div></div></div>`;
+   `<div class="bar"><div class="lab"><span>Con tus ${nt(r.tit)} títulos en Tajacú</span><b>${m(r.cash)} en efectivo + ${m(r.capNew)} en acciones</b></div><div class="track"><div style="width:${w(r.recT)}%;background:var(--c-tercero)"></div><div style="width:${w(r.recS)}%;background:var(--c-pina)"></div><div style="width:${w(r.part)}%;background:var(--c-gan)"></div><div style="width:${w(r.capNew)}%;background:var(--c-acc)"></div></div></div>`;
   $("noteOp").textContent="Vendiendo todo como piña recibirías "+m(sellAll)+" en 2027. Con tus títulos recibes "+m(r.cash)+" en efectivo y conservas acciones por "+m(r.capNew)+" a valor de suscripción, con un dividendo preferente de "+m(r.capNew*0.05)+" al año que se acumula y se paga de las utilidades de Gavé Spirits: "+n(r.total/(D.pago+r.capNew),2)+" veces todo lo que has invertido. Estimaciones; el precio de la piña a tercero depende del comprador.";
   // propuesta de valor
   const divH=r.capNew*0.05*(M.arranque+r.meses)/12, cashT=r.part+divH, valT=cashT+r.capNew;
   const yrs=(M.arranque+r.meses)/12, fixed=r.capNew*Math.pow(1.09,yrs);
   $("vpH").textContent="Recuperas "+n(cashT/r.capNew*100,0)+"% en efectivo y además te quedas con las acciones";
   const box=(c,v,t)=>`<div class="box ${c}"><b class="num">${v}</b><span>${t}</span></div>`;
-  $("vpEq").innerHTML=box("",m(r.capNew),"Aportas por "+n(r.tit)+" títulos")+'<div class="op">→</div>'+
+  $("vpEq").innerHTML=box("",m(r.capNew),"Aportas por "+nt(r.tit)+" títulos")+'<div class="op">→</div>'+
     box("cash",m(cashT),"Recibes en efectivo en ~"+n(M.arranque+r.meses)+" meses")+'<div class="op">+</div>'+
     box("acc",m(r.capNew),"Conservas "+n(r.acc)+" acciones Serie L")+'<div class="op">=</div>'+
     box("tot",n(valT/r.capNew,1)+"×","Valor total por lo que aportas en títulos: "+m(valT));
