@@ -332,7 +332,7 @@ function render(){
   $("dBotS").textContent="Unas "+n(r.plP*r.bots,0)+" botellas de 500 ml, financiadas con tus títulos de acciones.";
   $("hPlTit").textContent=n(r.plTit,0); $("hBotTit").textContent=n(r.plTit*r.bots,0);
   $("fTit").textContent=n(r.tit); $("fCap").textContent=m(r.capNew); $("fAcc").textContent=n(r.acc)+" acciones";
-  if(D.max){$("fMax").hidden=false;$("fMax").textContent="Te reservamos mínimo "+(D.tit===1?"1 título":n(D.tit)+" títulos")+". Con "+n(r.maxTit)+" títulos procesas toda tu cosecha.";}
+  {const tF=D.pl/r.plTit;$("fMax").hidden=false;$("fMax").textContent=(D.max?"Te reservamos mínimo "+(D.tit===1?"1 título":n(D.tit)+" títulos")+". ":"")+"Para procesar toda tu cosecha necesitarías "+n(tF,1)+" títulos: "+n(Math.round(tF*100))+" acciones, "+m(tF*M.accion*100)+".";}
   $("fPl").textContent=n(r.plP)+" plantas"; $("fPct").textContent=n(r.pctS*100,0)+"% de tu cosecha"; $("fBot").textContent=n(r.plP*r.bots,0)+" botellas";
   const rows=(id,a)=>$(id).innerHTML=a.map(x=>`<tr${x[2]?' class="tot"':''}><td>${x[0]}</td><td>${x[1]}</td></tr>`).join("");
   rows("tInv",[["Plantas Espadín, "+D.year,m(D.pago)],[n(r.tit)+" títulos, hoy",m(r.capNew)],["Total invertido",m(D.pago+r.capNew),1]]);
