@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gavé · Proyecciones 2027–2031</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600..800&family=Inter:wght@400;600&display=swap">
+<style>
+:root {
+  --noche: #15201E;
+  --agave: #2E5C55;
+  --ambar: #D9933A;
+  --barro: #8A4B1E;
+  --piedra: #F2F1EC;
+  --arena: #E4E1D6;
+  --texto: #3C4A47;
+  --suave: #5B6865;
+  --claro: #C9D6D2;
+}
+body { font-family: 'Inter', Arial, sans-serif; }
+section {
+  background: var(--piedra);
+  color: var(--noche);
+  padding: 128px 128px 160px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  counter-increment: page;
+}
+section.dark { background: var(--noche); color: var(--piedra); }
+h1, h2 { font-family: 'Archivo', Arial, sans-serif; font-weight: 800; }
+h1 { font-size: 104px; line-height: 1.02; }
+h2 { font-size: 64px; line-height: 1.08; }
+h3 { font-family: 'Archivo', Arial, sans-serif; font-size: 36px; font-weight: 700; line-height: 1.15; }
+.eyebrow { font-size: 24px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--barro); }
+section.dark .eyebrow { color: var(--ambar); }
+.lead { font-size: 32px; line-height: 1.4; color: var(--texto); }
+section.dark .lead { color: var(--claro); }
+.small { font-size: 24px; line-height: 1.4; color: var(--suave); }
+section.dark .small { color: var(--claro); }
+.big { font-family: 'Archivo', Arial, sans-serif; font-size: 88px; font-weight: 800; line-height: 1; color: var(--agave); }
+section.dark .big { color: var(--ambar); }
+.foot { position: absolute; left: 128px; bottom: 64px; width: 1664px; font-size: 24px; color: var(--suave); display: flex; justify-content: space-between; }
+section.dark .foot { color: var(--claro); }
+.row { display: flex; gap: 32px; }
+.col { display: flex; flex-direction: column; gap: 16px; }
+.card { background: #FBFAF6; border-top: 8px solid var(--agave); padding: 40px; display: flex; flex-direction: column; gap: 20px; flex: 1; }
+.card.hi { border-top-color: var(--barro); }
+.card .k { font-size: 24px; color: var(--suave); }
+.card .v { font-family: 'Archivo', Arial, sans-serif; font-size: 56px; font-weight: 800; color: var(--noche); line-height: 1; }
+.card .v.agave { color: var(--agave); }
+.card .note { font-size: 24px; line-height: 1.4; color: var(--texto); }
+table.t { font-size: 28px; color: var(--noche); width: 100%; font-variant-numeric: tabular-nums; }
+tr.tot { background: var(--arena); }
+.bar { background: var(--agave); width: 160px; }
+.bar.sal { background: var(--ambar); }
+.bar.none { background: var(--arena); }
+.legend { display: flex; gap: 32px; font-size: 24px; color: var(--texto); align-items: center; }
+.sw { width: 24px; height: 24px; background: var(--agave); }
+.sw.sal { background: var(--ambar); }
+.step { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.step .unit { font-size: 28px; color: var(--texto); }
+.arrow { font-family: 'Archivo', Arial, sans-serif; font-size: 64px; color: var(--barro); align-self: center; }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.in { animation: rise 600ms ease-out both; animation-delay: calc(var(--i, 0) * 120ms); }
+
+html{background:#15201E}
+body{margin:0;background:#15201E;color:#F2F1EC}
+h1,h2,h3,p{margin:0}
+ul{margin:0;padding-left:1.2em}
+.in{animation:none}
+.deck{max-width:1600px;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:16px}
+.sl{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.sc{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;transform:scale(var(--s,.5))}
+.sc>section{position:relative;width:1920px;height:1080px;overflow:hidden}
+.nota-movil{display:none;font:14px/1.4 Inter,system-ui,sans-serif;color:#C9D6D2;text-align:center;padding:0 16px}
+@media (max-width:700px){.nota-movil{display:block}.deck{padding:8px;gap:8px}}
+</style></head>
+<body>
+<p class="nota-movil">En el teléfono puedes acercar con dos dedos o girar a horizontal.</p>
+<main class="deck">
+<div class="sl"><div class="sc"><section id="cover" class="dark" style="justify-content:flex-end; padding:128px">
+<img src="/proyecciones/9b38afea82ce/img/hero-huasteca.jpg" alt="Parcela de agave Espadín en la Huasteca potosina" style="position:absolute; left:0; top:0; width:1920px; height:1080px; object-fit:cover">
+<div style="position:absolute; left:0; top:0; width:1920px; height:1080px; background:linear-gradient(180deg, rgba(21,32,30,0.15) 0%, rgba(21,32,30,0.88) 70%)"></div>
+<p class="eyebrow in" style="--i:0">Gavé · Espadín y Salmiana</p>
+<h1 class="in" style="--i:1; width:1400px">Agave regenerativo, trazable de la parcela a la botella</h1>
+<p class="lead in" style="--i:2">Proyecciones de cosecha, transformación y venta 2027–2031</p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="origen" style="flex-direction:row; gap:72px; padding:128px 0 160px 128px">
+<div class="col" style="width:880px; gap:40px">
+<p class="eyebrow">Origen</p>
+<h2>Agave sembrado para regenerar la tierra</h2>
+<div class="row" style="gap:48px">
+<div class="col in" style="--i:0; gap:8px"><p class="big">~500</p><p class="small">hectáreas de Espadín y Salmiana</p></div>
+<div class="col in" style="--i:1; gap:8px"><p class="big">~50</p><p class="small">familias productoras en San Luis Potosí</p></div>
+</div>
+<div class="col" style="gap:20px">
+<p class="lead"><b>Huasteca:</b> Espadín sobre cañaverales agotados que hoy recuperan suelo.</p>
+<p class="lead"><b>Altiplano:</b> Salmiana en manejo agrosilvopastoral del desierto.</p>
+<p class="lead"><b>Trazabilidad:</b> cada planta está registrada por parcela, año de plantación y coordenadas, y cada lote de mezcal se liga a su parcela de origen.</p>
+</div>
+</div>
+<img src="/proyecciones/9b38afea82ce/img/altiplano.jpg" alt="Agave Salmiana en el altiplano potosino" style="width:840px; height:1080px; object-fit:cover; position:absolute; left:1080px; top:0">
+<p class="foot" style="width:880px"><span>Gavé</span><span>2</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="inventario">
+<p class="eyebrow">Inventario</p>
+<h2>157,400 plantas establecidas llegan a cosecha entre 2027 y 2029</h2>
+<div class="row" style="align-items:flex-end; gap:96px; height:480px; padding-left:40px">
+<div class="col in" style="--i:0; align-items:center; gap:12px"><p class="small" style="color:var(--noche)"><b>48,400</b></p><div class="bar" style="height:339px"></div><p class="small">2027</p></div>
+<div class="col in" style="--i:1; align-items:center; gap:12px"><p class="small" style="color:var(--noche)"><b>46,200</b></p><div class="bar" style="height:324px"></div><p class="small">2028</p></div>
+<div class="col in" style="--i:2; align-items:center; gap:0px"><p class="small" style="color:var(--noche); margin-bottom:12px"><b>62,800</b></p><div class="bar sal" style="height:49px"></div><div class="bar" style="height:391px"></div><p class="small" style="margin-top:12px">2029</p></div>
+<div class="col in" style="--i:3; align-items:center; gap:12px; width:300px"><p class="small" style="text-align:center">Se vende mezcal guardado de cosechas anteriores</p><div class="bar none" style="height:8px"></div><p class="small">2030–2031</p></div>
+</div>
+<div class="legend"><div class="sw"></div><span>Espadín (Huasteca)</span><div class="sw sal"></div><span>Salmiana (altiplano)</span></div>
+<p class="foot"><span>Plantas por año de cosecha, antes de 10% de merma</span><span>3</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="conversion">
+<p class="eyebrow">Conversión</p>
+<h2>Una planta de Espadín se vuelve 14 botellas</h2>
+<div class="row" style="gap:24px; align-items:flex-start">
+<div class="step in" style="--i:0"><p class="big">1</p><p class="unit">planta madura</p></div>
+<p class="arrow">→</p>
+<div class="step in" style="--i:1"><p class="big">50 kg</p><p class="unit">de piña</p></div>
+<p class="arrow">→</p>
+<div class="step in" style="--i:2"><p class="big">7.1 L</p><p class="unit">de mezcal a 42%</p></div>
+<p class="arrow">→</p>
+<div class="step in" style="--i:3"><p class="big">14</p><p class="unit">botellas de 500 ml</p></div>
+</div>
+<p class="lead">Salmiana: 90 kg de piña, 2.6 L y 5 botellas por planta.</p>
+<div style="background:var(--noche); padding:40px 48px; display:flex; gap:64px">
+<div class="col" style="gap:4px"><p class="big" style="color:var(--ambar); font-size:64px">7,300 t</p><p class="small" style="color:var(--claro)">de piña, 2027–2029</p></div>
+<div class="col" style="gap:4px"><p class="big" style="color:var(--ambar); font-size:64px">1.0 M L</p><p class="small" style="color:var(--claro)">de mezcal posibles</p></div>
+<div class="col" style="gap:4px"><p class="big" style="color:var(--ambar); font-size:64px">2.0 M</p><p class="small" style="color:var(--claro)">botellas equivalentes</p></div>
+</div>
+<p class="foot"><span>7 kg de piña por litro de Espadín a 42%; 35 kg por litro de Salmiana</span><span>4</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="destinos">
+<p class="eyebrow">Dos destinos</p>
+<h2>Madurada en vidrio, una planta genera ~$2,000 más que vendida como piña</h2>
+<div class="row" style="gap:32px; align-items:stretch">
+<div class="card in" style="--i:0">
+<h3>Piña a terceros</h3>
+<p class="k">Ingreso por planta</p><p class="v">$350</p>
+<p class="k">Costo de transformación</p><p class="v" style="font-size:40px">—</p>
+<p class="note">Jimada y vendida en parcela a otros productores. Liquidez inmediata, sin capital.</p>
+</div>
+<div class="card in" style="--i:1">
+<h3>Tajacú joven</h3>
+<p class="k">Ingreso neto por planta</p><p class="v agave">$3,400</p>
+<p class="k">Costo de transformación</p><p class="v" style="font-size:40px">$2,250</p>
+<p class="note"><b>+$800</b> sobre vender la piña.</p>
+</div>
+<div class="card hi in" style="--i:2">
+<h3>Tajacú madurado en vidrio</h3>
+<p class="k">Ingreso neto por planta</p><p class="v agave">$4,660</p>
+<p class="k">Costo de transformación</p><p class="v" style="font-size:40px">$2,250</p>
+<p class="note"><b>+$2,060</b> sobre vender la piña. Mezcal guardado más de 12 meses.</p>
+</div>
+</div>
+<p class="foot"><span>Pesos por planta de Espadín (14 botellas) · piña $7/kg · neto $238 joven y $326 madurado por botella</span><span>5</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="posicion">
+<p class="eyebrow">Dónde compite Tajacú</p>
+<h2>Joven en la parte alta del Espadín; madurado junto a los artesanales premium</h2>
+<div class="row" style="gap:24px; align-items:stretch">
+<div class="card in" style="--i:0; border-top-color:var(--arena); gap:12px">
+<p class="k">Volumen · menos de US$33</p>
+<p class="note">Monte Albán, Amarás, Unión Uno, Ojo de Tigre, Rosaluna</p>
+</div>
+<div class="card in" style="--i:1; border-top-color:var(--claro); gap:12px">
+<p class="k">Core · US$33 a 45</p>
+<p class="note">Del Maguey Vida, Los Vecinos, Rey Campero, Gracias a Dios, Montelobos</p>
+</div>
+<div class="card in" style="--i:2; gap:12px">
+<p class="k">Premium · US$45 a 60</p>
+<p class="note">Nucano, Creyente, Maltoro, Dos Hombres, Casamigos</p>
+<p class="note" style="color:var(--agave)"><b>Tajacú joven</b><br>US$39.99 · 500 ml<br>= US$60 en 750 ml</p>
+</div>
+<div class="card hi in" style="--i:3; gap:12px">
+<p class="k">Super premium · más de US$60</p>
+<p class="note">Nuestra Soledad, Pierde Almas, silvestres de US$75 a 150</p>
+<p class="note" style="color:var(--barro)"><b>Tajacú madurado en vidrio o ensamble con Salmiana</b><br>US$49.99 · 500 ml<br>= US$75 en 750 ml</p>
+</div>
+</div>
+<p class="lead" style="font-size:28px">Lo que sostiene el precio: agave cultivado en tierra que se regenera, trazable a su parcela, y Salmiana del altiplano potosino, poco presente en el anaquel.</p>
+<p class="foot"><span>Precio en anaquel por botella de 750 ml, Spec's Texas, noviembre 2026 · Tajacú a 42%</span><span>6</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="cascada">
+<p class="eyebrow">Precio de una botella</p>
+<h2>De US$39.99 en anaquel, a Gavé le quedan $229 netos</h2>
+<table class="t" style="font-size:28px">
+<tr><th style="width:46%; text-align:left">Botella de 500 ml en Texas</th><th style="width:27%; text-align:right">Joven</th><th style="width:27%; text-align:right">Madurado en vidrio</th></tr>
+<tr><td>Precio en anaquel</td><td style="text-align:right">US$39.99</td><td style="text-align:right">US$49.99</td></tr>
+<tr><td>− Margen minorista (30%)</td><td style="text-align:right">−US$12.00</td><td style="text-align:right">−US$15.00</td></tr>
+<tr><td>− Margen distribuidor (28%)</td><td style="text-align:right">−US$7.84</td><td style="text-align:right">−US$9.80</td></tr>
+<tr><td>− Impuestos federal y de Texas, flete y aduana</td><td style="text-align:right">−US$3.44</td><td style="text-align:right">−US$3.44</td></tr>
+<tr><td>− Comercialización en EE. UU.</td><td style="text-align:right">−US$4.32</td><td style="text-align:right">−US$4.32</td></tr>
+<tr class="tot"><td>= Neto a Gavé</td><td style="text-align:right">$229 MXN</td><td style="text-align:right">$322 MXN</td></tr>
+<tr><td>− Mezcal y envasado</td><td style="text-align:right">−$158 MXN</td><td style="text-align:right">−$158 MXN</td></tr>
+<tr class="tot"><td>= Margen bruto por botella</td><td style="text-align:right">$71 MXN</td><td style="text-align:right">$164 MXN</td></tr>
+</table>
+<p class="foot"><span>Gavé Spirits LLC importa directo (sin margen de importador) · arancel 0% por T-MEC · US$1 = $18.5 MXN</span><span>7</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="escenarios">
+<p class="eyebrow">Escenarios de venta</p>
+<h2>Botellas Tajacú vendidas por año</h2>
+<table class="t">
+<tr><th style="width:24%; text-align:left">Escenario</th><th style="width:12%; text-align:right">2027</th><th style="width:12%; text-align:right">2028</th><th style="width:12%; text-align:right">2029</th><th style="width:12%; text-align:right">2030</th><th style="width:12%; text-align:right">2031</th><th style="width:16%; text-align:right">5 años</th></tr>
+<tr><td>Conservador</td><td style="text-align:right">4,500</td><td style="text-align:right">10,000</td><td style="text-align:right">11,500</td><td style="text-align:right">13,225</td><td style="text-align:right">15,209</td><td style="text-align:right">54,434</td></tr>
+<tr class="tot"><td>Base</td><td style="text-align:right">9,000</td><td style="text-align:right">20,000</td><td style="text-align:right">25,000</td><td style="text-align:right">31,250</td><td style="text-align:right">39,063</td><td style="text-align:right">124,313</td></tr>
+<tr><td>Optimista</td><td style="text-align:right">12,000</td><td style="text-align:right">30,000</td><td style="text-align:right">42,000</td><td style="text-align:right">58,800</td><td style="text-align:right">82,320</td><td style="text-align:right">225,120</td></tr>
+</table>
+<div class="row" style="gap:48px">
+<p class="small" style="flex:1"><b>Conservador:</b> solo México al arranque, 375 al mes; crece 15% al año.</p>
+<p class="small" style="flex:1"><b>Base:</b> 750 al mes con exportación a Texas; 20,000 el segundo año; crece 25%.</p>
+<p class="small" style="flex:1"><b>Optimista:</b> distribución más amplia en Estados Unidos desde el arranque; crece 40%.</p>
+</div>
+<p class="foot"><span>Botellas de 500 ml</span><span>8</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="plan">
+<p class="eyebrow">Plan · 25% de la cosecha a mezcal · ventas base</p>
+<h2>Se destila al cosechar y se embotella conforme se vende</h2>
+<table class="t" style="font-size:26px">
+<tr><th style="width:9%; text-align:left">Año</th><th style="width:12%; text-align:right">Plantas a mezcal</th><th style="width:12%; text-align:right">Plantas a piña</th><th style="width:13%; text-align:right">Mezcal producido</th><th style="width:12%; text-align:right">Botellas vendidas</th><th style="width:14%; text-align:right">Mezcal guardado</th><th style="width:13%; text-align:right">Ingresos</th><th style="width:15%; text-align:right">Capital de trabajo</th></tr>
+<tr><td>2027</td><td style="text-align:right">10,890</td><td style="text-align:right">32,670</td><td style="text-align:right">77,900 L</td><td style="text-align:right">9,000</td><td style="text-align:right">73,400 L</td><td style="text-align:right">$13.6 M</td><td style="text-align:right">$12.4 M</td></tr>
+<tr><td>2028</td><td style="text-align:right">10,395</td><td style="text-align:right">31,185</td><td style="text-align:right">74,300 L</td><td style="text-align:right">20,000</td><td style="text-align:right">137,700 L</td><td style="text-align:right">$16.2 M</td><td style="text-align:right">$12.8 M</td></tr>
+<tr><td>2029</td><td style="text-align:right">12,555</td><td style="text-align:right">43,965</td><td style="text-align:right">89,800 L</td><td style="text-align:right">25,000</td><td style="text-align:right">215,000 L</td><td style="text-align:right">$24.3 M</td><td style="text-align:right">$15.6 M</td></tr>
+<tr><td>2030</td><td style="text-align:right">—</td><td style="text-align:right">—</td><td style="text-align:right">—</td><td style="text-align:right">31,250</td><td style="text-align:right">199,300 L</td><td style="text-align:right">$8.3 M</td><td style="text-align:right">$2.7 M</td></tr>
+<tr><td>2031</td><td style="text-align:right">—</td><td style="text-align:right">—</td><td style="text-align:right">—</td><td style="text-align:right">39,063</td><td style="text-align:right">179,800 L</td><td style="text-align:right">$10.3 M</td><td style="text-align:right">$3.3 M</td></tr>
+<tr class="tot"><td>Total</td><td style="text-align:right">33,840</td><td style="text-align:right">107,820</td><td style="text-align:right">242,000 L</td><td style="text-align:right">124,313</td><td style="text-align:right">179,800 L</td><td style="text-align:right">$72.7 M</td><td style="text-align:right">$46.7 M</td></tr>
+</table>
+<p class="foot"><span>Pesos mexicanos · plantas a piña incluyen Salmiana · mezcal en litros a 42%, guardado en vidrio</span><span>9</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="retorno" class="dark">
+<p class="eyebrow">Números del negocio · 2027–2031 · ventas base</p>
+<h2 style="width:1600px">Procesar 25% deja $26 M en caja y 180,000 L con valor mínimo de $50 M</h2>
+<table class="t" style="color:var(--piedra); font-size:28px">
+<tr><th style="width:20%; text-align:left">Cosecha a mezcal</th><th style="width:16%; text-align:right">Financiamiento necesario</th><th style="width:16%; text-align:right">Ingresos 5 años</th><th style="width:16%; text-align:right">Caja neta a 2031</th><th style="width:16%; text-align:right">Mezcal guardado</th><th style="width:16%; text-align:right">Valor mínimo del mezcal</th></tr>
+<tr><td>0% (solo piña)</td><td style="text-align:right">—</td><td style="text-align:right">$52 M</td><td style="text-align:right">$50 M</td><td style="text-align:right">—</td><td style="text-align:right">—</td></tr>
+<tr style="background:#2E5C55"><td>25%</td><td style="text-align:right">$12 M</td><td style="text-align:right">$73 M</td><td style="text-align:right">$26 M</td><td style="text-align:right">180,000 L</td><td style="text-align:right">$50 M</td></tr>
+<tr><td>50%</td><td style="text-align:right">$53 M</td><td style="text-align:right">$61 M</td><td style="text-align:right">−$21 M</td><td style="text-align:right">422,000 L</td><td style="text-align:right">$118 M</td></tr>
+<tr><td>100%</td><td style="text-align:right">$138 M</td><td style="text-align:right">$37 M</td><td style="text-align:right">−$114 M</td><td style="text-align:right">906,000 L</td><td style="text-align:right">$254 M</td></tr>
+</table>
+<div class="row" style="gap:48px">
+<p class="lead" style="flex:1">Con 25%, caja más valor mínimo del mezcal suman <b>$76 M</b>, contra $50 M vendiendo solo piña.</p>
+<p class="lead" style="flex:1">El capital es revolvente: lo que entra por piña y botellas paga la siguiente cosecha.</p>
+</div>
+<p class="foot"><span>Pesos mexicanos · antes de gastos fijos e impuestos · valor mínimo a $280 por litro de Espadín certificado a 42%</span><span>10</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="riesgos">
+<p class="eyebrow">Riesgos</p>
+<h2>Qué puede salir mal y cómo lo cubrimos</h2>
+<table class="t" style="font-size:26px">
+<tr><th style="width:16%; text-align:left">Riesgo</th><th style="width:38%; text-align:left">Qué puede pasar</th><th style="width:46%; text-align:left">Cómo lo cubrimos</th></tr>
+<tr><td>Precio de piña</td><td>El Espadín baja de $7/kg por sobreoferta</td><td>Transformamos parte de la cosecha en lugar de venderla barata</td></tr>
+<tr><td>Ventas</td><td>No llegamos a 9,000 botellas en 2027</td><td>Envasamos solo lo que se vende; el resto madura en vidrio</td></tr>
+<tr><td>Distribución</td><td>Sin distribuidor en Texas y California</td><td>Importador propio (Gavé Spirits LLC) con permiso federal, COLAs, FDA y TABC; conversaciones con Spec's</td></tr>
+<tr><td>Regulación</td><td>Certificación o etiqueta</td><td>AMMA, CRM, COLAs de Espadín y Salmiana y registro FDA vigentes</td></tr>
+<tr><td>Inventario</td><td>Mezcal guardado sin salida</td><td>Valor mínimo de ~$280 por litro; ~$50 M a 2031</td></tr>
+<tr><td>Tipo de cambio</td><td>Un peso fuerte reduce el neto de EE. UU.</td><td>Revisión anual de precios; México como segundo canal</td></tr>
+</table>
+<p class="foot"><span>Gavé · riesgos y coberturas</span><span>11</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="equipo">
+<p class="eyebrow">Equipo</p>
+<h2>Quién lo hace posible</h2>
+<div class="row" style="gap:32px; align-items:stretch">
+<div class="card in" style="--i:0"><h3>Héctor Gloria</h3><p class="k">CEO</p></div>
+<div class="card in" style="--i:1"><h3>Adriana García</h3><p class="k">Estrategia y Alianzas</p></div>
+<div class="card in" style="--i:2"><h3>Obed Mendoza</h3><p class="k">Operación en campo</p><p class="note">Uno de los líderes de las familias tének con las que colaboramos.</p></div>
+<div class="card hi in" style="--i:3"><h3>Buscamos</h3><p class="k">Dirección comercial</p><p class="note">Experiencia en distribución de spirits en Estados Unidos, empezando por Texas y California.</p></div>
+</div>
+<p class="foot"><span>Gavé · equipo</span><span>12</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="propuesta" class="dark">
+<p class="eyebrow">La propuesta</p>
+<h2 style="width:1600px">Levantamos $16 M para destilar la cosecha 2027 y abrir Texas</h2>
+<div class="row" style="gap:48px; align-items:flex-start">
+<div class="col in" style="--i:0; flex:1; gap:16px; border-top:4px solid var(--ambar); padding-top:24px">
+<h3>Dos tramos</h3>
+<p class="lead"><b>$9 M al firmar:</b> destilación de arranque y plan comercial.</p>
+<p class="lead"><b>$7 M al lograr:</b> 6,000 botellas vendidas y cobradas y primer pedido pagado de un distribuidor.</p>
+<p class="small">Acciones Serie L de Gavé Spirits a $750 por acción.</p>
+</div>
+<div class="col in" style="--i:1; flex:1; gap:16px; border-top:4px solid var(--claro); padding-top:24px">
+<h3>Uso de fondos</h3>
+<p class="lead">Destilación y envasado, revolvente: 77%</p>
+<p class="lead">Comercial y marca en EE. UU.: 20%</p>
+<p class="lead">Registros y legal: 3%</p>
+</div>
+<div class="col in" style="--i:2; flex:1; gap:16px; border-top:4px solid var(--claro); padding-top:24px">
+<h3>Hitos a 18 meses</h3>
+<p class="lead">19,000 botellas vendidas</p>
+<p class="lead">Distribuidor en Texas con pedidos recurrentes</p>
+<p class="lead">Primer pedido de un importador en Australia</p>
+</div>
+</div>
+<p class="foot"><span>Pesos mexicanos · además del capital buscamos introducciones con distribuidores e importadores</span><span>13</span></p>
+
+</section></div></div>
+<div class="sl"><div class="sc"><section id="supuestos">
+<p class="eyebrow">Supuestos</p>
+<h2>Cómo se calcularon las proyecciones</h2>
+<div class="row" style="gap:64px">
+<ul class="lead" style="flex:1; font-size:28px; display:flex; flex-direction:column; gap:16px">
+<li>Plantas establecidas por año de plantación, con 10% de merma.</li>
+<li>Espadín: 50 kg de piña por planta y 7 kg por litro a 42%. Salmiana: 90 kg y 35 kg por litro.</li>
+<li>Piña a terceros: $7/kg Espadín (rango $6 a $8), $8/kg Salmiana.</li>
+<li>Maquila certificada $135/L con leña, agua, mano de obra y laboratorio.</li>
+</ul>
+<ul class="lead" style="flex:1; font-size:28px; display:flex; flex-direction:column; gap:16px">
+<li>Se destila al cosechar, se guarda en vidrio y se envasa al venderse.</li>
+<li>Anaquel en Texas US$39.99 joven y US$49.99 madurado (30% de ventas desde 2028); 80% de ventas en EE. UU.</li>
+<li>Neto por botella $238 joven y $326 madurado; US$1 = $18.5.</li>
+<li>Cifras en pesos, antes de gastos fijos e impuestos.</li>
+</ul>
+</div>
+<p class="foot"><span>Gavé · Proyecciones 2027–2031</span><span>14</span></p>
+</section></div></div>
+<section class="sim" id="simulador">
+<style>
+.sim{position:static;width:auto;height:auto;padding:32px 24px;background:#F2F1EC;color:#15201E;border-radius:6px;display:block;font-family:Inter,system-ui,sans-serif}
+.sim h2{font-family:Archivo,Arial,sans-serif;font-size:32px;font-weight:800;line-height:1.1;margin:0 0 8px}
+.sim .ey{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#8A4B1E;margin:0 0 8px}
+.sim .sub{font-size:16px;color:#3C4A47;margin:0 0 24px;max-width:760px}
+.sim .g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px}
+@media (max-width:860px){.sim .g{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){.sim{padding:24px 16px}.sim h2{font-size:26px}.sim .k .v{font-size:22px}.sim .seg button{min-width:0;padding:10px 4px}}
+.sim .g>*{min-width:0}
+.sim .ctl{display:flex;flex-direction:column;gap:18px}
+.sim label{display:flex;flex-wrap:wrap;justify-content:space-between;font-size:15px;font-weight:600;gap:12px}
+.sim label span{font-variant-numeric:tabular-nums;color:#2E5C55;white-space:nowrap}
+.sim input[type=range]{width:100%;accent-color:#2E5C55}
+.sim .seg{display:flex;gap:6px;flex-wrap:wrap}
+.sim .seg button{flex:1;min-width:90px;padding:10px;border:1px solid #2E5C55;background:#FBFAF6;color:#15201E;font:600 14px Inter,system-ui,sans-serif;border-radius:4px;cursor:pointer}
+.sim .seg button.on{background:#2E5C55;color:#F2F1EC}
+.sim .kpi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sim .k{background:#FBFAF6;border-top:4px solid #2E5C55;padding:14px 16px}
+.sim .k.hi{border-top-color:#8A4B1E}
+.sim .k p{margin:0}
+.sim .k .l{font-size:13px;color:#5B6865}
+.sim .k .v{font-family:Archivo,Arial,sans-serif;font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+.sim table{width:100%;border-collapse:collapse;font-size:14px;margin-top:16px;font-variant-numeric:tabular-nums}
+.sim th,.sim td{padding:6px 8px;white-space:nowrap;text-align:right;border-bottom:1px solid #E4E1D6}
+.sim th:first-child,.sim td:first-child{text-align:left}
+.sim .tbl{overflow-x:auto}
+.sim .nota{font-size:13px;color:#5B6865;margin-top:16px}
+</style>
+<p class="ey">Simulador</p>
+<h2>Mueve los supuestos</h2>
+<p class="sub">Las cifras se recalculan con el mismo modelo de la presentación. Pesos mexicanos, 2027–2031, antes de gastos fijos e impuestos.</p>
+<div class="g">
+<div class="ctl">
+<div><label>Ventas de botellas</label><div class="seg" id="esc"><button data-v="conservador">Conservador</button><button data-v="base" class="on">Base</button><button data-v="optimista">Optimista</button></div></div>
+<div><label for="pct">Cosecha de Espadín a mezcal <span id="pct_v"></span></label><input type="range" id="pct" min="0" max="100" step="5" value="25"></div>
+<div><label for="pj">Anaquel Texas, joven 500 ml <span id="pj_v"></span></label><input type="range" id="pj" min="29.99" max="59.99" step="5" value="39.99"></div>
+<div><label for="pp">Anaquel Texas, madurado 500 ml <span id="pp_v"></span></label><input type="range" id="pp" min="39.99" max="79.99" step="5" value="49.99"></div>
+<div><label for="mad">Ventas como madurado en vidrio, desde 2028 <span id="mad_v"></span></label><input type="range" id="mad" min="0" max="80" step="10" value="30"></div>
+<div><label for="pina">Precio de piña Espadín a terceros <span id="pina_v"></span></label><input type="range" id="pina" min="5" max="9" step="0.5" value="7"></div>
+<div><label for="fx">Tipo de cambio <span id="fx_v"></span></label><input type="range" id="fx" min="16" max="22" step="0.5" value="18.5"></div>
+</div>
+<div>
+<div class="kpi">
+<div class="k"><p class="l">Financiamiento necesario</p><p class="v" id="o_fin"></p></div>
+<div class="k"><p class="l">Ingresos 5 años</p><p class="v" id="o_ing"></p></div>
+<div class="k"><p class="l">Caja neta a 2031</p><p class="v" id="o_caja"></p></div>
+<div class="k"><p class="l">Mezcal guardado a 2031</p><p class="v" id="o_inv"></p></div>
+<div class="k hi"><p class="l">Caja más valor mínimo del mezcal</p><p class="v" id="o_tot"></p></div>
+<div class="k"><p class="l">Referencia: vender todo como piña</p><p class="v" id="o_pina"></p></div>
+</div>
+<div class="tbl"><table><thead><tr><th>Año</th><th>Botellas</th><th>Mezcal guardado</th><th>Ingresos</th><th>Caja acumulada</th></tr></thead><tbody id="o_tab"></tbody></table></div>
+<p class="nota">Valor mínimo del mezcal guardado a $280 por litro de Espadín certificado a 42%. Neto por botella después de márgenes de distribuidor (28%) y minorista (30%), impuestos, flete y comercialización; 80% de las ventas en Estados Unidos.</p>
+</div>
+</div>
+<script>
+(function(){
+var H={2027:[48400,0],2028:[46200,0],2029:[55800,7000]},Y=[2027,2028,2029,2030,2031],M=0.9;
+var V={conservador:[4500,10000,11500,13225,15209],base:[9000,20000,25000,31250,39063],optimista:[12000,30000,42000,58800,82320]};
+var KG=50,L=50/7,BOT=L/0.5,JIMA=10,LIQ=JIMA+10+0.05*15000/14+L*135,ENV=35+16+12+20/6+15+50/BOT,GR=280;
+var MXJ=539/1.7748*0.9,MXP=MXJ*1.25;
+var st={esc:"base"};
+function $(i){return document.getElementById(i)}
+function n(i){return parseFloat($(i).value)}
+function us(S,fx){return ((S*0.7*0.72-0.32)-3.12)*fx-80}
+function run(pct,esc,pj,pp,mad,pina,fx){
+ var nj=0.8*us(pj,fx)+0.2*MXJ,np=0.8*us(pp,fx)+0.2*MXP,inv=0,cum=0,low=0,ing=0,rows=[];
+ Y.forEach(function(y,i){var h=H[y]||[0,0],e=h[0]*M,s=h[1]*M,pr=e*pct,pi=e-pr;inv+=pr*BOT;
+  var so=Math.min(V[esc][i],inv);inv-=so;var m=y===2027?0:mad,nb=m*np+(1-m)*nj;
+  var r=so*nb+pi*KG*pina+s*90*8,c=pr*LIQ+so*ENV+(pi+s)*JIMA,need=cum-c;if(need<low)low=need;cum=need+r;ing+=r;
+  rows.push([y,so,inv/2,r,cum])});
+ return {fin:-low,ing:ing,caja:cum,L:inv/2,rows:rows}}
+function M$(x){var a=Math.abs(x)/1e6;return (x<0?"−":"")+"$"+(a>=100?a.toFixed(0):a.toFixed(1))+" M"}
+function N(x){return Math.round(x).toLocaleString("es-MX")}
+var t=null;
+function go(log){
+ var pct=n("pct")/100,pj=n("pj"),pp=n("pp"),mad=n("mad")/100,pina=n("pina"),fx=n("fx");
+ $("pct_v").textContent=Math.round(pct*100)+"%";$("pj_v").textContent="US$"+pj.toFixed(2);$("pp_v").textContent="US$"+pp.toFixed(2);
+ $("mad_v").textContent=Math.round(mad*100)+"%";$("pina_v").textContent="$"+pina.toFixed(1)+"/kg";$("fx_v").textContent="$"+fx.toFixed(1)+" por dólar";
+ var r=run(pct,st.esc,pj,pp,mad,pina,fx),p=run(0,st.esc,pj,pp,mad,pina,fx);
+ $("o_fin").textContent=r.fin<5e5?"—":M$(r.fin);$("o_ing").textContent=M$(r.ing);$("o_caja").textContent=M$(r.caja);
+ $("o_inv").textContent=N(r.L)+" L";$("o_tot").textContent=M$(r.caja+r.L*GR);$("o_pina").textContent=M$(p.caja);
+ $("o_tab").innerHTML=r.rows.map(function(x){return "<tr><td>"+x[0]+"</td><td>"+N(x[1])+"</td><td>"+N(x[2])+" L</td><td>"+M$(x[3])+"</td><td>"+M$(x[4])+"</td></tr>"}).join("");
+ if(log&&window.__gaveLog){clearTimeout(t);t=setTimeout(function(){window.__gaveLog("click",{objetivo:"simulador",escenario:st.esc,pct:Math.round(pct*100),joven:pj,madurado:pp,pct_madurado:Math.round(mad*100),pina:pina,fx:fx})},1500)}
+}
+["pct","pj","pp","mad","pina","fx"].forEach(function(i){$(i).addEventListener("input",function(){go(true)})});
+document.querySelectorAll("#esc button").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll("#esc button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");st.esc=b.getAttribute("data-v");go(true)})});
+go(false);
+})();
+</script>
+</section>
+
+</main>
+<script>
+(function(){function f(){document.querySelectorAll('.sl').forEach(function(d){d.style.setProperty('--s',d.clientWidth/1920)})}
+f();addEventListener('resize',f);})();
+</script>
+</body></html>
