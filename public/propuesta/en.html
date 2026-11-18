@@ -331,7 +331,7 @@ function render(){
   $("dBotS").textContent="About "+n(r.plP*r.bots,0)+" bottles of 500 ml, funded by your share units.";
   $("hPlTit").textContent=n(r.plTit,0); $("hBotTit").textContent=n(r.plTit*r.bots,0);
   $("fTit").textContent=r.tit===1?"1 unit":n(r.tit)+" units"; $("fCap").textContent=m(r.capNew); $("fAcc").textContent=n(r.acc)+" shares";
-  if(D.max){$("fMax").hidden=false;$("fMax").textContent="We have reserved at least "+(D.tit===1?"1 unit":n(D.tit)+" units")+" for you. With "+n(r.maxTit)+" units your entire harvest becomes Tajacú.";}
+  {const tF=D.pl/r.plTit;$("fMax").hidden=false;$("fMax").textContent=(D.max?"We have reserved at least "+(D.tit===1?"1 unit":n(D.tit)+" units")+" for you. ":"")+"To process your entire harvest you would need "+n(tF,1)+" units: "+n(Math.round(tF*100))+" shares, "+m(tF*M.accion*100)+".";}
   $("fPl").textContent=n(r.plP)+" plants"; $("fPct").textContent=n(r.pctS*100,0)+"% of your harvest"; $("fBot").textContent=n(r.plP*r.bots,0)+" bottles";
   const rows=(id,a)=>$(id).innerHTML=a.map(x=>`<tr${x[2]?' class="tot"':''}><td>${x[0]}</td><td>${x[1]}</td></tr>`).join("");
   rows("tInv",[["Espadín plants, "+D.year,m(D.pago)],[n(r.tit)+(r.tit===1?" unit, now":" units, now"),m(r.capNew)],["Total invested",m(D.pago+r.capNew),1]]);
