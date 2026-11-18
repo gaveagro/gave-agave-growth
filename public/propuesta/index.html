@@ -209,7 +209,6 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
     <div class="ctl-grid">
       <div class="ctl"><label for="cTit">Títulos que suscribes</label><output id="oTit" for="cTit"></output><input id="cTit" type="range" min="1" step="0.1"><small>De 100 acciones, $75,000 cada uno</small></div>
       <div class="ctl"><label for="cPT">Precio de la piña a tercero</label><output id="oPT" for="cPT"></output><input id="cPT" type="range" min="3" max="10" step="0.5"><small>Por kilo, para la piña que no va a Tajacú</small></div>
-      <div class="ctl"><label for="cVen">Ventas de Tajacú desde el año 2</label><output id="oVen" for="cVen"></output><input id="cVen" type="range" min="10000" max="40000" step="1000"><small>Botellas al año; el primer año, 750 al mes</small></div>
       <div class="ctl"><label for="cKg">Piña por planta</label><output id="oKg" for="cKg"></output><input id="cKg" type="range" min="35" max="65" step="1"><small>Kilos en promedio; cada piña puede pesar más o menos</small></div>
     </div>
     <button class="reset" id="reset" type="button">Volver a la propuesta</button>
@@ -322,7 +321,7 @@ function calc(){
 }
 function render(){
   const r=calc();
-  $("oTit").textContent=nt(r.tit); $("oPT").textContent="$"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg"; $("oVen").textContent=n(S.ven); $("oKg").textContent=n(S.kg)+" kg";
+  $("oTit").textContent=nt(r.tit); $("oPT").textContent="$"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg"; $("oKg").textContent=n(S.kg)+" kg";
   $("cTit").max=r.maxTit;
   $("sPl").textContent=n(D.pl); $("sKg").textContent=n(S.kg)+" kg"; $("sTon").textContent=n(D.pl*S.kg/1000,0)+" t";
   $("dPctT").textContent=n((1-r.pctS)*100,0)+"%"; $("dPlT").textContent=n(r.resto)+" plantas se venden como piña a terceros";
@@ -373,12 +372,12 @@ function render(){
   $("hCal").textContent="Tu lote se termina de vender en unos "+n(r.meses)+" meses desde las primeras botellas";
   $("tl3").textContent=M.arranque+" meses después"; $("tl4").textContent="~"+n(M.arranque+r.meses)+" meses después";
 }
-function setCtl(){$("cTit").value=S.tit;$("cPT").value=S.pT;$("cVen").value=S.ven;$("cKg").value=S.kg}
-[["cTit","tit"],["cPT","pT"],["cVen","ven"],["cKg","kg"]].forEach(([id,k])=>$(id).addEventListener("input",e=>{S[k]=parseFloat(e.target.value);render()}));
+function setCtl(){$("cTit").value=S.tit;$("cPT").value=S.pT;$("cKg").value=S.kg}
+[["cTit","tit"],["cPT","pT"],["cKg","kg"]].forEach(([id,k])=>$(id).addEventListener("input",e=>{S[k]=parseFloat(e.target.value);render()}));
 $("reset").addEventListener("click",()=>{Object.assign(S,base);setCtl();render()});
 $("cTit").max=999; setCtl(); render(); setCtl();
 // seguimiento: supuestos que mueve el inversionista
-let tSup;["cTit","cPT","cVen","cKg"].forEach(id=>$(id).addEventListener("change",()=>{clearTimeout(tSup);tSup=setTimeout(()=>window.__log("supuesto",{tit:S.tit,pT:S.pT,ven:S.ven,kg:S.kg}),1200)}));
+let tSup;["cTit","cPT","cKg"].forEach(id=>$(id).addEventListener("change",()=>{clearTimeout(tSup);tSup=setTimeout(()=>window.__log("supuesto",{tit:S.tit,pT:S.pT,ven:S.ven,kg:S.kg}),1200)}));
 $("reset").addEventListener("click",()=>window.__log("supuesto",{reset:true}));
 </script>
 <script>
