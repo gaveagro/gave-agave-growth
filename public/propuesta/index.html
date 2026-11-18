@@ -146,7 +146,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
   <div class="steps">
     <div class="card"><span class="tag">Suscribes</span><h3>1 título = 100 acciones Serie L de Gavé Spirits</h3><p class="muted">$75,000 por título, como aportación nueva: lo que invertiste en tus plantas sigue igual. Tus acciones son tuyas: te dan dividendo preferente y participación en el valor de la empresa.</p></div>
     <div class="card"><span class="tag">Se produce</span><h3>Tu piña se vuelve Tajacú</h3><p class="muted">Tu aportación financia flete, maquila certificada a 42°, envasado y comercialización.</p></div>
-    <div class="card"><span class="tag">Cobras</span><h3>Por cada botella de tu lote que se vende</h3><p class="muted">Gavé Spirits te compra tu piña a $8/kg más una participación fija de $170 por cada botella de tu lote que se vende. Se liquida cada trimestre.</p></div>
+    <div class="card"><span class="tag">Cobras</span><h3>Por cada botella de tu lote que se vende</h3><p class="muted">Gavé Spirits te paga tu piña a $170 por cada botella de tu lote que se vende: ese es el precio de las plantas que se vuelven Tajacú. Se liquida cada trimestre.</p></div>
   </div>
 </section>
 
@@ -177,7 +177,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
   <div class="split">
     <div class="card"><span class="tag">1 · Tu dinero regresa</span><h3 id="vp1"></h3><p class="muted">Cada trimestre cobras $170 por botella vendida de tu lote. El dividendo de 5% anual se acumula desde que suscribes.</p></div>
     <div class="card"><span class="tag">2 · Las acciones son la ganancia</span><h3>Te quedas con acciones de una marca que entra a EE.UU.</h3><p class="muted">Gavé tiene el derecho de recomprártelas en cualquier momento a su valor de suscripción más los dividendos acumulados.</p></div>
-    <div class="card"><span class="tag">3 · Tu piña vale más</span><h3 id="vp3"></h3><p class="muted">Y sobre esa piña cobras los $170 por botella: el valor de la marca se queda contigo.</p></div>
+    <div class="card"><span class="tag">3 · Tu piña vale más</span><h3 id="vp3"></h3><p class="muted">La cobras a $170 por botella conforme se vende tu lote: el valor de la marca se queda contigo.</p></div>
   </div>
 </section>
 
@@ -225,7 +225,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
   </div>
   <div class="card">
     <div class="bars" id="bars"></div>
-    <div class="legend"><span><i style="background:var(--c-tercero)"></i>Piña a tercero</span><span><i style="background:var(--c-pina)"></i>Tu piña en Tajacú</span><span><i style="background:var(--c-gan)"></i>Participación por botella</span><span><i style="background:var(--c-acc)"></i>Tus acciones, a valor de suscripción</span></div>
+    <div class="legend"><span><i style="background:var(--c-tercero)"></i>Piña a tercero</span><span><i style="background:var(--c-gan)"></i>Tu piña en Tajacú, a $170 por botella</span><span><i style="background:var(--c-acc)"></i>Tus acciones, a valor de suscripción</span></div>
   </div>
   <p class="note" id="noteOp"></p>
 </section>
@@ -313,7 +313,7 @@ function calc(){
   const R=bots*M.net, marg=Math.max(0,R-C-kg*M.pS);
   // contrato por planta: recuperas lo pagado por la planta y la utilidad de su piña (ya sin jima) se reparte 65/35
   const pp=D.pago/D.pl, f=v=>Math.max(0,Math.min(v,pp))+Math.max(0,v-pp)*M.a;
-  const recT=resto*f(kg*S.pT-M.jima), recS=plP*f(kg*M.pS-M.jima), part=plP*bots*M.pBot;
+  const recT=resto*f(kg*S.pT-M.jima), recS=0, part=plP*bots*M.pBot;
   const capNew=tit*M.accion*100, acc=tit*100;
   const cash=recT+recS+part;
   const roundBots=M.roundBots*(50/50); // la ronda completa se vende en paralelo
@@ -335,7 +335,7 @@ function render(){
   $("fPl").textContent=n(r.plP)+" plantas"; $("fPct").textContent=n(r.pctS*100,0)+"% de tu cosecha"; $("fBot").textContent=n(r.plP*r.bots,0)+" botellas";
   const rows=(id,a)=>$(id).innerHTML=a.map(x=>`<tr${x[2]?' class="tot"':''}><td>${x[0]}</td><td>${x[1]}</td></tr>`).join("");
   rows("tInv",[["Plantas Espadín, "+D.year,m(D.pago)],[nt(r.tit)+" títulos, hoy",m(r.capNew)],["Total invertido",m(D.pago+r.capNew),1]]);
-  rows("tRec",[["Piña vendida a terceros según tu contrato, a $"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg",m(r.recT)],["Tu piña en Tajacú, a $8/kg",m(r.recS)],["Participación de $170 por botella",m(r.part)],["Total en efectivo",m(r.cash),1],["Además conservas "+n(r.acc)+" acciones Serie L",m(r.capNew)],["Dividendo preferente de 5% anual sobre tus acciones, acumulable y pagadero de utilidades",m(r.capNew*0.05)+" al año"]]);
+  rows("tRec",[["Piña vendida a terceros según tu contrato, a $"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg",m(r.recT)],["Tu piña en Tajacú, a $170 por botella vendida",m(r.part)],["Total en efectivo",m(r.cash),1],["Además conservas "+n(r.acc)+" acciones Serie L",m(r.capNew)],["Dividendo preferente de 5% anual sobre tus acciones, acumulable y pagadero de utilidades",m(r.capNew*0.05)+" al año"]]);
   // comparación contra vender todo como piña
   const totAll=Math.max(0,D.pl*(S.kg*S.pT-M.jima)), sellAll=Math.min(totAll,D.pago)+Math.max(0,totAll-D.pago)*M.a;
   const W=Math.max(r.total,sellAll,D.pago+r.capNew), w=x=>Math.max(0,x)/W*100;
@@ -354,7 +354,7 @@ function render(){
     box("tot",n(valT/r.capNew,1)+"×","Valor total por lo que aportas en títulos: "+m(valT));
   $("vpNote").textContent="Como referencia: esos "+m(r.capNew)+" a 9% anual serían unos "+m(fixed)+" en el mismo plazo, sin acciones al final. Todo esto va además de los "+m(r.recT)+" de la piña que se vende a terceros según tu contrato.";
   $("vp1").textContent=n(cashT/r.capNew*100,0)+"% de lo que aportas regresa en efectivo";
-  $("vp3").textContent="Tu piña en Tajacú se paga a $8/kg, contra $"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg con un tercero";
+  $("vp3").textContent="Tu piña en Tajacú vale unos $"+n(r.bots*M.pBot/S.kg,0)+"/kg, contra $"+S.pT.toLocaleString("es-MX",{maximumFractionDigits:1})+"/kg con un tercero";
   // gráfica acumulada
   {const k=r.meses, v=sales(k), tot=v.reduce((a,b)=>a+b,0)||1, T=M.arranque+k, dm=r.capNew*0.05/12;
    const pts=[];let acc=0;for(let t=0;t<=T;t++){if(t>M.arranque&&t-M.arranque-1<k)acc+=r.part*v[t-M.arranque-1]/tot;pts.push(acc+dm*t)}
