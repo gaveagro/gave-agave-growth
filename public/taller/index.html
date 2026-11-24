@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Registro al taller de IA para el trabajo legal</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Formulario previo al taller práctico de IA para el trabajo legal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Una columna estrecha sobre retícula técnica, look oscuro deliberado. */
+:root{
+  --bg:#0d0f13; --bg2:#12151b; --bg3:#171b23; --fg:#e6e8ec; --dim:#8a909c; --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
+  --cob:#5b7cfa; --cob-t:rgba(91,124,250,.12); --ok:#7fd1a4; --ok-t:rgba(127,209,164,.12); --bad:#f07a7a;
+  --sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:720px;margin:0 auto}
+.grid-bg{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:32px 32px;background-position:-1px -1px}
+.eyebrow{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.05em}
+.eyebrow.c{color:var(--cob)}
+h1,h2{font-weight:500;margin:0;text-wrap:balance}
+h1{font-size:clamp(28px,4.4vw,40px);line-height:1.1;letter-spacing:-.035em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--cob);outline-offset:2px}
+nav .in{display:flex;justify-content:space-between;align-items:center;padding-block:18px;gap:16px}
+.mark{width:14px;height:14px;background:var(--cob);display:inline-block;transform:rotate(45deg);margin-left:3px}
+.tag{font-family:var(--mono);font-size:12px;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+header .in{padding-block:36px 40px;display:flex;flex-direction:column;gap:14px}
+.lede{color:var(--dim);font-size:17px;font-weight:300;max-width:58ch}
+form{display:flex;flex-direction:column}
+fieldset{border:0;border-top:1px solid var(--line);margin:0;padding:26px 0;display:flex;flex-direction:column;gap:12px;min-width:0}
+legend{padding:0;font-weight:500;font-size:17px;letter-spacing:-.01em;display:flex;gap:12px;float:left;width:100%}
+legend .n{font-family:var(--mono);font-size:13px;color:var(--cob);padding-top:3px;min-width:22px}
+legend + *{clear:both}
+.help{font-size:14px;color:var(--dim);margin-left:34px}
+.opt{font-family:var(--mono);font-size:11px;color:var(--dim);font-weight:400;padding-top:4px}
+.fields{display:flex;flex-direction:column;gap:12px;margin-left:34px}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--dim)}
+input[type=text],textarea{font:inherit;color:var(--fg);background:var(--bg2);border:1px solid var(--line2);border-radius:8px;padding:11px 13px;width:100%}
+textarea{min-height:110px;resize:vertical}
+input[type=text]:focus,textarea:focus{border-color:var(--cob);outline:none;box-shadow:0 0 0 3px var(--cob-t)}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:8px;margin-left:34px}
+.choices label{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;font-size:15px;background:var(--bg)}
+.choices label:hover{border-color:var(--line2)}
+.choices input{accent-color:var(--cob);margin-top:4px;flex:none}
+.choices label:has(input:checked){border-color:rgba(91,124,250,.6);background:var(--cob-t)}
+.other{margin-left:34px}
+@media (max-width:520px){.help,.fields,.choices,.other{margin-left:0}}
+.consent{border-top:1px solid var(--line);padding:24px 0;display:flex;flex-direction:column;gap:12px}
+.consent label{display:flex;gap:10px;align-items:flex-start;font-size:15px;cursor:pointer}
+.consent input{accent-color:var(--cob);margin-top:4px;flex:none}
+.privacy{font-size:13px;color:var(--dim);background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:8px 0 56px}
+button{font:inherit;font-weight:500;background:var(--cob);color:#fff;border:0;border-radius:8px;padding:13px 22px;cursor:pointer}
+button:hover{filter:brightness(1.1)}
+button[disabled]{opacity:.6;cursor:wait}
+.status{font-size:14px;color:var(--dim)}
+.status.err{color:var(--bad)}
+.done{border:1px solid rgba(127,209,164,.4);background:var(--ok-t);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:8px;margin-bottom:56px}
+.done b{font-weight:500;font-size:18px}
+.done p{color:var(--dim)}
+.invalid{border-color:var(--bad)!important}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<nav class="gutter"><div class="in">
+  <span class="mark" role="img" aria-label="Logotipo"></span>
+  <span class="tag">Formulario previo</span>
+</div></nav>
+
+<header class="grid-bg gutter"><div class="in">
+  <span class="eyebrow c">TALLER PRÁCTICO · IA EN EL TRABAJO LEGAL</span>
+  <h1>Antes del taller</h1>
+  <p class="lede">Doce preguntas, unos cinco minutos. Con tus respuestas preparo ejemplos parecidos a tu trabajo y sé con qué herramienta llegas.</p>
+</div></header>
+
+<main class="gutter"><div class="in">
+<form id="f" novalidate>
+
+  <fieldset>
+    <legend><span class="n">01</span><span>Tus datos</span></legend>
+    <div class="fields">
+      <label class="f">Nombre<input type="text" id="nombre" name="nombre" autocomplete="name" maxlength="200" required></label>
+      <label class="f">WhatsApp o correo<input type="text" id="contacto" name="contacto" autocomplete="email" maxlength="200" required></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">02</span><span>¿A qué te dedicas principalmente?</span></legend>
+    <div class="choices" data-name="especialidad" data-type="radio" data-other="true">
+      <span>Litigio civil o mercantil</span><span>Contratos y corporativo</span><span>Notarial</span><span>Familiar</span><span>Fiscal</span><span>Laboral</span><span>Área legal de una empresa</span><span>Poder judicial o gobierno</span><span>Academia</span><span>Otro</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">03</span><span>¿Dónde trabajas?</span></legend>
+    <div class="choices" data-name="lugar_trabajo" data-type="radio">
+      <span>Despacho propio o individual</span><span>Despacho de 2 a 10 personas</span><span>Despacho de más de 10 personas</span><span>Empresa</span><span>Sector público</span><span>Estudio o no ejerzo por ahora</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">04</span><span>¿Cómo usas la IA hoy?</span></legend>
+    <div class="choices" data-name="uso_ia" data-type="radio">
+      <span>Nunca la he usado</span><span>Uso un chat de vez en cuando</span><span>Uso un chat casi a diario</span><span>Ya usé agentes o herramientas que trabajan con archivos</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">05</span><span>¿Qué tarea repetitiva te quita más tiempo cada semana?</span></legend>
+    <p class="help">Por ejemplo: revisar contratos, contestar correos de clientes, armar cronologías, buscar tesis, llevar el control de horas o de plazos.</p>
+    <div class="fields"><textarea id="tarea" name="tarea" maxlength="3000" aria-label="Tarea repetitiva"></textarea></div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">06</span><span>¿Cuántas horas a la semana le dedicas?</span></legend>
+    <div class="choices" data-name="horas_semana" data-type="radio">
+      <span>Menos de 2</span><span>De 2 a 5</span><span>De 5 a 10</span><span>Más de 10</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">07</span><span>¿Qué te gustaría construir en el taller?</span></legend>
+    <div class="choices" data-name="construir" data-type="radio" data-other="true">
+      <span>Revisión de contratos</span><span>Del expediente a la cronología</span><span>Borradores con mi estilo</span><span>Algo de la dirección del despacho</span><span>Otro</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">08</span><span>¿Qué te gustaría resolver en la dirección de un despacho o área legal?</span><span class="opt">opcional · varias</span></legend>
+    <div class="choices" data-name="direccion" data-type="checkbox">
+      <span>Control de horas y rentabilidad</span><span>Cobranza</span><span>Carga de trabajo del equipo</span><span>Reportes a clientes</span><span>Seguimiento de prospectos</span><span>No aplica</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">09</span><span>¿Qué computadora llevarías?</span></legend>
+    <div class="choices" data-name="computadora" data-type="radio">
+      <span>Mac</span><span>Windows</span><span>No tengo laptop para llevar</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">10</span><span>¿Tienes suscripción de pago a algún asistente de IA?</span></legend>
+    <div class="choices" data-name="suscripcion" data-type="radio">
+      <span>Claude de pago</span><span>ChatGPT Plus u otro</span><span>No, pero la contrataría para el taller</span><span>No, y prefiero no contratarla</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">11</span><span>¿Puedes usar herramientas de IA con los archivos de tu trabajo?</span></legend>
+    <div class="choices" data-name="ia_en_trabajo" data-type="radio">
+      <span>Sí</span><span>Sólo algunas autorizadas</span><span>No está permitido</span><span>No sé</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">12</span><span>¿Qué te preocupa de usar IA en tu trabajo?</span><span class="opt">opcional</span></legend>
+    <div class="fields"><textarea id="preocupacion" name="preocupacion" maxlength="3000" aria-label="Preocupaciones"></textarea></div>
+  </fieldset>
+
+  <div class="consent">
+    <label><input type="checkbox" id="acepta_contacto"> Pueden contactarme después del taller para dar seguimiento.</label>
+    <p class="privacy">Tus respuestas sólo se usan para preparar el taller y, si lo autorizas, para contactarte después. No se comparten con nadie más. Si quieres que se borren, pídelo a quien te envió este formulario.</p>
+  </div>
+
+  <div class="actions">
+    <button type="submit" id="enviar">Enviar respuestas</button>
+    <span class="status" id="status" role="status" aria-live="polite"></span>
+  </div>
+</form>
+
+<div class="done" id="done" hidden>
+  <b>Listo, gracias.</b>
+  <p>Recibimos tus respuestas. Antes del taller te llegarán la fecha, el lugar y qué instalar.</p>
+</div>
+</div></main>
+
+<script>
+(function(){
+  var URL_RPC = "https://ybhbceqthsfgsjccounm.supabase.co/rest/v1/rpc/registrar_taller";
+  var KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InliaGJjZXF0aHNmZ3NqY2NvdW5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkyNDM2NzgsImV4cCI6MjA2NDgxOTY3OH0.e-mHzlSFVzx6dCgMwMY-ynFw0l9yrbXYXdr1n1Uoh_M";
+
+  // Construye las opciones a partir de las etiquetas
+  document.querySelectorAll(".choices").forEach(function(box){
+    var name = box.dataset.name, type = box.dataset.type, i = 0;
+    Array.prototype.slice.call(box.children).forEach(function(span){
+      var text = span.textContent, id = name + "_" + (i++);
+      var label = document.createElement("label");
+      var input = document.createElement("input");
+      input.type = type; input.name = name; input.value = text; input.id = id;
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(text));
+      box.replaceChild(label, span);
+    });
+    if (box.dataset.other) {
+      var wrap = document.createElement("div");
+      wrap.className = "other"; wrap.hidden = true;
+      var other = document.createElement("input");
+      other.type = "text"; other.id = name + "_otro"; other.maxLength = 300;
+      other.placeholder = "¿Cuál?"; other.setAttribute("aria-label", "Especifica");
+      wrap.appendChild(other);
+      box.parentNode.appendChild(wrap);
+      box.addEventListener("change", function(){
+        var sel = box.querySelector("input:checked");
+        wrap.hidden = !(sel && sel.value === "Otro");
+      });
+    }
+  });
+
+  var form = document.getElementById("f"), status = document.getElementById("status"), btn = document.getElementById("enviar");
+
+  function val(name){
+    var box = document.querySelector('.choices[data-name="' + name + '"]');
+    var sel = box.querySelectorAll("input:checked");
+    if (box.dataset.type === "checkbox") return Array.prototype.map.call(sel, function(x){ return x.value; });
+    if (!sel.length) return null;
+    var v = sel[0].value;
+    if (v === "Otro") { var o = document.getElementById(name + "_otro"); if (o && o.value.trim()) v = "Otro: " + o.value.trim(); }
+    return v;
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var nombre = document.getElementById("nombre"), contacto = document.getElementById("contacto");
+    [nombre, contacto].forEach(function(el){ el.classList.toggle("invalid", !el.value.trim()); });
+    if (!nombre.value.trim() || !contacto.value.trim()) {
+      status.className = "status err";
+      status.textContent = "Escribe tu nombre y un WhatsApp o correo para poder enviarte los detalles.";
+      nombre.value.trim() ? contacto.focus() : nombre.focus();
+      return;
+    }
+    var respuestas = {
+      especialidad: val("especialidad"),
+      lugar_trabajo: val("lugar_trabajo"),
+      uso_ia: val("uso_ia"),
+      tarea: document.getElementById("tarea").value.trim(),
+      horas_semana: val("horas_semana"),
+      construir: val("construir"),
+      direccion: val("direccion"),
+      computadora: val("computadora"),
+      suscripcion: val("suscripcion"),
+      ia_en_trabajo: val("ia_en_trabajo"),
+      preocupacion: document.getElementById("preocupacion").value.trim()
+    };
+    btn.disabled = true; status.className = "status"; status.textContent = "Enviando…";
+    fetch(URL_RPC, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "apikey": KEY, "Authorization": "Bearer " + KEY },
+      body: JSON.stringify({
+        p_nombre: nombre.value.trim(),
+        p_contacto: contacto.value.trim(),
+        p_respuestas: respuestas,
+        p_acepta_contacto: document.getElementById("acepta_contacto").checked,
+        p_user_agent: navigator.userAgent
+      })
+    }).then(function(r){
+      if (!r.ok) throw new Error("http " + r.status);
+      form.hidden = true;
+      document.getElementById("done").hidden = false;
+      window.scrollTo(0, 0);
+    }).catch(function(){
+      btn.disabled = false;
+      status.className = "status err";
+      status.textContent = "No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.";
+    });
+  });
+})();
+</script>
+</body>
+</html>
